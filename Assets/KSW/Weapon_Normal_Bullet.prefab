@@ -143,10 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7948561276b394d8865762bf0b5f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBulletStatus: {fileID: 0}
   rigidBody: {fileID: 0}
-  bulletSpeed: 10
   returnDelay: 2
-  bulletType: 0
 --- !u!54 &5809298693267612254
 Rigidbody:
   m_ObjectHideFlags: 0

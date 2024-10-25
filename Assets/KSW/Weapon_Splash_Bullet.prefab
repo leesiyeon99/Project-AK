@@ -62,8 +62,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1156ea90558c1074496b4c2ef6c6f65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBulletStatus: {fileID: 0}
   rigidBody: {fileID: 0}
-  bulletSpeed: 5
   returnDelay: 2
   splashRadius: 1
 --- !u!1 &6974256954004836726

@@ -159,9 +159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffade96a20c9804590261df02c0a772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBulletStatus: {fileID: 0}
   rigidBody: {fileID: 0}
-  bulletSpeed: 10
   returnDelay: 2
-  bulletType: 1
   defaultPierceCount: 3
   pierceCount: 3

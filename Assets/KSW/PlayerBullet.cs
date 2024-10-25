@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    [SerializeField] protected Rigidbody rigidBody;
-    [SerializeField] protected float bulletSpeed;
-    [SerializeField] protected float returnDelay;
-  
 
+    [SerializeField] protected Rigidbody rigidBody;
+
+
+
+    [SerializeField] protected float returnDelay;
+ 
     protected PlayerGun playerGun;
 
     protected WaitForSeconds returnWaitForSeconds;
@@ -26,7 +28,7 @@ public class PlayerBullet : MonoBehaviour
     public void MoveBullet()
     {
         returnCoroutine = StartCoroutine(ReturnTime());
-        rigidBody.velocity = transform.forward * bulletSpeed;
+        rigidBody.velocity = transform.forward * playerGun.GetBulletStatus().BulletSpeed;
     
     }
 
