@@ -60,8 +60,9 @@ public class PlayerGun : MonoBehaviour
     {
         while (true)
         {
-            yield return firingWaitForSeconds;
             Fire();
+            yield return firingWaitForSeconds;
+            
            
         }
     }
@@ -110,7 +111,7 @@ public class PlayerGun : MonoBehaviour
 
         if (Physics.Raycast(muzzle.position, muzzle.forward, out hit, 100f, mask))
         {
-            Debug.Log(hit.collider.name);
+           
             aim.transform.position = hit.point;
 
         }

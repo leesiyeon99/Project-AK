@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerBullet : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rigidBody;
-    [SerializeField] private float bulletSpeed;
+    [SerializeField] protected Rigidbody rigidBody;
+    [SerializeField] protected float bulletSpeed;
+    [SerializeField] protected float returnDelay;
+  
 
-    private PlayerGun playerGun;
+    protected PlayerGun playerGun;
 
-    [SerializeField] private float returnDelay;
+    protected WaitForSeconds returnWaitForSeconds;
+    protected Coroutine returnCoroutine;
 
-    private WaitForSeconds returnWaitForSeconds;
-    private Coroutine returnCoroutine;
+
 
     private void Awake()
     {
@@ -33,7 +36,7 @@ public class PlayerBullet : MonoBehaviour
     }
 
     // Commnet : 오브젝트 풀 회수
-    private void ReturnBullet()
+    public void ReturnBullet()
     {
         if (returnCoroutine != null)
         {
@@ -45,9 +48,14 @@ public class PlayerBullet : MonoBehaviour
         playerGun.EnqueueBullet(this);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void HitBullet()
     {
         ReturnBullet();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        HitBullet();
     }
 
     IEnumerator ReturnTime()

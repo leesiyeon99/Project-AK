@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9bfa87fe72a62eb41a8bf104f3494ef1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,7 +95,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8745535972976116055
 GameObject:
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 3769859718419475028}
   - component: {fileID: 5809298693267612254}
   m_Layer: 5
-  m_Name: Weapon_Bullet
+  m_Name: Weapon_Normal_Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,7 +145,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 0}
   bulletSpeed: 10
-  returnDelay: 0.5
+  returnDelay: 2
+  bulletType: 0
 --- !u!54 &5809298693267612254
 Rigidbody:
   m_ObjectHideFlags: 0

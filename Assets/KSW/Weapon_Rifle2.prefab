@@ -117,9 +117,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzle: {fileID: 7945420109707192020}
-  bulletPrefab: {fileID: 8745535972976116055, guid: 4bdce113eb80f504f857b699eb764a66, type: 3}
+  bulletPrefab: {fileID: 8105243949717667477, guid: e7c90a4c5fc26a847aaa831492578384, type: 3}
   firingDelay: 0.3
-  bulletPoolSize: 7
+  bulletPoolSize: 15
   aim: {fileID: 0}
   mask:
     serializedVersion: 2
