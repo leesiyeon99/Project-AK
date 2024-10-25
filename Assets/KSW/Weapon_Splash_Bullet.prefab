@@ -65,6 +65,7 @@ MonoBehaviour:
   rigidBody: {fileID: 0}
   bulletSpeed: 5
   returnDelay: 2
+  splashRadius: 1
 --- !u!1 &6974256954004836726
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,7 +35,7 @@ public class PlayerBullet : MonoBehaviour
         playerGun = _playerGun;
     }
 
-    // Commnet : 오브젝트 풀 회수
+    // Comment : 오브젝트 풀 회수
     public void ReturnBullet()
     {
         if (returnCoroutine != null)
@@ -55,6 +55,8 @@ public class PlayerBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // TODO : 데미지 구현
+
         HitBullet();
     }
 

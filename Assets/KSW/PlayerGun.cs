@@ -67,7 +67,7 @@ public class PlayerGun : MonoBehaviour
         }
     }
 
-    // Commnet : 총알 오브젝트 풀링
+    // Comment : 총알 오브젝트 풀링
     void SetBullet()
     {
         for (int i = 0; i < bulletPoolSize; i++)
@@ -94,16 +94,16 @@ public class PlayerGun : MonoBehaviour
         playerBullet.MoveBullet();
     }
 
-    // Commnet : 회수 된 총알 pool에 저장
+    // Comment : 회수 된 총알 pool에 저장
     public void EnqueueBullet(PlayerBullet playerBullet)
     {
         playerBullets.Enqueue(playerBullet);
     }
 
-    // Commnet : 조준점 이동
+    // Comment : 조준점 이동
     // TODO : 일시적으로 Bullet에 UI 레이어 부여, 추후 레이어 합의 후 마스크 레이어 관리 필요 
     // 마스크 레이어를 다른곳에 정의해서 하나만 사용하는것도 필요
-    
+
     public void MoveAim()
     {
 

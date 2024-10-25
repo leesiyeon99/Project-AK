@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputWeapon : MonoBehaviour
 {
-    // Commnet : 인풋 시스템 관리
+    // Comment : 인풋 시스템 관리
     // TODO : 추후 인풋 시스템 수정 합의 필요
 
 
