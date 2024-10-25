@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class PlayerGun : MonoBehaviour
 {
     [SerializeField] private Transform muzzle;
-    [SerializeField] private InputActionReference shoot;
-    
+
     [SerializeField] private GameObject bulletPrefab;
 
     [SerializeField] private float firingDelay;
@@ -20,17 +19,7 @@ public class PlayerGun : MonoBehaviour
     private WaitForSeconds firingWaitForSeconds;
     private Coroutine firingCoroutine;
 
-    private void OnEnable()
-    {
-        shoot.action.performed += OnShoot;
-        shoot.action.canceled += OffShoot;
-    }
-    private void OnDisable()
-    {
-        shoot.action.performed -= OnShoot;
-        shoot.action.canceled -= OffShoot;
-    }
-
+  
     private void Awake()
     {
         playerBullets = new Queue<PlayerBullet>();
@@ -43,13 +32,13 @@ public class PlayerGun : MonoBehaviour
         SetBullet();
     }
 
-    void OnShoot(InputAction.CallbackContext obj)
+    public void OnFireCoroutine()
     {
         firingCoroutine = StartCoroutine(Firing());
 
 
     }
-    void OffShoot(InputAction.CallbackContext obj)
+    public void OffFireCoroutine()
     {
         if (firingCoroutine != null)
         {

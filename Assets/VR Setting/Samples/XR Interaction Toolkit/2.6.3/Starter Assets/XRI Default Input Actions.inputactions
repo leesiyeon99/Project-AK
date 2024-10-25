@@ -443,6 +443,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "LeftChange",
+                    "type": "Button",
+                    "id": "5b23a540-01d5-4870-9e95-0592d9d08d34",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -674,6 +683,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Grip Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3264c727-fe59-4373-b1a3-6e10df63d2be",
+                    "path": "<XRController>{LeftHand}/{GripButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftChange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1241,9 +1261,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Shoot",
+                    "name": "Fire",
                     "type": "Button",
                     "id": "53581fe2-5057-4e78-83cf-82a02358544d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightChange",
+                    "type": "Button",
+                    "id": "bf57db41-dbb7-4884-854d-b108c8731740",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1489,7 +1518,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a740c49b-a791-4dc0-87f7-cb4d8299d5dc",
+                    "path": "<XRController>{RightHand}/{GripButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightChange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
