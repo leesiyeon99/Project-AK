@@ -17,7 +17,7 @@ public class LJH_Shield : MonoBehaviour
     private void Start()
     {
         ObjShieldPrefab = gameObject;
-        shieldOn.action.performed += ShieldOn;
+        //shieldOn.action.performed += ShieldOn;
 
         isBreaked = false;
         durability = 5;
@@ -47,6 +47,7 @@ public class LJH_Shield : MonoBehaviour
         isBreaked = true;
     }
 
+    /*
     IEnumerator ShieldCoolDown()
     {
         yield return new WaitForSecond(2.0f);               // 2초간 방패 들기 불가
@@ -58,4 +59,5 @@ public class LJH_Shield : MonoBehaviour
         yield return new WaitForSecond(3.0f);               // 방패 들기 불가 + 3초 후 방패 수리 완료
         isBreaked = false;
     }
+    */
 }
