@@ -117,10 +117,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzle: {fileID: 7945420109707192020}
-  shoot: {fileID: -1005593533459047081, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   bulletPrefab: {fileID: 8745535972976116055, guid: 4bdce113eb80f504f857b699eb764a66, type: 3}
   firingDelay: 0.3
   bulletPoolSize: 7
+  aim: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &241267952666210392
 GameObject:
   m_ObjectHideFlags: 0

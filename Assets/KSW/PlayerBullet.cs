@@ -31,8 +31,8 @@ public class PlayerBullet : MonoBehaviour
     {
         playerGun = _playerGun;
     }
-  
-    // 오브젝트 풀 회수
+
+    // Commnet : 오브젝트 풀 회수
     private void ReturnBullet()
     {
         if (returnCoroutine != null)

@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputWeapon : MonoBehaviour
 {
+    // Commnet : 인풋 시스템 관리
+
+
     [SerializeField] private PlayerOwnedWeapons playerOwnedWeapons;
     [SerializeField] private PlayerChangeWeapon playerChangeWeapon;
 
