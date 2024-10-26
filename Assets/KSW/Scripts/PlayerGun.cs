@@ -11,6 +11,8 @@ public class PlayerGun : MonoBehaviour
     private PlayerBulletCustom customBullet;
     public PlayerBulletCustom CustomBullet { get { return customBullet; } }
 
+    private LineRenderer aimLineRenderer;
+
     [SerializeField] private Transform muzzle;
 
     [SerializeField] private GameObject bulletPrefab;
@@ -41,7 +43,9 @@ public class PlayerGun : MonoBehaviour
     {
         customBullet = GetComponent<PlayerBulletCustom>();
         playerGunStatus = GetComponent<PlayerGunStatus>();
+        aimLineRenderer = GetComponent<LineRenderer>();
         aim = GameObject.Find("Aim");
+
         playerBullets = new Queue<PlayerBullet>();
        
     }
@@ -155,12 +159,15 @@ public class PlayerGun : MonoBehaviour
 
         if (Physics.Raycast(muzzle.position, muzzle.forward, out hit, 100f, mask))
         {
-           
+            aimLineRenderer.enabled = true;
+            aimLineRenderer.SetPosition(0, muzzle.position);
+            aimLineRenderer.SetPosition(1, hit.point);
             aim.transform.position = hit.point;
 
         }
         else
         {
+            aimLineRenderer.enabled = false;
             aim.transform.position = Vector3.zero;
         }
       

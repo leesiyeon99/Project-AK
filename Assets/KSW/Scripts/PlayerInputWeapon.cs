@@ -55,6 +55,9 @@ public class PlayerInputWeapon : MonoBehaviour
     {
         Quaternion quaternion = obj.ReadValue<Quaternion>();
 
+
+        // Comment : 컨트롤러의 x 좌표 각도가 45~60 사이 일 때 재장전 호출
+
         if(quaternion.eulerAngles.x > 45f && quaternion.eulerAngles.x < 60f)
         {
             playerOwnedWeapons.ReloadMagazine();
