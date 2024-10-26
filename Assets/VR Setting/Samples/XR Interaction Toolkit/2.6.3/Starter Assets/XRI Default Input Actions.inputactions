@@ -1297,6 +1297,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LJHTEST",
+                    "type": "Button",
+                    "id": "8f450055-0742-4cf0-9637-570bd8f7537e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1550,6 +1559,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "RightChange",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ba98cef1-8e5b-4cf6-82cb-9bbd01ec5923",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LJHTEST",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
