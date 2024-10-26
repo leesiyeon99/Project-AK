@@ -104,11 +104,6 @@ public class PlayerBullet : MonoBehaviour
     }
 
     
-    // Comment : 스플래쉬 범위 확인
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, playerGun.CustomBullet.SplashRadius);
-    }
+ 
     
 }
