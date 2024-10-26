@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7948561276b394d8865762bf0b5f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sparkEffectPrefab: {fileID: 5009965501609980282, guid: 40bac7deaa418ae49848745c218f0aec, type: 3}
   pierceCount: 0
 --- !u!96 &4558401284472723723
 TrailRenderer:

@@ -19,8 +19,12 @@ public class PlayerGun : MonoBehaviour
 
     [SerializeField] private GameObject bulletPrefab;
 
+    [SerializeField] private GameObject fireEffect;
+
     [SerializeField] private float firingCoolDown;
 
+
+    // Comment : 오브젝트 풀 관련 변수
     [SerializeField] private int bulletPoolSize;
 
     [SerializeField] private float bulletReturnDelay;
@@ -129,7 +133,11 @@ public class PlayerGun : MonoBehaviour
         if (playerBullets.Count <= 0)
             return;
 
+
+        // Comment : 비주얼적 부분
+        fireEffect.SetActive(false);
         animator.SetTrigger("Shot");
+        fireEffect.SetActive(true);
 
         PlayerBullet playerBullet = playerBullets.Dequeue();
         playerBullet.transform.position = muzzle.position;
@@ -190,6 +198,7 @@ public class PlayerGun : MonoBehaviour
 
     private void OnDisable()
     {
+        fireEffect.SetActive(false);
         StopAllCoroutines();
     }
 

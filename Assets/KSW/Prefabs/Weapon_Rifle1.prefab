@@ -27,7 +27,8 @@ Transform:
   m_LocalPosition: {x: -0.0004, y: 0.0885, z: 0.7469}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5937570859680557974}
   m_Father: {fileID: 5939405166675009975}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -319,6 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzle: {fileID: 1478184361}
   bulletPrefab: {fileID: 8745535972976116055, guid: 4bdce113eb80f504f857b699eb764a66, type: 3}
+  fireEffect: {fileID: 3289617578721309889}
   firingCoolDown: 0
   bulletPoolSize: 20
   bulletReturnDelay: 2
@@ -643,3 +645,78 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &5695978062810732565
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1478184361}
+    m_Modifications:
+    - target: {fileID: 2119595507930641283, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119595507930641283, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119595507930641283, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119595507930641283, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119595507930641283, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119595507930641283, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119595507930641283, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119595507930641283, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119595507930641283, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119595507930641283, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119595507930641283, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109842530389208276, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+      propertyPath: m_Name
+      value: Particle_RifleFire
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109842530389208276, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946027659058381403, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+      propertyPath: stopAction
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+--- !u!1 &3289617578721309889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7109842530389208276, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+  m_PrefabInstance: {fileID: 5695978062810732565}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5937570859680557974 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2119595507930641283, guid: 08ac95be9ff21f24eaf83c5c29f72a8f, type: 3}
+  m_PrefabInstance: {fileID: 5695978062810732565}
+  m_PrefabAsset: {fileID: 0}

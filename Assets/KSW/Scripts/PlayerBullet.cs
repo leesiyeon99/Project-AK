@@ -11,8 +11,10 @@ public class PlayerBullet : MonoBehaviour
 
     private Rigidbody rigidBody;
 
+    [SerializeField] private GameObject sparkEffectPrefab;
+    private GameObject spark;
     [SerializeField] private int pierceCount;
-     private PlayerGun playerGun;
+    private PlayerGun playerGun;
 
     private WaitForSeconds returnWaitForSeconds;
     private Coroutine returnCoroutine;
@@ -22,7 +24,8 @@ public class PlayerBullet : MonoBehaviour
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-      
+        spark = Instantiate(sparkEffectPrefab);
+        spark.SetActive(false);
     }
 
     public void MoveBullet()
@@ -37,6 +40,7 @@ public class PlayerBullet : MonoBehaviour
     {
         playerGun = _playerGun;
         returnWaitForSeconds = new WaitForSeconds(playerGun.BulletReturnDelay);
+       
     }
 
     // Comment : 오브젝트 풀 회수
@@ -54,6 +58,8 @@ public class PlayerBullet : MonoBehaviour
 
     private void HitBullet()
     {
+       
+
         if (playerGun.CustomBullet.GunType.HasFlag(GunType.PIERCE))
         {
             pierceCount--;
@@ -77,8 +83,20 @@ public class PlayerBullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // TODO : 데미지 구현
+   
+        OnEffect(other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position));
 
         HitBullet();
+    }
+
+    private void OnEffect(Vector3 vec)
+    {
+        
+        spark.SetActive(false);
+
+        spark.transform.position = vec;
+        spark.transform.LookAt(playerGun.transform.position);
+        spark.SetActive(true);
     }
 
     IEnumerator ReturnTime()
