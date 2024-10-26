@@ -70,6 +70,7 @@ public class PlayerBullet : MonoBehaviour
         if (type.HasFlag(BulletType.PIERCE))
         {
             pierceCount--;
+            // TODO : 물체 관통 여부 확인 필요, 파괴 불가 오브젝트에 충돌시 관통 끝
         }
         if (type.HasFlag(BulletType.SPLASH))
         {
@@ -104,17 +105,18 @@ public class PlayerBullet : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
+            Debug.Log(collider.name);
             // TODO : 데미지 구현
         }
 
     }
 
-    /*
+    
     // Comment : 스플래쉬 범위 확인
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(this.transform.position, splashRadius);
+        Gizmos.DrawSphere(transform.position, splashRadius);
     }
-    */
+    
 }

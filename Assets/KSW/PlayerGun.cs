@@ -12,6 +12,7 @@ public class PlayerGun : MonoBehaviour
 
 
     [SerializeField] private float firingDelay;
+    [SerializeField] private float firingCoolDown;
 
     [SerializeField] private int bulletPoolSize;
 
@@ -19,7 +20,7 @@ public class PlayerGun : MonoBehaviour
 
     private Queue<PlayerBullet> playerBullets;
 
-    private WaitForSeconds firingWaitForSeconds;
+   
     private Coroutine firingCoroutine;
 
     [SerializeField] private LayerMask mask;
@@ -33,7 +34,6 @@ public class PlayerGun : MonoBehaviour
     {
         aim = GameObject.Find("Aim");
         playerBullets = new Queue<PlayerBullet>();
-        firingWaitForSeconds = new WaitForSeconds(firingDelay);
        
     }
 
@@ -44,15 +44,22 @@ public class PlayerGun : MonoBehaviour
 
     public void OnFireCoroutine()
     {
+        CoroutineCheck();
         firingCoroutine = StartCoroutine(Firing());
-
-
     }
     public void OffFireCoroutine()
+    {
+        CoroutineCheck();
+
+        firingCoroutine = StartCoroutine(BackgroundFiringCooldown());
+    }
+
+    private void CoroutineCheck()
     {
         if (firingCoroutine != null)
         {
             StopCoroutine(firingCoroutine);
+
         }
     }
 
@@ -60,10 +67,28 @@ public class PlayerGun : MonoBehaviour
     {
         while (true)
         {
-            Fire();
-            yield return firingWaitForSeconds;
+            firingCoolDown -= Time.deltaTime;
+
+            if (firingCoolDown <= 0)
+            {
+                Fire();
+                firingCoolDown = firingDelay;
+            }
+            yield return null;
             
            
+        }
+    }
+
+    // Comment : 발사 중이 아닐때 발사 쿨다운 감소 
+    IEnumerator BackgroundFiringCooldown()
+    {
+        while (firingCoolDown > 0)
+        {
+            firingCoolDown -= Time.deltaTime;
+            yield return null;
+
+
         }
     }
 
@@ -114,6 +139,10 @@ public class PlayerGun : MonoBehaviour
            
             aim.transform.position = hit.point;
 
+        }
+        else
+        {
+            aim.transform.position = Vector3.zero;
         }
       
     }
