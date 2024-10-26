@@ -9,6 +9,5 @@ public class WHS_BreakableObject : MonoBehaviour
     // 파괴하면 굴러떨어져 사라지거나 즉시 사라짐
 
     // 발사된 무기(총알 등)에 닿으면 오브젝트 부수기
-    // void BrakeObject()
 
 }
