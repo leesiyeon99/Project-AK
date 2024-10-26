@@ -6,12 +6,11 @@ using UnityEngine.UI;
 
 public class PlayerGun : MonoBehaviour
 {
+    private PlayerGunStatus playerGunStatus;
     [SerializeField] private Transform muzzle;
 
     [SerializeField] private GameObject bulletPrefab;
 
-
-    [SerializeField] private float firingDelay;
     [SerializeField] private float firingCoolDown;
 
     [SerializeField] private int bulletPoolSize;
@@ -32,6 +31,7 @@ public class PlayerGun : MonoBehaviour
 
     private void Awake()
     {
+        playerGunStatus = GetComponent<PlayerGunStatus>();
         aim = GameObject.Find("Aim");
         playerBullets = new Queue<PlayerBullet>();
        
@@ -72,7 +72,7 @@ public class PlayerGun : MonoBehaviour
             if (firingCoolDown <= 0)
             {
                 Fire();
-                firingCoolDown = firingDelay;
+                firingCoolDown = playerGunStatus.FiringDelay;
             }
             yield return null;
             
@@ -106,9 +106,10 @@ public class PlayerGun : MonoBehaviour
         }
     }
 
-    void Fire()
+    public void Fire()
     {
-   
+        if (playerGunStatus.Magazine <= 0)
+            return;
         if (playerBullets.Count <= 0)
             return;
 
@@ -117,6 +118,12 @@ public class PlayerGun : MonoBehaviour
         playerBullet.transform.rotation = muzzle.rotation;
         playerBullet.gameObject.SetActive(true);
         playerBullet.MoveBullet();
+        playerGunStatus.Magazine--;
+    }
+
+    public void Reload()
+    {
+        Debug.Log("재장전");
     }
 
     // Comment : 회수 된 총알 pool에 저장
@@ -145,6 +152,11 @@ public class PlayerGun : MonoBehaviour
             aim.transform.position = Vector3.zero;
         }
       
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
 }

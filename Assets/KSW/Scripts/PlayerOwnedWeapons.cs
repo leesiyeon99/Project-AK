@@ -31,4 +31,10 @@ public class PlayerOwnedWeapons : MonoBehaviour
     {
         return ownedWeapons.Count-1;
     }
+
+    // Comment : ÀçÀåÀü
+    public void ReloadMagazine()
+    {
+        currentWeapon.Reload();
+    }
 }

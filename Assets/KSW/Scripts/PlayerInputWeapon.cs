@@ -13,6 +13,7 @@ public class PlayerInputWeapon : MonoBehaviour
     [SerializeField] private PlayerChangeWeapon playerChangeWeapon;
 
     [SerializeField] private InputActionReference fire;
+    [SerializeField] private InputActionReference reload;
     [SerializeField] private InputActionReference changeLeft;
     [SerializeField] private InputActionReference changeRight;
     private void Awake()
@@ -22,6 +23,8 @@ public class PlayerInputWeapon : MonoBehaviour
     }
     private void OnEnable()
     {
+        reload.action.performed += OnReload;
+
         fire.action.performed += OnFire;
         fire.action.canceled += OffFire;
 
@@ -30,6 +33,8 @@ public class PlayerInputWeapon : MonoBehaviour
     }
     private void OnDisable()
     {
+        reload.action.performed -= OnReload;
+
         fire.action.performed -= OnFire;
         fire.action.canceled -= OffFire;
 
@@ -37,7 +42,12 @@ public class PlayerInputWeapon : MonoBehaviour
         changeRight.action.performed -= OnChangeRight;
     }
 
- 
+
+    void OnReload(InputAction.CallbackContext obj)
+    {
+        playerOwnedWeapons.ReloadMagazine();
+
+    }
 
     void OnFire(InputAction.CallbackContext obj)
     {
@@ -58,5 +68,7 @@ public class PlayerInputWeapon : MonoBehaviour
         playerChangeWeapon.ChangeWeapon(false);
 
     }
+
+
 
 }
