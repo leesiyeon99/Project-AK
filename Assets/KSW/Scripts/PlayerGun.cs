@@ -141,11 +141,21 @@ public class PlayerGun : MonoBehaviour
 
     public void Reload()
     {
-        if(playerGunStatus.MaxMagazine <= playerGunStatus.Magazine)
+        if(MagazineRemainingCheck())
         return;
 
         playerGunStatus.Magazine = playerGunStatus.MaxMagazine;
+        
     }
+
+    // Comment : 총알 최대 수 보유중인지 체크
+    public bool MagazineRemainingCheck()
+    {
+        if (playerGunStatus.MaxMagazine <= playerGunStatus.Magazine)
+            return true;
+
+        return false;
+    } 
 
     // Comment : 회수 된 총알 pool에 저장
     public void EnqueueBullet(PlayerBullet playerBullet)

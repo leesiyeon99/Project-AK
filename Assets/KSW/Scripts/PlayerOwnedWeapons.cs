@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class PlayerOwnedWeapons : MonoBehaviour
 
     [SerializeField] List<PlayerGun> ownedWeapons;
     [SerializeField] PlayerGun currentWeapon;
+    [SerializeField] PlayerMagazine magazine;
+    
 
 
     // Comment : 사용중인 무기 반환
@@ -21,6 +24,7 @@ public class PlayerOwnedWeapons : MonoBehaviour
     // Comment : 무기 교체
     public void SetCurrentWeapon()
     {
+       
         currentWeapon.gameObject.SetActive(false);
         currentWeapon = ownedWeapons[index];
         currentWeapon.gameObject.SetActive(true);
@@ -36,5 +40,17 @@ public class PlayerOwnedWeapons : MonoBehaviour
     public void ReloadMagazine()
     {
         currentWeapon.Reload();
+    }
+
+    public void ReloadGripOnMagazine()
+    {
+        if (currentWeapon.MagazineRemainingCheck())
+            return;
+        magazine.gameObject.SetActive(true);
+    }
+
+    public void ReloadGripOffMagazine()
+    {
+        magazine.gameObject.SetActive(false);
     }
 }

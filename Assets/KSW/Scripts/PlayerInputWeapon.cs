@@ -15,6 +15,7 @@ public class PlayerInputWeapon : MonoBehaviour
     [SerializeField] private InputActionReference fire;
     [SerializeField] private InputActionReference reload;
     [SerializeField] private InputActionReference downReload;
+    [SerializeField] private InputActionReference gripReload;
     [SerializeField] private InputActionReference changeLeft;
     [SerializeField] private InputActionReference changeRight;
     private void Awake()
@@ -27,6 +28,9 @@ public class PlayerInputWeapon : MonoBehaviour
         reload.action.performed += OnReload;
         downReload.action.performed += OnDownReload;
 
+        gripReload.action.performed += OnGripReload;
+        gripReload.action.canceled += OffGripReload;
+
         fire.action.performed += OnFire;
         fire.action.canceled += OffFire;
 
@@ -37,6 +41,9 @@ public class PlayerInputWeapon : MonoBehaviour
     {
         reload.action.performed -= OnReload;
         downReload.action.performed -= OnDownReload;
+
+        gripReload.action.performed -= OnGripReload;
+        gripReload.action.canceled -= OffGripReload;
 
         fire.action.performed -= OnFire;
         fire.action.canceled -= OffFire;
@@ -64,6 +71,15 @@ public class PlayerInputWeapon : MonoBehaviour
         }
     }
 
+    void OnGripReload(InputAction.CallbackContext obj)
+    {
+        playerOwnedWeapons.ReloadGripOnMagazine();
+    }
+    void OffGripReload(InputAction.CallbackContext obj)
+    {
+        playerOwnedWeapons.ReloadGripOffMagazine();
+    }
+
     public void OnFire(InputAction.CallbackContext obj)
     {
         playerOwnedWeapons.GetCurrentWeapon().OnFireCoroutine();
@@ -75,7 +91,7 @@ public class PlayerInputWeapon : MonoBehaviour
     }
     void OnChangeLeft(InputAction.CallbackContext obj)
     {
-        playerChangeWeapon.ChangeWeapon(true);
+       // playerChangeWeapon.ChangeWeapon(true);
 
     }
     void OnChangeRight(InputAction.CallbackContext obj)
