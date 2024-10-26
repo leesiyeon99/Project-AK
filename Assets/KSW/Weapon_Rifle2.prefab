@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 218633102365960790}
   - component: {fileID: 268173299525486674}
   - component: {fileID: 4163959915572921040}
-  - component: {fileID: -445420269531570816}
   m_Layer: 0
   m_Name: Weapon_Rifle2
   m_TagString: Untagged
@@ -118,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzle: {fileID: 7945420109707192020}
-  bulletPrefab: {fileID: 5403093873549606540, guid: e104241b009115247b1b950ba1f9da91, type: 3}
+  bulletPrefab: {fileID: 6109300842043103181, guid: ccaa8b734e5ebee4ca45a2deae9055ac, type: 3}
   playerBulletStatus: {fileID: 0}
   firingDelay: 0.3
   bulletPoolSize: 15
@@ -126,20 +125,6 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 1
---- !u!114 &-445420269531570816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241238273671280992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85e7c216110f66a4dbeef3d1ab0c1511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attack: 1
-  bulletSpeed: 5
 --- !u!1 &241267952666210392
 GameObject:
   m_ObjectHideFlags: 0

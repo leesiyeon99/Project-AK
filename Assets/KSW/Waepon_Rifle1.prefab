@@ -210,7 +210,6 @@ GameObject:
   - component: {fileID: 5922568614302336229}
   - component: {fileID: 5945160517272987039}
   - component: {fileID: 5379372799416324926}
-  - component: {fileID: 4396809815790507437}
   m_Layer: 0
   m_Name: Waepon_Rifle1
   m_TagString: Untagged
@@ -323,20 +322,6 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 1
---- !u!114 &4396809815790507437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5937573766608203413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85e7c216110f66a4dbeef3d1ab0c1511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attack: 1
-  bulletSpeed: 10
 --- !u!1 &5937596667789205933
 GameObject:
   m_ObjectHideFlags: 0

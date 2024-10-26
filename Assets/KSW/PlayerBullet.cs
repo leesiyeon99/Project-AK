@@ -1,21 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Flags]
+public enum BulletType
+{
+    NORMAL = 1 << 0,
+    PIERCE = 1 << 1,
+    SPLASH = 1 << 2
+}
 
 public class PlayerBullet : MonoBehaviour
 {
 
-    [SerializeField] protected Rigidbody rigidBody;
 
 
+    private Rigidbody rigidBody;
+    [SerializeField] BulletType type;
+    [SerializeField] float returnDelay;
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private int defaultPierceCount;
+    [SerializeField] private int pierceCount;
 
-    [SerializeField] protected float returnDelay;
  
-    protected PlayerGun playerGun;
+    [SerializeField] private float splashRadius;
 
-    protected WaitForSeconds returnWaitForSeconds;
-    protected Coroutine returnCoroutine;
+    private PlayerGun playerGun;
+
+    private WaitForSeconds returnWaitForSeconds;
+    private Coroutine returnCoroutine;
 
 
 
@@ -27,8 +41,9 @@ public class PlayerBullet : MonoBehaviour
 
     public void MoveBullet()
     {
+        pierceCount = defaultPierceCount;
         returnCoroutine = StartCoroutine(ReturnTime());
-        rigidBody.velocity = transform.forward * playerGun.GetBulletStatus().BulletSpeed;
+        rigidBody.velocity = transform.forward * bulletSpeed;
     
     }
 
@@ -50,9 +65,20 @@ public class PlayerBullet : MonoBehaviour
         playerGun.EnqueueBullet(this);
     }
 
-    protected virtual void HitBullet()
+    private void HitBullet()
     {
-        ReturnBullet();
+        if (type.HasFlag(BulletType.PIERCE))
+        {
+            pierceCount--;
+        }
+        if (type.HasFlag(BulletType.SPLASH))
+        {
+            Splash();
+        }
+        if (pierceCount <= 0)
+        {
+            ReturnBullet();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,4 +93,28 @@ public class PlayerBullet : MonoBehaviour
         yield return returnWaitForSeconds;
         ReturnBullet();
     }
+
+
+    private void Splash()
+    {
+
+        //TODO : 레이어 마스크 추가
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, splashRadius);
+
+        foreach (Collider collider in colliders)
+        {
+            // TODO : 데미지 구현
+        }
+
+    }
+
+    /*
+    // Comment : 스플래쉬 범위 확인
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(this.transform.position, splashRadius);
+    }
+    */
 }

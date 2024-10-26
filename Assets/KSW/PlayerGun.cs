@@ -10,7 +10,6 @@ public class PlayerGun : MonoBehaviour
 
     [SerializeField] private GameObject bulletPrefab;
 
-    [SerializeField] private PlayerBulletStatus playerBulletStatus;
 
     [SerializeField] private float firingDelay;
 
@@ -34,7 +33,6 @@ public class PlayerGun : MonoBehaviour
     {
         aim = GameObject.Find("Aim");
         playerBullets = new Queue<PlayerBullet>();
-        playerBulletStatus = GetComponent<PlayerBulletStatus>();
         firingWaitForSeconds = new WaitForSeconds(firingDelay);
        
     }
@@ -57,12 +55,6 @@ public class PlayerGun : MonoBehaviour
             StopCoroutine(firingCoroutine);
         }
     }
-
-    public PlayerBulletStatus GetBulletStatus()
-    {
-        return playerBulletStatus;
-    }
-
 
     IEnumerator Firing()
     {

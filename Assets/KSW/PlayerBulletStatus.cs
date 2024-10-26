@@ -8,7 +8,7 @@ public class PlayerBulletStatus : MonoBehaviour
 
     public int Attack { get { return attack; } }
 
-    [SerializeField] private float bulletSpeed;
 
-    public float BulletSpeed { get { return bulletSpeed; } }
+
 }
+
