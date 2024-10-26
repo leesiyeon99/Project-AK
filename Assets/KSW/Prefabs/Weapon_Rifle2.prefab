@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 268173299525486674}
   - component: {fileID: 4163959915572921040}
   - component: {fileID: 1422892469000916710}
+  - component: {fileID: 694794907118290172}
   m_Layer: 0
   m_Name: Weapon_Rifle2
   m_TagString: Untagged
@@ -121,6 +122,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6109300842043103181, guid: ccaa8b734e5ebee4ca45a2deae9055ac, type: 3}
   firingCoolDown: 0
   bulletPoolSize: 15
+  bulletReturnDelay: 2
   aim: {fileID: 0}
   mask:
     serializedVersion: 2
@@ -139,6 +141,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firingDelay: 0.5
   magazine: 10
+--- !u!114 &694794907118290172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241238273671280992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7455e04abc2df4fa65ac6de0d6600a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunType: 6
+  bulletSpeed: 5
+  defaultPierceCount: 3
+  splashRadius: 1
 --- !u!1 &241267952666210392
 GameObject:
   m_ObjectHideFlags: 0

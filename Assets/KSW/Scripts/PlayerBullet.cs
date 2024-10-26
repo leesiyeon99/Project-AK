@@ -3,13 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Flags]
-public enum BulletType
-{
-    NORMAL = 1 << 0,
-    PIERCE = 1 << 1,
-    SPLASH = 1 << 2
-}
 
 public class PlayerBullet : MonoBehaviour
 {
@@ -17,16 +10,9 @@ public class PlayerBullet : MonoBehaviour
 
 
     private Rigidbody rigidBody;
-    [SerializeField] BulletType type;
-    [SerializeField] float returnDelay;
-    [SerializeField] private float bulletSpeed;
-    [SerializeField] private int defaultPierceCount;
+
     [SerializeField] private int pierceCount;
-
- 
-    [SerializeField] private float splashRadius;
-
-    private PlayerGun playerGun;
+     private PlayerGun playerGun;
 
     private WaitForSeconds returnWaitForSeconds;
     private Coroutine returnCoroutine;
@@ -36,20 +22,21 @@ public class PlayerBullet : MonoBehaviour
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-        returnWaitForSeconds = new WaitForSeconds(returnDelay);
+      
     }
 
     public void MoveBullet()
     {
-        pierceCount = defaultPierceCount;
+        pierceCount = playerGun.CustomBullet.DefaultPierceCount;
         returnCoroutine = StartCoroutine(ReturnTime());
-        rigidBody.velocity = transform.forward * bulletSpeed;
+        rigidBody.velocity = transform.forward * playerGun.CustomBullet.BulletSpeed;
     
     }
 
     public void SetPlayerGun(PlayerGun _playerGun)
     {
         playerGun = _playerGun;
+        returnWaitForSeconds = new WaitForSeconds(playerGun.BulletReturnDelay);
     }
 
     // Comment : 오브젝트 풀 회수
@@ -67,12 +54,17 @@ public class PlayerBullet : MonoBehaviour
 
     private void HitBullet()
     {
-        if (type.HasFlag(BulletType.PIERCE))
+        if (playerGun.CustomBullet.GunType.HasFlag(GunType.PIERCE))
         {
             pierceCount--;
             // TODO : 물체 관통 여부 확인 필요, 파괴 불가 오브젝트에 충돌시 관통 끝
         }
-        if (type.HasFlag(BulletType.SPLASH))
+        else
+        {
+            pierceCount = 0;
+        }
+
+        if (playerGun.CustomBullet.GunType.HasFlag(GunType.SPLASH))
         {
             Splash();
         }
@@ -101,7 +93,7 @@ public class PlayerBullet : MonoBehaviour
 
         //TODO : 레이어 마스크 추가
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, splashRadius);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, playerGun.CustomBullet.SplashRadius);
 
         foreach (Collider collider in colliders)
         {
@@ -116,7 +108,7 @@ public class PlayerBullet : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, splashRadius);
+        Gizmos.DrawSphere(transform.position, playerGun.CustomBullet.SplashRadius);
     }
     
 }

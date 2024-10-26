@@ -7,6 +7,10 @@ using UnityEngine.UI;
 public class PlayerGun : MonoBehaviour
 {
     private PlayerGunStatus playerGunStatus;
+
+    private PlayerBulletCustom customBullet;
+    public PlayerBulletCustom CustomBullet { get { return customBullet; } }
+
     [SerializeField] private Transform muzzle;
 
     [SerializeField] private GameObject bulletPrefab;
@@ -14,6 +18,10 @@ public class PlayerGun : MonoBehaviour
     [SerializeField] private float firingCoolDown;
 
     [SerializeField] private int bulletPoolSize;
+
+    [SerializeField] private float bulletReturnDelay;
+
+    public float BulletReturnDelay { get { return bulletReturnDelay; } }
 
     [SerializeField] private GameObject aim;
 
@@ -31,6 +39,7 @@ public class PlayerGun : MonoBehaviour
 
     private void Awake()
     {
+        customBullet = GetComponent<PlayerBulletCustom>();
         playerGunStatus = GetComponent<PlayerGunStatus>();
         aim = GameObject.Find("Aim");
         playerBullets = new Queue<PlayerBullet>();

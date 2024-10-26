@@ -106,8 +106,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5274865414924406121}
-  - component: {fileID: 3769859718419475028}
   - component: {fileID: 5809298693267612254}
+  - component: {fileID: -8292222197166011770}
   m_Layer: 5
   m_Name: Weapon_Normal_Bullet
   m_TagString: Bullet
@@ -131,24 +131,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3769859718419475028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8745535972976116055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a7948561276b394d8865762bf0b5f78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  returnDelay: 2
-  defaultPierceCount: 0
-  pierceCount: 0
-  bulletSpeed: 10
-  splashRadius: 0
 --- !u!54 &5809298693267612254
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,3 +147,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-8292222197166011770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8745535972976116055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7948561276b394d8865762bf0b5f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pierceCount: 0
