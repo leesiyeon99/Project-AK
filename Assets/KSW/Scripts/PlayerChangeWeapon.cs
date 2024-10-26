@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerChangeWeapon : MonoBehaviour
 {
     [SerializeField] private PlayerOwnedWeapons weapons;
+    private Animator animator;
 
     private void Awake()
     {
         weapons = GetComponent<PlayerOwnedWeapons>();
+        animator = GetComponent<Animator>();
     }
 
 
@@ -38,8 +40,9 @@ public class PlayerChangeWeapon : MonoBehaviour
                 weapons.Index++;
             }
         }
-
+        animator.SetTrigger("Change");
         weapons.SetCurrentWeapon();
+    
 
     }
 

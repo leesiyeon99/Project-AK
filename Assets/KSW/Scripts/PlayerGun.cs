@@ -13,6 +13,8 @@ public class PlayerGun : MonoBehaviour
 
     private LineRenderer aimLineRenderer;
 
+    private Animator animator;
+
     [SerializeField] private Transform muzzle;
 
     [SerializeField] private GameObject bulletPrefab;
@@ -41,6 +43,7 @@ public class PlayerGun : MonoBehaviour
 
     private void Awake()
     {
+        animator = GetComponentInParent<Animator>();
         customBullet = GetComponent<PlayerBulletCustom>();
         playerGunStatus = GetComponent<PlayerGunStatus>();
         aimLineRenderer = GetComponent<LineRenderer>();
@@ -125,6 +128,8 @@ public class PlayerGun : MonoBehaviour
             return;
         if (playerBullets.Count <= 0)
             return;
+
+        animator.SetTrigger("Shot");
 
         PlayerBullet playerBullet = playerBullets.Dequeue();
         playerBullet.transform.position = muzzle.position;

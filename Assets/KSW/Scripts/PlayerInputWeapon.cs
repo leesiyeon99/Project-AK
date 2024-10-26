@@ -64,12 +64,12 @@ public class PlayerInputWeapon : MonoBehaviour
         }
     }
 
-    void OnFire(InputAction.CallbackContext obj)
+    public void OnFire(InputAction.CallbackContext obj)
     {
         playerOwnedWeapons.GetCurrentWeapon().OnFireCoroutine();
 
     }
-    void OffFire(InputAction.CallbackContext obj)
+    public void OffFire(InputAction.CallbackContext obj)
     {
         playerOwnedWeapons.GetCurrentWeapon().OffFireCoroutine();
     }
