@@ -14,6 +14,7 @@ public class PlayerInputWeapon : MonoBehaviour
 
     [SerializeField] private InputActionReference fire;
     [SerializeField] private InputActionReference reload;
+    [SerializeField] private InputActionReference downReload;
     [SerializeField] private InputActionReference changeLeft;
     [SerializeField] private InputActionReference changeRight;
     private void Awake()
@@ -24,6 +25,7 @@ public class PlayerInputWeapon : MonoBehaviour
     private void OnEnable()
     {
         reload.action.performed += OnReload;
+        downReload.action.performed += OnDownReload;
 
         fire.action.performed += OnFire;
         fire.action.canceled += OffFire;
@@ -34,6 +36,7 @@ public class PlayerInputWeapon : MonoBehaviour
     private void OnDisable()
     {
         reload.action.performed -= OnReload;
+        downReload.action.performed -= OnDownReload;
 
         fire.action.performed -= OnFire;
         fire.action.canceled -= OffFire;
@@ -47,6 +50,15 @@ public class PlayerInputWeapon : MonoBehaviour
     {
         playerOwnedWeapons.ReloadMagazine();
 
+    }
+    void OnDownReload(InputAction.CallbackContext obj)
+    {
+        Quaternion quaternion = obj.ReadValue<Quaternion>();
+
+        if(quaternion.eulerAngles.x > 45f && quaternion.eulerAngles.x < 60f)
+        {
+            playerOwnedWeapons.ReloadMagazine();
+        }
     }
 
     void OnFire(InputAction.CallbackContext obj)

@@ -69,6 +69,7 @@ MonoBehaviour:
   playerChangeWeapon: {fileID: 0}
   fire: {fileID: -1005593533459047081, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   reload: {fileID: 4605554692232099945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  downReload: {fileID: -7363602003301578275, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   changeLeft: {fileID: -4708146846704396256, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   changeRight: {fileID: -4370803435620137398, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &-7986171040210170347

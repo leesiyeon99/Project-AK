@@ -132,7 +132,10 @@ public class PlayerGun : MonoBehaviour
 
     public void Reload()
     {
-        Debug.Log("재장전");
+        if(playerGunStatus.MaxMagazine <= playerGunStatus.Magazine)
+        return;
+
+        playerGunStatus.Magazine = playerGunStatus.MaxMagazine;
     }
 
     // Comment : 회수 된 총알 pool에 저장

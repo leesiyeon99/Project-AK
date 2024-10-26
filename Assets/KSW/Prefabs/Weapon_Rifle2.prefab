@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firingDelay: 0.5
+  maxMagazine: 10
   magazine: 10
 --- !u!114 &694794907118290172
 MonoBehaviour:
