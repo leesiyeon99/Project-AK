@@ -10,7 +10,9 @@ public class MonsterDetection : MonoBehaviour
     public LayerMask layer;
     public Collider[] colliders;
 
-    public Image image; public Transform playerforwardtf, monstertf;
+    public Image leftImage; 
+    public Image rightImage; 
+    public Transform playerforwardtf, monstertf;
     Transform playertf;
     public TextMeshProUGUI text;
 
@@ -23,6 +25,7 @@ public class MonsterDetection : MonoBehaviour
     float dot, mag;
     float engle;
 
+    // Comment : 플레이어와 몬스터 사이의 각도를 구해서 기즈모로 그려준 후 텍스트로 각도 표시/ 범위에 따라 기즈모 색상 다르게 표시
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -65,10 +68,10 @@ public class MonsterDetection : MonoBehaviour
 
     void Update()
     {
+        // Comment : 플레이어 범위 내의 Eneme레이어를 갖는 오브젝트를 찾아 함수 실행, 몬스터가 감지되지 않는다면 원래 상태로 초기화
         colliders = Physics.OverlapSphere(transform.position, radius, layer);
         if (colliders.Length > 0)
         {
-            Debug.Log("몬스터 찾음");
             PlayerMonsterDetection();
         }
 
@@ -78,25 +81,42 @@ public class MonsterDetection : MonoBehaviour
         }
     }
 
+    // Comment : 몬스터 감지시 몬스터와 플레이어의 각도를 구하기 위해 monstertf에 해당 transform을 넣어줌
     private void PlayerMonsterDetection()
     {
         monstertf = colliders[0].transform;
+        // TODO : 추후 각도에 따라 UI이미지의 변화 구현 예정
         if (engle > 90)
         {
-            Debug.Log("몬스터 안보임");
-            image.color = Color.white;
+            if (monstertf.position.x > playertf.position.x)
+            {
+                Debug.Log("오른쪽에 몬스터 존재");
+                rightImage.color = Color.red;
+                rightImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                Debug.Log("왼쪽에 몬스터 존재");
+                leftImage.color = Color.red;
+                leftImage.gameObject.SetActive(true);
+            }
+            Debug.Log("몬스터 등장");
         }
         else
         {
-            Debug.Log("몬스터 찾음");
-            image.color = Color.red;
+            Debug.Log("몬스터 보임");
+            rightImage.gameObject.SetActive(false);
+            leftImage.gameObject.SetActive(false);
         }
     }
 
+    // Comment : OverlapSphere에서 eneme레이어를 갖는 오브젝트가 사라지면 초기화
     private void PlayerMonsterNonDetection()
     {
+        Debug.Log("주변에 감지되는 몬스터 없음");
         monstertf = null;
-        image.color = Color.white;
+        rightImage.gameObject.SetActive(false);
+        leftImage.gameObject.SetActive(false);
     }
 
 
