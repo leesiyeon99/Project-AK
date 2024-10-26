@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 8719664455957123940}
   - component: {fileID: 3725469174302774992}
   - component: {fileID: 4231005173955357191}
+  - component: {fileID: 7017926162754948691}
   m_Layer: 0
   m_Name: Weapon_Rifle1
   m_TagString: Untagged
@@ -337,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9f039d04870fb4caf2d5be9aafd980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firingDelay: 0.2
+  firingDelay: 0.1
   maxMagazine: 30
   magazine: 30
 --- !u!114 &3725469174302774992
@@ -455,6 +456,27 @@ LineRenderer:
     generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!95 &7017926162754948691
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937573766608203413}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 26da937103c5efe47a8cb2eade183ad3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5937596667789205933
 GameObject:
   m_ObjectHideFlags: 0

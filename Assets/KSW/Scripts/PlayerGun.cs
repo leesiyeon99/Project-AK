@@ -43,7 +43,7 @@ public class PlayerGun : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponentInParent<Animator>();
+        animator = GetComponent<Animator>();
         customBullet = GetComponent<PlayerBulletCustom>();
         playerGunStatus = GetComponent<PlayerGunStatus>();
         aimLineRenderer = GetComponent<LineRenderer>();

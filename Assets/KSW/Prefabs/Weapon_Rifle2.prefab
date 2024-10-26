@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1422892469000916710}
   - component: {fileID: 694794907118290172}
   - component: {fileID: -3031339116007364812}
+  - component: {fileID: 2527536733611130017}
   m_Layer: 0
   m_Name: Weapon_Rifle2
   m_TagString: Untagged
@@ -258,6 +259,27 @@ LineRenderer:
     generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!95 &2527536733611130017
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241238273671280992}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 26da937103c5efe47a8cb2eade183ad3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &241267952666210392
 GameObject:
   m_ObjectHideFlags: 0
