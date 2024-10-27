@@ -28,9 +28,13 @@ public class MonsterDetection : MonoBehaviour
     // Comment : 플레이어와 몬스터 사이의 각도를 구해서 기즈모로 그려준 후 텍스트로 각도 표시/ 범위에 따라 기즈모 색상 다르게 표시
     private void OnDrawGizmos()
     {
+        // Comment : 몬스터 감지 범위 기즈모로 표시
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radius);
+
+        // Comment : 감지되는 몬스터가 없다면 return 해줌
         if (monstertf == null) return;
+
         v1 = playerforwardtf.position - playertf.position;
         v2 = monstertf.position - playertf.position;
         dot = Vector3.Dot(v1, v2);
@@ -68,7 +72,7 @@ public class MonsterDetection : MonoBehaviour
 
     void Update()
     {
-        // Comment : 플레이어 범위 내의 Eneme레이어를 갖는 오브젝트를 찾아 함수 실행, 몬스터가 감지되지 않는다면 원래 상태로 초기화
+        // Comment : 플레이어 범위 내의 Enemy레이어를 갖는 오브젝트를 찾아 함수 실행, 몬스터가 감지되지 않는다면 원래 상태로 초기화
         colliders = Physics.OverlapSphere(transform.position, radius, layer);
         if (colliders.Length > 0)
         {
@@ -85,19 +89,18 @@ public class MonsterDetection : MonoBehaviour
     private void PlayerMonsterDetection()
     {
         monstertf = colliders[0].transform;
+
         // TODO : 추후 각도에 따라 UI이미지의 변화 구현 예정
-        if (engle > 90)
+        if (engle > 45)
         {
             if (monstertf.position.x > playertf.position.x)
             {
                 Debug.Log("오른쪽에 몬스터 존재");
-                rightImage.color = Color.red;
                 rightImage.gameObject.SetActive(true);
             }
             else
             {
                 Debug.Log("왼쪽에 몬스터 존재");
-                leftImage.color = Color.red;
                 leftImage.gameObject.SetActive(true);
             }
             Debug.Log("몬스터 등장");
@@ -110,7 +113,7 @@ public class MonsterDetection : MonoBehaviour
         }
     }
 
-    // Comment : OverlapSphere에서 eneme레이어를 갖는 오브젝트가 사라지면 초기화
+    // Comment : OverlapSphere에서 enemy레이어를 갖는 오브젝트가 사라지면 초기화
     private void PlayerMonsterNonDetection()
     {
         Debug.Log("주변에 감지되는 몬스터 없음");
