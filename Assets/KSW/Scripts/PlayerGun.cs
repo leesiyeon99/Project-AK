@@ -15,6 +15,8 @@ public class PlayerGun : MonoBehaviour
 
     private Animator animator;
 
+    [SerializeField] private Text magazineUI;
+
     [SerializeField] private Transform muzzle;
 
     [SerializeField] private GameObject bulletPrefab;
@@ -30,6 +32,8 @@ public class PlayerGun : MonoBehaviour
     [SerializeField] private float bulletReturnDelay;
 
     public float BulletReturnDelay { get { return bulletReturnDelay; } }
+
+
 
     [SerializeField] private GameObject aim;
 
@@ -47,6 +51,7 @@ public class PlayerGun : MonoBehaviour
 
     private void Awake()
     {
+     
         animator = GetComponent<Animator>();
         customBullet = GetComponent<PlayerBulletCustom>();
         playerGunStatus = GetComponent<PlayerGunStatus>();
@@ -156,6 +161,12 @@ public class PlayerGun : MonoBehaviour
         
     }
 
+    // Comment : 총알 ui 업데이트
+    public void UpdateMagazineUI(int magazine)
+    {
+        magazineUI.text = magazine.ToString();
+    }
+
     // Comment : 총알 최대 수 보유중인지 체크
     public bool MagazineRemainingCheck()
     {
@@ -196,8 +207,15 @@ public class PlayerGun : MonoBehaviour
       
     }
 
+    private void OnEnable()
+    {
+        playerGunStatus.OnMagazineChanged += UpdateMagazineUI;
+        UpdateMagazineUI(playerGunStatus.Magazine);
+    }
+
     private void OnDisable()
     {
+        playerGunStatus.OnMagazineChanged -= UpdateMagazineUI;
         fireEffect.SetActive(false);
         StopAllCoroutines();
     }

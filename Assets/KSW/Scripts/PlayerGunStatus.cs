@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerGunStatus : MonoBehaviour
 {
@@ -11,5 +12,7 @@ public class PlayerGunStatus : MonoBehaviour
 
     public float FiringDelay { get { return firingDelay; }  }
     public int MaxMagazine { get { return maxMagazine; } }
-    public int Magazine { get { return magazine; } set { magazine = value; } }
+    public int Magazine { get { return magazine; } set { magazine = value; OnMagazineChanged?.Invoke(magazine); } }
+
+    public UnityAction<int> OnMagazineChanged;
 }
