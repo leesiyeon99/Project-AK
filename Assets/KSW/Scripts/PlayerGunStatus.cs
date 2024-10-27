@@ -6,8 +6,11 @@ using UnityEngine.Events;
 
 public class PlayerGunStatus : MonoBehaviour
 {
+    [Header("- 발사 간격")]
     [SerializeField] private float firingDelay;
+    [Header("- 최대 장탄량")]
     [SerializeField] private int maxMagazine;
+    [Header("- 현재 장탄량")]
     [SerializeField] private int magazine;
 
     public float FiringDelay { get { return firingDelay; }  }

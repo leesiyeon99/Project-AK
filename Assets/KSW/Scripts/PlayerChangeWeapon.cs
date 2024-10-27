@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerChangeWeapon : MonoBehaviour
 {
-    [SerializeField] private PlayerOwnedWeapons weapons;
+    private PlayerOwnedWeapons weapons;
    
     private void Awake()
     {

@@ -9,11 +9,28 @@ public class PlayerOwnedWeapons : MonoBehaviour
 
     public int Index { get { return index; } set { index = value; } }
 
+    [Header("- 보유중인 무기")]
     [SerializeField] List<PlayerGun> ownedWeapons;
+    [Header("- 사용중인 무기")]
     [SerializeField] PlayerGun currentWeapon;
+    [Header("- 탄창 오브젝트")]
     [SerializeField] PlayerMagazine magazine;
-    
 
+    private void Awake()
+    {
+        SetWeapons();
+    }
+
+    // Comment : 무기 초기화 함수 호출
+    public void SetWeapons()
+    {
+        foreach (PlayerGun weapon in ownedWeapons)
+        {
+
+            weapon.InitGun();
+        }
+        MagazineUIUpdate();
+    }
 
     // Comment : 사용중인 무기 반환
     public PlayerGun GetCurrentWeapon()
@@ -52,5 +69,15 @@ public class PlayerOwnedWeapons : MonoBehaviour
     public void ReloadGripOffMagazine()
     {
         magazine.gameObject.SetActive(false);
+    }
+
+    // Comment : 탄창 UI 업데이트
+    public void MagazineUIUpdate()
+    {
+        foreach (PlayerGun weapon in ownedWeapons)
+        {
+         
+            weapon.UpdateMagazineToggleUI();
+        }
     }
 }

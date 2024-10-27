@@ -8,16 +8,32 @@ public class PlayerInputWeapon : MonoBehaviour
     // Comment : 인풋 시스템 관리
     // TODO : 추후 인풋 시스템 수정 합의 필요
 
+    private PlayerOwnedWeapons playerOwnedWeapons;
+    private PlayerChangeWeapon playerChangeWeapon;
 
-    [SerializeField] private PlayerOwnedWeapons playerOwnedWeapons;
-    [SerializeField] private PlayerChangeWeapon playerChangeWeapon;
+    [Header("- 보유중 무기 탄창 UI")]
+    [SerializeField] private GameObject magazineViewUI;
 
+
+    [Header("- 발사")]
     [SerializeField] private InputActionReference fire;
+
+    [Header("- 버튼 장전")]
     [SerializeField] private InputActionReference reload;
+
+    [Header("- 컨트롤러 하단 장전")]
     [SerializeField] private InputActionReference downReload;
+
+    [Header("- 그립 장전")]
     [SerializeField] private InputActionReference gripReload;
+
+    [Header("- 무기 교체")]
     [SerializeField] private InputActionReference changeLeft;
     [SerializeField] private InputActionReference changeRight;
+
+    [Header("- 탄창 UI 토글")]
+    [SerializeField] private InputActionReference viewMagazine;
+
     private void Awake()
     {
         playerOwnedWeapons = GetComponent<PlayerOwnedWeapons>();
@@ -36,6 +52,8 @@ public class PlayerInputWeapon : MonoBehaviour
 
         changeLeft.action.performed += OnChangeLeft;
         changeRight.action.performed += OnChangeRight;
+
+        viewMagazine.action.performed += OnMagazineView;
     }
     private void OnDisable()
     {
@@ -50,6 +68,8 @@ public class PlayerInputWeapon : MonoBehaviour
 
         changeLeft.action.performed -= OnChangeLeft;
         changeRight.action.performed -= OnChangeRight;
+
+        viewMagazine.action.performed -= OnMagazineView;
     }
 
 
@@ -100,6 +120,12 @@ public class PlayerInputWeapon : MonoBehaviour
 
     }
 
+    void OnMagazineView(InputAction.CallbackContext obj)
+    {
+        playerOwnedWeapons.MagazineUIUpdate();
+        magazineViewUI.SetActive(!magazineViewUI.activeSelf);
+        
 
+    }
 
 }

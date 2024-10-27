@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerMagazine : MonoBehaviour
 {
-    [SerializeField] GameObject leftController;
+    GameObject leftController;
+
+    [Header("- 플레이어 소유중 무기 스크립트")]
     [SerializeField] PlayerOwnedWeapons playerOwnedWeapons;
     private void Awake()
     {

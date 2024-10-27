@@ -11,9 +11,10 @@ public class PlayerBullet : MonoBehaviour
 
     private Rigidbody rigidBody;
 
+    [Header("- Ω∫∆ƒ≈© ¿Ã∆Â∆Æ «¡∏Æ∆’")]
     [SerializeField] private GameObject sparkEffectPrefab;
     private GameObject spark;
-    [SerializeField] private int pierceCount;
+    private int pierceCount;
     private PlayerGun playerGun;
 
     private WaitForSeconds returnWaitForSeconds;
@@ -86,7 +87,7 @@ public class PlayerBullet : MonoBehaviour
    
         OnEffect(other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position));
 
-        HitBullet();
+        //HitBullet();
     }
 
     private void OnEffect(Vector3 vec)
