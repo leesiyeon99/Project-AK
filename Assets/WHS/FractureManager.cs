@@ -51,7 +51,7 @@ public class FractureManager : MonoBehaviour
     // Fracture가 완료(onCompleted) 되면 호출
     private void FractureOnCompleted(GameObject obj)
     {
-        StartCoroutine(RemoveFragments(obj));
+        StartCoroutine(RemoveFragments(obj)); // Fracture 후 파편 제거 코루틴 호출
     }
 
     // Fracture로 생성된 파편들을 제거함
@@ -59,7 +59,7 @@ public class FractureManager : MonoBehaviour
     {
         yield return new WaitForSeconds(removeDelay); // removeDelay초 뒤 오브젝트 삭제
 
-        GameObject fragmentRoot = GameObject.Find($"{obj.name}Fragments"); // 오브젝트이름+Fragments 이름을 가지는 파편 오브젝트 찾기
+        GameObject fragmentRoot = GameObject.Find($"{obj.name}Fragments"); // 오브젝트의 이름+Fragments 이름을 가지는 파편 오브젝트 찾기
         if (fragmentRoot != null)
         {
             Destroy(fragmentRoot); // 파편 오브젝트 삭제
