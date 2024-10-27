@@ -9,14 +9,15 @@ public class Test : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // 마우스 클릭 시
+        if (Input.GetMouseButtonDown(0))
         {
             Shoot();
         }
 
-        float move = Input.GetAxis("Horizontal"); // A, D 키 입력 감지
-        Vector3 movement = new Vector3(move, 0f, 0f) * 5 * Time.deltaTime;
-        transform.position += movement; // 오브젝트 이동
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
+        Vector3 movement = new Vector3(x, y, 0f) * 5 * Time.deltaTime;
+        transform.position += movement; 
     }
 
     void Shoot()

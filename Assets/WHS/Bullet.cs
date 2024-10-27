@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -10,8 +11,14 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        rigid = GetComponent<Rigidbody>(); // Rigidbody ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿È
+        rigid = GetComponent<Rigidbody>();
         rigid.AddForce(transform.forward * speed, ForceMode.Impulse);
+
+        Destroy(gameObject, 2f);
     }
-    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
+    }
 }
