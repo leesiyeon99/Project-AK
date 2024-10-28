@@ -457,6 +457,7 @@
                     "name": "GripReload",
                     "type": "Button",
                     "id": "0b11822f-a91d-401f-aadb-97276a23dde2",
+
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -714,6 +715,7 @@
                     "processors": "",
                     "groups": "",
                     "action": "GripReload",
+
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -821,15 +823,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "ShiledOn",
-                    "type": "Button",
-                    "id": "1709fd25-706b-43b7-b70f-d6688f529331",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -995,17 +988,6 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "Generic XR Controller",
                     "action": "Scale Delta",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5be6328d-ad26-45b6-a5e6-bfc0ef6aa856",
-                    "path": "<XRController>{LeftHand}/triggerButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ShiledOn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1322,6 +1304,7 @@
                     "name": "Reload",
                     "type": "Button",
                     "id": "c3cce464-ab7b-4524-9a86-b75bd6f2e89b",
+
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1335,6 +1318,7 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+
                 }
             ],
             "bindings": [
