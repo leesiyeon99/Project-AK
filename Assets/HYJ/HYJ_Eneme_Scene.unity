@@ -379,7 +379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4213755177782104814, guid: 10c8d6568574e9c48860eca0bc1ed045, type: 3}
       propertyPath: m_Name
-      value: Eneme_Wolf
+      value: Enemy_Wolf
       objectReference: {fileID: 0}
     - target: {fileID: 4213755177782104814, guid: 10c8d6568574e9c48860eca0bc1ed045, type: 3}
       propertyPath: m_TagString
