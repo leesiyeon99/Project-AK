@@ -1115,7 +1115,7 @@ GameObject:
   - component: {fileID: 702885516}
   m_Layer: 0
   m_Name: RightCollider (1)
-  m_TagString: RightMonster
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1191,7 +1191,7 @@ GameObject:
   - component: {fileID: 712601016}
   m_Layer: 0
   m_Name: RightCollider
-  m_TagString: RightMonster
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1569,7 +1569,7 @@ GameObject:
   - component: {fileID: 949575437}
   m_Layer: 0
   m_Name: LeftCollider
-  m_TagString: LeftMonster
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2113,7 +2113,7 @@ GameObject:
   - component: {fileID: 1807137823}
   m_Layer: 0
   m_Name: LeftCollider (2)
-  m_TagString: LeftMonster
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
