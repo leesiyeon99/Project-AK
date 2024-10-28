@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
 
 public class PlayerGun : MonoBehaviour
 {
-    // Comment : 프리팹
-    [Header("- 탄환 프리팹")]
-    [SerializeField] private GameObject bulletPrefab;
-
+  
     // Comment : 발사 이펙트
     [Header("- 발사 이펙트")]
     [SerializeField] private GameObject fireEffect;
@@ -17,8 +15,9 @@ public class PlayerGun : MonoBehaviour
     // Comment : 컴포넌트
     private PlayerGunStatus playerGunStatus;
 
+    private PlayerBullet playerBullet;
+
     private PlayerBulletCustom customBullet;
-    public PlayerBulletCustom CustomBullet { get { return customBullet; } }
 
     private LineRenderer aimLineRenderer;
 
@@ -36,15 +35,9 @@ public class PlayerGun : MonoBehaviour
     [SerializeField] private LayerMask aimMask;
     private GameObject aim;
 
-
-
-    // Comment : 오브젝트 풀 관련 변수
-    [Header("- 오브젝트 풀")]
-    [SerializeField] private int bulletPoolSize;
-    [SerializeField] private float bulletReturnDelay;
-    public float BulletReturnDelay { get { return bulletReturnDelay; } }
-    private Queue<PlayerBullet> playerBullets;
-
+    // Comment : 레이캐스트 포인트
+  
+    RaycastHit aimHit;
 
     // Comment : 기본 무기 확인
     [Header("- 기본 무기 확인")]
@@ -77,15 +70,10 @@ public class PlayerGun : MonoBehaviour
         animator = GetComponent<Animator>();
         customBullet = GetComponent<PlayerBulletCustom>();
         playerGunStatus = GetComponent<PlayerGunStatus>();
+        playerBullet = GetComponent<PlayerBullet>();
         aimLineRenderer = GetComponent<LineRenderer>();
         aim = GameObject.Find("AimTarget");
 
-        playerBullets = new Queue<PlayerBullet>();
-    }
-
-    private void Start()
-    {
-        SetBullet();
     }
 
     #region 발사
@@ -132,8 +120,7 @@ public class PlayerGun : MonoBehaviour
     {
         if (playerGunStatus.Magazine <= 0)
             return;
-        if (playerBullets.Count <= 0)
-            return;
+       
 
 
         // Comment : 비주얼적 부분
@@ -141,18 +128,23 @@ public class PlayerGun : MonoBehaviour
         animator.SetTrigger("Shot");
         fireEffect.SetActive(true);
 
-        if (customBullet.GunType.HasFlag(GunType.SPREAD))
+        if (customBullet.GunType.HasFlag(GunType.PIERCE))
         {
-            for (int i = 0; i < customBullet.SpreadCount; i++)
-            {
-                ActiveBulletSpread();
-            }
+            RaycastHit[] hit = Physics.RaycastAll(muzzle.position, muzzle.forward, playerGunStatus.Range, aimMask).OrderBy(hit=>hit.distance).ToArray();
+            
+
+            playerBullet.HitRay(hit);
+
         }
         else
         {
-            ActiveBullet();
-        }
+            RaycastHit hit;
+            if (Physics.Raycast(muzzle.position, muzzle.forward, out hit, playerGunStatus.Range, aimMask))
+            {
+                playerBullet.HitRay(hit);
 
+            }
+        }
 
         playerGunStatus.Magazine--;
     }
@@ -185,6 +177,8 @@ public class PlayerGun : MonoBehaviour
         firingCoroutine = StartCoroutine(BackgroundFiringCooldown());
     }
 
+
+
     // Comment : 발사 중이 아닐때 발사 쿨다운 감소 
     IEnumerator BackgroundFiringCooldown()
     {
@@ -216,52 +210,7 @@ public class PlayerGun : MonoBehaviour
     }
     #endregion
 
-    #region 오브젝트 풀
-    // Comment : 총알 오브젝트 풀링
-    void SetBullet()
-    {
-        for (int i = 0; i < bulletPoolSize; i++)
-        {
-            GameObject bullet = Instantiate(bulletPrefab);
-            PlayerBullet playerBullet = bullet.GetComponent<PlayerBullet>();
-            playerBullets.Enqueue(playerBullet);
-            playerBullet.SetPlayerGun(this);
-            playerBullet.gameObject.SetActive(false);
 
-        }
-    }
-
-    // Comment : 회수 된 총알 pool에 저장
-    public void EnqueueBullet(PlayerBullet playerBullet)
-    {
-        playerBullets.Enqueue(playerBullet);
-    }
-    #endregion
-
-
-
-    // Comment : 직선탄
-    public void ActiveBullet()
-    {
-        PlayerBullet playerBullet = playerBullets.Dequeue();
-        playerBullet.transform.position = muzzle.position;
-        playerBullet.transform.rotation = muzzle.rotation;
-        playerBullet.gameObject.SetActive(true);
-        playerBullet.MoveBullet();
-    }
-
-    // Comment : 확산탄 
-    public void ActiveBulletSpread()
-    {
-        PlayerBullet playerBullet = playerBullets.Dequeue();
-        playerBullet.transform.position = muzzle.position;
-        Quaternion quaternion = muzzle.rotation;
-        float angleX = customBullet.SpreadAngleX;
-        float angleY = customBullet.SpreadAngleY;
-        playerBullet.transform.rotation = Quaternion.Euler(quaternion.eulerAngles.x + Random.Range(-angleX, angleX), quaternion.eulerAngles.y + Random.Range(-angleY, angleY), quaternion.eulerAngles.z);
-        playerBullet.gameObject.SetActive(true);
-        playerBullet.MoveBullet();
-    }
 
     #region 재장전
     public void Reload()
@@ -327,15 +276,13 @@ public class PlayerGun : MonoBehaviour
 
     public void MoveAim()
     {
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(muzzle.position, muzzle.forward, out hit, 100f, aimMask))
+        
+        if (Physics.Raycast(muzzle.position, muzzle.forward, out aimHit, 100f, aimMask))
         {
             aimLineRenderer.enabled = true;
             aimLineRenderer.SetPosition(0, muzzle.position);
-            aimLineRenderer.SetPosition(1, hit.point);
-            aim.transform.position = hit.point;
+            aimLineRenderer.SetPosition(1, aimHit.point);
+            aim.transform.position = aimHit.point;
 
         }
         else

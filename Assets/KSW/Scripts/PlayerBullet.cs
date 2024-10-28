@@ -6,118 +6,109 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-
-
-
-    private Rigidbody rigidBody;
-
     [Header("- 스파크 이펙트 프리팹")]
     [SerializeField] private GameObject sparkEffectPrefab;
-    private GameObject spark;
+    private List<GameObject> spark;
+  
     private int pierceCount;
-    private PlayerGun playerGun;
+    private PlayerBulletCustom customBullet;
 
-    private WaitForSeconds returnWaitForSeconds;
-    private Coroutine returnCoroutine;
 
     [Header("- 스플래시 레이어 마스크")]
     [SerializeField] LayerMask mask;
 
     private void Awake()
     {
-        rigidBody = GetComponent<Rigidbody>();
-        spark = Instantiate(sparkEffectPrefab);
-        spark.SetActive(false);
+        customBullet = GetComponent<PlayerBulletCustom>();
+        SetEffect();
+      
     }
 
-    public void MoveBullet()
+    private void SetEffect()
     {
-        pierceCount = playerGun.CustomBullet.DefaultPierceCount;
-        returnCoroutine = StartCoroutine(ReturnTime());
-        rigidBody.velocity = transform.forward * playerGun.CustomBullet.BulletSpeed;
-    
-    }
-
-    public void SetPlayerGun(PlayerGun _playerGun)
-    {
-        playerGun = _playerGun;
-        returnWaitForSeconds = new WaitForSeconds(playerGun.BulletReturnDelay);
-       
-    }
-
-    // Comment : 오브젝트 풀 회수
-    public void ReturnBullet()
-    {
-        if (returnCoroutine != null)
+        spark = new List<GameObject>();
+        if (customBullet.GunType.HasFlag(GunType.PIERCE))
         {
-            StopCoroutine(returnCoroutine);
+            for (int i = 0; i < customBullet.DefaultPierceCount; i++)
+            {
+                spark.Add(Instantiate(sparkEffectPrefab));
+                spark[i].SetActive(false);
+            }
+        }
+        else
+        {
+            spark.Add(Instantiate(sparkEffectPrefab));
+            spark[0].SetActive(false);
+        }
+    }
+
+    public void HitRay(RaycastHit hit)
+    {
+        HitBullet(hit.point, 0);
+    }
+
+    public void HitRay(RaycastHit[] hit)
+    {
+        pierceCount = customBullet.DefaultPierceCount;
+
+        int loop = pierceCount;
+        if (hit.Length < pierceCount)
+        {
+            loop = hit.Length;
         }
 
-        gameObject.SetActive(false);
-        rigidBody.velocity = Vector3.zero;
-        playerGun.EnqueueBullet(this);
+
+
+        for (int i = 0; i < loop; i++)
+        {
+            HitBullet(hit[i].point, i);
+        }
     }
 
-    private void HitBullet()
+
+    private void HitBullet(Vector3 point, int sparkIndex)
     {
        
 
-        if (playerGun.CustomBullet.GunType.HasFlag(GunType.PIERCE))
+        if (customBullet.GunType.HasFlag(GunType.PIERCE))
         {
             pierceCount--;
-            // TODO : 물체 관통 여부 확인 필요, 파괴 불가 오브젝트에 충돌시 관통 끝
+         
         }
         else
         {
             pierceCount = 0;
         }
 
-        if (playerGun.CustomBullet.GunType.HasFlag(GunType.SPLASH))
+        if (customBullet.GunType.HasFlag(GunType.SPLASH))
         {
-            Splash();
+            Splash(point);
         }
-        if (pierceCount <= 0)
-        {
-            ReturnBullet();
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        // TODO : 데미지 구현
-   
-        OnEffect(other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position));
-
-        //HitBullet();
-    }
-
-    private void OnEffect(Vector3 vec)
-    {
         
-        spark.SetActive(false);
-
-        spark.transform.position = vec;
-        spark.transform.LookAt(playerGun.transform.position);
-        spark.SetActive(true);
+        OnEffect(point, sparkIndex);
     }
 
-    IEnumerator ReturnTime()
+    private void OnEffect(Vector3 vec, int cnt)
     {
-        yield return returnWaitForSeconds;
-        ReturnBullet();
+
+        spark[cnt].SetActive(false);
+
+        spark[cnt].transform.position = vec;
+        spark[cnt].transform.LookAt(transform.position);
+        spark[cnt].SetActive(true);
     }
 
 
-    private void Splash()
+    private void Splash(Vector3 vec)
     {
 
         //TODO : 레이어 마스크 추가
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, playerGun.CustomBullet.SplashRadius, mask);
+        Collider[] colliders = Physics.OverlapSphere(vec, customBullet.SplashRadius, mask);
 
         foreach (Collider collider in colliders)
         {
-            Debug.Log(collider.name);
+            //Debug.Log(collider.name);
             // TODO : 데미지 구현
         }
 

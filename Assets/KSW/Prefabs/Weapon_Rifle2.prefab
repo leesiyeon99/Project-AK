@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4163959915572921040}
   - component: {fileID: 1422892469000916710}
   - component: {fileID: 694794907118290172}
+  - component: {fileID: -6569252114298441764}
   - component: {fileID: -3031339116007364812}
   - component: {fileID: 2527536733611130017}
   m_Layer: 0
@@ -120,7 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a059ffab28fea314eb05ddd86998b431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6109300842043103181, guid: ccaa8b734e5ebee4ca45a2deae9055ac, type: 3}
   fireEffect: {fileID: 4377079815190395359}
   muzzle: {fileID: 7945420109707192020}
   magazineUI: {fileID: 0}
@@ -128,8 +128,6 @@ MonoBehaviour:
   aimMask:
     serializedVersion: 2
     m_Bits: 1
-  bulletPoolSize: 15
-  bulletReturnDelay: 2
   isDefaultWeapon: 0
   firingCoolDown: 0
 --- !u!114 &1422892469000916710
@@ -146,10 +144,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultFiringDelay: 0.5
   firingDelay: 0.5
+  accelerationTime: 0
   maxMagazine: 10
   magazine: 10
   reloadSpeed: 0
   tier: 1
+  range: 10
 --- !u!114 &694794907118290172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,12 +164,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunType: 12
   bulletAttack: 0
-  bulletSpeed: 5
   defaultPierceCount: 3
   splashRadius: 1
-  spreadCount: 0
-  spreadAngleX: 0
-  spreadAngleY: 0
+--- !u!114 &-6569252114298441764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241238273671280992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7948561276b394d8865762bf0b5f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparkEffectPrefab: {fileID: 5009965501609980282, guid: 40bac7deaa418ae49848745c218f0aec, type: 3}
+  mask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!120 &-3031339116007364812
 LineRenderer:
   m_ObjectHideFlags: 0

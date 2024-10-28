@@ -20,6 +20,8 @@ public class PlayerGunStatus : MonoBehaviour
     [SerializeField] private float reloadSpeed;
     [Header("- 무기 티어")]
     [SerializeField] private int tier;
+    [Header("- 사정거리")]
+    [SerializeField] private float range;
 
     public float DefaultFiringDelay { get { return defaultFiringDelay; } }
     public float FiringDelay { get { return firingDelay; } set { firingDelay = value; } }
@@ -33,5 +35,5 @@ public class PlayerGunStatus : MonoBehaviour
 
     public int Tier { get { return tier; } }
 
-
+    public float Range { get { return range; } }
 }

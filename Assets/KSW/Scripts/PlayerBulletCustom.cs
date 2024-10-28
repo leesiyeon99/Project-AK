@@ -9,7 +9,6 @@ public enum GunType
     REPEATER = 1 << 1,
     PIERCE = 1 << 2,
     SPLASH = 1 << 3,
-    SPREAD = 1 << 4
    
 }
 public class PlayerBulletCustom : MonoBehaviour
@@ -21,13 +20,7 @@ public class PlayerBulletCustom : MonoBehaviour
     [Header("- °ø°Ý·Â")]
     [SerializeField] private float bulletAttack;
 
-    public float AulletAttack { get { return bulletAttack; } }
-
-
-    [Header("- ÅºÈ¯ ¼Óµµ")]
-    [SerializeField] private float bulletSpeed;
-
-    public float BulletSpeed { get { return bulletSpeed; } }
+    public float BulletAttack { get { return bulletAttack; } }
 
     [Header("- °üÅë È½¼ö")]
     [SerializeField] private int defaultPierceCount;
@@ -40,17 +33,4 @@ public class PlayerBulletCustom : MonoBehaviour
 
     public float SplashRadius { get { return splashRadius; } }
 
-    [Header("- È®»êÅº ¼ö")]
-    [SerializeField] private int spreadCount;
-
-    public int SpreadCount { get { return spreadCount; } }
-
-    [Header("- È®»êÅº °¢µµ")]
-    [SerializeField, Range(0, 90)] private float spreadAngleX;
-
-    public float SpreadAngleX { get { return spreadAngleX; } }
-
-    [SerializeField, Range(0, 90)] private float spreadAngleY;
-
-    public float SpreadAngleY { get { return spreadAngleY; } }
 }
