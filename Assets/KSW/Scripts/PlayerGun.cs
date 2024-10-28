@@ -291,7 +291,7 @@ public class PlayerGun : MonoBehaviour
         magazineUI.text = magazine.ToString();
 
     }
-    public void UpdateMagazineToggleUI(int magazine)
+    public void UpdateChangeToggleUI(int magazine)
     {
         stringBuilder.Clear();
         stringBuilder.Append(magazine.ToString());
@@ -313,10 +313,10 @@ public class PlayerGun : MonoBehaviour
         toggleMagazineUI.text = stringBuilder.ToString();
 
     }
-    public void UpdateMagazineToggleUI()
+    public void UpdateChangeToggleUI()
     {
 
-        UpdateMagazineToggleUI(playerGunStatus.Magazine);
+        UpdateChangeToggleUI(playerGunStatus.Magazine);
     }
 
 
@@ -352,14 +352,14 @@ public class PlayerGun : MonoBehaviour
     private void OnEnable()
     {
         playerGunStatus.OnMagazineChanged += UpdateMagazineUI;
-        playerGunStatus.OnMagazineChanged += UpdateMagazineToggleUI;
+        playerGunStatus.OnMagazineChanged += UpdateChangeToggleUI;
         UpdateMagazineUI(playerGunStatus.Magazine);
     }
 
     private void OnDisable()
     {
         playerGunStatus.OnMagazineChanged -= UpdateMagazineUI;
-        playerGunStatus.OnMagazineChanged -= UpdateMagazineToggleUI;
+        playerGunStatus.OnMagazineChanged -= UpdateChangeToggleUI;
         fireEffect.SetActive(false);
         StopAllCoroutines();
     }

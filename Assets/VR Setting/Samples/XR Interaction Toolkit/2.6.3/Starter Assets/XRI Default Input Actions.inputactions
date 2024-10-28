@@ -445,15 +445,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "LeftChange",
-                    "type": "Button",
-                    "id": "5b23a540-01d5-4870-9e95-0592d9d08d34",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "GripReload",
                     "type": "Button",
                     "id": "0b11822f-a91d-401f-aadb-97276a23dde2",
@@ -692,17 +683,6 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Grip Rotation",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3264c727-fe59-4373-b1a3-6e10df63d2be",
-                    "path": "<XRController>{LeftHand}/{GripButton}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LeftChange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1299,15 +1279,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Reload",
-                    "type": "Button",
-                    "id": "c3cce464-ab7b-4524-9a86-b75bd6f2e89b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "DownReload",
                     "type": "Value",
                     "id": "c48b6ce3-5833-4cc5-b36c-c0b6f3472d5f",
@@ -1568,17 +1539,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "RightChange",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "81dbe313-e824-49b4-a369-91b49c8f6f0f",
-                    "path": "<XRController>{RightHand}/{Primary2DAxisClick}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
