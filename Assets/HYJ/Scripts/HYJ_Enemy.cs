@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
-public class HYJ_Eneme : MonoBehaviour
+public class HYJ_Enemy : MonoBehaviour
 {
+    [SerializeField] GameObject player;
     [SerializeField] GameObject monster;
     [SerializeField] MonsterType monsterType;
     [SerializeField] MonsterAttackType monsterAttackType;
@@ -12,12 +13,12 @@ public class HYJ_Eneme : MonoBehaviour
     [SerializeField] float monsterAttackRange;
     [SerializeField] float setBossHp;
 
-
     [SerializeField] float monsterHp;
     [SerializeField] float monsterMoveSpeed;
     [SerializeField] float playerDistance;
 
     [SerializeField] Animator monsterAnimator;
+    private bool isAttack;
 
     //------------------------임의 변수---------------------------//
     public float playerAttackPower=20;
@@ -37,6 +38,7 @@ public class HYJ_Eneme : MonoBehaviour
 
     void Start()
     {
+        isAttack = false;
         MonsterSetHp();
         MonsterSetAttackRange();
     }
@@ -76,7 +78,6 @@ public class HYJ_Eneme : MonoBehaviour
     // Comment : Player 태그의 오브젝트를 찾고 해당 오브젝트로 Monster가 이동한다.
     private void MonsterMover()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player"); // TODO : 태그탐색을 레이어로 변경시키기!
         if (player != null)
         {
             playerDistance = Vector3.Distance(monster.transform.position, player.transform.position); // Comment : 플레이어와 몬스터의 거리
@@ -88,9 +89,14 @@ public class HYJ_Eneme : MonoBehaviour
                 monster.transform.position = Vector3.MoveTowards(monster.transform.position, new Vector3(player.transform.position.x,0,player.transform.position.z), monsterMoveSpeed/50);
                 monster.transform.LookAt(new Vector3(player.transform.position.x,0,player.transform.position.z)); // Comment : 몬스터 
             }
-            else // Comment : 플레이어가 몬스터의 공격범위로 들어왔을 때
+            else if(playerDistance <= monsterAttackRange && isAttack==false && monsterHp > 0) //Comment : 플레이어가 몬스터의 공격범위로 들어왔을 때
             {
-                MonsterAttack();
+                isAttack = true;
+                StartCoroutine(MonsterAttackCo());
+            }
+            else
+            {
+                monsterAnimator.SetBool("Run Forward",false);
             }
         }
     }
@@ -98,7 +104,6 @@ public class HYJ_Eneme : MonoBehaviour
     // Comment : 온트리거 엔터를 이용하여 총알과의 충돌 여부를 확인, 충돌 시, 캐릭터의 공격력 or 무기의 공격력이 완료되면 몬스터 피격 함수를 진행시킨다.
     private void MonsterTakeMamage()
     {
-        // TODO : 무기의 공격력과 총알 구현이 완료되면 몬스터 피격 함수를 진행시킨다.
         // Comment : 현재는 임의로 playerAttackPower 변수를 활용하여 작성했다.
         if (monsterType == MonsterType.Nomal)
         {
@@ -113,23 +118,24 @@ public class HYJ_Eneme : MonoBehaviour
         }
     }
 
-    //Comment : 몬스터가 플레이어를 공격 시의 함수
-    private void MonsterAttack()
+    // Comment : 몬스터 공격 코루틴
+    IEnumerator MonsterAttackCo()
     {
-        if (monsterHp > 0)
-        {
-            monsterAnimator.SetTrigger("Pound Attack");
-            Debug.Log("몬스터가 공격!");
-            // TODO : 공격 딜레이 만들기
-
-        }
+        monsterAnimator.SetTrigger("Attack");
+        Debug.Log("몬스터 공격");
+        // TODO : 여기서 몬스터가 공격 했다는걸 알려줄 수 있는 방식을 만들기
+        yield return new WaitForSeconds(2f);
+        isAttack = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Bullet")){
+        if (other.gameObject.CompareTag("Bullet"))
+        {
             MonsterTakeMamage();
-            
+            // TODO : 충돌 지점을 받기
+            // TODO : 받은 충돌 지점이 머리 / 몸통 어디인지 판별하기
+            // TODO : 몸통이면 흰색, 머리면 빨간색으로 데미지 표기
         }
     }
 
@@ -139,7 +145,6 @@ public class HYJ_Eneme : MonoBehaviour
         if(monsterHp <= 0) // Comment : 몬스터의 Hp가 0이 되면 몬스터 오브젝트를 삭제한다.
         {
             Debug.Log("몬스터 사망");
-            //TODO : 몬스터 Die 애니메이션 실행
             monsterAnimator.SetTrigger("Die");
             Destroy(gameObject.GetComponent<BoxCollider>());
             Destroy(gameObject.GetComponent<Rigidbody>());
