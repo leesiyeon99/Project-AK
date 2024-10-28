@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 86664102}
   m_Layer: 8
   m_Name: Monster1
-  m_TagString: Eneme
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 168185672}
   m_Layer: 8
   m_Name: Monster1 (1)
-  m_TagString: Eneme
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -514,7 +514,7 @@ GameObject:
   - component: {fileID: 543434454}
   m_Layer: 8
   m_Name: Monster1 (3)
-  m_TagString: Eneme
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1428,7 +1428,7 @@ GameObject:
   - component: {fileID: 2140794525}
   m_Layer: 8
   m_Name: Monster1 (2)
-  m_TagString: Eneme
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
