@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class WHS_BreakableObject : MonoBehaviour
 {
-    // 파괴 가능한 지형 - 다른 지형들과 구분돼 테두리가 두껍고 반짝이게 해 확인
+    // 파괴할 오브젝트에 Fracture 컴포넌트와 함께 추가
 
-    // 파괴하면 굴러떨어져 사라지거나 즉시 사라짐
-
-    // 발사된 무기(총알 등)에 닿으면 오브젝트 부수기
-    // void BrakeObject()
+    void Start()
+    {
+        // FractureManager의 딕셔너리에 등록해서, 파편화 후 제거되게 만듬
+        FractureManager.Instance.GetFractureObject(gameObject);
+    }
 
 }
