@@ -6,6 +6,8 @@ public class WHS_BreakableObject : MonoBehaviour
 {
     // 파괴할 오브젝트에 Fracture 컴포넌트와 함께 추가해서 사용
 
+    [Header("아이템 프리팹 등록")]
+    [Tooltip("파괴 후 생성할 아이템 등록 (비워두면 생성 X)")]
     [SerializeField] GameObject itemPrefab; // 아이템 프리팹 등록
 
     private void Start()
@@ -18,6 +20,7 @@ public class WHS_BreakableObject : MonoBehaviour
     // OnDisable()로 생성해도 동작에 문제가 생겨서 FractureManager에서 생성하게함
 
     /*
+    // 추후 몬스터에 아이템 생성시킬때 OnDestroy로 생성?
     private void OnDestroy()
     {
         Vector3 dropPos = obj.transform.position + new Vector3(0, 1f, 0);
