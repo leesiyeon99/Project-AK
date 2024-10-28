@@ -44,7 +44,7 @@ public class FractureManager : MonoBehaviour
         if (fracture != null && !fractureObjects.ContainsKey(obj))
         {
             fractureObjects.Add(obj, fracture); // 딕셔너리에 오브젝트 추가
-            fracture.callbackOptions.onCompleted.AddListener(() => FractureOnCompleted(obj));
+            fracture.callbackOptions.onCompleted.AddListener(() => FractureOnCompleted(obj)); // Fracture가 완료되면 onCompleted 이벤트를 발생
         }
     }
 
