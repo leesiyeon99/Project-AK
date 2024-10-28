@@ -12,14 +12,11 @@ public class PlayerInputWeapon : MonoBehaviour
     private PlayerChangeWeapon playerChangeWeapon;
 
     [Header("- 보유중 무기 탄창 UI")]
-    [SerializeField] private GameObject magazineViewUI;
+    [SerializeField] private GameObject changeViewUI;
 
 
     [Header("- 발사")]
     [SerializeField] private InputActionReference fire;
-
-    [Header("- 버튼 장전")]
-    [SerializeField] private InputActionReference reload;
 
     [Header("- 컨트롤러 하단 장전")]
     [SerializeField] private InputActionReference downReload;
@@ -27,12 +24,15 @@ public class PlayerInputWeapon : MonoBehaviour
     [Header("- 그립 장전")]
     [SerializeField] private InputActionReference gripReload;
 
-    [Header("- 무기 교체")]
-    [SerializeField] private InputActionReference changeLeft;
-    [SerializeField] private InputActionReference changeRight;
 
-    [Header("- 탄창 UI 토글")]
-    [SerializeField] private InputActionReference viewMagazine;
+    [Header("- 무기교체 UI 토글")]
+    [SerializeField] private InputActionReference viewChangeUI;
+
+    [Header("- 무기교체 UI 조작 조이스틱")]
+    [SerializeField] private InputActionReference rightJoystcikAxis;
+
+    [Header("- 무기교체 토글 확인")]
+    [SerializeField] bool onToggle;
 
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class PlayerInputWeapon : MonoBehaviour
     }
     private void OnEnable()
     {
-        reload.action.performed += OnReload;
+      
         downReload.action.performed += OnDownReload;
 
         gripReload.action.performed += OnGripReload;
@@ -50,14 +50,15 @@ public class PlayerInputWeapon : MonoBehaviour
         fire.action.performed += OnFire;
         fire.action.canceled += OffFire;
 
-        changeLeft.action.performed += OnChangeLeft;
-        changeRight.action.performed += OnChangeRight;
+ 
+        viewChangeUI.action.performed += OnChangeView;
+        viewChangeUI.action.canceled += OffChangeView;
 
-        viewMagazine.action.performed += OnMagazineView;
+        rightJoystcikAxis.action.performed += OnRightJoystick;
+        rightJoystcikAxis.action.canceled += OnRightJoystick;
     }
     private void OnDisable()
     {
-        reload.action.performed -= OnReload;
         downReload.action.performed -= OnDownReload;
 
         gripReload.action.performed -= OnGripReload;
@@ -66,18 +67,15 @@ public class PlayerInputWeapon : MonoBehaviour
         fire.action.performed -= OnFire;
         fire.action.canceled -= OffFire;
 
-        changeLeft.action.performed -= OnChangeLeft;
-        changeRight.action.performed -= OnChangeRight;
 
-        viewMagazine.action.performed -= OnMagazineView;
+        viewChangeUI.action.performed -= OnChangeView;
+        viewChangeUI.action.canceled -= OffChangeView;
+
+        rightJoystcikAxis.action.performed -= OnRightJoystick;
+        rightJoystcikAxis.action.canceled -= OnRightJoystick;
     }
 
 
-    void OnReload(InputAction.CallbackContext obj)
-    {
-        playerOwnedWeapons.ReloadMagazine();
-
-    }
     void OnDownReload(InputAction.CallbackContext obj)
     {
         Quaternion quaternion = obj.ReadValue<Quaternion>();
@@ -102,30 +100,44 @@ public class PlayerInputWeapon : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext obj)
     {
-        playerOwnedWeapons.GetCurrentWeapon().OnFireCoroutine();
+        if (onToggle)
+        {
+            playerChangeWeapon.ChangeWeapon();
+        }
+        else
+        {
+
+            playerOwnedWeapons.GetCurrentWeapon().OnFireCoroutine();
+        }
 
     }
     public void OffFire(InputAction.CallbackContext obj)
     {
         playerOwnedWeapons.GetCurrentWeapon().OffFireCoroutine();
     }
-    void OnChangeLeft(InputAction.CallbackContext obj)
-    {
-       // playerChangeWeapon.ChangeWeapon(true);
 
-    }
-    void OnChangeRight(InputAction.CallbackContext obj)
+    void OnChangeView(InputAction.CallbackContext obj)
     {
-        playerChangeWeapon.ChangeWeapon(false);
-
-    }
-
-    void OnMagazineView(InputAction.CallbackContext obj)
-    {
-        playerOwnedWeapons.MagazineUIUpdate();
-        magazineViewUI.SetActive(!magazineViewUI.activeSelf);
+        playerOwnedWeapons.ChangeUIUpdate();
         
-
+        changeViewUI.SetActive(true);
+        onToggle = changeViewUI.activeSelf;
+        playerOwnedWeapons.GetCurrentWeapon().OffFireCoroutine();
+        playerOwnedWeapons.OnOffMagazineUI(!changeViewUI.activeSelf);
     }
-
+    void OffChangeView(InputAction.CallbackContext obj)
+    {
+        playerChangeWeapon.MoveJoystick(Vector2.zero);
+        changeViewUI.SetActive(false);
+        onToggle = changeViewUI.activeSelf;
+        playerOwnedWeapons.OnOffMagazineUI(!changeViewUI.activeSelf);
+    }
+    void OnRightJoystick(InputAction.CallbackContext obj)
+    {
+        playerChangeWeapon.MoveJoystick(obj.ReadValue<Vector2>());
+    }
+    void OffRightJoystick(InputAction.CallbackContext obj)
+    {
+        playerChangeWeapon.MoveJoystick(Vector2.zero);
+    }
 }

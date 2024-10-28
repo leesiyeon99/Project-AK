@@ -29,7 +29,7 @@ public class PlayerOwnedWeapons : MonoBehaviour
 
             weapon.InitGun();
         }
-        MagazineUIUpdate();
+        ChangeUIUpdate();
     }
 
     // Comment : 사용중인 무기 반환
@@ -71,13 +71,19 @@ public class PlayerOwnedWeapons : MonoBehaviour
         magazine.gameObject.SetActive(false);
     }
 
-    // Comment : 탄창 UI 업데이트
-    public void MagazineUIUpdate()
+    // Comment : 교체 UI 업데이트
+    public void ChangeUIUpdate()
     {
         foreach (PlayerGun weapon in ownedWeapons)
         {
          
-            weapon.UpdateMagazineToggleUI();
+            weapon.UpdateChangeToggleUI();
         }
+    }
+
+    public void OnOffMagazineUI(bool active)
+    {
+        currentWeapon.OnOffMagazineUI(active);
+        
     }
 }
