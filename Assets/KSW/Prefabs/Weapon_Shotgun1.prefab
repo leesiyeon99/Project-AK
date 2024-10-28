@@ -142,10 +142,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9f039d04870fb4caf2d5be9aafd980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultFiringDelay: 1
   firingDelay: 1
   maxMagazine: 7
   magazine: 7
   reloadSpeed: 0
+  tier: 1
 --- !u!114 &3320067251811576895
 MonoBehaviour:
   m_ObjectHideFlags: 0

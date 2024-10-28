@@ -56,6 +56,8 @@ public class PlayerGun : MonoBehaviour
     [SerializeField] private float firingCoolDown;
 
     private Coroutine firingCoroutine;
+    private Coroutine firingAccelerationCoroutine;
+    private WaitForSeconds firingAccelerationWaitForSeconds;
 
     StringBuilder stringBuilder;
 
@@ -68,7 +70,7 @@ public class PlayerGun : MonoBehaviour
     // Commnet : 초기화
     public void InitGun()
     {
-
+        firingAccelerationWaitForSeconds = new WaitForSeconds(0.1f);
 
         stringBuilder = new StringBuilder();
 
@@ -94,6 +96,7 @@ public class PlayerGun : MonoBehaviour
         {
            
             firingCoroutine = StartCoroutine(Firing());
+            firingAccelerationCoroutine = StartCoroutine(FiringAcceleration());
         }
         else
         {
@@ -106,6 +109,7 @@ public class PlayerGun : MonoBehaviour
         if (customBullet.GunType.HasFlag(GunType.REPEATER))
         {
             CoroutineCheck();
+            playerGunStatus.FiringDelay = playerGunStatus.DefaultFiringDelay;
             firingCoroutine = StartCoroutine(BackgroundFiringCooldown());
         }
     }
@@ -115,6 +119,11 @@ public class PlayerGun : MonoBehaviour
         if (firingCoroutine != null)
         {
             StopCoroutine(firingCoroutine);
+
+        }
+        if (firingAccelerationCoroutine != null)
+        {
+            StopCoroutine(firingAccelerationCoroutine);
 
         }
     }
@@ -187,7 +196,24 @@ public class PlayerGun : MonoBehaviour
 
         }
     }
+ 
+    // Commnet : 연사 특성 가속 
+    IEnumerator FiringAcceleration()
+    {
+        // 가속값
+        float accle = (0.1f + playerGunStatus.Tier * 0.2f)/ (playerGunStatus.AccelerationTime*10); 
 
+        // 0.1초 x * 10회 반복
+        for (int i = 1; i <= playerGunStatus.AccelerationTime*10; i++)
+        {
+            // 0.1초
+            yield return firingAccelerationWaitForSeconds;
+
+            playerGunStatus.FiringDelay = playerGunStatus.DefaultFiringDelay / (1 + (accle*i));
+
+        }
+
+    }
     #endregion
 
     #region 오브젝트 풀
