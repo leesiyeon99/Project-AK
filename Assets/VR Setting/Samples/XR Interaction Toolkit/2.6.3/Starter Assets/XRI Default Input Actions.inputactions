@@ -454,9 +454,10 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ShieldOn/Off",
+                    "name": "GripReload",
                     "type": "Button",
-                    "id": "7caf0ead-4072-4f45-8831-a11afde743cf",
+                    "id": "0b11822f-a91d-401f-aadb-97276a23dde2",
+
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -708,12 +709,13 @@
                 },
                 {
                     "name": "",
-                    "id": "f8800198-0288-467f-8bf3-8545dcd97d84",
-                    "path": "<XRController>{LeftHand}/{TriggerButton}",
+                    "id": "b5527d36-be29-423f-b57a-663f0570fb61",
+                    "path": "<XRController>{LeftHand}/{GripButton}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ShieldOn/Off",
+                    "action": "GripReload",
+
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1299,13 +1301,24 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LJHTEST",
+                    "name": "Reload",
                     "type": "Button",
-                    "id": "8f450055-0742-4cf0-9637-570bd8f7537e",
+                    "id": "c3cce464-ab7b-4524-9a86-b75bd6f2e89b",
+
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "DownReload",
+                    "type": "Value",
+                    "id": "c48b6ce3-5833-4cc5-b36c-c0b6f3472d5f",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+
                 }
             ],
             "bindings": [
@@ -1564,14 +1577,58 @@
                 },
                 {
                     "name": "",
-                    "id": "ba98cef1-8e5b-4cf6-82cb-9bbd01ec5923",
-                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "id": "81dbe313-e824-49b4-a369-91b49c8f6f0f",
+                    "path": "<XRController>{RightHand}/{Primary2DAxisClick}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LJHTEST",
+                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Quaternion Fallback",
+                    "id": "c86bccda-1d3a-4cc6-8e9e-4ae96bd3fd1f",
+                    "path": "QuaternionFallback",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DownReload",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "first",
+                    "id": "3f468182-504d-4252-91dc-8c1dbe9f70f4",
+                    "path": "<XRController>{RightHand}/pointerRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "DownReload",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "second",
+                    "id": "ba1a2ee2-65e5-4308-a310-d3d532ba5e58",
+                    "path": "<XRController>{RightHand}/deviceRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "DownReload",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "third",
+                    "id": "4b43114b-ec44-41fc-996c-d9740c8e6058",
+                    "path": "<XRHandDevice>{RightHand}/deviceRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "DownReload",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
