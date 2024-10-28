@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 268173299525486674}
   - component: {fileID: 4163959915572921040}
   - component: {fileID: 1422892469000916710}
-  - component: {fileID: 694794907118290172}
+  - component: {fileID: -6569252114298441764}
   - component: {fileID: -3031339116007364812}
   - component: {fileID: 2527536733611130017}
   m_Layer: 0
@@ -120,19 +120,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a059ffab28fea314eb05ddd86998b431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireEffect: {fileID: 4377079815190395359}
+  muzzle: {fileID: 7945420109707192020}
   magazineUI: {fileID: 0}
   toggleMagazineUI: {fileID: 0}
-  aim: {fileID: 0}
   aimMask:
     serializedVersion: 2
     m_Bits: 1
-  muzzle: {fileID: 7945420109707192020}
-  bulletPrefab: {fileID: 6109300842043103181, guid: ccaa8b734e5ebee4ca45a2deae9055ac, type: 3}
-  fireEffect: {fileID: 4377079815190395359}
-  firingCoolDown: 0
-  bulletPoolSize: 15
-  bulletReturnDelay: 2
   isDefaultWeapon: 0
+  firingCoolDown: 0
 --- !u!114 &1422892469000916710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,10 +141,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9f039d04870fb4caf2d5be9aafd980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunType: 12
+  bulletAttack: 0
+  defaultFiringDelay: 0.5
   firingDelay: 0.5
+  accelerationTime: 0
   maxMagazine: 10
   magazine: 10
---- !u!114 &694794907118290172
+  reloadSpeed: 0
+  tier: 3
+  range: 10
+  defaultPierceCount: 0
+  splashRadius: 0
+  accelerationRate: 0
+--- !u!114 &-6569252114298441764
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,16 +163,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 241238273671280992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a7455e04abc2df4fa65ac6de0d6600a, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a7948561276b394d8865762bf0b5f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunType: 6
-  bulletSpeed: 5
-  defaultPierceCount: 3
-  splashRadius: 1
-  spreadCount: 0
-  spreadAngleX: 0
-  spreadAngleY: 0
+  sparkEffectPrefab: {fileID: 5009965501609980282, guid: 40bac7deaa418ae49848745c218f0aec, type: 3}
+  mask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!120 &-3031339116007364812
 LineRenderer:
   m_ObjectHideFlags: 0

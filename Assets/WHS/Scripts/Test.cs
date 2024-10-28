@@ -7,6 +7,8 @@ public class Test : MonoBehaviour
     public GameObject bulletPrefab; // 총알 프리팹
     public Transform shootPos;
 
+    // WASD로 이동해서 클릭으로 총알 발사, 오브젝트 파괴 및 아이템 테스트
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

@@ -1,128 +1,140 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 public class PlayerBullet : MonoBehaviour
 {
-
-
-
-    private Rigidbody rigidBody;
-
     [Header("- 스파크 이펙트 프리팹")]
     [SerializeField] private GameObject sparkEffectPrefab;
-    private GameObject spark;
-    private int pierceCount;
-    private PlayerGun playerGun;
+    private List<GameObject> spark;
 
-    private WaitForSeconds returnWaitForSeconds;
-    private Coroutine returnCoroutine;
+    private PlayerGunStatus playerGunStatus;
 
 
+    [Header("- 스플래시 레이어 마스크")]
+    [SerializeField] LayerMask mask;
 
     private void Awake()
     {
-        rigidBody = GetComponent<Rigidbody>();
-        spark = Instantiate(sparkEffectPrefab);
-        spark.SetActive(false);
+        playerGunStatus = GetComponent<PlayerGunStatus>();
+        SetEffect();
+
     }
 
-    public void MoveBullet()
+    private void SetEffect()
     {
-        pierceCount = playerGun.CustomBullet.DefaultPierceCount;
-        returnCoroutine = StartCoroutine(ReturnTime());
-        rigidBody.velocity = transform.forward * playerGun.CustomBullet.BulletSpeed;
-    
-    }
-
-    public void SetPlayerGun(PlayerGun _playerGun)
-    {
-        playerGun = _playerGun;
-        returnWaitForSeconds = new WaitForSeconds(playerGun.BulletReturnDelay);
-       
-    }
-
-    // Comment : 오브젝트 풀 회수
-    public void ReturnBullet()
-    {
-        if (returnCoroutine != null)
+        spark = new List<GameObject>();
+        if (playerGunStatus.GunType.HasFlag(GunType.PIERCE))
         {
-            StopCoroutine(returnCoroutine);
-        }
-
-        gameObject.SetActive(false);
-        rigidBody.velocity = Vector3.zero;
-        playerGun.EnqueueBullet(this);
-    }
-
-    private void HitBullet()
-    {
-       
-
-        if (playerGun.CustomBullet.GunType.HasFlag(GunType.PIERCE))
-        {
-            pierceCount--;
-            // TODO : 물체 관통 여부 확인 필요, 파괴 불가 오브젝트에 충돌시 관통 끝
+            for (int i = 0; i < playerGunStatus.DefaultPierceCount; i++)
+            {
+                spark.Add(Instantiate(sparkEffectPrefab));
+                spark[i].SetActive(false);
+            }
         }
         else
         {
-            pierceCount = 0;
+            spark.Add(Instantiate(sparkEffectPrefab));
+            spark[0].SetActive(false);
         }
+    }
 
-        if (playerGun.CustomBullet.GunType.HasFlag(GunType.SPLASH))
+    public void HitRay(RaycastHit hit)
+    {
+        OnEffect(hit.point, 0);
+
+
+        /* 연동 테스트
+        if (hit.collider.TryGetComponent(out HYJ_Eneme enemy))
         {
-            Splash();
+            enemy.MonsterTakeMamage();
         }
-        if (pierceCount <= 0)
+        */
+
+        if (hit.collider.TryGetComponent(out Fracture fractureObj))
         {
-            ReturnBullet();
+            fractureObj.CauseFracture();
+        }
+
+        if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
+        {
+            Splash(hit.point);
+
+        }
+
+    }
+
+
+    // Comment : 관통
+    public void HitRay(RaycastHit[] hit)
+    {
+
+        int loop = playerGunStatus.DefaultPierceCount;
+        if (hit.Length < playerGunStatus.DefaultPierceCount)
+        {
+            loop = hit.Length;
+        }
+
+
+
+        for (int i = 0; i < loop; i++)
+        {
+            OnEffect(hit[i].point, i);
+
+
+            /* 연동 테스트
+            if (hit[i].collider.TryGetComponent(out HYJ_Eneme enemy))
+            {
+                enemy.MonsterTakeMamage();
+            }
+            */
+
+            if (hit[i].collider.TryGetComponent(out Fracture fractureObj))
+            {
+                fractureObj.CauseFracture();
+            }
+
+            if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
+            {
+                Splash(hit[i].point);
+
+            }
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    private void OnEffect(Vector3 vec, int cnt)
     {
-        // TODO : 데미지 구현
-   
-        OnEffect(other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position));
 
-        //HitBullet();
-    }
+        spark[cnt].SetActive(false);
 
-    private void OnEffect(Vector3 vec)
-    {
-        
-        spark.SetActive(false);
-
-        spark.transform.position = vec;
-        spark.transform.LookAt(playerGun.transform.position);
-        spark.SetActive(true);
-    }
-
-    IEnumerator ReturnTime()
-    {
-        yield return returnWaitForSeconds;
-        ReturnBullet();
+        spark[cnt].transform.position = vec;
+        spark[cnt].transform.LookAt(transform.position);
+        spark[cnt].SetActive(true);
     }
 
 
-    private void Splash()
+    private void Splash(Vector3 vec)
     {
 
         //TODO : 레이어 마스크 추가
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, playerGun.CustomBullet.SplashRadius);
+        Collider[] colliders = Physics.OverlapSphere(vec, playerGunStatus.SplashRadius, mask);
 
         foreach (Collider collider in colliders)
         {
-            Debug.Log(collider.name);
+
+            if (collider.TryGetComponent(out Fracture fractureObj))
+            {
+                fractureObj.CauseFracture();
+            }
+            //Debug.Log(collider.name);
             // TODO : 데미지 구현
         }
 
     }
 
-    
- 
-    
+
+
+
 }
