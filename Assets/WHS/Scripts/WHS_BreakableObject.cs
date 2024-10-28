@@ -20,8 +20,8 @@ public class WHS_BreakableObject : MonoBehaviour
     /*
     private void OnDestroy()
     {
-        Vector3 dropPos = obj.transform.position + new Vector3(0, 1.5f, 0);
-        Instantiate(itemPrefab, dropPos, Quaternion.identity); // 오브젝트가 파괴된 자리에 1.5높이에 아이템 생성
+        Vector3 dropPos = obj.transform.position + new Vector3(0, 1f, 0);
+        Instantiate(itemPrefab, dropPos, Quaternion.identity); // 오브젝트가 파괴된 자리에 1m높이에 아이템 생성
     }
     */
 }

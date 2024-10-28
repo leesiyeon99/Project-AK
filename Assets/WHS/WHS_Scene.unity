@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b12f6d3fd866cc4088ba9eff4a29f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 6702503975447286583, guid: 2b8448e9011398c42a2066fbda19942e, type: 3}
+  itemPrefab: {fileID: 0}
 --- !u!114 &314972891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,7 +867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b12f6d3fd866cc4088ba9eff4a29f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 6702503975447286583, guid: 2b8448e9011398c42a2066fbda19942e, type: 3}
+  itemPrefab: {fileID: 0}
 --- !u!1 &845433661
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,9 +979,9 @@ GameObject:
   - component: {fileID: 976012853}
   - component: {fileID: 976012852}
   - component: {fileID: 976012856}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

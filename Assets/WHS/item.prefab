@@ -127,6 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4a05d58c364e14aa16a18eaad76cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverRange: 0.1
-  moveSpeed: 3
-  bulletAmount: 0
+  hoverRange: 0.3
+  moveSpeed: 5
+  rotationSpeed: 120
+  moveDelay: 1
+  moveToPlayerSpeed: 10
+  itemGetRange: 1
+  bulletAmount: 10
