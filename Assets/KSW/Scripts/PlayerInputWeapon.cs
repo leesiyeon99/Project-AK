@@ -52,6 +52,7 @@ public class PlayerInputWeapon : MonoBehaviour
 
  
         viewChangeUI.action.performed += OnChangeView;
+        viewChangeUI.action.canceled += OffChangeView;
 
         rightJoystcikAxis.action.performed += OnRightJoystick;
         rightJoystcikAxis.action.canceled += OnRightJoystick;
@@ -68,6 +69,7 @@ public class PlayerInputWeapon : MonoBehaviour
 
 
         viewChangeUI.action.performed -= OnChangeView;
+        viewChangeUI.action.canceled -= OffChangeView;
 
         rightJoystcikAxis.action.performed -= OnRightJoystick;
         rightJoystcikAxis.action.canceled -= OnRightJoystick;
@@ -118,11 +120,18 @@ public class PlayerInputWeapon : MonoBehaviour
     {
         playerOwnedWeapons.ChangeUIUpdate();
         
-        changeViewUI.SetActive(!changeViewUI.activeSelf);
+        changeViewUI.SetActive(true);
         onToggle = changeViewUI.activeSelf;
         playerOwnedWeapons.GetCurrentWeapon().OffFireCoroutine();
+        playerOwnedWeapons.OnOffMagazineUI(!changeViewUI.activeSelf);
     }
-
+    void OffChangeView(InputAction.CallbackContext obj)
+    {
+        playerChangeWeapon.MoveJoystick(Vector2.zero);
+        changeViewUI.SetActive(false);
+        onToggle = changeViewUI.activeSelf;
+        playerOwnedWeapons.OnOffMagazineUI(!changeViewUI.activeSelf);
+    }
     void OnRightJoystick(InputAction.CallbackContext obj)
     {
         playerChangeWeapon.MoveJoystick(obj.ReadValue<Vector2>());

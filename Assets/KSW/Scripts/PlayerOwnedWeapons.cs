@@ -80,4 +80,10 @@ public class PlayerOwnedWeapons : MonoBehaviour
             weapon.UpdateChangeToggleUI();
         }
     }
+
+    public void OnOffMagazineUI(bool active)
+    {
+        currentWeapon.OnOffMagazineUI(active);
+        
+    }
 }

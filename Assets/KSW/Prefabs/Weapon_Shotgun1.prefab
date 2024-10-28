@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2045074141134444845}
   - component: {fileID: 6664120267269597057}
   - component: {fileID: 554912517782622037}
-  - component: {fileID: 3320067251811576895}
   - component: {fileID: -5384294629790372512}
   - component: {fileID: 3027078196131563238}
   - component: {fileID: 8942134189012688642}
@@ -140,6 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9f039d04870fb4caf2d5be9aafd980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunType: 8
+  bulletAttack: 0
   defaultFiringDelay: 1
   firingDelay: 1
   accelerationTime: 0
@@ -148,20 +149,6 @@ MonoBehaviour:
   reloadSpeed: 0
   tier: 1
   range: 10
---- !u!114 &3320067251811576895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2054143746597927305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a7455e04abc2df4fa65ac6de0d6600a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunType: 17
-  bulletAttack: 0
   defaultPierceCount: 0
   splashRadius: 0
 --- !u!114 &-5384294629790372512

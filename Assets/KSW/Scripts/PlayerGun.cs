@@ -17,8 +17,6 @@ public class PlayerGun : MonoBehaviour
 
     private PlayerBullet playerBullet;
 
-    private PlayerBulletCustom customBullet;
-
     private LineRenderer aimLineRenderer;
 
     private Animator animator;
@@ -68,7 +66,7 @@ public class PlayerGun : MonoBehaviour
         stringBuilder = new StringBuilder();
 
         animator = GetComponent<Animator>();
-        customBullet = GetComponent<PlayerBulletCustom>();
+   
         playerGunStatus = GetComponent<PlayerGunStatus>();
         playerBullet = GetComponent<PlayerBullet>();
         aimLineRenderer = GetComponent<LineRenderer>();
@@ -80,7 +78,7 @@ public class PlayerGun : MonoBehaviour
     public void OnFireCoroutine()
     {
         CoroutineCheck();
-        if (customBullet.GunType.HasFlag(GunType.REPEATER))
+        if (playerGunStatus.GunType.HasFlag(GunType.REPEATER))
         {
            
             firingCoroutine = StartCoroutine(Firing());
@@ -94,7 +92,7 @@ public class PlayerGun : MonoBehaviour
     public void OffFireCoroutine()
     {
       
-        if (customBullet.GunType.HasFlag(GunType.REPEATER))
+        if (playerGunStatus.GunType.HasFlag(GunType.REPEATER))
         {
             CoroutineCheck();
             playerGunStatus.FiringDelay = playerGunStatus.DefaultFiringDelay;
@@ -128,7 +126,7 @@ public class PlayerGun : MonoBehaviour
         animator.SetTrigger("Shot");
         fireEffect.SetActive(true);
 
-        if (customBullet.GunType.HasFlag(GunType.PIERCE))
+        if (playerGunStatus.GunType.HasFlag(GunType.PIERCE))
         {
             RaycastHit[] hit = Physics.RaycastAll(muzzle.position, muzzle.forward, playerGunStatus.Range, aimMask).OrderBy(hit=>hit.distance).ToArray();
             
@@ -195,7 +193,7 @@ public class PlayerGun : MonoBehaviour
     IEnumerator FiringAcceleration()
     {
         // 가속값
-        float accle = (0.1f + playerGunStatus.Tier * 0.2f)/ (playerGunStatus.AccelerationTime*10); 
+        float accle = playerGunStatus.AccelerationRate/ (playerGunStatus.AccelerationTime*10); 
 
         // 0.1초 x * 10회 반복
         for (int i = 1; i <= playerGunStatus.AccelerationTime*10; i++)
@@ -236,10 +234,20 @@ public class PlayerGun : MonoBehaviour
     // Comment : 총알 ui 업데이트
     public void UpdateMagazineUI(int magazine)
     {
-
-        magazineUI.text = magazine.ToString();
+        stringBuilder.Clear();
+        stringBuilder.Append(magazine.ToString());
+        stringBuilder.Append("/");
+        stringBuilder.Append(playerGunStatus.MaxMagazine.ToString());
+        magazineUI.text = stringBuilder.ToString();
 
     }
+    public void OnOffMagazineUI(bool active)
+    {
+
+        magazineUI.gameObject.SetActive(active);
+
+    }
+
     public void UpdateChangeToggleUI(int magazine)
     {
         stringBuilder.Clear();
