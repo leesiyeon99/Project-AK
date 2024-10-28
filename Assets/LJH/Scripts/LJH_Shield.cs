@@ -23,18 +23,23 @@ public class LJH_Shield : MonoBehaviour
     [SerializeField] AudioSource breaked;
 
     [Header("변수")]
-    public bool isShield;          // Comment: 역장 활성화 여부   필요없으면 삭제 예정
-    public bool isBreaked;         // Comment: 역장 파괴 상태
-    public bool isRecover;         // Comment: 회복 실행 여부
-    public float durability;       // Comment: 역장 내구도
+    public bool isShield;                         // Comment: 역장 활성화 여부   필요없으면 삭제 예정
+    public bool isBreaked;                        // Comment: 역장 파괴 상태
+    public bool isRecover;                        // Comment: 회복 실행 여부
+    public float durability;                      // Comment: 역장 내구도
+    public const float MAXDURABILITY = 5;         // Comment: 역장 최대 내구도
+    public float damage = 1;                      // Comment: 받은 피해량                                ToDo: 몬스터의 데미지로 구현해야함
 
-    private void Start()
+
+    private void Awake()
     {
-        
         gameObject.SetActive(false);
         isRecover = false;
         isShield = false;
         isBreaked = false;
+    }
+    private void Start()
+    {
         durability = 5;
     }
     // Comment: 역장이 활성화 될 때
@@ -110,7 +115,7 @@ public class LJH_Shield : MonoBehaviour
     {
         Debug.Log("역장 피해입음");
         // ToDo : 피격시 사운드 구현해야함
-        durability -= 1;
+        durability -= damage;
 
         damaged.Play();
         Debug.Log(durability);
@@ -119,9 +124,9 @@ public class LJH_Shield : MonoBehaviour
     // Comment: 역장 파괴, 역장이 비활성화되며 isBreaked 변수에 값 전달
     public void BreakedShield()
     {
-        gameObject.SetActive(false);
-        shieldRecover.SetActive(true);
         isBreaked = true;
+        gameObject.SetActive(false);
+        
 
         breaked.Play();
         Debug.Log("역장이 파괴되었습니다.");

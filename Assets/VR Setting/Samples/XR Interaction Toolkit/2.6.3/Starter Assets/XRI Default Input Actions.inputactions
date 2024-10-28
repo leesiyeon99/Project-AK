@@ -457,7 +457,15 @@
                     "name": "GripReload",
                     "type": "Button",
                     "id": "0b11822f-a91d-401f-aadb-97276a23dde2",
-
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShieldOn/Off",
+                    "type": "Button",
+                    "id": "85939a80-89ec-4943-bb98-3e9ce2184799",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -715,7 +723,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "GripReload",
-
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd4d41ba-0d3b-4b38-a6a1-9a73f005a8b5",
+                    "path": "<XRController>{LeftHand}/{TriggerButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShieldOn/Off",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1304,7 +1322,6 @@
                     "name": "Reload",
                     "type": "Button",
                     "id": "c3cce464-ab7b-4524-9a86-b75bd6f2e89b",
-
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1318,7 +1335,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-
+                },
+                {
+                    "name": "LJHTest",
+                    "type": "Button",
+                    "id": "bc90cded-eab7-4b79-a6da-c04ace48467a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1629,6 +1654,17 @@
                     "action": "DownReload",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "7d07118f-b510-4043-a45c-24770f3d5add",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LJHTest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
