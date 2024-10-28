@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Bullet
   - Enemy
+  - MonsterUI
+  - LeftMonster
+  - RightMonster
   layers:
   - Default
   - TransparentFX

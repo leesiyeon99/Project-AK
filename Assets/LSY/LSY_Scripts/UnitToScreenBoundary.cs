@@ -22,11 +22,11 @@ public class UnitToScreenBoundary : MonoBehaviour
         {
             UIImage.gameObject.SetActive(true);
             Vector2 pos = Camera.main.WorldToScreenPoint(transform.position);
-            pos.x = Mathf.Clamp(pos.x, 0, image.rectTransform.rect.width );
+            pos.x = Mathf.Clamp(pos.x, 0, image.rectTransform.rect.width);
             pos.y = Mathf.Clamp(pos.y, 0, image.rectTransform.rect.height / 2);
             UIImage.rectTransform.anchoredPosition = pos;
 
-            //몬스터가 오른쪽 밖으로 나갔을 때
+
             if (pos.x == image.rectTransform.rect.width || pos.y == 0 || pos.y == image.rectTransform.rect.width || pos.x == 0)
             {
                 SetActiveFalse();
