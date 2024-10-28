@@ -1189,7 +1189,7 @@ GameObject:
   - component: {fileID: 4214291440114773967}
   m_Layer: 0
   m_Name: Eneme_Wolf
-  m_TagString: Enemy << Eneme로 수정
+  m_TagString: Eneme
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
