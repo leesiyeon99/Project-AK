@@ -1,0 +1,89 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerOwnedWeapons : MonoBehaviour
+{
+    [SerializeField] private int index;
+
+    public int Index { get { return index; } set { index = value; } }
+
+    [Header("- 보유중인 무기")]
+    [SerializeField] List<PlayerGun> ownedWeapons;
+    [Header("- 사용중인 무기")]
+    [SerializeField] PlayerGun currentWeapon;
+    [Header("- 탄창 오브젝트")]
+    [SerializeField] PlayerMagazine magazine;
+
+    private void Awake()
+    {
+        SetWeapons();
+    }
+
+    // Comment : 무기 초기화 함수 호출
+    public void SetWeapons()
+    {
+        foreach (PlayerGun weapon in ownedWeapons)
+        {
+
+            weapon.InitGun();
+        }
+        ChangeUIUpdate();
+    }
+
+    // Comment : 사용중인 무기 반환
+    public PlayerGun GetCurrentWeapon()
+    {
+        return currentWeapon;
+    }
+
+    // Comment : 무기 교체
+    public void SetCurrentWeapon()
+    {
+       
+        currentWeapon.gameObject.SetActive(false);
+        currentWeapon = ownedWeapons[index];
+        currentWeapon.gameObject.SetActive(true);
+    }
+
+    // Comment : 보유중인 무기 수 반환
+    public int GetOwnedWeaponsCount()
+    {
+        return ownedWeapons.Count-1;
+    }
+
+    // Comment : 재장전
+    public void ReloadMagazine()
+    {
+        currentWeapon.Reload();
+    }
+
+    public void ReloadGripOnMagazine()
+    {
+        if (currentWeapon.MagazineRemainingCheck())
+            return;
+        magazine.gameObject.SetActive(true);
+    }
+
+    public void ReloadGripOffMagazine()
+    {
+        magazine.gameObject.SetActive(false);
+    }
+
+    // Comment : 교체 UI 업데이트
+    public void ChangeUIUpdate()
+    {
+        foreach (PlayerGun weapon in ownedWeapons)
+        {
+         
+            weapon.UpdateChangeToggleUI();
+        }
+    }
+
+    public void OnOffMagazineUI(bool active)
+    {
+        currentWeapon.OnOffMagazineUI(active);
+        
+    }
+}
