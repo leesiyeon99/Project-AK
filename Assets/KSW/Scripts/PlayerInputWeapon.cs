@@ -18,9 +18,6 @@ public class PlayerInputWeapon : MonoBehaviour
     [Header("- 발사")]
     [SerializeField] private InputActionReference fire;
 
-    [Header("- 버튼 장전")]
-    [SerializeField] private InputActionReference reload;
-
     [Header("- 컨트롤러 하단 장전")]
     [SerializeField] private InputActionReference downReload;
 
@@ -34,6 +31,9 @@ public class PlayerInputWeapon : MonoBehaviour
     [Header("- 탄창 UI 토글")]
     [SerializeField] private InputActionReference viewMagazine;
 
+    [Header("- 무기 교체 UI 조작 조이스틱")]
+    [SerializeField] private InputActionReference rightJoystcikAxis;
+
     private void Awake()
     {
         playerOwnedWeapons = GetComponent<PlayerOwnedWeapons>();
@@ -41,7 +41,7 @@ public class PlayerInputWeapon : MonoBehaviour
     }
     private void OnEnable()
     {
-        reload.action.performed += OnReload;
+      
         downReload.action.performed += OnDownReload;
 
         gripReload.action.performed += OnGripReload;
@@ -57,7 +57,6 @@ public class PlayerInputWeapon : MonoBehaviour
     }
     private void OnDisable()
     {
-        reload.action.performed -= OnReload;
         downReload.action.performed -= OnDownReload;
 
         gripReload.action.performed -= OnGripReload;
@@ -73,11 +72,6 @@ public class PlayerInputWeapon : MonoBehaviour
     }
 
 
-    void OnReload(InputAction.CallbackContext obj)
-    {
-        playerOwnedWeapons.ReloadMagazine();
-
-    }
     void OnDownReload(InputAction.CallbackContext obj)
     {
         Quaternion quaternion = obj.ReadValue<Quaternion>();
