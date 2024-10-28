@@ -9,6 +9,7 @@ public class LJH_Shield : MonoBehaviour
 {
     [Header("오브젝트")]
     [SerializeField] GameObject shieldRecover;
+    [SerializeField] GameObject invincibility;
 
     [Header("플레이어 위치")]
     [SerializeField] GameObject playerPos;
@@ -26,6 +27,8 @@ public class LJH_Shield : MonoBehaviour
     public bool isShield;                         // Comment: 역장 활성화 여부   필요없으면 삭제 예정
     public bool isBreaked;                        // Comment: 역장 파괴 상태
     public bool isRecover;                        // Comment: 회복 실행 여부
+    public bool isInvincibility;
+
     public float durability;                      // Comment: 역장 내구도
     public const float MAXDURABILITY = 5;         // Comment: 역장 최대 내구도
     public float damage = 1;                      // Comment: 받은 피해량                                ToDo: 몬스터의 데미지로 구현해야함
@@ -37,6 +40,7 @@ public class LJH_Shield : MonoBehaviour
         isRecover = false;
         isShield = false;
         isBreaked = false;
+        isInvincibility = false;
         durability = MAXDURABILITY;
     }
     
@@ -124,7 +128,17 @@ public class LJH_Shield : MonoBehaviour
         {
             Debug.Log("역장 피해입음");
             // ToDo : 피격시 사운드 구현해야함
-            durability -= damage;
+
+            if (isInvincibility)
+            {
+                damage = 0;
+                durability -= damage;
+            }
+            else if (!isInvincibility)
+            {
+                durability -= damage;
+                Instantiate(invincibility);
+            }
 
             damaged.Play();
             Debug.Log(durability);
