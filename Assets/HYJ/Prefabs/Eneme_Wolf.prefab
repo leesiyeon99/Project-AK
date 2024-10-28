@@ -1294,7 +1294,9 @@ MonoBehaviour:
   monsterAttackRange: 0
   setBossHp: 1000
   monsterHp: 0
+  monsterMoveSpeed: 0
   playerDistance: 0
+  monsterAnimator: {fileID: 4264771815162879042}
   playerAttackPower: 0
 --- !u!1 &4213768901052250066
 GameObject:
