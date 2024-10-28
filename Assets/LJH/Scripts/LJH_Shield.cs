@@ -7,57 +7,126 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class LJH_Shield : MonoBehaviour
 {
-    [SerializeField] GameObject ObjShieldPrefab;
-    [SerializeField] GameObject playerPos;
-    [SerializeField] InputActionReference shieldOn;
+    [Header("오브젝트")]
+    [SerializeField] GameObject shieldRecover;
 
-    bool isBreaked;
-    float durability = 5;
+    [Header("플레이어 위치")]
+    [SerializeField] GameObject playerPos;
+
+    [Header("키입력")]
+    [SerializeField] InputActionReference shieldOnOff;
+    [SerializeField] InputActionReference damageTest; // 테스트 끝나고 지워야함
+    [SerializeField] InputActionReference fire;
+
+    [Header("오디오")]
+    [SerializeField] AudioSource damaged;
+    [SerializeField] AudioSource breaked;
+
+    [Header("변수")]
+    public bool isShield;          // Comment: 역장 활성화 여부   필요없으면 삭제 예정
+    public bool isBreaked;         // Comment: 역장 파괴 상태
+    public bool isRecover;         // Comment: 회복 실행 여부
+    public float durability;       // Comment: 역장 내구도
 
     private void Start()
     {
-        ObjShieldPrefab = gameObject;
-        //shieldOn.action.performed += ShieldOn;
-
+        
+        gameObject.SetActive(false);
+        isRecover = false;
+        isShield = false;
         isBreaked = false;
         durability = 5;
     }
-    
+    // Comment: 역장이 활성화 될 때
+    private void OnEnable()
+    {
+        if (!isBreaked)
+        {
+            isRecover = false;
+            // Comment: 트리거 버튼에서 ShieldOn 제거
+            shieldOnOff.action.performed -= ShieldOn;
+
+            // Comment: 트리거 버튼에서 ShiledOff 추가
+            shieldOnOff.action.performed += ShieldOff;
+
+            // Comment: 역장 활성화될 때 사격 기능 비활성화
+            //fire.action.performed -= GetComponent<PlayerInputWeapon>().OnFire;        총기와 연계 내용이라 머지 이후 주석처리 제거
+            //fire.action.performed -= Getcomponent<PlayerInputWeapon>().OffFire;
+
+            damageTest.action.performed += DamagedShield; // 테스트 끝나고 지워야함
+        }
+    }
+
+    // Comment: 역장이 비활성화 될 때
+    private void OnDisable()
+    {
+        if (!isBreaked)
+        {
+            isRecover = true;
+            // Comment: 트리거 버튼에서 ShieldOn 추가
+            shieldOnOff.action.performed += ShieldOn;
+
+            // Comment: 트리거 버튼에서 ShiledOff 제거
+            shieldOnOff.action.performed -= ShieldOff;
+
+            // Comment: 역장 비활성화될 때 사격 기능 활성화
+            //fire.action.performed += GetComponent<PlayerInputWeapon>().OnFire;         총기와 연계 내용이라 머지 이후 주석처리 제거
+            //fire.action.performed += Getcomponent<PlayerInputWeapon>().OffFire;
+
+            damageTest.action.performed -= DamagedShield; // 테스트 끝나고 지워야함
+        }
+    }
+
     private void Update()
     {
-        transform.position = playerPos.transform.position; // 쉴드의 위치는 플레이어 위치로 따라다니게
+        // Comment: 역장의 위치는 플레이어 위치로 따라다니게
+        transform.position = playerPos.transform.position;
+
+            if (durability < 1)
+            {
+                BreakedShield();
+            }
         
     }
 
-   
 
-    public void ShieldOn()                                  // 방패 활성화
+    // Comment: 역장 활성화
+    public void ShieldOn(InputAction.CallbackContext obj)
     {
-        ObjShieldPrefab.SetActive(true);
+        gameObject.SetActive(true);
+        isShield = true;
     }
 
-    public void ShieldOff()                                 // 방패 비활성화
+    // Comment: 역장 비활성화
+    public void ShieldOff(InputAction.CallbackContext obj)
     {
-        ObjShieldPrefab.SetActive(false);
+        gameObject.SetActive(false);
+        isShield = false;
     }
 
+    // Comment: 피격시 역장 내구도 1 감소
+    // ToDo:    몬스터의 타격 방식에 따라 내용 변경 필요
+    public void DamagedShield(InputAction.CallbackContext obj)// 인수 지워야함
+    {
+        Debug.Log("역장 피해입음");
+        // ToDo : 피격시 사운드 구현해야함
+        durability -= 1;
+
+        damaged.Play();
+        Debug.Log(durability);
+    }
+
+    // Comment: 역장 파괴, 역장이 비활성화되며 isBreaked 변수에 값 전달
     public void BreakedShield()
     {
-        ObjShieldPrefab.SetActive(false);
+        gameObject.SetActive(false);
+        shieldRecover.SetActive(true);
         isBreaked = true;
+
+        breaked.Play();
+        Debug.Log("역장이 파괴되었습니다.");
+        
     }
 
-    /*
-    IEnumerator ShieldCoolDown()
-    {
-        yield return new WaitForSecond(2.0f);               // 2초간 방패 들기 불가
-        Coroutine recovery = StartCoroutine("RecoveryShield");
-    }
-
-    IEnumerator RecoveryShield()
-    {
-        yield return new WaitForSecond(3.0f);               // 방패 들기 불가 + 3초 후 방패 수리 완료
-        isBreaked = false;
-    }
-    */
+    
 }

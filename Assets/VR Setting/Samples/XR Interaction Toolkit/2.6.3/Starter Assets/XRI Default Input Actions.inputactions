@@ -452,6 +452,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ShieldOn/Off",
+                    "type": "Button",
+                    "id": "7caf0ead-4072-4f45-8831-a11afde743cf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -696,6 +705,17 @@
                     "action": "LeftChange",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f8800198-0288-467f-8bf3-8545dcd97d84",
+                    "path": "<XRController>{LeftHand}/{TriggerButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShieldOn/Off",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -801,15 +821,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "ShiledOn",
-                    "type": "Button",
-                    "id": "1709fd25-706b-43b7-b70f-d6688f529331",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -975,17 +986,6 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "Generic XR Controller",
                     "action": "Scale Delta",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5be6328d-ad26-45b6-a5e6-bfc0ef6aa856",
-                    "path": "<XRController>{LeftHand}/triggerButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ShiledOn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1297,6 +1297,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LJHTEST",
+                    "type": "Button",
+                    "id": "8f450055-0742-4cf0-9637-570bd8f7537e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1550,6 +1559,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "RightChange",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ba98cef1-8e5b-4cf6-82cb-9bbd01ec5923",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LJHTEST",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
