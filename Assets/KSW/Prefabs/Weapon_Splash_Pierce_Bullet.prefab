@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1451985238129075440}
   - component: {fileID: 697767284443536665}
   - component: {fileID: -7384063613437681112}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Weapon_Splash_Pierce_Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -161,7 +161,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sparkEffectPrefab: {fileID: 5009965501609980282, guid: 40bac7deaa418ae49848745c218f0aec, type: 3}
-  pierceCount: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!96 &-7384063613437681112
 TrailRenderer:
   serializedVersion: 2

@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4992251943985310059}
   - component: {fileID: -8292222197166011770}
   - component: {fileID: 4558401284472723723}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Weapon_Normal_Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -161,7 +161,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sparkEffectPrefab: {fileID: 5009965501609980282, guid: 40bac7deaa418ae49848745c218f0aec, type: 3}
-  pierceCount: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!96 &4558401284472723723
 TrailRenderer:
   serializedVersion: 2

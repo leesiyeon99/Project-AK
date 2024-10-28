@@ -118,19 +118,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a059ffab28fea314eb05ddd86998b431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8745535972976116055, guid: 4bdce113eb80f504f857b699eb764a66, type: 3}
+  fireEffect: {fileID: 9107385234622346774}
+  muzzle: {fileID: 1178596495324358722}
   magazineUI: {fileID: 0}
   toggleMagazineUI: {fileID: 0}
-  aim: {fileID: 0}
   aimMask:
     serializedVersion: 2
     m_Bits: 1
-  muzzle: {fileID: 1178596495324358722}
-  bulletPrefab: {fileID: 8745535972976116055, guid: 4bdce113eb80f504f857b699eb764a66, type: 3}
-  fireEffect: {fileID: 9107385234622346774}
-  firingCoolDown: 0
   bulletPoolSize: 10
   bulletReturnDelay: 0.5
   isDefaultWeapon: 0
+  firingCoolDown: 0
 --- !u!114 &554912517782622037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +145,7 @@ MonoBehaviour:
   firingDelay: 1
   maxMagazine: 7
   magazine: 7
+  reloadSpeed: 0
 --- !u!114 &3320067251811576895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7455e04abc2df4fa65ac6de0d6600a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunType: 9
+  gunType: 17
+  bulletAttack: 0
   bulletSpeed: 10
   defaultPierceCount: 0
   splashRadius: 0

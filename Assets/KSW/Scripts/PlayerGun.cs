@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class PlayerGun : MonoBehaviour
 {
@@ -46,7 +44,7 @@ public class PlayerGun : MonoBehaviour
     [SerializeField] private float bulletReturnDelay;
     public float BulletReturnDelay { get { return bulletReturnDelay; } }
     private Queue<PlayerBullet> playerBullets;
-    
+
 
     // Comment : 기본 무기 확인
     [Header("- 기본 무기 확인")]
@@ -55,7 +53,7 @@ public class PlayerGun : MonoBehaviour
 
 
     // Comment : 발사 쿨다운
-    private float firingCoolDown;
+    [SerializeField] private float firingCoolDown;
 
     private Coroutine firingCoroutine;
 
@@ -92,13 +90,24 @@ public class PlayerGun : MonoBehaviour
     public void OnFireCoroutine()
     {
         CoroutineCheck();
-        firingCoroutine = StartCoroutine(Firing());
+        if (customBullet.GunType.HasFlag(GunType.REPEATER))
+        {
+           
+            firingCoroutine = StartCoroutine(Firing());
+        }
+        else
+        {
+            FiringOnce();
+        }
     }
     public void OffFireCoroutine()
     {
-        CoroutineCheck();
-
-        firingCoroutine = StartCoroutine(BackgroundFiringCooldown());
+      
+        if (customBullet.GunType.HasFlag(GunType.REPEATER))
+        {
+            CoroutineCheck();
+            firingCoroutine = StartCoroutine(BackgroundFiringCooldown());
+        }
     }
 
     private void CoroutineCheck()
@@ -152,9 +161,19 @@ public class PlayerGun : MonoBehaviour
                 firingCoolDown = playerGunStatus.FiringDelay;
             }
             yield return null;
-            
-           
+
+
         }
+    }
+    void FiringOnce()
+    {
+
+        if (firingCoolDown <= 0)
+        {
+            Fire();
+            firingCoolDown = playerGunStatus.FiringDelay;
+        }
+        firingCoroutine = StartCoroutine(BackgroundFiringCooldown());
     }
 
     // Comment : 발사 중이 아닐때 발사 쿨다운 감소 
@@ -177,12 +196,12 @@ public class PlayerGun : MonoBehaviour
     {
         for (int i = 0; i < bulletPoolSize; i++)
         {
-           GameObject bullet = Instantiate(bulletPrefab);
-           PlayerBullet playerBullet = bullet.GetComponent<PlayerBullet>();
-           playerBullets.Enqueue(playerBullet);
-           playerBullet.SetPlayerGun(this);
-           playerBullet.gameObject.SetActive(false);
-       
+            GameObject bullet = Instantiate(bulletPrefab);
+            PlayerBullet playerBullet = bullet.GetComponent<PlayerBullet>();
+            playerBullets.Enqueue(playerBullet);
+            playerBullet.SetPlayerGun(this);
+            playerBullet.gameObject.SetActive(false);
+
         }
     }
 
@@ -193,7 +212,7 @@ public class PlayerGun : MonoBehaviour
     }
     #endregion
 
-  
+
 
     // Comment : 직선탄
     public void ActiveBullet()
@@ -221,11 +240,11 @@ public class PlayerGun : MonoBehaviour
     #region 재장전
     public void Reload()
     {
-        if(MagazineRemainingCheck())
-        return;
+        if (MagazineRemainingCheck())
+            return;
 
         playerGunStatus.Magazine = playerGunStatus.MaxMagazine;
-        
+
     }
 
     // Comment : 총알 최대 수 보유중인지 체크
@@ -252,7 +271,7 @@ public class PlayerGun : MonoBehaviour
         stringBuilder.Append(magazine.ToString());
         stringBuilder.Append("/");
 
-        
+
         if (isDefaultWeapon)
         {
             stringBuilder.Append("∞");
@@ -262,19 +281,19 @@ public class PlayerGun : MonoBehaviour
         else
         {
             stringBuilder.Append(playerGunStatus.MaxMagazine);
-        
+
         }
-      
+
         toggleMagazineUI.text = stringBuilder.ToString();
-      
+
     }
     public void UpdateMagazineToggleUI()
     {
 
         UpdateMagazineToggleUI(playerGunStatus.Magazine);
     }
- 
-  
+
+
 
     // Comment : 조준점 이동
     // TODO : 일시적으로 Bullet에 UI 레이어 부여, 추후 레이어 합의 후 마스크 레이어 관리 필요 
@@ -298,7 +317,7 @@ public class PlayerGun : MonoBehaviour
             aimLineRenderer.enabled = false;
             aim.transform.position = Vector3.zero;
         }
-      
+
     }
     #endregion
 

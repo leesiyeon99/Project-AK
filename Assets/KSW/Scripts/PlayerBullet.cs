@@ -20,7 +20,8 @@ public class PlayerBullet : MonoBehaviour
     private WaitForSeconds returnWaitForSeconds;
     private Coroutine returnCoroutine;
 
-
+    [Header("- 스플래시 레이어 마스크")]
+    [SerializeField] LayerMask mask;
 
     private void Awake()
     {
@@ -112,7 +113,7 @@ public class PlayerBullet : MonoBehaviour
 
         //TODO : 레이어 마스크 추가
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, playerGun.CustomBullet.SplashRadius);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, playerGun.CustomBullet.SplashRadius, mask);
 
         foreach (Collider collider in colliders)
         {

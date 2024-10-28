@@ -6,15 +6,23 @@ using UnityEngine;
 public enum GunType
 {
     NORMAL = 1 << 0,
-    PIERCE = 1 << 1,
-    SPLASH = 1 << 2,
-    SPREAD = 1 << 3
+    REPEATER = 1 << 1,
+    PIERCE = 1 << 2,
+    SPLASH = 1 << 3,
+    SPREAD = 1 << 4
+   
 }
 public class PlayerBulletCustom : MonoBehaviour
 {
     [Header("- 총기 특성")]
     [SerializeField] private GunType gunType;
     public GunType GunType { get { return gunType; } }
+
+    [Header("- 공격력")]
+    [SerializeField] private float bulletAttack;
+
+    public float AulletAttack { get { return bulletAttack; } }
+
 
     [Header("- 탄환 속도")]
     [SerializeField] private float bulletSpeed;
