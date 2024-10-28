@@ -37,16 +37,17 @@ public class LJH_Shield : MonoBehaviour
         isRecover = false;
         isShield = false;
         isBreaked = false;
+        durability = MAXDURABILITY;
     }
-    private void Start()
-    {
-        durability = 5;
-    }
+    
     // Comment: 역장이 활성화 될 때
     private void OnEnable()
     {
-        if (!isBreaked)
-        {
+        durability = MAXDURABILITY;
+       //isBreaked = shieldRecover.GetComponent<LJH_ShieldRecover>().isBreaked;
+       //isRecover = shieldRecover.GetComponent<LJH_ShieldRecover>().isRecover;
+       //isShield = shieldRecover.GetComponent<LJH_ShieldRecover>().isShield;
+
             isRecover = false;
             // Comment: 트리거 버튼에서 ShieldOn 제거
             shieldOnOff.action.performed -= ShieldOn;
@@ -59,15 +60,13 @@ public class LJH_Shield : MonoBehaviour
             //fire.action.performed -= Getcomponent<PlayerInputWeapon>().OffFire;
 
             damageTest.action.performed += DamagedShield; // 테스트 끝나고 지워야함
-        }
+        
     }
 
     // Comment: 역장이 비활성화 될 때
     private void OnDisable()
     {
-        if (!isBreaked)
-        {
-            isRecover = true;
+        
             // Comment: 트리거 버튼에서 ShieldOn 추가
             shieldOnOff.action.performed += ShieldOn;
 
@@ -79,7 +78,9 @@ public class LJH_Shield : MonoBehaviour
             //fire.action.performed += Getcomponent<PlayerInputWeapon>().OffFire;
 
             damageTest.action.performed -= DamagedShield; // 테스트 끝나고 지워야함
-        }
+
+
+        
     }
 
     private void Update()
@@ -87,24 +88,30 @@ public class LJH_Shield : MonoBehaviour
         // Comment: 역장의 위치는 플레이어 위치로 따라다니게
         transform.position = playerPos.transform.position;
 
-            if (durability < 1)
-            {
-                BreakedShield();
-            }
-        
+        if (durability <= 0)
+        {
+            BreakedShield();
+        }
+
     }
 
 
     // Comment: 역장 활성화
     public void ShieldOn(InputAction.CallbackContext obj)
     {
-        gameObject.SetActive(true);
-        isShield = true;
+        if (!isBreaked)
+        {
+            gameObject.SetActive(true);
+            shieldRecover.SetActive(false);
+            isShield = true;
+        }
     }
 
     // Comment: 역장 비활성화
     public void ShieldOff(InputAction.CallbackContext obj)
     {
+        isRecover = true;
+        shieldRecover.SetActive(true);
         gameObject.SetActive(false);
         isShield = false;
     }
@@ -113,18 +120,25 @@ public class LJH_Shield : MonoBehaviour
     // ToDo:    몬스터의 타격 방식에 따라 내용 변경 필요
     public void DamagedShield(InputAction.CallbackContext obj)// 인수 지워야함
     {
-        Debug.Log("역장 피해입음");
-        // ToDo : 피격시 사운드 구현해야함
-        durability -= damage;
+        if (durability > 0)
+        {
+            Debug.Log("역장 피해입음");
+            // ToDo : 피격시 사운드 구현해야함
+            durability -= damage;
 
-        damaged.Play();
-        Debug.Log(durability);
+            damaged.Play();
+            Debug.Log(durability);
+        }
     }
 
     // Comment: 역장 파괴, 역장이 비활성화되며 isBreaked 변수에 값 전달
     public void BreakedShield()
     {
+        isRecover = true;
         isBreaked = true;
+        isShield = false;
+        shieldRecover.SetActive(true);
+        
         gameObject.SetActive(false);
         
 
