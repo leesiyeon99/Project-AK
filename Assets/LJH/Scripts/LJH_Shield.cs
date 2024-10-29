@@ -43,7 +43,7 @@ public class LJH_Shield : MonoBehaviour
         isInvincibility = false;
         durability = MAXDURABILITY;
     }
-    
+
     // Comment: 역장이 활성화 될 때
     private void OnEnable()
     {
@@ -92,6 +92,10 @@ public class LJH_Shield : MonoBehaviour
         // Comment: 역장의 위치는 플레이어 위치로 따라다니게
         transform.position = playerPos.transform.position;
 
+        
+        //isInvincibility = GetComponent<LJH_invincibility>().isInvincibility;
+        
+
         if (durability <= 0)
         {
             BreakedShield();
@@ -126,18 +130,20 @@ public class LJH_Shield : MonoBehaviour
     {
         if (durability > 0)
         {
-            Debug.Log("역장 피해입음");
             // ToDo : 피격시 사운드 구현해야함
 
             if (isInvincibility)
             {
-                damage = 0;
-                durability -= damage;
+                float zeroDamage = 0;
+
+                Debug.Log("역장 무적 상태");
+                durability -= zeroDamage;
             }
             else if (!isInvincibility)
             {
+                Debug.Log("역장 피해입음");
                 durability -= damage;
-                Instantiate(invincibility);
+                invincibility.SetActive(true);
             }
 
             damaged.Play();

@@ -320,12 +320,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireEffect: {fileID: 3289617578721309889}
   muzzle: {fileID: 1478184361}
-  magazineUI: {fileID: 0}
-  toggleMagazineUI: {fileID: 0}
+  weaponUI: {fileID: 0}
   aimMask:
     serializedVersion: 2
     m_Bits: 1
-  isDefaultWeapon: 1
   firingCoolDown: 0
 --- !u!114 &8719664455957123940
 MonoBehaviour:
@@ -340,17 +338,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunType: 3
+  tier: 2
   bulletAttack: 0
   defaultFiringDelay: 0.2
   firingDelay: 0.2
   accelerationTime: 5
   maxMagazine: 300
   magazine: 300
-  reloadSpeed: 0
-  tier: 3
+  reloadSpeed: 0.8
   range: 10
   defaultPierceCount: 0
   splashRadius: 0
+  splashDamage: 0
+  accelerationRate: 0
 --- !u!114 &-3842246008310963412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sparkEffectPrefab: {fileID: 5009965501609980282, guid: 40bac7deaa418ae49848745c218f0aec, type: 3}
+  splashEffectPrefab: {fileID: 0}
   mask:
     serializedVersion: 2
     m_Bits: 1

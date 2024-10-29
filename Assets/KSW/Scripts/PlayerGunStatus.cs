@@ -12,12 +12,20 @@ public enum GunType
     SPLASH = 1 << 3,
 
 }
+
+
+public enum Tier
+{
+    Tier1, Tier2, Tier3
+
+}
+
 public class PlayerGunStatus : MonoBehaviour
 {
     [Header("- 총기 특성")]
     [SerializeField] private GunType gunType;
     [Header("- 무기 티어")]
-    [SerializeField] private int tier;
+    [SerializeField] private Tier tier;
     [Header("- 공격력")]
     [SerializeField] private float bulletAttack;
     [Header("- 기본 발사 간격")]
@@ -57,7 +65,7 @@ public class PlayerGunStatus : MonoBehaviour
 
     public float ReloadSpeed { get { return reloadSpeed; } }
 
-    public int Tier { get { return tier; } }
+    public Tier Tier { get { return tier; } }
 
     public float Range { get { return range; } }
 
@@ -71,19 +79,19 @@ public class PlayerGunStatus : MonoBehaviour
     {
         switch (tier)
         {
-            case 1:
+            case Tier.Tier1:
                 defaultPierceCount = 2;
                 splashRadius = 0.3f;
                 accelerationRate = 0.3f;
                 splashDamage = bulletAttack * 0.3f;
                 break;
-            case 2:
+            case Tier.Tier2:
                 defaultPierceCount = 3;
                 splashRadius = 0.5f;
                 accelerationRate = 0.5f;
                 splashDamage = bulletAttack * 0.5f;
                 break;
-            case 3:
+            case Tier.Tier3:
                 defaultPierceCount = 4;
                 splashRadius = 1f;
                 accelerationRate = 0.7f;

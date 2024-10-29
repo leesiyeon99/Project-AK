@@ -22,8 +22,9 @@ public class WHS_Item : MonoBehaviour
 
     private bool isMovingtoPlayer = false; // 플레이어에게 이동중인지
 
-    [Header("얻을 총알 개수")]
+    [Header("총알")]
     [SerializeField] int bulletAmount; // 얻을 총알 개수
+    [SerializeField] int bulletIndex; // 특수 총알 종류
 
     private void Start()
     {
@@ -34,11 +35,11 @@ public class WHS_Item : MonoBehaviour
     }
 
     private void Update()
-    {        
+    {
         if (!isMovingtoPlayer) // 습득중이지 않을때 아이템 생성 움직임
         {
             // hoverRange로 위아래로 움직이는 범위, moveSpeed로 이동 속도 조절
-            float newY = startPos.y + Mathf.Sin(Time.time * moveSpeed) * hoverRange; // sin함수로 위아래로 이동하는 효과
+            float newY = startPos.y + Mathf.Sin(Time.time * moveSpeed) * hoverRange; // 위아래로 이동하는 효과
             transform.position = new Vector3(transform.position.x, newY, transform.position.z); // y 위치를 이동시킴
             transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
         }
@@ -47,10 +48,10 @@ public class WHS_Item : MonoBehaviour
             // 아이템이 플레이어로 이동
             transform.position = Vector3.Lerp(transform.position, playerTransform.position, moveToPlayerSpeed * Time.deltaTime);
 
-            if(Vector3.Distance(transform.position, playerTransform.position) < itemGetRange)
+            if (Vector3.Distance(transform.position, playerTransform.position) < itemGetRange)
             {
                 GetItem(); // 아이템이 범위에 들어오면 아이템 획득
-            }            
+            }
         }
     }
 
@@ -64,9 +65,13 @@ public class WHS_Item : MonoBehaviour
     // 아이템 습득
     private void GetItem()
     {
-        // 총알 개수 증가시키기
-        
-        Debug.Log("총알 개수 증가" + bulletAmount);
+        // PlayerSpecialBullet의 인스턴스
+        if(PlayerSpecialBullet.Instance != null)
+        {
+            PlayerSpecialBullet.Instance.SpecialBullet[bulletIndex] += bulletAmount; // index번 총알 Amout만큼 획득
+
+            Debug.Log($"{bulletIndex}번 탄환 {bulletAmount}개 획득");
+        }
         Destroy(gameObject);
     }
 
