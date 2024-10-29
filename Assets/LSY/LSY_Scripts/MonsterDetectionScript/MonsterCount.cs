@@ -22,6 +22,7 @@ public class MonsterCount : MonoBehaviour
             if (other.GetComponent<UnitToScreenBoundary>() != null)
             other.GetComponent<UnitToScreenBoundary>().isActiveUI = true;
         }
+
         
     }
 
