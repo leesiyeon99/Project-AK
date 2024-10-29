@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class WHS_FractureManager : MonoBehaviour
 {
+    // FractureManager에서 Fracture된 오브젝트의 파편을 제거, 아이템을 생성을 관리함
+    // 부술 오브젝트에 Fracture 컴포넌트, BreakableObject 스크립트 추가
+
     [SerializeField] float removeDelay = 1.5f; // delay초 뒤 파편 제거
     private static WHS_FractureManager instance; // 파괴할 Fracture 오브젝트들의 인스턴스
     private Dictionary<GameObject, Fracture> fractureObjects = new Dictionary<GameObject, Fracture>(); // 파괴할 오브젝트와 Fracture 컴포넌트를 저장

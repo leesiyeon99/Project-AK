@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6702503975447286730}
   - component: {fileID: 8694314558233079465}
   m_Layer: 0
-  m_Name: item
+  m_Name: Item0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,4 +133,8 @@ MonoBehaviour:
   moveDelay: 1
   moveToPlayerSpeed: 10
   itemGetRange: 1
-  bulletAmount: 10
+  bulletAmounts: 0a000000140000001e000000
+  itemMaterials:
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f13c1ce94f6b0064891096f00cfa4b6b, type: 2}
+  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
