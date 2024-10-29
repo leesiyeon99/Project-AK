@@ -95,4 +95,18 @@ public class LJH_DamageManager : MonoBehaviour
         hpBar.color = curColor;
         hpBar.fillAmount = hpPercentage;
     }
+
+   // public int TakeDamage(GameObject monster)
+   // {
+   //     if(역장 활성화)
+   //     {
+   //         return 공격력 = 인수값 몬스터의 (쉴드용)공격력;
+   //     }
+   //
+   //     else if(역장 비활성화)
+   //     {
+   //         return 공격력 = 인수값 몬스터의 (체력용)공격력;
+   //     }
+   //     return 0;
+   // }
 }

@@ -8,7 +8,10 @@ public class LJH_invincibility : MonoBehaviour
     [SerializeField] GameObject shield;
     public bool isInvincibility;
 
-    
+    private void Awake()
+    {
+        gameObject.SetActive(false);
+    }
 
     void OnEnable()
     {
@@ -16,12 +19,18 @@ public class LJH_invincibility : MonoBehaviour
         Debug.Log("公利 惯悼");
         isInvincibility = true;
         shield.GetComponent<LJH_Shield>().isInvincibility = isInvincibility;
-        Destroy(gameObject, 2f);
+        Invoke("ObjOff", 0.2f);
     }
 
     void OnDisable()
     {
         Debug.Log("公利 秦力");
         isInvincibility = false;
+        shield.GetComponent<LJH_Shield>().isInvincibility = isInvincibility;
+    }
+
+    void ObjOff()
+    {
+        gameObject.SetActive(false);
     }
 }

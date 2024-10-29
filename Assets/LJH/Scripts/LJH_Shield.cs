@@ -92,10 +92,9 @@ public class LJH_Shield : MonoBehaviour
         // Comment: 역장의 위치는 플레이어 위치로 따라다니게
         transform.position = playerPos.transform.position;
 
-        if (GameObject.Find("Invincibility").activeSelf)
-        {
-            isInvincibility = GetComponent<LJH_invincibility>().isInvincibility;
-        }
+        
+        //isInvincibility = GetComponent<LJH_invincibility>().isInvincibility;
+        
 
         if (durability <= 0)
         {
@@ -135,15 +134,16 @@ public class LJH_Shield : MonoBehaviour
 
             if (isInvincibility)
             {
+                float zeroDamage = 0;
+
                 Debug.Log("역장 무적 상태");
-                damage = 0;
-                durability -= damage;
+                durability -= zeroDamage;
             }
             else if (!isInvincibility)
             {
                 Debug.Log("역장 피해입음");
                 durability -= damage;
-                Instantiate(invincibility);
+                invincibility.SetActive(true);
             }
 
             damaged.Play();
