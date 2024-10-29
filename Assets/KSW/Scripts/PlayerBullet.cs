@@ -11,7 +11,7 @@ public class PlayerBullet : MonoBehaviour
 
     [Header("- 스플래시 이펙트 프리팹")]
     [SerializeField] private GameObject splashEffectPrefab;
-    private GameObject splash;
+    private List<GameObject> splash;
 
     private PlayerGunStatus playerGunStatus;
 
@@ -29,7 +29,22 @@ public class PlayerBullet : MonoBehaviour
     private void SetEffect()
     {
         spark = new List<GameObject>();
-        if (playerGunStatus.GunType.HasFlag(GunType.PIERCE))
+        splash = new List<GameObject>();
+        if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
+        {
+            float scale = playerGunStatus.SplashRadius;
+            for (int i = 0; i < playerGunStatus.DefaultPierceCount; i++)
+            {
+                splash.Add(Instantiate(splashEffectPrefab));
+                splash[i].SetActive(false);
+                splash[i].transform.localScale = new Vector3(scale, scale, scale);
+            }
+
+          
+           
+        }
+
+        else if (playerGunStatus.GunType.HasFlag(GunType.PIERCE))
         {
             for (int i = 0; i < playerGunStatus.DefaultPierceCount; i++)
             {
@@ -43,21 +58,28 @@ public class PlayerBullet : MonoBehaviour
             spark.Add(Instantiate(sparkEffectPrefab));
             spark[0].SetActive(false);
         }
-        if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
-        {
-            splash = Instantiate(splashEffectPrefab);
-            splash.SetActive(false);
-            float scale = playerGunStatus.SplashRadius;
-            splash.transform.localScale = new Vector3(scale, scale, scale);
-        }
 
+        
 
     }
 
     public void HitRay(RaycastHit hit)
     {
-        OnSparkEffect(hit.point, 0);
+        if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
+        {
+            Splash(hit.point, 0);
 
+        }
+        else
+        {
+            OnSparkEffect(hit.point, 0);
+            if (hit.collider.TryGetComponent(out Fracture fractureObj))
+            {
+                fractureObj.CauseFracture();
+            }
+
+
+        }
 
         // 연동 테스트
         /*
@@ -67,16 +89,8 @@ public class PlayerBullet : MonoBehaviour
         }
         */
 
-        if (hit.collider.TryGetComponent(out Fracture fractureObj))
-        {
-            fractureObj.CauseFracture();
-        }
 
-        if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
-        {
-            Splash(hit.point);
 
-        }
 
     }
 
@@ -95,8 +109,19 @@ public class PlayerBullet : MonoBehaviour
 
         for (int i = 0; i < loop; i++)
         {
-            OnSparkEffect(hit[i].point, i);
+            if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
+            {
+                Splash(hit[i].point, i);
 
+            }
+            else
+            {
+                OnSparkEffect(hit[i].point, i);
+                if (hit[i].collider.TryGetComponent(out Fracture fractureObj))
+                {
+                    fractureObj.CauseFracture();
+                }
+            }
 
             // 연동 테스트
           /*  
@@ -106,16 +131,9 @@ public class PlayerBullet : MonoBehaviour
             }
            */
 
-            if (hit[i].collider.TryGetComponent(out Fracture fractureObj))
-            {
-                fractureObj.CauseFracture();
-            }
+          
 
-            if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
-            {
-                Splash(hit[i].point);
-
-            }
+            
         }
     }
 
@@ -133,14 +151,14 @@ public class PlayerBullet : MonoBehaviour
     }
 
 
-    private void Splash(Vector3 vec)
+    private void Splash(Vector3 vec, int cnt)
     {
 
         //TODO : 레이어 마스크 추가
 
-        splash.SetActive(false);
-        splash.transform.position = vec;
-        splash.SetActive(true);
+        splash[cnt].SetActive(false);
+        splash[cnt].transform.position = vec;
+        splash[cnt].SetActive(true);
 
 
         Collider[] colliders = Physics.OverlapSphere(vec, playerGunStatus.SplashRadius, mask);

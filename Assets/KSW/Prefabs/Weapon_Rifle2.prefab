@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Weapon2
-  gunType: 2
+  gunType: 8
   tier: 1
   bulletAttack: 50
   defaultFiringDelay: 0.5
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sparkEffectPrefab: {fileID: 5009965501609980282, guid: 40bac7deaa418ae49848745c218f0aec, type: 3}
-  splashEffectPrefab: {fileID: 0}
+  splashEffectPrefab: {fileID: 5754608875452493824, guid: f002f9c6df4cd8e4783e917dcd18a1a3, type: 3}
   mask:
     serializedVersion: 2
     m_Bits: 1
