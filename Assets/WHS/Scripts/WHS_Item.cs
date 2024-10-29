@@ -14,10 +14,9 @@ public class WHS_Item : MonoBehaviour
     private Transform playerTransform; // 플레이어 위치
 
     [Header("생성 후 n초 뒤 획득")]
-    [SerializeField] float moveDelay = 1f; // 생성 후 플레이어에게 delay초 뒤 이동 (1초뒤 아이템이 날아와 획득)
+    [SerializeField] float moveDelay = 1f; // 생성 후 플레이어에게 delay초 뒤 이동 (delay초뒤 아이템이 날아와 획득)
     [Header("아이템 날아오는 속도")]
     [SerializeField] float moveToPlayerSpeed = 10f; // 아이템이 다가오는 속도
-
     [SerializeField] float itemGetRange = 1f; // 아이템 습득 범위
 
     private bool isMovingtoPlayer = false; // 플레이어에게 이동중인지
@@ -82,10 +81,9 @@ public class WHS_Item : MonoBehaviour
         // PlayerSpecialBullet의 인스턴스
         if (PlayerSpecialBullet.Instance != null)
         {
-            int amountBullet = bulletAmounts[bulletIndex];
-            PlayerSpecialBullet.Instance.SpecialBullet[bulletIndex] += amountBullet; // index번 총알 Amout만큼 획득
+            PlayerSpecialBullet.Instance.SpecialBullet[bulletIndex] += bulletAmounts[bulletIndex];// index번 총알 bulletmount만큼 획득
 
-            Debug.Log($"{bulletIndex + 1}번 탄환 {amountBullet}개 획득");
+            Debug.Log($"{bulletIndex + 1}번 탄환 {bulletAmounts[bulletIndex]}개 획득");
         }
         else
         {

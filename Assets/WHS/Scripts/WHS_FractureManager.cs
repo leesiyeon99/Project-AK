@@ -6,9 +6,12 @@ public class WHS_FractureManager : MonoBehaviour
 {
     // FractureManager에서 Fracture된 오브젝트의 파편을 제거, 아이템을 생성을 관리함
     // 부술 오브젝트에 Fracture 컴포넌트, BreakableObject 스크립트 추가
+    // Fracture 컴포넌트의 Trigger Options -> Limit collisions to select 체크 -> Bullet 태그 추가
+    // Fracture Options -> FragmentCount 에서 파괴후 갈라지는 파편의 개수 조절(10개 내외 권장)
+    //                  -> Inside Metarial에서 갈라진 면의 메터리얼(적당히 비슷한 색상으로 설정)
 
     [SerializeField] float removeDelay = 1.5f; // delay초 뒤 파편 제거
-    [SerializeField] float itemHeight = 2f; // 아이템 생성 높이
+    [SerializeField] float itemHeight = 1f; // 아이템 생성 높이
 
     private static WHS_FractureManager instance; // 파괴할 Fracture 오브젝트들의 인스턴스
     private Dictionary<GameObject, Fracture> fractureObjects = new Dictionary<GameObject, Fracture>(); // 파괴할 오브젝트와 Fracture 컴포넌트를 저장
@@ -71,14 +74,14 @@ public class WHS_FractureManager : MonoBehaviour
         if (itemPrefab != null) // 아이템 프리팹이 있으면
         {
             Vector3 dropPos = obj.transform.position + new Vector3(0, itemHeight, 0);
-            Instantiate(itemPrefab, dropPos, Quaternion.identity); // 오브젝트가 파괴된 자리에 1m 높이에 아이템 생성
+            Instantiate(itemPrefab, dropPos, Quaternion.identity); // 오브젝트가 파괴된 자리에 높이만큼 위치에 아이템 생성
         }
 
         // removeDelay초 뒤 파편 삭제
         yield return new WaitForSeconds(removeDelay);
 
         // 파편 제거        
-        GameObject fragmentRoot = GameObject.Find($"{obj.name}Fragments"); // 오브젝트의 이름+Fragments 이름을 가지는 파편 오브젝트 찾기
+        GameObject fragmentRoot = GameObject.Find($"{obj.name}Fragments"); // ~Fragments 이름을 가지는 파편 오브젝트 찾기
         if(fragmentRoot != null)
         {
             Destroy(fragmentRoot); // 파편 오브젝트 삭제
