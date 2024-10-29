@@ -1833,7 +1833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6339e6440864414ca99483704bf7f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialBullet: 000000000000000000000000
+  specialBullet: 00000000030000000a000000
 --- !u!1 &4370490697226693763
 GameObject:
   m_ObjectHideFlags: 0
