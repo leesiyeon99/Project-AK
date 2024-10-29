@@ -1,13 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TMPro;
 using UnityEngine;
 
 public class PlayerGun : MonoBehaviour
 {
-  
+
     // Comment : 발사 이펙트
     [Header("- 발사 이펙트")]
     [SerializeField] private GameObject fireEffect;
@@ -33,7 +31,7 @@ public class PlayerGun : MonoBehaviour
     private GameObject aim;
 
     // Comment : 레이캐스트 포인트
-  
+
     RaycastHit aimHit;
 
     // Comment : 기본 무기 확인
@@ -71,7 +69,7 @@ public class PlayerGun : MonoBehaviour
         stringBuilder = new StringBuilder();
 
         animator = GetComponent<Animator>();
-   
+
         playerGunStatus = GetComponent<PlayerGunStatus>();
         playerBullet = GetComponent<PlayerBullet>();
         aimLineRenderer = GetComponent<LineRenderer>();
@@ -85,7 +83,7 @@ public class PlayerGun : MonoBehaviour
         CoroutineCheck();
         if (playerGunStatus.GunType.HasFlag(GunType.REPEATER))
         {
-           
+
             firingCoroutine = StartCoroutine(Firing());
             firingAccelerationCoroutine = StartCoroutine(FiringAcceleration());
         }
@@ -96,7 +94,7 @@ public class PlayerGun : MonoBehaviour
     }
     public void OffFireCoroutine()
     {
-      
+
         if (playerGunStatus.GunType.HasFlag(GunType.REPEATER))
         {
             CoroutineCheck();
@@ -123,7 +121,7 @@ public class PlayerGun : MonoBehaviour
     {
         if (playerGunStatus.Magazine <= 0)
             return;
-       
+
 
 
         // Comment : 비주얼적 부분
@@ -133,8 +131,8 @@ public class PlayerGun : MonoBehaviour
 
         if (playerGunStatus.GunType.HasFlag(GunType.PIERCE))
         {
-            RaycastHit[] hit = Physics.RaycastAll(muzzle.position, muzzle.forward, playerGunStatus.Range, aimMask).OrderBy(hit=>hit.distance).ToArray();
-            
+            RaycastHit[] hit = Physics.RaycastAll(muzzle.position, muzzle.forward, playerGunStatus.Range, aimMask).OrderBy(hit => hit.distance).ToArray();
+
 
             playerBullet.HitRay(hit);
 
@@ -193,20 +191,20 @@ public class PlayerGun : MonoBehaviour
 
         }
     }
- 
+
     // Commnet : 연사 특성 가속 
     IEnumerator FiringAcceleration()
     {
         // 가속값
-        float accle = playerGunStatus.AccelerationRate/ (playerGunStatus.AccelerationTime*10); 
+        float accle = playerGunStatus.AccelerationRate / (playerGunStatus.AccelerationTime * 10);
 
         // 0.1초 x * 10회 반복
-        for (int i = 1; i <= playerGunStatus.AccelerationTime*10; i++)
+        for (int i = 1; i <= playerGunStatus.AccelerationTime * 10; i++)
         {
             // 0.1초
             yield return firingAccelerationWaitForSeconds;
 
-            playerGunStatus.FiringDelay = playerGunStatus.DefaultFiringDelay / (1 + (accle*i));
+            playerGunStatus.FiringDelay = playerGunStatus.DefaultFiringDelay / (1 + (accle * i));
 
         }
 
@@ -233,6 +231,14 @@ public class PlayerGun : MonoBehaviour
 
         return false;
     }
+
+    public float GetReloadSpeed()
+    {
+
+        return playerGunStatus.ReloadSpeed;
+    }
+
+
     #endregion
 
     #region UI 연동
@@ -250,7 +256,7 @@ public class PlayerGun : MonoBehaviour
     public void UpdateMagazine(int magazine)
     {
         weaponUI.UpdateMagazineUI(magazine, playerGunStatus.MaxMagazine);
- 
+
     }
 
 
@@ -260,7 +266,7 @@ public class PlayerGun : MonoBehaviour
 
     public void MoveAim()
     {
-        
+
         if (Physics.Raycast(muzzle.position, muzzle.forward, out aimHit, 100f, aimMask))
         {
             aimLineRenderer.enabled = true;
@@ -283,7 +289,7 @@ public class PlayerGun : MonoBehaviour
     private void OnEnable()
     {
         playerGunStatus.OnMagazineChanged += UpdateMagazine;
-     
+
     }
 
     private void OnDisable()

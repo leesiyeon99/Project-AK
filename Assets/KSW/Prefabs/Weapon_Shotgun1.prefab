@@ -120,8 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireEffect: {fileID: 9107385234622346774}
   muzzle: {fileID: 1178596495324358722}
-  magazineUI: {fileID: 0}
-  toggleMagazineUI: {fileID: 0}
+  weaponUI: {fileID: 0}
   aimMask:
     serializedVersion: 2
     m_Bits: 1
@@ -140,17 +139,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunType: 8
+  tier: 1
   bulletAttack: 0
   defaultFiringDelay: 1
   firingDelay: 1
   accelerationTime: 0
   maxMagazine: 7
   magazine: 7
-  reloadSpeed: 0
-  tier: 1
+  reloadSpeed: 2
   range: 10
   defaultPierceCount: 0
   splashRadius: 0
+  splashDamage: 0
+  accelerationRate: 0
 --- !u!114 &-5384294629790372512
 MonoBehaviour:
   m_ObjectHideFlags: 0
