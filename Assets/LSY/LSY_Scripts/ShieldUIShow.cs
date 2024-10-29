@@ -23,14 +23,9 @@ public class ShieldUIShow : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            IncreaseDurability();
+            lsy_durability++;
+            UpdateShieldUI();
         }
-    }
-
-    public void IncreaseDurability()
-    {
-        lsy_durability++;
-        UpdateShieldUI();
     }
 
     private void UpdateShieldUI()

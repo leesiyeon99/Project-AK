@@ -140,12 +140,6 @@ public class ShieldUI : MonoBehaviour
             }
             else if (!lsy_isInvincibility)
             {
-                //ÀÌ½Ã¿¬¾¸
-                if (lsy_shieldCount >= 0)
-                {
-                    shieldImages[lsy_shieldCount].gameObject.SetActive(false);
-                    lsy_shieldCount--;
-                }
                 lsy_durability -= lsy_damage;
                 Instantiate(lsy_invincibility);
             }
