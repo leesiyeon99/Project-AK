@@ -532,6 +532,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2961630504544563539, guid: dad9e9eab2b3c084db5bbebd0d943b54, type: 3}
   m_PrefabInstance: {fileID: 2961630504398008046}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1047810273 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1726897402767333548, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+  m_PrefabInstance: {fileID: 1934458964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1273338337
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,6 +639,67 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &1934458964
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1257900680919512123, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+      propertyPath: shield
+      value: 
+      objectReference: {fileID: 969695165}
+    - target: {fileID: 1726897402767333548, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+      propertyPath: m_Name
+      value: Invincibility
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546588750675509909, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546588750675509909, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.3026743
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546588750675509909, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.998945
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546588750675509909, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5706878
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546588750675509909, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546588750675509909, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546588750675509909, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546588750675509909, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546588750675509909, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546588750675509909, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546588750675509909, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
 --- !u!1 &2135262526 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3775956352867349804, guid: abe1c26f6e0e8e34d9b59aa832d5ad7d, type: 3}
@@ -694,6 +760,10 @@ PrefabInstance:
       propertyPath: playerPos
       value: 
       objectReference: {fileID: 407163553}
+    - target: {fileID: 2961630504544563536, guid: dad9e9eab2b3c084db5bbebd0d943b54, type: 3}
+      propertyPath: invincibility
+      value: 
+      objectReference: {fileID: 1047810273}
     - target: {fileID: 2961630504544563536, guid: dad9e9eab2b3c084db5bbebd0d943b54, type: 3}
       propertyPath: shieldRecover
       value: 

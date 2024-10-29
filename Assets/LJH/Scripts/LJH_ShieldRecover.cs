@@ -31,13 +31,15 @@ public class LJH_ShieldRecover : MonoBehaviour
         isRecover = shield.GetComponent<LJH_Shield>().isRecover;
         isShield = shield.GetComponent<LJH_Shield>().isShield;
 
-        Coroutine recovery = StartCoroutine(RecoveryShield());
+        if (durability != MAXDURABILITY)
+        {
+            Coroutine recovery = StartCoroutine(RecoveryShield());
 
             if (!isRecover)
             {
                 StopCoroutine(recovery);
             }
-        
+        }
     }
 
     

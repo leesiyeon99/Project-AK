@@ -5,24 +5,32 @@ using UnityEngine;
 
 public class LJH_invincibility : MonoBehaviour
 {
-    GameObject shield;
+    [SerializeField] GameObject shield;
+    public bool isInvincibility;
 
-    private void Start()
+    private void Awake()
     {
-        shield = GameObject.Find("Shield");
+        gameObject.SetActive(false);
     }
 
     void OnEnable()
     {
+        if(!isInvincibility)
         Debug.Log("公利 惯悼");
-        shield.GetComponent<LJH_Shield>().isInvincibility = true;
-
-        Destroy(gameObject, 0.2f);
+        isInvincibility = true;
+        shield.GetComponent<LJH_Shield>().isInvincibility = isInvincibility;
+        Invoke("ObjOff", 0.2f);
     }
 
     void OnDisable()
     {
         Debug.Log("公利 秦力");
-        shield.GetComponent<LJH_Shield>().isInvincibility = false;
+        isInvincibility = false;
+        shield.GetComponent<LJH_Shield>().isInvincibility = isInvincibility;
+    }
+
+    void ObjOff()
+    {
+        gameObject.SetActive(false);
     }
 }
