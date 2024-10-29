@@ -59,10 +59,11 @@ public class PlayerBullet : MonoBehaviour
         OnSparkEffect(hit.point, 0);
 
 
-        /* 연동 테스트
-        if (hit.collider.TryGetComponent(out HYJ_Eneme enemy))
+        // 연동 테스트
+        /*
+        if (hit.collider.TryGetComponent(out HYJ_Enemy enemy))
         {
-            enemy.MonsterTakeMamage();
+            enemy.MonsterTakeDamageCalculation();
         }
         */
 
@@ -97,12 +98,13 @@ public class PlayerBullet : MonoBehaviour
             OnSparkEffect(hit[i].point, i);
 
 
-            /* 연동 테스트
-            if (hit[i].collider.TryGetComponent(out HYJ_Eneme enemy))
+            // 연동 테스트
+          /*  
+           *  if (hit[i].collider.TryGetComponent(out HYJ_Enemy enemy))
             {
-                enemy.MonsterTakeMamage();
+                enemy.MonsterTakeDamageCalculation();
             }
-            */
+           */
 
             if (hit[i].collider.TryGetComponent(out Fracture fractureObj))
             {

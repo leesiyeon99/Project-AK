@@ -345,7 +345,7 @@ MonoBehaviour:
   firingDelay: 0.2
   accelerationTime: 5
   maxMagazine: 300
-  magazine: 300
+  magazine: 0
   reloadSpeed: 0.8
   range: 10
   defaultPierceCount: 0

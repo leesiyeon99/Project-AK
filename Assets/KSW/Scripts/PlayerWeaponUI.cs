@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -96,10 +97,42 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
     {
       
         stringBuilder.Clear();
-        stringBuilder.Append(magazine.ToString());
+
+      
+        NumberReplace(magazine);
+
         stringBuilder.Append("/");
-        stringBuilder.Append(maxMagazine.ToString());
+        NumberReplace(maxMagazine);
         magazineUI.text = stringBuilder.ToString();
+
+    }
+
+    void NumberReplace(int num)
+    {
+        // 1000000~ 999999999
+        if (num.ToString().Length >= 7 && num.ToString().Length <= 9)
+        {
+            for (int i = 0; i <= num.ToString().Length - 7; i++)
+            {
+                stringBuilder.Append(num.ToString()[i]);
+
+            }
+            stringBuilder.Append("M");
+        }
+        // 1000~ 999999
+        else if (num.ToString().Length >= 4 && num.ToString().Length <= 6)
+        {
+            for (int i = 0; i <= num.ToString().Length - 4; i++)
+            {
+                stringBuilder.Append(num.ToString()[i]);
+
+            }
+            stringBuilder.Append("K");
+        }
+        else
+        {
+            stringBuilder.Append(num.ToString());
+        }
 
     }
 
