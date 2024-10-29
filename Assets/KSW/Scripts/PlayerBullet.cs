@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,10 @@ public class PlayerBullet : MonoBehaviour
     [Header("- 스파크 이펙트 프리팹")]
     [SerializeField] private GameObject sparkEffectPrefab;
     private List<GameObject> spark;
+
+    [Header("- 스플래시 이펙트 프리팹")]
+    [SerializeField] private GameObject splashEffectPrefab;
+    private GameObject splash;
 
     private PlayerGunStatus playerGunStatus;
 
@@ -31,17 +36,27 @@ public class PlayerBullet : MonoBehaviour
                 spark.Add(Instantiate(sparkEffectPrefab));
                 spark[i].SetActive(false);
             }
+ 
         }
         else
         {
             spark.Add(Instantiate(sparkEffectPrefab));
             spark[0].SetActive(false);
         }
+        if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
+        {
+            splash = Instantiate(splashEffectPrefab);
+            splash.SetActive(false);
+            float scale = playerGunStatus.SplashRadius;
+            splash.transform.localScale = new Vector3(scale, scale, scale);
+        }
+
+
     }
 
     public void HitRay(RaycastHit hit)
     {
-        OnEffect(hit.point, 0);
+        OnSparkEffect(hit.point, 0);
 
 
         /* 연동 테스트
@@ -66,7 +81,7 @@ public class PlayerBullet : MonoBehaviour
 
 
     // Comment : 관통
-    public void HitRay(RaycastHit[] hit)
+    public void HitRay(RaycastHit[] hit, Transform muzzlePoint)
     {
 
         int loop = playerGunStatus.DefaultPierceCount;
@@ -75,11 +90,11 @@ public class PlayerBullet : MonoBehaviour
             loop = hit.Length;
         }
 
-
+  
 
         for (int i = 0; i < loop; i++)
         {
-            OnEffect(hit[i].point, i);
+            OnSparkEffect(hit[i].point, i);
 
 
             /* 연동 테스트
@@ -102,8 +117,9 @@ public class PlayerBullet : MonoBehaviour
         }
     }
 
+  
 
-    private void OnEffect(Vector3 vec, int cnt)
+    private void OnSparkEffect(Vector3 vec, int cnt)
     {
 
         spark[cnt].SetActive(false);
@@ -111,6 +127,7 @@ public class PlayerBullet : MonoBehaviour
         spark[cnt].transform.position = vec;
         spark[cnt].transform.LookAt(transform.position);
         spark[cnt].SetActive(true);
+
     }
 
 
@@ -118,6 +135,11 @@ public class PlayerBullet : MonoBehaviour
     {
 
         //TODO : 레이어 마스크 추가
+
+        splash.SetActive(false);
+        splash.transform.position = vec;
+        splash.SetActive(true);
+
 
         Collider[] colliders = Physics.OverlapSphere(vec, playerGunStatus.SplashRadius, mask);
 

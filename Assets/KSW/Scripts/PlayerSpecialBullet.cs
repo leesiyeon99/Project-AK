@@ -34,7 +34,10 @@ public class PlayerSpecialBullet : MonoBehaviour
             Destroy(this);
         }
 
-       
+        specialBullet = new int[3];
+
+
+
     }
 
 }

@@ -12,13 +12,13 @@ public enum JoystickDirection
 }
 public class PlayerChangeWeapon : MonoBehaviour
 {
+    [Header("- UI 包府")]
+    [SerializeField] private PlayerWeaponUI weaponUI;
+
     private PlayerOwnedWeapons weapons;
 
-    [Header("炼捞胶平 UI")]
-    [SerializeField] RectTransform joystickUI;
     Vector2 joystickVec;
-
-    [SerializeField] JoystickDirection joystickDirection;
+    JoystickDirection joystickDirection;
 
     private void Awake()
     {
@@ -30,8 +30,8 @@ public class PlayerChangeWeapon : MonoBehaviour
     {
         joystickVec = vec;
 
-
-        joystickUI.anchoredPosition = joystickVec * 3;
+        weaponUI.UpdateJoystickUI(joystickVec * 3);
+       
 
         // 快螟
         if (joystickVec.x > 0 && 1 > joystickVec.x)
