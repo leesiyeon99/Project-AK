@@ -340,7 +340,7 @@ MonoBehaviour:
   name: Weapon1
   gunType: 2
   tier: 2
-  bulletAttack: 0
+  bulletAttack: 50
   defaultFiringDelay: 0.2
   firingDelay: 0.2
   accelerationTime: 5

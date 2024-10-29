@@ -140,12 +140,12 @@ MonoBehaviour:
   name: Weapon4
   gunType: 8
   tier: 2
-  bulletAttack: 0
+  bulletAttack: 100
   defaultFiringDelay: 1
   firingDelay: 1
   accelerationTime: 0
-  maxMagazine: 7
-  magazine: 7
+  maxMagazine: 2
+  magazine: 2
   reloadSpeed: 2
   range: 10
   defaultPierceCount: 0

@@ -75,10 +75,16 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
 
     public void OnOffChangeUI(bool active)
     {
+        
         UpdateChangeToggleUI();
         UpdateExplainUI(weapons.Index);
         changeUI.SetActive(active);
         magazineUI.gameObject.SetActive(!active);
+    }
+
+    public bool GetChangeUIActiveSelf()
+    {
+        return changeUI.activeSelf;
     }
 
     public void UpdateJoystickUI(Vector2 vec)

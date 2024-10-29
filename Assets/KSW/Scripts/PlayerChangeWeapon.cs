@@ -92,10 +92,17 @@ public class PlayerChangeWeapon : MonoBehaviour
             return;
         }
 
+
+        if (index != 0 && PlayerSpecialBullet.Instance.SpecialBullet[index - 1] <= 0 && weapons.GetOwnedWeapons(index).GetMagazine() <= 0)
+        {
+            return;
+        }
+
+
         weapons.Index = index;
         joystickDirection = JoystickDirection.NONE;
         weapons.SetCurrentWeapon();
-     
+        weaponUI.UpdateChangeToggleUI();
 
     }
 

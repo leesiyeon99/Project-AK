@@ -255,9 +255,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Weapon3
-  gunType: 1
+  gunType: 4
   tier: 0
-  bulletAttack: 0
+  bulletAttack: 25
   defaultFiringDelay: 0.5
   firingDelay: 0.5
   accelerationTime: 0
