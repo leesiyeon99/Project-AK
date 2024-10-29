@@ -24,6 +24,7 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
 
     // Comment : 무기 교체 탄환 표시 UI
     [SerializeField] TextMeshProUGUI[] toggleMagazineUI;
+    [SerializeField] TextMeshProUGUI[] toggleWeaponNameUI;
     // Comment : 무기 교체 UI 활성화 색 구분
     [SerializeField] Image[] changeUIBackground;
 
@@ -45,10 +46,13 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
     void Awake()
     {
         toggleMagazineUI = new TextMeshProUGUI[4];
+        toggleWeaponNameUI = new TextMeshProUGUI[4];
         changeUIBackground = new Image[4];
         BindAll();
         InitUI();
     }
+
+ 
 
     private void InitUI()
     {
@@ -63,6 +67,13 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
             initStringBuilder.Append("Magazine");
             initStringBuilder.Append(i.ToString());
             toggleMagazineUI[i] = GetUI<TextMeshProUGUI>(initStringBuilder.ToString());
+
+            initStringBuilder.Clear();
+            initStringBuilder.Append("WeaponText");
+            initStringBuilder.Append(i.ToString());
+            toggleWeaponNameUI[i] = GetUI<TextMeshProUGUI>(initStringBuilder.ToString());
+            toggleWeaponNameUI[i].text = weapons.GetOwnedWeapons(i).GetExplainStatus().name;
+
             initStringBuilder.Clear();
             initStringBuilder.Append("Weapon");
             initStringBuilder.Append(i.ToString());
@@ -142,7 +153,7 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
         stringBuilder.Clear();
         if (cooltime < 0)
         {
-            stringBuilder.Append(0);
+            stringBuilder.Append("0.0");
         }
         else
         {

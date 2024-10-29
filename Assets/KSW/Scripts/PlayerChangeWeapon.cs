@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 public enum JoystickDirection
 {
@@ -31,6 +32,7 @@ public class PlayerChangeWeapon : MonoBehaviour
 
     public void MoveJoystick(Vector2 vec)
     {
+      
         joystickVec = vec;
 
         weaponUI.UpdateJoystickUI(joystickVec * 3);
@@ -44,21 +46,28 @@ public class PlayerChangeWeapon : MonoBehaviour
         if (joystickVec.x > 0 && 1 > joystickVec.x)
         {
             joystickDirection |= JoystickDirection.RIGHT;
+            joystickDirection &= ~JoystickDirection.LEFT;
         }
         // 좌측
         else if (joystickVec.x < 0 && -1 < joystickVec.x)
         {
             joystickDirection |= JoystickDirection.LEFT;
+            joystickDirection &= ~JoystickDirection.RIGHT;
+
         }
         // 상단
         if (joystickVec.y > 0 && 1 > joystickVec.y)
         {
             joystickDirection |= JoystickDirection.TOP;
+            joystickDirection &= ~JoystickDirection.BOTTOM;
+   
         }
         // 하단
         else if (joystickVec.y < 0 && -1 < joystickVec.y)
         {
             joystickDirection |= JoystickDirection.BOTTOM;
+            joystickDirection &= ~JoystickDirection.TOP;
+          
         }
 
        

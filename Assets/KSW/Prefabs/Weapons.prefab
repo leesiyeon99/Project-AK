@@ -990,7 +990,7 @@ GameObject:
   - component: {fileID: 8139178689651470783}
   - component: {fileID: 3368986463096335425}
   m_Layer: 0
-  m_Name: Weapon1Text
+  m_Name: WeaponText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1488,6 +1488,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  toggleWeaponNameUI: []
   changeUIBackground:
   - {fileID: 0}
   - {fileID: 0}
@@ -1755,7 +1756,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3793884432244567372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2146,7 +2147,7 @@ GameObject:
   - component: {fileID: 3209025368974827863}
   - component: {fileID: 4694808092340333054}
   m_Layer: 0
-  m_Name: Weapon2Text
+  m_Name: WeaponText2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2282,7 +2283,7 @@ GameObject:
   - component: {fileID: 4019473496495534188}
   - component: {fileID: 4756946146160442348}
   m_Layer: 0
-  m_Name: Weapon3Text
+  m_Name: WeaponText3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2556,7 +2557,7 @@ GameObject:
   - component: {fileID: 7817300199089775162}
   - component: {fileID: 9161927033658661023}
   m_Layer: 0
-  m_Name: Weapon0Text
+  m_Name: WeaponText0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
