@@ -16,6 +16,7 @@ public class WHS_BreakableObject : MonoBehaviour
         WHS_FractureManager.Instance.GetFractureObject(gameObject, itemPrefab);
     }
 
+
     // OnDestroy()로 아이템을 생성하니 Fracture 후 n초뒤 삭제되서 아이템 생성이 늦게 되는 문제
     // OnDisable()로 생성해도 동작에 문제가 생겨서 FractureManager에서 생성하게함
 
