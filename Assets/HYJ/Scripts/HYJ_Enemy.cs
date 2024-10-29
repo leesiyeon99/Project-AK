@@ -151,4 +151,8 @@ public class HYJ_Enemy : MonoBehaviour
             Destroy(gameObject,2f);
         }
     }
+
+    // TODO : 몬스터 등급에 따른 이펙트 만들기
+
+    // TODO : 몬스터 등급에 따라 태그명 바꾸기
 }
