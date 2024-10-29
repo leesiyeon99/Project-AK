@@ -25,7 +25,7 @@ public class PlayerMonsterDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("UIActivePoint"))
+        if (other.gameObject.CompareTag("StopPoint"))
         {
             if (gameObjects[i] == null) return;
             gameObjects[i].GetComponent<UnitToScreenBoundary>().isActiveUI = true;

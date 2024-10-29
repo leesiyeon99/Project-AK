@@ -19,6 +19,7 @@ public class MonsterCount : MonoBehaviour
         {
             score++;
             textMeshPro.text = score.ToString();
+            if (other.GetComponent<UnitToScreenBoundary>() != null)
             other.GetComponent<UnitToScreenBoundary>().isActiveUI = true;
         }
         
