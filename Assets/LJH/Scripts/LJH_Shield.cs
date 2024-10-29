@@ -11,7 +11,8 @@ public class LJH_Shield : MonoBehaviour
     [SerializeField] GameObject shieldRecover;
     [SerializeField] GameObject invincibility;
 
-    [SerializeField] LJHTest test;
+    [Header("스크립트")]
+    [SerializeField] LJH_UIManager test;
 
     [Header("플레이어 위치")]
     [SerializeField] GameObject playerPos;
@@ -75,7 +76,6 @@ public class LJH_Shield : MonoBehaviour
     // Comment: 역장이 비활성화 될 때
     private void OnDisable()
     {
-        
             // Comment: 트리거 버튼에서 ShieldOn 추가
             shieldOnOff.action.performed += ShieldOn;
 

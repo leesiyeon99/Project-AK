@@ -9,7 +9,8 @@ public class LJH_ShieldRecover : MonoBehaviour
     [Header("오브젝트")]
     [SerializeField] GameObject shield;
 
-    [SerializeField] LJHTest test;
+    [Header("스크립트")]
+    [SerializeField] LJH_UIManager test;
 
     [Header("내구도 회복량(초당)")]
     [SerializeField] const float REPAIR = 1;

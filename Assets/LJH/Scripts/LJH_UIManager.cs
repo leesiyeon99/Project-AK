@@ -1,20 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class LJHTest : MonoBehaviour
+public class LJH_UIManager : MonoBehaviour
 {
-    float ljh_durability; // 내구도 UI용
+    [Header("쉴드 UI")]
     [SerializeField] GameObject[] ljh_shieldImages;     // 내구도 UI용
-
-    [SerializeField] LJH_Shield ljh;
-
-
-    public void Update()
-    {
-    }
-
-
+    
     public void UpdateShieldUI(float durability)
     {
         durability = Mathf.Clamp(durability, 0, ljh_shieldImages.Length);
@@ -24,5 +17,5 @@ public class LJHTest : MonoBehaviour
         }
     }
 
-    
+
 }

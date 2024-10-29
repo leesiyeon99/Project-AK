@@ -185,15 +185,6 @@ public class LJH_DamageManager : MonoBehaviour
         }
         return 0;
     }
-
-    public void UpdateShieldUI()
-    {
-        Debug.Log("¿ÃπÃ¡ˆ∂‰");
-        float ljh_durability = Mathf.Clamp(durability, 0, ljh_shieldImages.Length);
-        for (int i = 0; i < ljh_shieldImages.Length; i++)
-        {
-            ljh_shieldImages[i].gameObject.SetActive(i < ljh_durability);
-        }
-    }
+    
 }
 
