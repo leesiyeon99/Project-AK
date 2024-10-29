@@ -20,6 +20,9 @@ public class PlayerChangeWeapon : MonoBehaviour
     Vector2 joystickVec;
     JoystickDirection joystickDirection;
 
+
+    int index;
+
     private void Awake()
     {
         weapons = GetComponent<PlayerOwnedWeapons>();
@@ -31,7 +34,11 @@ public class PlayerChangeWeapon : MonoBehaviour
         joystickVec = vec;
 
         weaponUI.UpdateJoystickUI(joystickVec * 3);
-       
+
+        if (Mathf.Abs(joystickVec.x) == 1 || Mathf.Abs(joystickVec.y) == 1 || joystickVec == Vector2.zero)
+        {
+            joystickDirection = JoystickDirection.NONE;
+        }
 
         // ¿ìÃø
         if (joystickVec.x > 0 && 1 > joystickVec.x)
@@ -55,6 +62,17 @@ public class PlayerChangeWeapon : MonoBehaviour
         }
 
        
+        index = weapons.Index;
+        if (joystickDirection.HasFlag(JoystickDirection.RIGHT) && joystickDirection.HasFlag(JoystickDirection.TOP))
+            index = 0;
+        if (joystickDirection.HasFlag(JoystickDirection.RIGHT) && joystickDirection.HasFlag(JoystickDirection.BOTTOM))
+            index = 1;
+        if (joystickDirection.HasFlag(JoystickDirection.LEFT) && joystickDirection.HasFlag(JoystickDirection.BOTTOM))
+            index = 2;
+        if (joystickDirection.HasFlag(JoystickDirection.LEFT) && joystickDirection.HasFlag(JoystickDirection.TOP))
+            index = 3;
+      
+        weaponUI.UpdateExplainUI(index);
     }
 
     public void ChangeWeapon()
@@ -67,16 +85,7 @@ public class PlayerChangeWeapon : MonoBehaviour
             return;
         }
      
-        int index = weapons.Index;
-        if (joystickDirection.HasFlag(JoystickDirection.RIGHT) && joystickDirection.HasFlag(JoystickDirection.TOP))
-            index = 0;
-        if (joystickDirection.HasFlag(JoystickDirection.RIGHT) && joystickDirection.HasFlag(JoystickDirection.BOTTOM))
-            index = 1;
-        if (joystickDirection.HasFlag(JoystickDirection.LEFT) && joystickDirection.HasFlag(JoystickDirection.BOTTOM))
-            index = 2;
-        if (joystickDirection.HasFlag(JoystickDirection.LEFT) && joystickDirection.HasFlag(JoystickDirection.TOP))
-            index = 3;
-
+      
         if(weapons.Index == index)
         {
             joystickDirection = JoystickDirection.NONE;

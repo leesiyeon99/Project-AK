@@ -66,6 +66,7 @@ public class PlayerGun : MonoBehaviour
         animator = GetComponent<Animator>();
 
         playerGunStatus = GetComponent<PlayerGunStatus>();
+        playerGunStatus.Init();
         playerBullet = GetComponent<PlayerBullet>();
         aimLineRenderer = GetComponent<LineRenderer>();
         aim = GameObject.Find("AimTarget");
@@ -293,6 +294,10 @@ public class PlayerGun : MonoBehaviour
     public int GetMaxMagazine()
     {
         return playerGunStatus.MaxMagazine;
+    }
+    public ExplainStatus GetExplainStatus()
+    {
+        return playerGunStatus.Status;
     }
 
     public void UpdateMagazine(int magazine)

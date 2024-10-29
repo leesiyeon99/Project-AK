@@ -1479,10 +1479,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons: {fileID: 760860512694016275}
-  changeUI: {fileID: 0}
-  changeJoystick: {fileID: 0}
   magazineUI: {fileID: 0}
   firingCooltimeUI: {fileID: 0}
+  changeUI: {fileID: 0}
+  changeJoystick: {fileID: 0}
   toggleMagazineUI:
   - {fileID: 0}
   - {fileID: 0}
@@ -1496,6 +1496,10 @@ MonoBehaviour:
   usedColor: {r: 0, g: 1, b: 0.9897845, a: 1}
   enableColor: {r: 1, g: 1, b: 1, a: 1}
   disableColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+  weaponNameUI: {fileID: 0}
+  weaponAbilityUI: {fileID: 0}
+  weaponAttackUI: {fileID: 0}
+  weaponMagazineUI: {fileID: 0}
 --- !u!1 &3262859545144216573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2713,7 +2717,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -28.46, y: 0}
+  m_AnchoredPosition: {x: -28.46, y: -4.1}
   m_SizeDelta: {x: 23, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9044397284121432441

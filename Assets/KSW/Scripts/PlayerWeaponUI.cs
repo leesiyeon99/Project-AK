@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -10,17 +11,33 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
 {
     [SerializeField] PlayerOwnedWeapons weapons;
 
-    [SerializeField] GameObject changeUI;
-    [SerializeField] RectTransform changeJoystick;
+    // Comment : 남은 탄환 수 UI
     [SerializeField] TextMeshProUGUI magazineUI;
+    // Comment : 발사 쿨타임 UI
     [SerializeField] TextMeshProUGUI firingCooltimeUI;
+
+    // Comment : 무기 교체 UI
+    [SerializeField] GameObject changeUI;
+    // Comment : 무기 교체 UI 조이스틱
+    [SerializeField] RectTransform changeJoystick;
+
+    // Comment : 무기 교체 탄환 표시 UI
     [SerializeField] TextMeshProUGUI[] toggleMagazineUI;
+    // Comment : 무기 교체 UI 활성화 색 구분
     [SerializeField] Image[] changeUIBackground;
 
     [Header("무기 교체 UI 배경 색상") ,ColorUsage(true)]
     [SerializeField] Color usedColor;
     [SerializeField] Color enableColor;
     [SerializeField] Color disableColor;
+
+
+
+    // Comment : 무기 설명 UI
+    [SerializeField] TextMeshProUGUI weaponNameUI;
+    [SerializeField] TextMeshProUGUI weaponAbilityUI;
+    [SerializeField] TextMeshProUGUI weaponAttackUI;
+    [SerializeField] TextMeshProUGUI weaponMagazineUI;
 
     private StringBuilder stringBuilder = new StringBuilder();
 
@@ -50,11 +67,16 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
             initStringBuilder.Append(i.ToString());
             changeUIBackground[i] = GetUI<Image>(initStringBuilder.ToString());
         }
+        weaponNameUI = GetUI<TextMeshProUGUI>("Name");
+        weaponAbilityUI = GetUI<TextMeshProUGUI>("Ability");
+        weaponAttackUI = GetUI<TextMeshProUGUI>("Attack");
+        weaponMagazineUI = GetUI<TextMeshProUGUI>("MagazineText");
     }
 
     public void OnOffChangeUI(bool active)
     {
         UpdateChangeToggleUI();
+        UpdateExplainUI(weapons.Index);
         changeUI.SetActive(active);
         magazineUI.gameObject.SetActive(!active);
     }
@@ -138,8 +160,18 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
             toggleMagazineUI[i].text = stringBuilder.ToString();
         }
 
-        
-       
 
+    }
+
+    public void UpdateExplainUI(int index)
+    {
+        PlayerGun weapon = weapons.GetOwnedWeapons(index);
+        weaponNameUI.text = weapon.GetExplainStatus().name;
+        weaponAbilityUI.text = weapon.GetExplainStatus().gunType.ToString();
+        weaponAttackUI.text = weapon.GetExplainStatus().atk.ToString();
+        weaponMagazineUI.text = weapon.GetExplainStatus().magazine.ToString();
+
+
+      
     }
 }
