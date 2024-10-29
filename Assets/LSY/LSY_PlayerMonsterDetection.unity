@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 219764097}
   - component: {fileID: 219764096}
   m_Layer: 0
-  m_Name: Image (4)
+  m_Name: Shield5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 220384453}
   - component: {fileID: 220384452}
   m_Layer: 0
-  m_Name: Image (2)
+  m_Name: Shield3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -475,9 +475,9 @@ GameObject:
   - component: {fileID: 257268179}
   - component: {fileID: 257268180}
   - component: {fileID: 257268182}
-  - component: {fileID: 257268183}
   - component: {fileID: 257268184}
   - component: {fileID: 257268185}
+  - component: {fileID: 257268186}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -530,27 +530,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &257268183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 257268178}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a632863934bc19e47ac9553a59baba3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 11.84
-  layer:
-    serializedVersion: 2
-    m_Bits: 256
-  colliders: []
-  gameObjects:
-  - {fileID: 168185667}
-  - {fileID: 2140794524}
-  - {fileID: 1983635274}
 --- !u!114 &257268184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,6 +566,38 @@ MonoBehaviour:
   hpBar: {fileID: 1253519844}
   bloodImage: {fileID: 139941896}
   shieldImage: {fileID: 946346368}
+--- !u!114 &257268186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257268178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f44973c9223cae4cbba62b9d0eab586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lsy_shieldRecover: {fileID: 0}
+  lsy_invincibility: {fileID: 0}
+  lsy_playerPos: {fileID: 0}
+  lsy_shieldOnOff: {fileID: 0}
+  lsy_damageTest: {fileID: 0}
+  lsy_fire: {fileID: 0}
+  lsy_damaged: {fileID: 0}
+  lsy_breaked: {fileID: 0}
+  lsy_isShield: 0
+  lsy_isBreaked: 0
+  lsy_isRecover: 0
+  lsy_isInvincibility: 0
+  lsy_durability: 0
+  lsy_damage: 1
+  shieldImages:
+  - {fileID: 2064532282}
+  - {fileID: 1014711150}
+  - {fileID: 220384452}
+  - {fileID: 1517717314}
+  - {fileID: 219764096}
 --- !u!1 &314833153
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,7 +871,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: -25.7
+  m_Spacing: -26.4
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -2024,7 +2035,7 @@ GameObject:
   - component: {fileID: 1014711151}
   - component: {fileID: 1014711150}
   m_Layer: 0
-  m_Name: Image (1)
+  m_Name: Shield2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2673,7 +2684,7 @@ GameObject:
   - component: {fileID: 1517717315}
   - component: {fileID: 1517717314}
   m_Layer: 0
-  m_Name: Image (3)
+  m_Name: Shield4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3134,7 +3145,7 @@ GameObject:
   - component: {fileID: 2064532283}
   - component: {fileID: 2064532282}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Shield1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

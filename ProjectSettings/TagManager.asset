@@ -11,6 +11,7 @@ TagManager:
   - RightMonster
   - EliteEnemy
   - StopPoint
+  - Boss
   layers:
   - Default
   - TransparentFX

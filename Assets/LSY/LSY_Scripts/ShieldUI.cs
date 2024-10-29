@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ShieldUI : MonoBehaviour
 {
@@ -30,6 +31,11 @@ public class ShieldUI : MonoBehaviour
     public float lsy_durability;                      // Comment: 역장 내구도
     public const float lsy_MAXDURABILITY = 5;         // Comment: 역장 최대 내구도
     public float lsy_damage = 1;                      // Comment: 받은 피해량                                ToDo: 몬스터의 데미지로 구현해야함
+
+    //이시연씀
+    [Header("UI")]
+    int lsy_shieldCount = 4;
+    public Image[] shieldImages = new Image[5];
 
 
     private void Awake()
@@ -134,6 +140,12 @@ public class ShieldUI : MonoBehaviour
             }
             else if (!lsy_isInvincibility)
             {
+                //이시연씀
+                if (lsy_shieldCount >= 0)
+                {
+                    shieldImages[lsy_shieldCount].gameObject.SetActive(false);
+                    lsy_shieldCount--;
+                }
                 lsy_durability -= lsy_damage;
                 Instantiate(lsy_invincibility);
             }
