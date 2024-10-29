@@ -6,7 +6,7 @@ public class WHS_FractureManager : MonoBehaviour
 {
     // FractureManager에서 Fracture된 오브젝트의 파편을 제거, 아이템을 생성을 관리함
     // 부술 오브젝트에 Fracture 컴포넌트, BreakableObject 스크립트 추가
-    // Fracture 컴포넌트의 Trigger Options -> Limit collisions to select 체크 -> Bullet 태그 추가
+
     // Fracture Options -> FragmentCount 에서 파괴후 갈라지는 파편의 개수 조절(10개 내외 권장)
     //                  -> Inside Metarial에서 갈라진 면의 메터리얼(적당히 비슷한 색상으로 설정)
 
@@ -82,7 +82,7 @@ public class WHS_FractureManager : MonoBehaviour
 
         // 파편 제거        
         GameObject fragmentRoot = GameObject.Find($"{obj.name}Fragments"); // ~Fragments 이름을 가지는 파편 오브젝트 찾기
-        if(fragmentRoot != null)
+        if (fragmentRoot != null)
         {
             Destroy(fragmentRoot); // 파편 오브젝트 삭제
         }
