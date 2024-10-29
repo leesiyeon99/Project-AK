@@ -11,9 +11,8 @@ public class PlayerInputWeapon : MonoBehaviour
     private PlayerOwnedWeapons playerOwnedWeapons;
     private PlayerChangeWeapon playerChangeWeapon;
 
-    [Header("- 보유중 무기 탄창 UI")]
-    [SerializeField] private GameObject changeViewUI;
-
+    [Header("- UI 관리")]
+    [SerializeField] private PlayerWeaponUI weaponUI;
 
     [Header("- 발사")]
     [SerializeField] private InputActionReference fire;
@@ -32,7 +31,8 @@ public class PlayerInputWeapon : MonoBehaviour
     [SerializeField] private InputActionReference rightJoystcikAxis;
 
     [Header("- 무기교체 토글 확인")]
-    [SerializeField] bool onToggle;
+    [SerializeField] private bool onToggle;
+
 
     private void Awake()
     {
@@ -118,19 +118,18 @@ public class PlayerInputWeapon : MonoBehaviour
 
     void OnChangeView(InputAction.CallbackContext obj)
     {
-        playerOwnedWeapons.ChangeUIUpdate();
-        
-        changeViewUI.SetActive(true);
-        onToggle = changeViewUI.activeSelf;
+     
+        weaponUI.OnOffChangeUI(true);
+      
+        onToggle = true;
         playerOwnedWeapons.GetCurrentWeapon().OffFireCoroutine();
-        playerOwnedWeapons.OnOffMagazineUI(!changeViewUI.activeSelf);
     }
     void OffChangeView(InputAction.CallbackContext obj)
     {
         playerChangeWeapon.MoveJoystick(Vector2.zero);
-        changeViewUI.SetActive(false);
-        onToggle = changeViewUI.activeSelf;
-        playerOwnedWeapons.OnOffMagazineUI(!changeViewUI.activeSelf);
+        weaponUI.OnOffChangeUI(false);
+    
+        onToggle = false;
     }
     void OnRightJoystick(InputAction.CallbackContext obj)
     {

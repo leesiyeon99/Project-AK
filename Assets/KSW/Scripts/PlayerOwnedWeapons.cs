@@ -29,7 +29,7 @@ public class PlayerOwnedWeapons : MonoBehaviour
 
             weapon.InitGun();
         }
-        ChangeUIUpdate();
+      
     }
 
     // Comment : 사용중인 무기 반환
@@ -38,14 +38,14 @@ public class PlayerOwnedWeapons : MonoBehaviour
         return currentWeapon;
     }
 
-    // Comment : 무기 교체
-    public void SetCurrentWeapon()
+  
+
+    // Comment : 보유중인 무기 반환
+    public PlayerGun GetOwnedWeapons(int _index)
     {
-       
-        currentWeapon.gameObject.SetActive(false);
-        currentWeapon = ownedWeapons[index];
-        currentWeapon.gameObject.SetActive(true);
+        return ownedWeapons[_index];
     }
+
 
     // Comment : 보유중인 무기 수 반환
     public int GetOwnedWeaponsCount()
@@ -53,6 +53,14 @@ public class PlayerOwnedWeapons : MonoBehaviour
         return ownedWeapons.Count-1;
     }
 
+   // Comment : 무기 교체
+    public void SetCurrentWeapon()
+    {
+       
+        currentWeapon.gameObject.SetActive(false);
+        currentWeapon = ownedWeapons[index];
+        currentWeapon.gameObject.SetActive(true);
+    }
     // Comment : 재장전
     public void ReloadMagazine()
     {
@@ -71,19 +79,6 @@ public class PlayerOwnedWeapons : MonoBehaviour
         magazine.gameObject.SetActive(false);
     }
 
-    // Comment : 교체 UI 업데이트
-    public void ChangeUIUpdate()
-    {
-        foreach (PlayerGun weapon in ownedWeapons)
-        {
-         
-            weapon.UpdateChangeToggleUI();
-        }
-    }
+   
 
-    public void OnOffMagazineUI(bool active)
-    {
-        currentWeapon.OnOffMagazineUI(active);
-        
-    }
 }

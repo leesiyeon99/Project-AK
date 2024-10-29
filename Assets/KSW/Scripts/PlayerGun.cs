@@ -27,9 +27,8 @@ public class PlayerGun : MonoBehaviour
     [SerializeField] private Transform muzzle;
 
     // Comment : UI
-    [Header("- UI")]
-    [SerializeField] private TextMeshProUGUI magazineUI;
-    [SerializeField] private TextMeshProUGUI toggleMagazineUI;
+    [Header("- UI 관리")]
+    [SerializeField] private PlayerWeaponUI weaponUI;
     [SerializeField] private LayerMask aimMask;
     private GameObject aim;
 
@@ -51,6 +50,12 @@ public class PlayerGun : MonoBehaviour
     private WaitForSeconds firingAccelerationWaitForSeconds;
 
     StringBuilder stringBuilder;
+
+
+    private void Start()
+    {
+        UpdateMagazine(playerGunStatus.Magazine);
+    }
 
     private void Update()
     {
@@ -230,52 +235,23 @@ public class PlayerGun : MonoBehaviour
     }
     #endregion
 
-    #region UI
+    #region UI 연동
     // Comment : 총알 ui 업데이트
-    public void UpdateMagazineUI(int magazine)
-    {
-        stringBuilder.Clear();
-        stringBuilder.Append(magazine.ToString());
-        stringBuilder.Append("/");
-        stringBuilder.Append(playerGunStatus.MaxMagazine.ToString());
-        magazineUI.text = stringBuilder.ToString();
 
+    public int GetMagazine()
+    {
+        return playerGunStatus.Magazine;
     }
-    public void OnOffMagazineUI(bool active)
+    public int GetMaxMagazine()
     {
-
-        magazineUI.gameObject.SetActive(active);
-
+        return playerGunStatus.MaxMagazine;
     }
 
-    public void UpdateChangeToggleUI(int magazine)
+    public void UpdateMagazine(int magazine)
     {
-        stringBuilder.Clear();
-        stringBuilder.Append(magazine.ToString());
-        stringBuilder.Append("/");
-
-
-        if (isDefaultWeapon)
-        {
-            stringBuilder.Append("∞");
-
-
-        }
-        else
-        {
-            stringBuilder.Append(playerGunStatus.MaxMagazine);
-
-        }
-
-        toggleMagazineUI.text = stringBuilder.ToString();
-
+        weaponUI.UpdateMagazineUI(magazine, playerGunStatus.MaxMagazine);
+ 
     }
-    public void UpdateChangeToggleUI()
-    {
-
-        UpdateChangeToggleUI(playerGunStatus.Magazine);
-    }
-
 
 
     // Comment : 조준점 이동
@@ -306,15 +282,13 @@ public class PlayerGun : MonoBehaviour
     // Comment : UI 이벤트 추가, 제거
     private void OnEnable()
     {
-        playerGunStatus.OnMagazineChanged += UpdateMagazineUI;
-        playerGunStatus.OnMagazineChanged += UpdateChangeToggleUI;
-        UpdateMagazineUI(playerGunStatus.Magazine);
+        playerGunStatus.OnMagazineChanged += UpdateMagazine;
+     
     }
 
     private void OnDisable()
     {
-        playerGunStatus.OnMagazineChanged -= UpdateMagazineUI;
-        playerGunStatus.OnMagazineChanged -= UpdateChangeToggleUI;
+        playerGunStatus.OnMagazineChanged -= UpdateMagazine;
         fireEffect.SetActive(false);
         StopAllCoroutines();
     }
