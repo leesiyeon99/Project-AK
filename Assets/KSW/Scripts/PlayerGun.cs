@@ -308,9 +308,6 @@ public class PlayerGun : MonoBehaviour
     }
 
     // Comment : 조준점 이동
-    // TODO : 일시적으로 Bullet에 UI 레이어 부여, 추후 레이어 합의 후 마스크 레이어 관리 필요 
-    // 마스크 레이어를 다른곳에 정의해서 하나만 사용하는것도 필요
-
     public void MoveAim()
     {
 
