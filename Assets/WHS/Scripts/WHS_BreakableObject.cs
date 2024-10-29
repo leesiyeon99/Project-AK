@@ -24,8 +24,8 @@ public class WHS_BreakableObject : MonoBehaviour
     // 추후 몬스터에 아이템 생성시킬때 OnDestroy로 생성?
     private void OnDestroy()
     {
-        Vector3 dropPos = obj.transform.position + new Vector3(0, 1f, 0);
-        Instantiate(itemPrefab, dropPos, Quaternion.identity); // 오브젝트가 파괴된 자리에 1m높이에 아이템 생성
+        Vector3 dropPos = obj.transform.position + new Vector3(0, 2f, 0);
+        Instantiate(itemPrefab, dropPos, Quaternion.identity); // 오브젝트가 파괴된 자리에 2m높이에 아이템 생성
     }
     */
 }

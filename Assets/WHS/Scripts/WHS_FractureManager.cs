@@ -8,6 +8,8 @@ public class WHS_FractureManager : MonoBehaviour
     // 부술 오브젝트에 Fracture 컴포넌트, BreakableObject 스크립트 추가
 
     [SerializeField] float removeDelay = 1.5f; // delay초 뒤 파편 제거
+    [SerializeField] float itemHeight = 2f; // 아이템 생성 높이
+
     private static WHS_FractureManager instance; // 파괴할 Fracture 오브젝트들의 인스턴스
     private Dictionary<GameObject, Fracture> fractureObjects = new Dictionary<GameObject, Fracture>(); // 파괴할 오브젝트와 Fracture 컴포넌트를 저장
     private Dictionary<GameObject, GameObject> itemPrefabs = new Dictionary<GameObject, GameObject>(); // 파괴할 오브젝트와 아이템 프리팹을 저장
@@ -68,7 +70,7 @@ public class WHS_FractureManager : MonoBehaviour
         GameObject itemPrefab = itemPrefabs[obj]; // 아이템프리팹 받아오기
         if (itemPrefab != null) // 아이템 프리팹이 있으면
         {
-            Vector3 dropPos = obj.transform.position + new Vector3(0, 1f, 0);
+            Vector3 dropPos = obj.transform.position + new Vector3(0, itemHeight, 0);
             Instantiate(itemPrefab, dropPos, Quaternion.identity); // 오브젝트가 파괴된 자리에 1m 높이에 아이템 생성
         }
 
