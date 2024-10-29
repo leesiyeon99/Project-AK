@@ -130,6 +130,8 @@ public class PlayerInputWeapon : MonoBehaviour
         weaponUI.OnOffChangeUI(false);
     
         onToggle = false;
+
+        playerOwnedWeapons.GetCurrentWeapon().UpdateMagazine();
     }
     void OnRightJoystick(InputAction.CallbackContext obj)
     {

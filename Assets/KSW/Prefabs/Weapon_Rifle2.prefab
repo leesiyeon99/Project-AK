@@ -126,7 +126,6 @@ MonoBehaviour:
   aimMask:
     serializedVersion: 2
     m_Bits: 1
-  isDefaultWeapon: 0
   firingCoolDown: 0
 --- !u!114 &1422892469000916710
 MonoBehaviour:
@@ -140,8 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9f039d04870fb4caf2d5be9aafd980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunType: 12
-  tier: 3
+  gunType: 4
+  tier: 1
   bulletAttack: 0
   defaultFiringDelay: 0.5
   firingDelay: 0.5
@@ -167,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sparkEffectPrefab: {fileID: 5009965501609980282, guid: 40bac7deaa418ae49848745c218f0aec, type: 3}
+  splashEffectPrefab: {fileID: 0}
   mask:
     serializedVersion: 2
     m_Bits: 1

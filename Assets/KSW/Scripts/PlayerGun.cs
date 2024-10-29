@@ -34,11 +34,6 @@ public class PlayerGun : MonoBehaviour
 
     RaycastHit aimHit;
 
-    // Comment : 기본 무기 확인
-    [Header("- 기본 무기 확인")]
-    [SerializeField] bool isDefaultWeapon;
-
-
 
     // Comment : 발사 쿨다운
     [SerializeField] private float firingCoolDown;
@@ -81,6 +76,7 @@ public class PlayerGun : MonoBehaviour
     public void OnFireCoroutine()
     {
         CoroutineCheck();
+       
         if (playerGunStatus.GunType.HasFlag(GunType.REPEATER))
         {
 
@@ -119,9 +115,7 @@ public class PlayerGun : MonoBehaviour
 
     public void Fire()
     {
-        if (playerGunStatus.Magazine <= 0)
-            return;
-
+    
 
 
         // Comment : 비주얼적 부분
@@ -129,12 +123,14 @@ public class PlayerGun : MonoBehaviour
         animator.SetTrigger("Shot");
         fireEffect.SetActive(true);
 
+
+        // 관통
         if (playerGunStatus.GunType.HasFlag(GunType.PIERCE))
         {
             RaycastHit[] hit = Physics.RaycastAll(muzzle.position, muzzle.forward, playerGunStatus.Range, aimMask).OrderBy(hit => hit.distance).ToArray();
 
 
-            playerBullet.HitRay(hit);
+            playerBullet.HitRay(hit, muzzle);
 
         }
         else
@@ -150,12 +146,19 @@ public class PlayerGun : MonoBehaviour
         playerGunStatus.Magazine--;
     }
 
-
+    // Commnet : 연사용
     IEnumerator Firing()
     {
         while (true)
         {
+            if (playerGunStatus.Magazine <= 0)
+            {
+                CooldownCheck();
+                break;
+            }
+
             firingCoolDown -= Time.deltaTime;
+
             weaponUI.UpdateFiringCooltimeUI(firingCoolDown);
             if (firingCoolDown <= 0)
             {
@@ -169,7 +172,11 @@ public class PlayerGun : MonoBehaviour
     }
     void FiringOnce()
     {
-
+        if (playerGunStatus.Magazine <= 0)
+        {
+            CooldownCheck();
+            return;
+        }
         if (firingCoolDown <= 0)
         {
             Fire();
@@ -194,6 +201,18 @@ public class PlayerGun : MonoBehaviour
         }
     }
 
+    // Comment : 트리거 입력 없을때의 쿨다운 체크
+
+    void CooldownCheck()
+    {
+        CoroutineCheck();
+        if (firingCoolDown > 0)
+        {
+            firingCoroutine = StartCoroutine(BackgroundFiringCooldown());
+        }
+    }
+
+
     // Commnet : 연사 특성 가속 
     IEnumerator FiringAcceleration()
     {
@@ -216,12 +235,33 @@ public class PlayerGun : MonoBehaviour
 
 
     #region 재장전
-    public void Reload()
+    public void Reload(int index)
     {
         if (MagazineRemainingCheck())
             return;
 
-        playerGunStatus.Magazine = playerGunStatus.MaxMagazine;
+        if(index == -1)
+        {
+            playerGunStatus.Magazine = playerGunStatus.MaxMagazine;
+            return;
+        }
+     
+
+        int amount = PlayerSpecialBullet.Instance.SpecialBullet[index];
+
+        if(amount + playerGunStatus.Magazine < playerGunStatus.MaxMagazine)
+        {
+            amount = amount + playerGunStatus.Magazine;
+
+            PlayerSpecialBullet.Instance.SpecialBullet[index] = 0;
+        }
+        else if (amount + playerGunStatus.Magazine >= playerGunStatus.MaxMagazine)
+        {
+            amount = playerGunStatus.MaxMagazine;
+            PlayerSpecialBullet.Instance.SpecialBullet[index] -= (playerGunStatus.MaxMagazine - playerGunStatus.Magazine);
+        }
+
+        playerGunStatus.Magazine = amount;
 
     }
 
@@ -260,7 +300,12 @@ public class PlayerGun : MonoBehaviour
         weaponUI.UpdateMagazineUI(magazine, playerGunStatus.MaxMagazine);
 
     }
+    public void UpdateMagazine()
+    {
+        weaponUI.UpdateMagazineUI(playerGunStatus.Magazine, playerGunStatus.MaxMagazine);
+        weaponUI.UpdateFiringCooltimeUI(firingCoolDown);
 
+    }
 
     // Comment : 조준점 이동
     // TODO : 일시적으로 Bullet에 UI 레이어 부여, 추후 레이어 합의 후 마스크 레이어 관리 필요 
@@ -291,7 +336,7 @@ public class PlayerGun : MonoBehaviour
     private void OnEnable()
     {
         playerGunStatus.OnMagazineChanged += UpdateMagazine;
-
+        CooldownCheck();
     }
 
     private void OnDisable()

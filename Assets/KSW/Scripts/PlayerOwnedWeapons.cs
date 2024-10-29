@@ -64,13 +64,18 @@ public class PlayerOwnedWeapons : MonoBehaviour
     // Comment : ¿Á¿Â¿¸
     public void ReloadMagazine()
     {
-        currentWeapon.Reload();
+        currentWeapon.Reload(index - 1);
     }
 
     public void ReloadGripOnMagazine()
     {
         if (currentWeapon.MagazineRemainingCheck())
             return;
+        if (index != 0 && PlayerSpecialBullet.Instance.SpecialBullet[index-1] <= 0)
+        {
+            return;
+        }
+
         magazine.gameObject.SetActive(true);
     }
 
