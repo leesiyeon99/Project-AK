@@ -49,3 +49,9 @@ MonoBehaviour:
   isBreaked: 0
   isRecover: 0
   isShield: 0
+  ljh_shieldImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

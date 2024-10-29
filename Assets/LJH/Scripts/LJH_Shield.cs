@@ -11,6 +11,8 @@ public class LJH_Shield : MonoBehaviour
     [SerializeField] GameObject shieldRecover;
     [SerializeField] GameObject invincibility;
 
+    [SerializeField] LJHTest test;
+
     [Header("플레이어 위치")]
     [SerializeField] GameObject playerPos;
 
@@ -31,7 +33,10 @@ public class LJH_Shield : MonoBehaviour
 
     public float durability;                      // Comment: 역장 내구도
     public const float MAXDURABILITY = 5;         // Comment: 역장 최대 내구도
-    public float damage = 1;                      // Comment: 받은 피해량                                ToDo: 몬스터의 데미지로 구현해야함
+    public float damage = 1;                      // Comment: 받은 피해량
+                                                  //
+                                                  // [Header("이미지")]
+    [SerializeField] GameObject[] ljh_shieldImages; //ToDo: 몬스터의 데미지로 구현해야함
 
 
     private void Awake()
@@ -142,7 +147,8 @@ public class LJH_Shield : MonoBehaviour
             else if (!isInvincibility)
             {
                 Debug.Log("역장 피해입음");
-                durability -= damage;
+                durability -= 1;
+                test.UpdateShieldUI(durability);//이거임
                 invincibility.SetActive(true);
             }
 
@@ -168,4 +174,6 @@ public class LJH_Shield : MonoBehaviour
     }
 
     
+
+
 }

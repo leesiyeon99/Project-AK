@@ -1,4 +1,3 @@
-/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,15 +23,22 @@ public class LJH_DamageManager : MonoBehaviour
     [SerializeField] bool ljh_isInvincibility;
     [SerializeField] float ljh_HP;
 
+    float durability; // 내구도 UI용
+    [SerializeField] GameObject[] ljh_shieldImages;     // 내구도 UI용
+
     [SerializeField] AudioSource ljh_damagedShield;
     [SerializeField] AudioSource ljh_damagedHP;
 
-
+    [Header("오브젝트")]
     [SerializeField] GameObject ljh_invincibility;
+    [SerializeField] GameObject shield;
+    [SerializeField] GameObject monster;
     private void Start()
     {
         ljh_curColor = ljh_initColor;
         ljh_hpBar.color = ljh_initColor;
+
+        float damage = TakeDamage(monster);
     }
 
     // Update is called once per frame
@@ -42,30 +48,34 @@ public class LJH_DamageManager : MonoBehaviour
         //shiledATK = GetComponent<몬스터스크립트>().쉴드공격력 - 용진님꺼
         //HPATK = GetComponent<몬스터스크립트>().체력공격력 - 용진님꺼
         ljh_isInvincibility = GetComponent<LJH_invincibility>().isInvincibility;
+
+        durability = shield.GetComponent<LJH_Shield>().durability;
     }
 
-   // private void OnTriggerEnter(Collider other)
-   // {
-   //     if (other.gameObject.CompareTag("Enemy"))
-   //     {
-   //         DisplayHpBar();
-   //         // Todo : 이 부분은 방어가 없을 때 피격이 들어왔을 경우 실행되도록
-   //         // Comment : 새로운 피격이 들어올 경우 진행하던 코루틴을 멈추고 재시작되도록
-   //         if (bloodCoroutine != null)
-   //         {
-   //             StopCoroutine(bloodCoroutine);
-   //         }
-   //         bloodCoroutine = StartCoroutine(ShowBloodScreen());
-   //         // Todo : 이 부분은 방어가 켜졌을 때 피격 받으면 실행되도록
-   //         // Comment : 새로운 피격이 들어올 경우 진행하던 코루틴을 멈추고 재시작되도록
-   //         if (shieldCoroutine != null)
-   //         {
-   //             StopCoroutine(shieldCoroutine);
-   //         }
-   //         shieldCoroutine = StartCoroutine(ShowShieldScreen());
-   //     }
-   // }
-   //   ToDo: 방식 맞게 재조립해야함
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            DisplayHpBar();
+            // Todo : 이 부분은 방어가 없을 때 피격이 들어왔을 경우 실행되도록
+            // Comment : 새로운 피격이 들어올 경우 진행하던 코루틴을 멈추고 재시작되도록
+            if (ljh_bloodCoroutine != null)
+            {
+                StopCoroutine(ljh_bloodCoroutine);
+            }
+            ljh_bloodCoroutine = StartCoroutine(ShowBloodScreen());
+            // Todo : 이 부분은 방어가 켜졌을 때 피격 받으면 실행되도록
+            // Comment : 새로운 피격이 들어올 경우 진행하던 코루틴을 멈추고 재시작되도록
+            if (ljh_shieldCoroutine != null)
+            {
+                StopCoroutine(ljh_shieldCoroutine);
+            }
+            ljh_shieldCoroutine = StartCoroutine(ShowShieldScreen());
+        }
+    }
+
+    
+      //ToDo: 방식 맞게 재조립해야함
 
 
     public void DamagedHp()
@@ -156,18 +166,34 @@ public class LJH_DamageManager : MonoBehaviour
         ljh_shieldImage.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0);
     }
 
-    // public int TakeDamage(GameObject monster)
-    // {
-    //     if(역장 활성화)
-    //     {
-    //         return 공격력 = 인수값 몬스터의 (쉴드용)공격력;
-    //     }
-    //
-    //     else if(역장 비활성화)
-    //     {
-    //         return 공격력 = 인수값 몬스터의 (체력용)공격력;
-    //     }
-    //     return 0;
-    // }
+    public float TakeDamage(GameObject monster)
+    {
+        if(shield.GetComponent<LJH_Shield>().isShield)
+        {
+            float damage;
+            //Todo: 머지 이후 적용(퍼블릭 이슈)
+            //return damage = monster.GetComponent<HYJ_Enemy>().monsterShieldAtkPower;
+            return damage = 1;
+        }
+    
+        else if(!shield.GetComponent<LJH_Shield>().isShield)
+        {
+            float damage;
+            //Todo: 머지 이후 적용(퍼블릭 이슈)
+            //return damage = monster.GetComponent<HYJ_Enemy>().monsterHpAtkPower;
+            return damage = 1000;
+        }
+        return 0;
+    }
+
+    public void UpdateShieldUI()
+    {
+        Debug.Log("이미지뜸");
+        float ljh_durability = Mathf.Clamp(durability, 0, ljh_shieldImages.Length);
+        for (int i = 0; i < ljh_shieldImages.Length; i++)
+        {
+            ljh_shieldImages[i].gameObject.SetActive(i < ljh_durability);
+        }
+    }
 }
-*/
+
