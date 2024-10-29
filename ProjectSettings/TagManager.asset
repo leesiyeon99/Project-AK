@@ -10,6 +10,7 @@ TagManager:
   - LeftMonster
   - RightMonster
   - EliteEnemy
+  - StopPoint
   layers:
   - Default
   - TransparentFX
