@@ -156,7 +156,7 @@ public class PlayerGun : MonoBehaviour
         while (true)
         {
             firingCoolDown -= Time.deltaTime;
-
+            weaponUI.UpdateFiringCooltimeUI(firingCoolDown);
             if (firingCoolDown <= 0)
             {
                 Fire();
@@ -185,7 +185,9 @@ public class PlayerGun : MonoBehaviour
     {
         while (firingCoolDown > 0)
         {
+            
             firingCoolDown -= Time.deltaTime;
+            weaponUI.UpdateFiringCooltimeUI(firingCoolDown);
             yield return null;
 
 
