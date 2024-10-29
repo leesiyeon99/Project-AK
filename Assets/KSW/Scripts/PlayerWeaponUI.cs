@@ -72,7 +72,7 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
             initStringBuilder.Append("WeaponText");
             initStringBuilder.Append(i.ToString());
             toggleWeaponNameUI[i] = GetUI<TextMeshProUGUI>(initStringBuilder.ToString());
-            toggleWeaponNameUI[i].text = weapons.GetOwnedWeapons(i).GetExplainStatus().name;
+            toggleWeaponNameUI[i].text = weapons.GetOwnedWeapons(i).GetExplainStatus().weaponName;
 
             initStringBuilder.Clear();
             initStringBuilder.Append("Weapon");
@@ -216,7 +216,7 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
     public void UpdateExplainUI(int index)
     {
         PlayerGun weapon = weapons.GetOwnedWeapons(index);
-        weaponNameUI.text = weapon.GetExplainStatus().name;
+        weaponNameUI.text = weapon.GetExplainStatus().weaponName;
         weaponAbilityUI.text = weapon.GetExplainStatus().gunType.ToString();
         weaponAttackUI.text = weapon.GetExplainStatus().atk.ToString();
         weaponMagazineUI.text = weapon.GetExplainStatus().magazine.ToString();
