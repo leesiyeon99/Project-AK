@@ -19,6 +19,8 @@ public class MonsterCount : MonoBehaviour
         {
             score++;
             textMeshPro.text = score.ToString();
+            if (other.GetComponent<UnitToScreenBoundary>() != null)
+            other.GetComponent<UnitToScreenBoundary>().isActiveUI = true;
         }
         
     }
@@ -29,6 +31,8 @@ public class MonsterCount : MonoBehaviour
         {
             score--;
             textMeshPro.text = score.ToString();
+            // 몬스터가 죽기전까지는 계속 화면상에 들어오면 UI 이미지 활성화? 
+            //other.GetComponent<UnitToScreenBoundary>().isActiveUI = false;
         }
 
     }

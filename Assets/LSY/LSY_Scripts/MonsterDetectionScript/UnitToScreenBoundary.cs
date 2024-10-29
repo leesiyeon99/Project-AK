@@ -16,7 +16,7 @@ public class UnitToScreenBoundary : MonoBehaviour
 
     public void UIMovement()
     {
-        //Comment : WorldToScreenPoint로 몬스터의 움직임에 따라 UI의 위치도 스크린포인트로 변환하여 계산, 변환된 pos로 ui이  동
+        //Comment : WorldToScreenPoint로 몬스터의 움직임에 따라 UI의 위치도 스크린포인트로 변환하여 계산, 변환된 pos로 ui이동
         Vector3 dir = (transform.position - Camera.main.transform.position).normalized;
         if (Vector3.Dot(Camera.main.transform.forward, dir) > 0)
         {
@@ -37,6 +37,11 @@ public class UnitToScreenBoundary : MonoBehaviour
     public void SetActiveFalse()
     {
         UIImage.gameObject.SetActive(false);
+    }
+
+    private void EnemyDied()
+    {
+
     }
 
 }
