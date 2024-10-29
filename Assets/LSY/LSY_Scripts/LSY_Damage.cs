@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ public class LSY_Damage : MonoBehaviour
     private readonly Color initColor = Color.green;
 
     float curHp = 100;
+
+    public TextMeshProUGUI curHPUI;
 
     public Image hpBar;
 
@@ -23,6 +26,7 @@ public class LSY_Damage : MonoBehaviour
     {
         curColor = initColor;
         hpBar.color = initColor;
+        curHPUI.text = $"{curHp}";
     }
 
     // Todo : 임의로 적과 충돌했을 때 UI활성화 되게 해놓음
@@ -31,6 +35,7 @@ public class LSY_Damage : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             DisplayHpBar();
+            curHPUI.text = $"{curHp}";
 
             // Todo : 이 부분은 방어가 없을 때 피격이 들어왔을 경우 실행되도록
             // Comment : 새로운 피격이 들어올 경우 진행하던 코루틴을 멈추고 재시작되도록
