@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 728803894722777337}
   - component: {fileID: 728803894722777334}
   m_Layer: 0
-  m_Name: ItemManager
+  m_Name: WHS_ItemManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

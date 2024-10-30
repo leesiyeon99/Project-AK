@@ -74,7 +74,7 @@ public class WHS_FractureManager : MonoBehaviour
         yield return new WaitForSeconds(removeDelay);
 
         // 파편 제거        
-        GameObject fragmentRoot = GameObject.Find($"{obj.name}Fragments"); // ~Fragments 이름을 가지는 파편 오브젝트 찾기
+        GameObject fragmentRoot = GameObject.Find($"{obj.name}Fragments"); // 파편 오브젝트 찾기
         if (fragmentRoot != null)
         {
             Destroy(fragmentRoot); // 파편 오브젝트 삭제
@@ -85,6 +85,6 @@ public class WHS_FractureManager : MonoBehaviour
             Destroy(obj); // 원본 오브젝트 삭제
         }
 
-        fractureObjects.Remove(obj); // 딕셔너리에서 제거
+        fractureObjects.Remove(obj);
     }
 }
