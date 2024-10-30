@@ -306,6 +306,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Wolf_Test (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8414433961159632413, guid: fac15b37cf3406442b8aab97c2364a28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8417529532650860783, guid: fac15b37cf3406442b8aab97c2364a28, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -5379,6 +5383,10 @@ PrefabInstance:
     - target: {fileID: 8414433961159632413, guid: fac15b37cf3406442b8aab97c2364a28, type: 3}
       propertyPath: m_Name
       value: Enemy_Wolf_Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414433961159632413, guid: fac15b37cf3406442b8aab97c2364a28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8417529532650860783, guid: fac15b37cf3406442b8aab97c2364a28, type: 3}
       propertyPath: m_RootOrder

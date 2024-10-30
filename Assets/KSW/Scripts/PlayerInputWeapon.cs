@@ -117,8 +117,11 @@ public class PlayerInputWeapon : MonoBehaviour
         }
         else
         {
-
-            playerOwnedWeapons.GetCurrentWeapon().OnFireCoroutine();
+            if (playerOwnedWeapons.GetCurrentWeapon().gameObject.activeSelf)
+            {
+              
+                playerOwnedWeapons.GetCurrentWeapon().OnFireCoroutine();
+            }
         }
 
     }

@@ -76,10 +76,12 @@ public class PlayerOwnedWeapons : MonoBehaviour
     {
        
         currentWeapon.gameObject.SetActive(false);
+        
         index = 0;
         currentWeapon = ownedWeapons[index];
         currentWeapon.gameObject.SetActive(true);
         currentWeapon.UpdateMagazine();
+      
     }
 
     // Comment : ¿Á¿Â¿¸
