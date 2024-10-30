@@ -6,24 +6,32 @@ using UnityEngine.UI;
 
 public class LJH_UIManager : MonoBehaviour
 {
-    [Header("쉴드 UI")]
+    [Header("쉴드 내구도 UI")]
     [SerializeField] GameObject[] ljh_shieldImages;     // 내구도 UI용
 
-
-
-    [Header("체력 UI")]
+    [Header("최대 체력")]
     private float ljh_MaxHP = 100;
+    
+    [Header("체력바 색")]
     private Color ljh_curColor;
     private readonly Color ljh_initColor = Color.green;
+    
+    [Header("현재 체력")]
+    [Range (0,100)]
     [SerializeField] float ljh_curHp = 100;
+
+    [Header("체력바 이미지")]
     [SerializeField] public Image ljh_hpBar;
-
-
 
     private void Start()
     {
         ljh_curColor = ljh_initColor;
         ljh_hpBar.color = ljh_initColor;
+    }
+
+    private void Update()
+    {
+        DisplayHpBar();
     }
 
     public void UpdateShieldUI(float durability)
@@ -53,6 +61,4 @@ public class LJH_UIManager : MonoBehaviour
         ljh_hpBar.color = ljh_curColor;
         ljh_hpBar.fillAmount = hpPercentage;
     }
-
-
 }
