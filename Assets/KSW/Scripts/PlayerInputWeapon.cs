@@ -8,6 +8,9 @@ public class PlayerInputWeapon : MonoBehaviour
     // Comment : 인풋 시스템 관리
     // TODO : 추후 인풋 시스템 수정 합의 필요
 
+    // 일지정지 메뉴 이벤트
+    MenuEvent menuEvent;
+
     private PlayerOwnedWeapons playerOwnedWeapons;
     private PlayerChangeWeapon playerChangeWeapon;
 
@@ -36,6 +39,8 @@ public class PlayerInputWeapon : MonoBehaviour
 
     private void Awake()
     {
+        menuEvent = GameObject.Find("MenuInputManager").GetComponent<MenuEvent>();
+        menuEvent.SetPlayerWeaponInput(this);
         playerOwnedWeapons = GetComponent<PlayerOwnedWeapons>();
         playerChangeWeapon = GetComponent<PlayerChangeWeapon>();
     }
@@ -59,6 +64,9 @@ public class PlayerInputWeapon : MonoBehaviour
     }
     private void OnDisable()
     {
+        playerOwnedWeapons.GetCurrentWeapon().OffFireCoroutine();
+
+
         downReload.action.performed -= OnDownReload;
 
         gripReload.action.performed -= OnGripReload;
