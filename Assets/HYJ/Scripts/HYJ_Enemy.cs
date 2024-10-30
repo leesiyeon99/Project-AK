@@ -2,33 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HYJ_Enemy : MonoBehaviour
 {
+    [Header("플레이어")]
     [SerializeField] GameObject player;
+
+    [Header("몬스터 설정")]
     [SerializeField] GameObject monster;
-    [SerializeField] MonsterType monsterType;
-    [SerializeField] MonsterAttackType monsterAttackType;
+    //[SerializeField] GameObject damageText;
+    //[SerializeField] Transform damagePos;
+    [SerializeField] public MonsterType monsterType;
+    [SerializeField] public MonsterAttackType monsterAttackType;
+    [SerializeField] public float monsterShieldAtkPower;
+    [SerializeField] public float monsterHpAtkPower;
+    [SerializeField] public float monsterAttackRange;
+    [SerializeField] public float score;
+    //[SerializeField] public float setBossHp;
+    [SerializeField] public float monsterHp;
+    [SerializeField] public float monsterMoveSpeed;
+    [SerializeField] public float playerDistance;
 
-    [SerializeField] float monsterShieldAtkPower;
-    [SerializeField] float monsterHpAtkPower;
-    [SerializeField] float monsterAttackRange;
-
-    [SerializeField] float setBossHp;
-    [SerializeField] float monsterHp;
-    [SerializeField] float monsterMoveSpeed;
-    [SerializeField] float playerDistance;
-
-    [SerializeField] float aniTime;
-
+    [Header("애니메이션")]
+    [SerializeField] public float aniTime;
     [SerializeField] Animator monsterAnimator;
-    private bool isAttack;
-    private bool nowAttack;
+
+    [Header("몬스터 할당 점수")]
+    public bool isAttack;
+    public bool nowAttack;
+    public bool isDie;
+    
+    public UnityEvent<Collider> OnEnemyDied;
 
     //------------------------임의 변수---------------------------//
+    [Header("임의 변수")]
     public float playerAttackPower=20;
-    private bool isShield;
+    public bool isShield;
 
+    [SerializeField] public bool hitFlag;
+    public bool HitFlag { get { return hitFlag; } set { hitFlag = value; } }
+
+    Coroutine hitFlagCoroutine;
+    WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.1f);
+    
     public enum MonsterType
     {
         Nomal,
@@ -46,8 +63,9 @@ public class HYJ_Enemy : MonoBehaviour
     {
         isAttack = false;
         nowAttack = false;
-        
-        MonsterSetHp();
+        isDie = false;
+        MonsterTagSet(monsterType);
+        //MonsterSetHp();
         MonsterSetAttackRange();
     }
 
@@ -57,8 +75,9 @@ public class HYJ_Enemy : MonoBehaviour
         MonsterMover();
     }
 
+    /*
     // Comment : 몬스터타입에 따라 몬스터의 체력을 조정한다.
-    private void MonsterSetHp()
+    public void MonsterSetHp()
     {
         if (monsterType == MonsterType.Boss) // Comment : 몬스터의 타입이 Boss라면 설정한 BossHp로 Hp가 설정한다.
         {
@@ -69,9 +88,10 @@ public class HYJ_Enemy : MonoBehaviour
             monsterHp = 100;
         }
     }
+    */
 
     // Comment : 몬스터 공격범위를 조정한다.
-    private void MonsterSetAttackRange()
+    public void MonsterSetAttackRange()
     {
         if(monsterAttackType == MonsterAttackType.shortAttackRange) // Comment : 근거리 타입이라면 공격범위를 3으로 설정한다.
         {
@@ -84,9 +104,9 @@ public class HYJ_Enemy : MonoBehaviour
     }
 
     // Comment : Player 태그의 오브젝트를 찾고 해당 오브젝트로 Monster가 이동한다.
-    private void MonsterMover()
+    public void MonsterMover()
     {
-        if (player != null)
+        if (player != null && monsterHp>0)
         {
             playerDistance = Vector3.Distance(monster.transform.position, player.transform.position); // Comment : 플레이어와 몬스터의 거리
 
@@ -111,20 +131,36 @@ public class HYJ_Enemy : MonoBehaviour
     }
 
     // Comment : 온트리거 엔터를 이용하여 총알과의 충돌 여부를 확인, 충돌 시, 캐릭터의 공격력 or 무기의 공격력이 완료되면 몬스터 피격 함수를 진행시킨다.
-    private void MonsterTakeDamageCalculation()
+    public void MonsterTakeDamageCalculation(float damage)
     {
+        // float -> 
         // Comment : 현재는 임의로 playerAttackPower 변수를 활용하여 작성했다.
         if (monsterType == MonsterType.Nomal)
         {
-            monsterHp -= playerAttackPower;
+            monsterHp -= damage;
         }
         else if(monsterType == MonsterType.Elite)
         {
             if(playerAttackPower-15 > 0)
             {
-                monsterHp -= playerAttackPower - 15;
+                monsterHp -= damage - 15;
             }
         }
+    }
+
+    public void StartHitFlagCoroutine()
+    {
+        if(hitFlagCoroutine != null)
+        {
+            StopCoroutine(hitFlagCoroutine);
+        }
+        hitFlagCoroutine = StartCoroutine(HitFlagCoroutine());
+    }
+
+    IEnumerator HitFlagCoroutine()
+    {
+        yield return hitFlagWaitForSeconds;
+        hitFlag = false;
     }
 
     // Comment : 몬스터 공격 코루틴
@@ -139,27 +175,15 @@ public class HYJ_Enemy : MonoBehaviour
         isAttack = false;
     }
 
-    // Comment : 다른 오브젝트와 충돌 시
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Bullet"))
-        {
-            MonsterTakeDamageCalculation();
-            // TODO : 충돌 지점을 받기
-
-            //other.transform.position -> 충돌 지점
-            // TODO : 받은 충돌 지점이 머리 / 몸통 어디인지 판별하기
-            // TODO : 몸통이면 흰색, 머리면 빨간색으로 데미지 표기
-        }
-    }
-
     // Comment : 몬스터 사망
-    private void MonsterDie()
+    public void MonsterDie()
     {
         if(monsterHp <= 0) // Comment : 몬스터의 Hp가 0이 되면 몬스터 오브젝트를 삭제한다.
         {
             Debug.Log("몬스터 사망");
             monsterAnimator.SetTrigger("Die");
+            isDie = true;
+            OnEnemyDied?.Invoke(GetComponent<Collider>());
             Destroy(gameObject.GetComponent<BoxCollider>());
             Destroy(gameObject.GetComponent<Rigidbody>());
             Destroy(gameObject,2f);
@@ -167,25 +191,47 @@ public class HYJ_Enemy : MonoBehaviour
     }
 
     // Comment : 적 등급 설정에 따른 태그 변경
-    private void MonsterTagSet(MonsterType monsterType)
+    public void MonsterTagSet(MonsterType monsterType)
     {
         if(monsterType == MonsterType.Nomal)
         {
-            //gameObject.tag = "Enemy";
+            gameObject.tag = "Enemy";
         }
         else if (monsterType == MonsterType.Elite)
         {
-            //gameObject.tag = "EliteEnemy";
+            gameObject.tag = "EliteEnemy";
         }
         else if(monsterType == MonsterType.Boss)
         {
-            //gameObject.tag = "Boss";
+            gameObject.tag = "Boss";
         }
     }
 
     // TODO : 몬스터 등급에 따른 이펙트 만들기
-    private void MonsterEffect()
+    public void MonsterEffect()
     {
 
     }
+
+    // Comment : 다른 오브젝트와 충돌 시
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            //MonsterTakeDamageCalculation();
+            // TODO : 충돌 지점을 받기
+            
+            //other.transform.position -> 충돌 지점
+            // TODO : 받은 충돌 지점이 머리 / 몸통 어디인지 판별하기
+            // TODO : 몸통이면 흰색, 머리면 빨간색으로 데미지 표기
+        }
+    }
+    /*
+    public void DamgeText(float damage)
+    {
+        GameObject text = Instantiate(damageText);
+        text.transform.position = damagePos.position;
+        text.GetComponent<HYJ_DamageText>().damage = damage;
+    }
+    */
 }
