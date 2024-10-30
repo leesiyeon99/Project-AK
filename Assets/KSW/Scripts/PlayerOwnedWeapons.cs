@@ -26,6 +26,7 @@ public class PlayerOwnedWeapons : MonoBehaviour
     private void Awake()
     {
         SetWeapons();
+        weaponUI.SetUIPos();
     }
 
     // Comment : 무기 초기화 함수 호출
@@ -67,9 +68,7 @@ public class PlayerOwnedWeapons : MonoBehaviour
         currentWeapon.gameObject.SetActive(false);
         currentWeapon = ownedWeapons[index];
         currentWeapon.gameObject.SetActive(true);
-        weaponUI.transform.position = currentWeapon.uiPos.transform.position;
-        weaponUI.transform.rotation = currentWeapon.uiPos.transform.rotation;
-        
+        weaponUI.SetUIPos();
     }
 
     // Comment : 특수 탄환 비어 있을때 호출할 기본 무기 교체 함수
