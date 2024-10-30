@@ -37,10 +37,8 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
 
 
     // Comment : 무기 설명 UI
-    [SerializeField] TextMeshProUGUI weaponNameUI;
-    [SerializeField] TextMeshProUGUI weaponAbilityUI;
-    [SerializeField] TextMeshProUGUI weaponAttackUI;
-    [SerializeField] TextMeshProUGUI weaponMagazineUI;
+    [SerializeField] WeaponExplainScript weaponExplainScript;
+ 
 
     private StringBuilder stringBuilder = new StringBuilder();
 
@@ -80,19 +78,30 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
             initStringBuilder.Append(i.ToString());
             changeUIBackground[i] = GetUI<Image>(initStringBuilder.ToString());
         }
-        weaponNameUI = GetUI<TextMeshProUGUI>("Name");
-        weaponAbilityUI = GetUI<TextMeshProUGUI>("Ability");
-        weaponAttackUI = GetUI<TextMeshProUGUI>("Attack");
-        weaponMagazineUI = GetUI<TextMeshProUGUI>("MagazineText");
+
+        weaponExplainScript = GameObject.Find("WeaponExplainCanvas").GetComponent<WeaponExplainScript>();
+        weaponExplainScript.gameObject.SetActive(false);
+      
     }
 
-    public void OnOffChangeUI(bool active)
+    public void OnOffChangeUI(bool active, bool disable)
     {
         
         UpdateChangeToggleUI();
         UpdateExplainUI(weapons.Index);
         changeUI.SetActive(active);
         magazineUI.gameObject.SetActive(!active);
+
+      
+        if (active == false && disable == false)
+        {
+            weaponExplainScript.StartFadeOut();
+        }
+        else
+        {
+            weaponExplainScript.gameObject.SetActive(true);
+            weaponExplainScript.SetFade();
+        }
     }
 
     public bool GetChangeUIActiveSelf()
@@ -217,12 +226,12 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
     public void UpdateExplainUI(int index)
     {
         PlayerGun weapon = weapons.GetOwnedWeapons(index);
-        weaponNameUI.text = weapon.GetExplainStatus().weaponName;
-        weaponAbilityUI.text = weapon.GetExplainStatus().gunType.ToString();
-        weaponAttackUI.text = weapon.GetExplainStatus().atk.ToString();
-        weaponMagazineUI.text = weapon.GetExplainStatus().magazine.ToString();
-
-
+        weaponExplainScript.SetExplain(weapon.GetExplainStatus().weaponName,
+            weapon.GetExplainStatus().gunType,
+            weapon.GetExplainStatus().atk,
+            weapon.GetExplainStatus().magazine
+            );
+      
       
     }
 }

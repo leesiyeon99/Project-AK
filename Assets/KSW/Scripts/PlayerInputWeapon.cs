@@ -68,7 +68,7 @@ public class PlayerInputWeapon : MonoBehaviour
     {
        
         
-        CloseChangeView();
+        CloseChangeView(true);
 
         downReload.action.performed -= OnDownReload;
 
@@ -130,7 +130,7 @@ public class PlayerInputWeapon : MonoBehaviour
     void OnChangeView(InputAction.CallbackContext obj)
     {
      
-        weaponUI.OnOffChangeUI(true);
+        weaponUI.OnOffChangeUI(true, false);
       
         onToggle = true;
         playerOwnedWeapons.GetCurrentWeapon().OffFireCoroutine();
@@ -138,15 +138,15 @@ public class PlayerInputWeapon : MonoBehaviour
 
     void OffChangeView(InputAction.CallbackContext obj)
     {
-        CloseChangeView();
+        CloseChangeView(false);
     }
 
 
-    void CloseChangeView()
+    void CloseChangeView(bool disable)
     {
 
         playerChangeWeapon.MoveJoystick(Vector2.zero);
-        weaponUI.OnOffChangeUI(false);
+        weaponUI.OnOffChangeUI(false, disable);
 
         onToggle = false;
 
