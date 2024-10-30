@@ -21,9 +21,9 @@ public class WHS_Item : MonoBehaviour
 
     private bool isMovingtoPlayer = false; // 플레이어에게 이동중인지
 
-    [Header("각 총알 개수")]
-    [SerializeField] int[] bulletAmounts = new int[3]; // 각 인덱스의 얻을 총알 개수
-    [Range(1,3)]
+    [Header("획득 총알 개수")]
+    [SerializeField] int bulletAmount; // 지정된 인덱스의 얻을 총알 개수
+    [Range(0,2)]
     [SerializeField] int bulletIndex; // 특수 총알 인덱스
 
 
@@ -69,8 +69,8 @@ public class WHS_Item : MonoBehaviour
         // PlayerSpecialBullet의 인스턴스
         if (PlayerSpecialBullet.Instance != null)
         {
-            int index = bulletIndex - 1;
-            PlayerSpecialBullet.Instance.SpecialBullet[index] += bulletAmounts[index];// index번 총알 bulletmount만큼 획득
+            PlayerSpecialBullet.Instance.SpecialBullet[bulletIndex] += bulletAmount;// index번 총알 bulletmount만큼 획득
+            Debug.Log($"{bulletIndex + 1}번 탄환 {bulletAmount}개 획득");
         }
         else
         {

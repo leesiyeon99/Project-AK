@@ -11,11 +11,13 @@ public class WHS_ItemManager : MonoBehaviour
     [System.Serializable]
     public class ItemInfo
     {
+        [Header("아이템 프리팹")]
         public GameObject itemPrefab;
+        [Header("아이템 드랍률")]
         public float dropRate;
-    }
-
+    }    
     [SerializeField] List<ItemInfo> itemInfos;
+    [Header("아이템 생성 높이")]
     [SerializeField] float itemHeight = 1f;
 
     public static WHS_ItemManager Instance

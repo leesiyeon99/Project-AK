@@ -11,7 +11,7 @@ public class WHS_FractureManager : MonoBehaviour
     // Fracture Options -> FragmentCount 에서 파괴후 갈라지는 파편의 개수 조절(10개 내외 권장)
     //                  -> Inside Metarial에서 갈라진 면의 메터리얼(적당히 비슷한 색상으로 설정)
 
-    [SerializeField] float removeDelay = 1.5f; // delay초 뒤 파편 제거1
+    [SerializeField] float removeDelay = 1.5f; // delay초 뒤 파편 제거
 
     private static WHS_FractureManager instance; // 파괴할 Fracture 오브젝트들의 인스턴스
     private Dictionary<GameObject, Fracture> fractureObjects = new Dictionary<GameObject, Fracture>(); // 파괴할 오브젝트와 Fracture 컴포넌트를 저장
