@@ -10,7 +10,7 @@ public class LSY_Damage : MonoBehaviour
     private Color curColor;
     private readonly Color initColor = Color.green;
 
-    float curHp = 100;
+    public float curHp = 100;
 
     public TextMeshProUGUI curHPUI;
 
@@ -80,7 +80,7 @@ public class LSY_Damage : MonoBehaviour
     // Comment : 플레이어가 피격 당할 시 보여지는 피격효과
     IEnumerator ShowBloodScreen()
     {
-        bloodImage.color = new Color(1, 0, 0, UnityEngine.Random.Range(0.4f, 0.5f));
+        bloodImage.color = new Color(1, 0, 0, UnityEngine.Random.Range(0.9f, 1f));
 
         float duration = 1.5f;
         float elapsedTime = 0f;
@@ -100,7 +100,7 @@ public class LSY_Damage : MonoBehaviour
 
     IEnumerator ShowShieldScreen()
     {
-        shieldImage.color = new Color(0, 0, 1, UnityEngine.Random.Range(0.4f, 0.5f));
+        shieldImage.color = new Color(0, 0, 1, UnityEngine.Random.Range(0.9f, 1f));
 
         float duration = 1.5f;
         float elapsedTime = 0f;

@@ -7,6 +7,7 @@ public class PlayerStop : MonoBehaviour
 {
     [SerializeField] CinemachineDollyCart cinemachineDollyCart;
     [SerializeField] GameObject[] monsters = new GameObject[6];
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("StopPoint"))
