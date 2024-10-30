@@ -12,6 +12,8 @@ TagManager:
   - EliteEnemy
   - StopPoint
   - Boss
+  - Animal
+  - middle
   layers:
   - Default
   - TransparentFX
