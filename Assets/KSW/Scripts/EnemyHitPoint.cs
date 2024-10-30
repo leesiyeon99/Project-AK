@@ -9,7 +9,7 @@ public class EnemyHitPoint : MonoBehaviour
     {
         enemy = GetComponentInParent<HYJ_Enemy>();
     }
-    /*
+    
     public bool TakeDamage(float damage)
     {
         if (enemy.HitFlag == false)
@@ -44,5 +44,5 @@ public class EnemyHitPoint : MonoBehaviour
     {
         return enemy.HitFlag;
     }
-    */
+    
 }

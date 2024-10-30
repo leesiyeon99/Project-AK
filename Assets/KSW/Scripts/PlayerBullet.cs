@@ -83,14 +83,14 @@ public class PlayerBullet : MonoBehaviour
 
 
         }
-        /*
+        
         // 연동 테스트
         
         if (hit.collider.TryGetComponent(out EnemyHitPoint enemy))
         {
             enemy.TakeDamage(playerGunStatus.BulletAttack);
         }
-        */
+        
 
 
 
@@ -124,7 +124,7 @@ public class PlayerBullet : MonoBehaviour
             
             // 연동 테스트
             bool hitFlag = true;
-            /*
+            
             if (hit[i].collider.TryGetComponent(out EnemyHitPoint enemy))
             {
                 hitFlag = enemy.TakeDamage(playerGunStatus.BulletAttack);
@@ -136,7 +136,7 @@ public class PlayerBullet : MonoBehaviour
                 }
                 
             }
-            */
+            
             if (!playerGunStatus.GunType.HasFlag(GunType.SPLASH) && hitFlag )
             {
                 OnSparkEffect(hit[i].point);
@@ -183,12 +183,12 @@ public class PlayerBullet : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            /*
+            
             if (collider.TryGetComponent(out EnemyHitPoint enemy))
             {
                 enemy.TakeDamage(playerGunStatus.SplashDamage);
             }
-            */
+            
             if (collider.TryGetComponent(out Fracture fractureObj))
             {
                 fractureObj.CauseFracture();
