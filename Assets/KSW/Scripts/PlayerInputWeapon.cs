@@ -144,12 +144,18 @@ public class PlayerInputWeapon : MonoBehaviour
 
     void CloseChangeView(bool disable)
     {
+        if (!disable)
+        {
+            playerChangeWeapon.ChangeWeapon();
+
+        }
 
         playerChangeWeapon.MoveJoystick(Vector2.zero);
         weaponUI.OnOffChangeUI(false, disable);
 
         onToggle = false;
 
+        
         playerOwnedWeapons.GetCurrentWeapon().UpdateMagazine();
     }
 
