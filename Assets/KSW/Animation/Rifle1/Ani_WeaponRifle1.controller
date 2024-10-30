@@ -83,7 +83,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ani_WeaponRifle
+  m_Name: Ani_WeaponRifle1
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Shot
@@ -125,7 +125,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: fc12aaa934d990c43b72dedd964b5f61, type: 2}
+  m_Motion: {fileID: 7400000, guid: c60718bfc34763f49820198e957f6862, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
