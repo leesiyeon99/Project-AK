@@ -2,11 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LJH_ShieldRecover : MonoBehaviour
 {
     [Header("오브젝트")]
     [SerializeField] GameObject shield;
+
+    [Header("스크립트")]
+    [SerializeField] LJH_UIManager test;
 
     [Header("내구도 회복량(초당)")]
     [SerializeField] const float REPAIR = 1;
@@ -18,11 +22,11 @@ public class LJH_ShieldRecover : MonoBehaviour
     [SerializeField] public bool isRecover;
     [SerializeField] public bool isShield;
 
-    int loopNum = 0;                            // ToDo: 무한루프 체킹용 삭제요망
     void Awake()
     {
         gameObject.SetActive(false);
     }
+
 
     private void OnEnable()
     {
@@ -54,15 +58,13 @@ public class LJH_ShieldRecover : MonoBehaviour
 
         while (true)
         {
-            if (loopNum++ > 10000)
-                throw new Exception("터졌따리");
-        
-
         yield return new WaitForSecondsRealtime(0.5f);
             Debug.Log("내구도 1 회복");
             durability += REPAIR;
+            test.UpdateShieldUI(durability); //이거임
             if (durability == MAXDURABILITY)
             {
+                Debug.Log("회복멈춤");
                 isRecover = false;
                 isBreaked = false;
 
@@ -72,6 +74,4 @@ public class LJH_ShieldRecover : MonoBehaviour
             }
         }
     }
-
-    
 }

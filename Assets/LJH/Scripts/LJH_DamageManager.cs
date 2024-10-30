@@ -1,4 +1,3 @@
-/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,124 +7,133 @@ using UnityEngine.UI;
 public class LJH_DamageManager : MonoBehaviour
 {
 
-    private float ljh__HP = 100;
-    private Color ljh_curColor;
-    private readonly Color ljh_initColor = Color.green;
     float ljh_curHp = 100;
-    public Image ljh_hpBar;
-    public Image ljh_bloodImage;
+    public RawImage ljh_bloodImage;
     private Coroutine ljh_bloodCoroutine;
     public Image ljh_shieldImage;
     private Coroutine ljh_shieldCoroutine;                          // 시연님꺼
 
     [SerializeField] float ljh_durability;
-    [SerializeField] float ljh_shieldATK;
-    [SerializeField] float ljh_HPATK;
     [SerializeField] bool ljh_isInvincibility;
-    [SerializeField] float ljh_HP;
+
 
     [SerializeField] AudioSource ljh_damagedShield;
     [SerializeField] AudioSource ljh_damagedHP;
 
-
+    [Header("오브젝트")]
     [SerializeField] GameObject ljh_invincibility;
-    private void Start()
-    {
-        ljh_curColor = ljh_initColor;
-        ljh_hpBar.color = ljh_initColor;
-    }
+    [SerializeField] GameObject shield;
+    [SerializeField] GameObject monster;
+
+    [Header("스크립트")]
+    [SerializeField] HYJ_Enemy enemyScript;
+    [SerializeField] LJH_Shield shieldScript;
+    [SerializeField] LJH_UIManager uiManagerScript;
+    
 
     // Update is called once per frame
     void Update()
     {
-        ljh_durability = GetComponent<LJH_Shield>().durability;
-        //shiledATK = GetComponent<몬스터스크립트>().쉴드공격력 - 용진님꺼
-        //HPATK = GetComponent<몬스터스크립트>().체력공격력 - 용진님꺼
+        ljh_durability = shield.GetComponent<LJH_Shield>().durability;
         ljh_isInvincibility = GetComponent<LJH_invincibility>().isInvincibility;
+
+        //if(enemyScript.nowAttack)
+        //{
+            if (shield.GetComponent<LJH_Shield>().isShield)
+            {
+                float damage = TakeDamage(enemyScript);
+                DamagedShield(damage);
+
+                if (ljh_shieldCoroutine != null)
+                {
+                    StopCoroutine(ljh_shieldCoroutine);
+                }
+                ljh_shieldCoroutine = StartCoroutine(ShowShieldScreen());
+            }
+            else if (!shield.GetComponent<LJH_Shield>().isShield)
+            {
+                float damage = TakeDamage(enemyScript);
+                DamagedHP(damage);
+
+                if (ljh_bloodCoroutine != null)
+                {
+                    StopCoroutine(ljh_bloodCoroutine);
+                }
+                ljh_bloodCoroutine = StartCoroutine(ShowBloodScreen());
+            }
+
+            uiManagerScript.DisplayHpBar();
+        //}
+
+        
     }
 
-   // private void OnTriggerEnter(Collider other)
-   // {
-   //     if (other.gameObject.CompareTag("Enemy"))
-   //     {
-   //         DisplayHpBar();
-   //         // Todo : 이 부분은 방어가 없을 때 피격이 들어왔을 경우 실행되도록
-   //         // Comment : 새로운 피격이 들어올 경우 진행하던 코루틴을 멈추고 재시작되도록
-   //         if (bloodCoroutine != null)
-   //         {
-   //             StopCoroutine(bloodCoroutine);
-   //         }
-   //         bloodCoroutine = StartCoroutine(ShowBloodScreen());
-   //         // Todo : 이 부분은 방어가 켜졌을 때 피격 받으면 실행되도록
-   //         // Comment : 새로운 피격이 들어올 경우 진행하던 코루틴을 멈추고 재시작되도록
-   //         if (shieldCoroutine != null)
-   //         {
-   //             StopCoroutine(shieldCoroutine);
-   //         }
-   //         shieldCoroutine = StartCoroutine(ShowShieldScreen());
-   //     }
-   // }
-   //   ToDo: 방식 맞게 재조립해야함
-
-
-    public void DamagedHp()
+    private void OnTriggerEnter(Collider other)
     {
-        if (ljh_durability > 0)
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("캐릭터 피해입음");
-
-            ljh_HP -= ljh_shieldATK;
-
-            ljh_damagedHP.Play();
-            Debug.Log(ljh_HP);
+            // Todo : 이 부분은 방어가 없을 때 피격이 들어왔을 경우 실행되도록
+            // Comment : 새로운 피격이 들어올 경우 진행하던 코루틴을 멈추고 재시작되도록
+            if (ljh_bloodCoroutine != null)
+            {
+                StopCoroutine(ljh_bloodCoroutine);
+            }
+            ljh_bloodCoroutine = StartCoroutine(ShowBloodScreen());
+            // Todo : 이 부분은 방어가 켜졌을 때 피격 받으면 실행되도록
+            // Comment : 새로운 피격이 들어올 경우 진행하던 코루틴을 멈추고 재시작되도록
+            if (ljh_shieldCoroutine != null)
+            {
+                StopCoroutine(ljh_shieldCoroutine);
+            }
+            ljh_shieldCoroutine = StartCoroutine(ShowShieldScreen());
         }
     }
 
 
-    public void DamagedShield()
+    //ToDo: 방식 맞게 재조립해야함
+
+
+    public void DamagedHP(float HPDamage)
+    {
+        
+        Debug.Log("체력 피해입음");
+        ljh_curHp -= HPDamage;
+        
+        //damaged.Play();
+        Debug.Log(ljh_durability);
+        
+    }
+
+
+    public void DamagedShield(float shieldDamage)// 인수 지워야함
     {
         if (ljh_durability > 0)
         {
-            Debug.Log("역장 피해입음");
+            // ToDo : 피격시 사운드 구현해야함
 
             if (ljh_isInvincibility)
             {
-                ljh_shieldATK = 0;
-                ljh_durability -= ljh_shieldATK;
+                float zeroDamage = 0;
+
+                Debug.Log("역장 무적 상태");
+                ljh_durability -= zeroDamage;
             }
             else if (!ljh_isInvincibility)
             {
-                ljh_durability -= ljh_shieldATK;
-                Instantiate(ljh_invincibility);
+                Debug.Log("역장 피해입음");
+                ljh_durability -= shieldDamage;
+                uiManagerScript.UpdateShieldUI(ljh_durability);
+                ljh_invincibility.SetActive(true);
             }
 
-            ljh_damagedShield.Play();
+            //damaged.Play();
             Debug.Log(ljh_durability);
         }
     }
 
-    private void DisplayHpBar()
-    {
-        float hpPercentage = ljh_curHp / ljh_HP;
-        if (hpPercentage > 0.5f)
-        {
-            ljh_curColor = Color.green;
-        }
-        else if (hpPercentage > 0.3f)
-        {
-            ljh_curColor = Color.yellow;
-        }
-        else
-        {
-            ljh_curColor = Color.red;
-        }
-        ljh_hpBar.color = ljh_curColor;
-        ljh_hpBar.fillAmount = hpPercentage;
-    }
-
     IEnumerator ShowBloodScreen()
     {
-        ljh_bloodImage.color = new Color(1, 0, 0, UnityEngine.Random.Range(0.4f, 0.5f));
+        ljh_bloodImage.color = new Color(1, 0, 0, UnityEngine.Random.Range(0.9f, 1f));
         float duration = 1.5f;
         float elapsedTime = 0f;
         Color initialColor = ljh_bloodImage.color;
@@ -139,9 +147,10 @@ public class LJH_DamageManager : MonoBehaviour
         }
         ljh_bloodImage.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0);
     }
+
     IEnumerator ShowShieldScreen()
     {
-        ljh_shieldImage.color = new Color(0, 0, 1, UnityEngine.Random.Range(0.4f, 0.5f));
+        ljh_shieldImage.color = new Color(0, 0, 1, UnityEngine.Random.Range(0.9f, 1f));
         float duration = 1.5f;
         float elapsedTime = 0f;
         Color initialColor = ljh_shieldImage.color;
@@ -156,18 +165,25 @@ public class LJH_DamageManager : MonoBehaviour
         ljh_shieldImage.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0);
     }
 
-    // public int TakeDamage(GameObject monster)
-    // {
-    //     if(역장 활성화)
-    //     {
-    //         return 공격력 = 인수값 몬스터의 (쉴드용)공격력;
-    //     }
-    //
-    //     else if(역장 비활성화)
-    //     {
-    //         return 공격력 = 인수값 몬스터의 (체력용)공격력;
-    //     }
-    //     return 0;
-    // }
+    public float TakeDamage(HYJ_Enemy monsterScript)
+    {
+        if(shield.GetComponent<LJH_Shield>().isShield)
+        {
+            float damage;
+            //Todo: 머지 이후 적용(퍼블릭 이슈)
+            //return damage = monsterScript.GetComponent<HYJ_Enemy>().monsterShieldAtkPower;
+            return damage = 1;
+        }
+    
+        else if(!shield.GetComponent<LJH_Shield>().isShield)
+        {
+            float damage;
+            //Todo: 머지 이후 적용(퍼블릭 이슈)
+            //return damage = monsterScript.GetComponent<HYJ_Enemy>().monsterHpAtkPower;
+            return damage = 1000;
+        }
+        return 0;
+    }
+    
 }
-*/
+
