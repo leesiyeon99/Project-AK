@@ -3,6 +3,7 @@
 // (그냥 적용하면 같은 매터리얼을 쓰는 다른 오브젝트도 전부 변경되버림 사본으로 따로 적용해야함)
 // 테두리를 가질 프리팹들은 만들어진 Outline 사본 매터리얼 사용
 
+
 Shader "Custom/OutLine"
 {
     Properties
@@ -10,7 +11,7 @@ Shader "Custom/OutLine"
         _MainTex ("Albedo (RGB)", 2D) = "white" {} // 알베도 텍스쳐의 기본값 흰색
         _OutLineColor("OutLine Color", Color) = (0,0,0,0) // 테두리의 색상 조절
         _OutLineWidth("OutLine Width", Range(0.001, 0.05)) = 0.01 // 테두리의 두께 조절
-        _BlinkSpeed("Blink Speed", Float) = 1 // 두께가 속도만큼 빠르게 커졌다 작아졌다 함
+        _BlinkSpeed("Blink Speed", Float) = 1
     }
 
     SubShader

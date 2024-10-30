@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
 
 public class WHS_FractureManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class WHS_FractureManager : MonoBehaviour
     //                  -> Inside Metarial에서 갈라진 면의 메터리얼(적당히 비슷한 색상으로 설정)
 
     [SerializeField] float removeDelay = 1.5f; // delay초 뒤 파편 제거
-    [SerializeField] float itemHeight = 1f; // 아이템 생성 높이
+    [SerializeField] float itemHeight = 1f; // 아이템 생성될 높이
 
     private static WHS_FractureManager instance; // 파괴할 Fracture 오브젝트들의 인스턴스
     private Dictionary<GameObject, Fracture> fractureObjects = new Dictionary<GameObject, Fracture>(); // 파괴할 오브젝트와 Fracture 컴포넌트를 저장
@@ -71,11 +72,7 @@ public class WHS_FractureManager : MonoBehaviour
     {
         // 아이템 생성
         GameObject itemPrefab = itemPrefabs[obj]; // 아이템프리팹 받아오기
-        if (itemPrefab != null) // 아이템 프리팹이 있으면
-        {
-            Vector3 dropPos = obj.transform.position + new Vector3(0, itemHeight, 0);
-            Instantiate(itemPrefab, dropPos, Quaternion.identity); // 오브젝트가 파괴된 자리에 높이만큼 위치에 아이템 생성
-        }
+        DropItem(obj, itemPrefab);
 
         // removeDelay초 뒤 파편 삭제
         yield return new WaitForSeconds(removeDelay);
@@ -94,5 +91,20 @@ public class WHS_FractureManager : MonoBehaviour
 
         fractureObjects.Remove(obj); // 딕셔너리에서 제거
         itemPrefabs.Remove(obj);
+    }
+
+    // 아이템 생성, 외부에서 인스턴스의 DropItem 호출해서 사용
+    public void DropItem(GameObject obj, GameObject itemPrefab)
+    {
+        if (itemPrefab != null)
+        {
+            Debug.Log("아이템 생성");
+            Vector3 dropPos = obj.transform.position + new Vector3(0, itemHeight, 0);
+            Instantiate(itemPrefab, dropPos, Quaternion.identity);
+        }
+        else
+        {
+            Debug.Log("등록된 아이템 없음");
+        }
     }
 }
