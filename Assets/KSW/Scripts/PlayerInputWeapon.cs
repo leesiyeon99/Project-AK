@@ -8,6 +8,9 @@ public class PlayerInputWeapon : MonoBehaviour
     // Comment : 인풋 시스템 관리
     // TODO : 추후 인풋 시스템 수정 합의 필요
 
+    // 일지정지 메뉴 이벤트
+    MenuEvent menuEvent;
+
     private PlayerOwnedWeapons playerOwnedWeapons;
     private PlayerChangeWeapon playerChangeWeapon;
 
@@ -36,12 +39,16 @@ public class PlayerInputWeapon : MonoBehaviour
 
     private void Awake()
     {
+        menuEvent = GameObject.Find("MenuInputManager").GetComponent<MenuEvent>();
+        menuEvent.SetPlayerWeaponInput(this);
         playerOwnedWeapons = GetComponent<PlayerOwnedWeapons>();
         playerChangeWeapon = GetComponent<PlayerChangeWeapon>();
     }
     private void OnEnable()
     {
-      
+        playerOwnedWeapons.GetCurrentWeapon().OffFireCoroutine();
+
+
         downReload.action.performed += OnDownReload;
 
         gripReload.action.performed += OnGripReload;
@@ -59,6 +66,10 @@ public class PlayerInputWeapon : MonoBehaviour
     }
     private void OnDisable()
     {
+       
+        
+        CloseChangeView(true);
+
         downReload.action.performed -= OnDownReload;
 
         gripReload.action.performed -= OnGripReload;
@@ -119,20 +130,31 @@ public class PlayerInputWeapon : MonoBehaviour
     void OnChangeView(InputAction.CallbackContext obj)
     {
      
-        weaponUI.OnOffChangeUI(true);
+        weaponUI.OnOffChangeUI(true, false);
       
         onToggle = true;
         playerOwnedWeapons.GetCurrentWeapon().OffFireCoroutine();
     }
+
     void OffChangeView(InputAction.CallbackContext obj)
     {
+        CloseChangeView(false);
+    }
+
+
+    void CloseChangeView(bool disable)
+    {
+
         playerChangeWeapon.MoveJoystick(Vector2.zero);
-        weaponUI.OnOffChangeUI(false);
-    
+        weaponUI.OnOffChangeUI(false, disable);
+
         onToggle = false;
 
         playerOwnedWeapons.GetCurrentWeapon().UpdateMagazine();
     }
+
+
+
     void OnRightJoystick(InputAction.CallbackContext obj)
     {
         playerChangeWeapon.MoveJoystick(obj.ReadValue<Vector2>());

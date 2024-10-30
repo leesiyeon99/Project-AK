@@ -39,6 +39,7 @@ Transform:
   - {fileID: 2057210267037984141}
   - {fileID: 2057097798087880253}
   - {fileID: 1178596495324358722}
+  - {fileID: 5497633472816377833}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -119,11 +120,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireEffect: {fileID: 9107385234622346774}
+  fireSound: {fileID: 0}
   muzzle: {fileID: 1178596495324358722}
   weaponUI: {fileID: 0}
+  uiPos: {fileID: 0}
   aimMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   firingCoolDown: 0
 --- !u!114 &554912517782622037
 MonoBehaviour:
@@ -137,14 +140,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9f039d04870fb4caf2d5be9aafd980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunType: 8
+  weaponName: Weapon4
+  gunType: 12
   tier: 2
-  bulletAttack: 0
+  bulletAttack: 100
   defaultFiringDelay: 1
   firingDelay: 1
   accelerationTime: 0
-  maxMagazine: 7
-  magazine: 7
+  maxMagazine: 2
+  magazine: 2
   reloadSpeed: 2
   range: 10
   defaultPierceCount: 0
@@ -167,7 +171,7 @@ MonoBehaviour:
   splashEffectPrefab: {fileID: 5754608875452493824, guid: f002f9c6df4cd8e4783e917dcd18a1a3, type: 3}
   mask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
 --- !u!120 &3027078196131563238
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -454,6 +458,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7329043885476484340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5497633472816377833}
+  m_Layer: 0
+  m_Name: UI_Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5497633472816377833
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7329043885476484340}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.108, z: 0.309}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2058813908398975617}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7348834310704857137
 GameObject:
   m_ObjectHideFlags: 0

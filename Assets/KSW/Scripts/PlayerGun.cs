@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,17 @@ public class PlayerGun : MonoBehaviour
     [Header("- 발사 이펙트")]
     [SerializeField] private GameObject fireEffect;
 
+    // Comment : 사운드
+    [Header("- 발사 사운드")]
+    [SerializeField] private AudioClip fireSound; 
+
+
     // Comment : 컴포넌트
     private PlayerGunStatus playerGunStatus;
 
     private PlayerBullet playerBullet;
+
+    private PlayerOwnedWeapons playerOwnedWeapons;
 
     private LineRenderer aimLineRenderer;
 
@@ -27,6 +35,7 @@ public class PlayerGun : MonoBehaviour
     // Comment : UI
     [Header("- UI 관리")]
     [SerializeField] private PlayerWeaponUI weaponUI;
+    [SerializeField] public Transform uiPos;
     [SerializeField] private LayerMask aimMask;
     private GameObject aim;
 
@@ -65,7 +74,9 @@ public class PlayerGun : MonoBehaviour
 
         animator = GetComponent<Animator>();
 
+        playerOwnedWeapons = GetComponentInParent<PlayerOwnedWeapons>();
         playerGunStatus = GetComponent<PlayerGunStatus>();
+        playerGunStatus.Init();
         playerBullet = GetComponent<PlayerBullet>();
         aimLineRenderer = GetComponent<LineRenderer>();
         aim = GameObject.Find("AimTarget");
@@ -95,7 +106,10 @@ public class PlayerGun : MonoBehaviour
         {
             CoroutineCheck();
             playerGunStatus.FiringDelay = playerGunStatus.DefaultFiringDelay;
-            firingCoroutine = StartCoroutine(BackgroundFiringCooldown());
+            if (gameObject.activeSelf)
+            {
+                firingCoroutine = StartCoroutine(BackgroundFiringCooldown());
+            }
         }
     }
 
@@ -122,6 +136,8 @@ public class PlayerGun : MonoBehaviour
         fireEffect.SetActive(false);
         animator.SetTrigger("Shot");
         fireEffect.SetActive(true);
+        
+        AudioManager.Instance.PlaySE(fireSound);
 
 
         // 관통
@@ -144,6 +160,15 @@ public class PlayerGun : MonoBehaviour
         }
 
         playerGunStatus.Magazine--;
+        
+
+        // Comment : 특수 탄환 없을 시 기본 무기로 교체
+        if (playerOwnedWeapons.Index != 0 && PlayerSpecialBullet.Instance.SpecialBullet[playerOwnedWeapons.Index - 1] <= 0 && playerGunStatus.Magazine <= 0)
+        {
+      
+            playerOwnedWeapons.SetDefaultWeapon();
+            weaponUI.UpdateChangeToggleUI();
+        }
     }
 
     // Commnet : 연사용
@@ -154,9 +179,9 @@ public class PlayerGun : MonoBehaviour
             if (playerGunStatus.Magazine <= 0)
             {
                 CooldownCheck();
+               
                 break;
             }
-
             firingCoolDown -= Time.deltaTime;
 
             weaponUI.UpdateFiringCooltimeUI(firingCoolDown);
@@ -174,7 +199,8 @@ public class PlayerGun : MonoBehaviour
     {
         if (playerGunStatus.Magazine <= 0)
         {
-            CooldownCheck();
+            CooldownCheck(); 
+          
             return;
         }
         if (firingCoolDown <= 0)
@@ -182,6 +208,8 @@ public class PlayerGun : MonoBehaviour
             Fire();
             firingCoolDown = playerGunStatus.FiringDelay;
         }
+
+        if(gameObject.activeSelf)
         firingCoroutine = StartCoroutine(BackgroundFiringCooldown());
     }
 
@@ -263,6 +291,7 @@ public class PlayerGun : MonoBehaviour
 
         playerGunStatus.Magazine = amount;
 
+
     }
 
     // Comment : 총알 최대 수 보유중인지 체크
@@ -294,11 +323,15 @@ public class PlayerGun : MonoBehaviour
     {
         return playerGunStatus.MaxMagazine;
     }
+    public ExplainStatus GetExplainStatus()
+    {
+        return playerGunStatus.Status;
+    }
 
     public void UpdateMagazine(int magazine)
     {
         weaponUI.UpdateMagazineUI(magazine, playerGunStatus.MaxMagazine);
-
+       
     }
     public void UpdateMagazine()
     {

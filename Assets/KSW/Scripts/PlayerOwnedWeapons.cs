@@ -9,6 +9,13 @@ public class PlayerOwnedWeapons : MonoBehaviour
 
     public int Index { get { return index; } set { index = value; } }
 
+    // Comment : 사운드
+    [Header("- 재장전 불가 사운드")]
+    [SerializeField] private AudioClip reloadDenySound;
+
+    [Header("- UI 관리")]
+    [SerializeField] private PlayerWeaponUI weaponUI;
+
     [Header("- 보유중인 무기")]
     [SerializeField] List<PlayerGun> ownedWeapons;
     [Header("- 사용중인 무기")]
@@ -60,7 +67,22 @@ public class PlayerOwnedWeapons : MonoBehaviour
         currentWeapon.gameObject.SetActive(false);
         currentWeapon = ownedWeapons[index];
         currentWeapon.gameObject.SetActive(true);
+        weaponUI.transform.position = currentWeapon.uiPos.transform.position;
+        weaponUI.transform.rotation = currentWeapon.uiPos.transform.rotation;
+        
     }
+
+    // Comment : 특수 탄환 비어 있을때 호출할 기본 무기 교체 함수
+    public void SetDefaultWeapon()
+    {
+       
+        currentWeapon.gameObject.SetActive(false);
+        index = 0;
+        currentWeapon = ownedWeapons[index];
+        currentWeapon.gameObject.SetActive(true);
+        currentWeapon.UpdateMagazine();
+    }
+
     // Comment : 재장전
     public void ReloadMagazine()
     {
@@ -69,10 +91,11 @@ public class PlayerOwnedWeapons : MonoBehaviour
 
     public void ReloadGripOnMagazine()
     {
-        if (currentWeapon.MagazineRemainingCheck())
-            return;
-        if (index != 0 && PlayerSpecialBullet.Instance.SpecialBullet[index-1] <= 0)
+        if (currentWeapon.MagazineRemainingCheck() ||
+            index != 0 && PlayerSpecialBullet.Instance.SpecialBullet[index - 1] <= 0 ||
+            weaponUI.GetChangeUIActiveSelf())
         {
+            AudioManager.Instance.PlaySE(reloadDenySound);
             return;
         }
 

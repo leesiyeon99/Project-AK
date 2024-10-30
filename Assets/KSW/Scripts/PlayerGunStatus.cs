@@ -20,8 +20,31 @@ public enum Tier
 
 }
 
+public struct ExplainStatus
+{
+
+
+    public string weaponName;
+    public GunType gunType;
+    public int magazine;
+    public float atk;
+
+    public ExplainStatus(string _weaponName, GunType _gunType, int _magazine, float _atk)
+    {
+        weaponName = _weaponName;
+        gunType = _gunType;
+        magazine = _magazine;
+        atk = _atk;
+    }
+}
+
 public class PlayerGunStatus : MonoBehaviour
 {
+    // Comment : 설명 UI용 구조체
+    ExplainStatus status;
+
+    [Header("- 이름")]
+    [SerializeField] private string weaponName;
     [Header("- 총기 특성")]
     [SerializeField] private GunType gunType;
     [Header("- 무기 티어")]
@@ -52,6 +75,9 @@ public class PlayerGunStatus : MonoBehaviour
     [SerializeField] private float accelerationRate;
 
 
+    public ExplainStatus Status { get { return status; } }
+
+    public string WeaponName { get { return weaponName; } }
     public GunType GunType { get { return gunType; } }
     public float BulletAttack { get { return bulletAttack; } }
 
@@ -75,8 +101,10 @@ public class PlayerGunStatus : MonoBehaviour
     public float AccelerationRate { get { return accelerationRate; } }
 
 
-    void Awake()
+    public void Init()
     {
+        status = new ExplainStatus(weaponName,gunType,maxMagazine,bulletAttack);
+
         switch (tier)
         {
             case Tier.Tier1:

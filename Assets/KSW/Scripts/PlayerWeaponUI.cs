@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -10,11 +12,21 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
 {
     [SerializeField] PlayerOwnedWeapons weapons;
 
-    [SerializeField] GameObject changeUI;
-    [SerializeField] RectTransform changeJoystick;
+
+    // Comment : 남은 탄환 수 UI
     [SerializeField] TextMeshProUGUI magazineUI;
+    // Comment : 발사 쿨타임 UI
     [SerializeField] TextMeshProUGUI firingCooltimeUI;
+
+    // Comment : 무기 교체 UI
+    [SerializeField] GameObject changeUI;
+    // Comment : 무기 교체 UI 조이스틱
+    [SerializeField] RectTransform changeJoystick;
+
+    // Comment : 무기 교체 탄환 표시 UI
     [SerializeField] TextMeshProUGUI[] toggleMagazineUI;
+    [SerializeField] TextMeshProUGUI[] toggleWeaponNameUI;
+    // Comment : 무기 교체 UI 활성화 색 구분
     [SerializeField] Image[] changeUIBackground;
 
     [Header("무기 교체 UI 배경 색상") ,ColorUsage(true)]
@@ -22,15 +34,24 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
     [SerializeField] Color enableColor;
     [SerializeField] Color disableColor;
 
+
+
+    // Comment : 무기 설명 UI
+    [SerializeField] WeaponExplainScript weaponExplainScript;
+ 
+
     private StringBuilder stringBuilder = new StringBuilder();
 
     void Awake()
     {
         toggleMagazineUI = new TextMeshProUGUI[4];
+        toggleWeaponNameUI = new TextMeshProUGUI[4];
         changeUIBackground = new Image[4];
         BindAll();
         InitUI();
     }
+
+ 
 
     private void InitUI()
     {
@@ -45,18 +66,47 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
             initStringBuilder.Append("Magazine");
             initStringBuilder.Append(i.ToString());
             toggleMagazineUI[i] = GetUI<TextMeshProUGUI>(initStringBuilder.ToString());
+
+            initStringBuilder.Clear();
+            initStringBuilder.Append("WeaponText");
+            initStringBuilder.Append(i.ToString());
+            toggleWeaponNameUI[i] = GetUI<TextMeshProUGUI>(initStringBuilder.ToString());
+            toggleWeaponNameUI[i].text = weapons.GetOwnedWeapons(i).GetExplainStatus().weaponName;
+
             initStringBuilder.Clear();
             initStringBuilder.Append("Weapon");
             initStringBuilder.Append(i.ToString());
             changeUIBackground[i] = GetUI<Image>(initStringBuilder.ToString());
         }
+
+        weaponExplainScript = GameObject.Find("WeaponExplainCanvas").GetComponent<WeaponExplainScript>();
+        weaponExplainScript.gameObject.SetActive(false);
+      
     }
 
-    public void OnOffChangeUI(bool active)
+    public void OnOffChangeUI(bool active, bool disable)
     {
+        
         UpdateChangeToggleUI();
+        UpdateExplainUI(weapons.Index);
         changeUI.SetActive(active);
         magazineUI.gameObject.SetActive(!active);
+
+      
+        if (active == false && disable == false)
+        {
+            weaponExplainScript.StartFadeOut();
+        }
+        else
+        {
+            weaponExplainScript.gameObject.SetActive(true);
+            weaponExplainScript.SetFade();
+        }
+    }
+
+    public bool GetChangeUIActiveSelf()
+    {
+        return changeUI.activeSelf;
     }
 
     public void UpdateJoystickUI(Vector2 vec)
@@ -68,10 +118,42 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
     {
       
         stringBuilder.Clear();
-        stringBuilder.Append(magazine.ToString());
+
+      
+        NumberReplace(magazine);
+
         stringBuilder.Append("/");
-        stringBuilder.Append(maxMagazine.ToString());
+        NumberReplace(maxMagazine);
         magazineUI.text = stringBuilder.ToString();
+
+    }
+
+    void NumberReplace(int num)
+    {
+        // 1000000~ 999999999
+        if (num.ToString().Length >= 7 && num.ToString().Length <= 9)
+        {
+            for (int i = 0; i <= num.ToString().Length - 7; i++)
+            {
+                stringBuilder.Append(num.ToString()[i]);
+
+            }
+            stringBuilder.Append("M");
+        }
+        // 1000~ 999999
+        else if (num.ToString().Length >= 4 && num.ToString().Length <= 6)
+        {
+            for (int i = 0; i <= num.ToString().Length - 4; i++)
+            {
+                stringBuilder.Append(num.ToString()[i]);
+
+            }
+            stringBuilder.Append("K");
+        }
+        else
+        {
+            stringBuilder.Append(num.ToString());
+        }
 
     }
 
@@ -81,7 +163,7 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
         stringBuilder.Clear();
         if (cooltime < 0)
         {
-            stringBuilder.Append(0);
+            stringBuilder.Append("0.0");
         }
         else
         {
@@ -138,8 +220,18 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
             toggleMagazineUI[i].text = stringBuilder.ToString();
         }
 
-        
-       
 
+    }
+
+    public void UpdateExplainUI(int index)
+    {
+        PlayerGun weapon = weapons.GetOwnedWeapons(index);
+        weaponExplainScript.SetExplain(weapon.GetExplainStatus().weaponName,
+            weapon.GetExplainStatus().gunType,
+            weapon.GetExplainStatus().atk,
+            weapon.GetExplainStatus().magazine
+            );
+      
+      
     }
 }
