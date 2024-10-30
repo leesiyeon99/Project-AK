@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +11,11 @@ public class PlayerMagazine : MonoBehaviour
 
     [Header("- 플레이어 소유중 무기 스크립트")]
     [SerializeField] PlayerOwnedWeapons playerOwnedWeapons;
+
+    [Header("- 장전 되는 숫자 UI ")]
+    [SerializeField] GameObject magazineAmountUI;
+    [SerializeField] TextMeshProUGUI magazineAmountTextUI;
+
 
     // Comment : 페이드인 관련 변수
     Material material;
@@ -29,10 +36,6 @@ public class PlayerMagazine : MonoBehaviour
 
     }
 
-    // 2초 = 0.1초당 0.05  1/20
-    // 1초 = 0.1초당 0.1   1/10
-    // 0.5초 = 0.1초당 0.2 1/5
-    // 1/(speed * 10) 
     private void OnEnable()
     {
         float speed = playerOwnedWeapons.GetCurrentWeapon().GetReloadSpeed();
@@ -52,8 +55,10 @@ public class PlayerMagazine : MonoBehaviour
 
     private void ResetAlpha()
     {
+        magazineAmountUI.SetActive(false);
         color.a = 0f;
         material.color = color;
+      
     }
 
     IEnumerator FadeInCorouine()
@@ -65,6 +70,21 @@ public class PlayerMagazine : MonoBehaviour
             color.a += timeTick;
             material.color = color;
         }
+        int magazine = playerOwnedWeapons.GetCurrentWeapon().GetMaxMagazine() - playerOwnedWeapons.GetCurrentWeapon().GetMagazine();
+
+        if (playerOwnedWeapons.Index != 0)
+        {
+           if(  magazine - PlayerSpecialBullet.Instance.SpecialBullet[playerOwnedWeapons.Index - 1] > 0)
+            {
+                magazine = PlayerSpecialBullet.Instance.SpecialBullet[playerOwnedWeapons.Index - 1];
+            }
+        
+
+        }
+    
+      
+        magazineAmountTextUI.text = magazine.ToString();
+        magazineAmountUI.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)

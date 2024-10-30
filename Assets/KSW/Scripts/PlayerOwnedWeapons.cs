@@ -92,10 +92,7 @@ public class PlayerOwnedWeapons : MonoBehaviour
         {
             return;
         }
-        if (index != 0 && PlayerSpecialBullet.Instance.SpecialBullet[index - 1] <= 0)
-        {
-            return;
-        }
+
         if (weaponUI.GetChangeUIActiveSelf())
         {
             return;
