@@ -7,11 +7,11 @@ public class PlayerBullet : MonoBehaviour
 {
     [Header("- 스파크 이펙트 프리팹")]
     [SerializeField] private GameObject sparkEffectPrefab;
-    private List<GameObject> spark;
+    private Queue<GameObject> spark;
 
     [Header("- 스플래시 이펙트 프리팹")]
     [SerializeField] private GameObject splashEffectPrefab;
-    private List<GameObject> splash;
+    private Queue<GameObject> splash;
 
     private PlayerGunStatus playerGunStatus;
 
@@ -28,16 +28,17 @@ public class PlayerBullet : MonoBehaviour
 
     private void SetEffect()
     {
-        spark = new List<GameObject>();
-        splash = new List<GameObject>();
+        spark = new Queue<GameObject>();
+        splash = new Queue<GameObject>();
         if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
         {
             float scale = playerGunStatus.SplashRadius;
             for (int i = 0; i < playerGunStatus.DefaultPierceCount; i++)
             {
-                splash.Add(Instantiate(splashEffectPrefab));
-                splash[i].SetActive(false);
-                splash[i].transform.localScale = new Vector3(scale, scale, scale);
+                GameObject splashObj = Instantiate(splashEffectPrefab);
+                splash.Enqueue(splashObj);
+                splashObj.SetActive(false);
+                splashObj.transform.localScale = new Vector3(scale, scale, scale);
             }
 
           
@@ -48,15 +49,17 @@ public class PlayerBullet : MonoBehaviour
         {
             for (int i = 0; i < playerGunStatus.DefaultPierceCount; i++)
             {
-                spark.Add(Instantiate(sparkEffectPrefab));
-                spark[i].SetActive(false);
+                GameObject sparkObj = Instantiate(sparkEffectPrefab);
+                spark.Enqueue(Instantiate(sparkObj));
+                sparkObj.SetActive(false);
             }
  
         }
         else
         {
-            spark.Add(Instantiate(sparkEffectPrefab));
-            spark[0].SetActive(false);
+            GameObject sparkObj = Instantiate(sparkEffectPrefab);
+            spark.Enqueue(Instantiate(sparkObj));
+            sparkObj.SetActive(false);
         }
 
         
@@ -67,12 +70,12 @@ public class PlayerBullet : MonoBehaviour
     {
         if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
         {
-            Splash(hit.point, 0);
+            Splash(hit.point);
 
         }
         else
         {
-            OnSparkEffect(hit.point, 0);
+            OnSparkEffect(hit.point);
             if (hit.collider.TryGetComponent(out Fracture fractureObj))
             {
                 fractureObj.CauseFracture();
@@ -80,12 +83,12 @@ public class PlayerBullet : MonoBehaviour
 
 
         }
-
-        // 연동 테스트
         /*
-        if (hit.collider.TryGetComponent(out HYJ_Enemy enemy))
+        // 연동 테스트
+        
+        if (hit.collider.TryGetComponent(out EnemyHitPoint enemy))
         {
-            enemy.MonsterTakeDamageCalculation();
+            enemy.TakeDamage(playerGunStatus.BulletAttack);
         }
         */
 
@@ -98,80 +101,99 @@ public class PlayerBullet : MonoBehaviour
     // Comment : 관통
     public void HitRay(RaycastHit[] hit, Transform muzzlePoint)
     {
+        int loop = hit.Length;
 
-        int loop = playerGunStatus.DefaultPierceCount;
-        if (hit.Length < playerGunStatus.DefaultPierceCount)
-        {
-            loop = hit.Length;
-        }
-
-  
+        int hitCount = playerGunStatus.DefaultPierceCount;
 
         for (int i = 0; i < loop; i++)
         {
             if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
             {
-                Splash(hit[i].point, i);
+                Splash(hit[i].point);
 
             }
             else
             {
-                OnSparkEffect(hit[i].point, i);
+                
                 if (hit[i].collider.TryGetComponent(out Fracture fractureObj))
                 {
                     fractureObj.CauseFracture();
+                   
                 }
             }
-
-            // 연동 테스트
-          /*  
-           *  if (hit[i].collider.TryGetComponent(out HYJ_Enemy enemy))
-            {
-                enemy.MonsterTakeDamageCalculation();
-            }
-           */
-
-          
-
             
+            // 연동 테스트
+            bool hitFlag = true;
+            /*
+            if (hit[i].collider.TryGetComponent(out EnemyHitPoint enemy))
+            {
+                hitFlag = enemy.TakeDamage(playerGunStatus.BulletAttack);
+
+                if (hitFlag == false)
+                {
+                    hitCount++;
+                   
+                }
+                
+            }
+            */
+            if (!playerGunStatus.GunType.HasFlag(GunType.SPLASH) && hitFlag )
+            {
+                OnSparkEffect(hit[i].point);
+            }
+
+            hitCount--;
+            if (hitCount <= 0)
+            {
+                break;
+            }
+
+
+
+
         }
     }
 
   
 
-    private void OnSparkEffect(Vector3 vec, int cnt)
+    private void OnSparkEffect(Vector3 vec)
     {
+        GameObject sparkObj = spark.Dequeue();
+        sparkObj.SetActive(false);
 
-        spark[cnt].SetActive(false);
+        sparkObj.transform.position = vec;
+        sparkObj.transform.LookAt(transform.position);
+        sparkObj.SetActive(true);
 
-        spark[cnt].transform.position = vec;
-        spark[cnt].transform.LookAt(transform.position);
-        spark[cnt].SetActive(true);
-
+        spark.Enqueue(sparkObj);
     }
 
 
-    private void Splash(Vector3 vec, int cnt)
+    private void Splash(Vector3 vec)
     {
 
         //TODO : 레이어 마스크 추가
-
-        splash[cnt].SetActive(false);
-        splash[cnt].transform.position = vec;
-        splash[cnt].SetActive(true);
-
+        GameObject splashObj = splash.Dequeue();
+        splashObj.SetActive(false);
+        splashObj.transform.position = vec;
+        splashObj.SetActive(true);
+        splash.Enqueue(splashObj);
 
         Collider[] colliders = Physics.OverlapSphere(vec, playerGunStatus.SplashRadius, mask);
 
         foreach (Collider collider in colliders)
         {
-
+            /*
+            if (collider.TryGetComponent(out EnemyHitPoint enemy))
+            {
+                enemy.TakeDamage(playerGunStatus.SplashDamage);
+            }
+            */
             if (collider.TryGetComponent(out Fracture fractureObj))
             {
                 fractureObj.CauseFracture();
             }
-            //Debug.Log(collider.name);
-            // TODO : 데미지 구현
+
         }
 
     }
