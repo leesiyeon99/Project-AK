@@ -11,11 +11,9 @@ GameObject:
   - component: {fileID: 6702503975447286734}
   - component: {fileID: 6702503975447286733}
   - component: {fileID: 6702503975447286732}
-  - component: {fileID: 6702503975447286731}
-  - component: {fileID: 6702503975447286730}
   - component: {fileID: 8694314558233079465}
   m_Layer: 0
-  m_Name: item
+  m_Name: Item0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6702503975447286583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.86, y: 0.3, z: -0.97}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,35 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6702503975447286731
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6702503975447286583}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &6702503975447286730
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6702503975447286583}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &8694314558233079465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,4 +102,12 @@ MonoBehaviour:
   moveDelay: 1
   moveToPlayerSpeed: 10
   itemGetRange: 1
-  bulletAmount: 10
+  bulletAmounts: 0a000000140000001e000000
+  itemMaterials:
+  - {fileID: 2100000, guid: f13c1ce94f6b0064891096f00cfa4b6b, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bbdb35dc7b15a984086af21fa1aec91f, type: 2}
+  itemMeshes:
+  - {fileID: -1562275218897716241, guid: e879f8c7fed5d6940b4f37ea1f46abe8, type: 3}
+  - {fileID: -7969978266939365281, guid: a688ad8adef8d7c4ea9145a0235da35d, type: 3}
+  - {fileID: -5582133695706433325, guid: 3f4269994f2fd9e4c861445d6786761b, type: 3}
