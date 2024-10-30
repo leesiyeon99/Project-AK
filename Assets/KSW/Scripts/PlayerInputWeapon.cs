@@ -46,7 +46,9 @@ public class PlayerInputWeapon : MonoBehaviour
     }
     private void OnEnable()
     {
-      
+        playerOwnedWeapons.GetCurrentWeapon().OffFireCoroutine();
+
+
         downReload.action.performed += OnDownReload;
 
         gripReload.action.performed += OnGripReload;
@@ -64,8 +66,9 @@ public class PlayerInputWeapon : MonoBehaviour
     }
     private void OnDisable()
     {
-        playerOwnedWeapons.GetCurrentWeapon().OffFireCoroutine();
-
+       
+        
+        CloseChangeView();
 
         downReload.action.performed -= OnDownReload;
 
@@ -132,15 +135,26 @@ public class PlayerInputWeapon : MonoBehaviour
         onToggle = true;
         playerOwnedWeapons.GetCurrentWeapon().OffFireCoroutine();
     }
+
     void OffChangeView(InputAction.CallbackContext obj)
     {
+        CloseChangeView();
+    }
+
+
+    void CloseChangeView()
+    {
+
         playerChangeWeapon.MoveJoystick(Vector2.zero);
         weaponUI.OnOffChangeUI(false);
-    
+
         onToggle = false;
 
         playerOwnedWeapons.GetCurrentWeapon().UpdateMagazine();
     }
+
+
+
     void OnRightJoystick(InputAction.CallbackContext obj)
     {
         playerChangeWeapon.MoveJoystick(obj.ReadValue<Vector2>());

@@ -2019,6 +2019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
+  reloadDenySound: {fileID: 8300000, guid: f70e652c9b14e2a45a2aedb5250daa68, type: 3}
   weaponUI: {fileID: 7910741880371652262}
   ownedWeapons:
   - {fileID: 6748831567182015146}
@@ -3220,6 +3221,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7910741880371652262}
     - target: {fileID: 6664120267269597057, guid: 1079afc887a4c0148b43e5765c6a1c75, type: 3}
+      propertyPath: fireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f36229bd9c632384387c356c66f69e38, type: 3}
+    - target: {fileID: 6664120267269597057, guid: 1079afc887a4c0148b43e5765c6a1c75, type: 3}
       propertyPath: fireEffect
       value: 
       objectReference: {fileID: 8185497037726153499}
@@ -3270,6 +3275,10 @@ PrefabInstance:
       propertyPath: weaponUI
       value: 
       objectReference: {fileID: 7910741880371652262}
+    - target: {fileID: 5379372799416324926, guid: 9e02821bc1dd1614880caa51b12cf8dd, type: 3}
+      propertyPath: fireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 52eee3472cd0d7744a172523797ea3ea, type: 3}
     - target: {fileID: 5379372799416324926, guid: 9e02821bc1dd1614880caa51b12cf8dd, type: 3}
       propertyPath: magazineUI
       value: 
@@ -3408,6 +3417,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7910741880371652262}
     - target: {fileID: 4163959915572921040, guid: b76e1e15a0bc90040b63d498e0dad143, type: 3}
+      propertyPath: fireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ac429cc022096564593c5bdab1220d37, type: 3}
+    - target: {fileID: 4163959915572921040, guid: b76e1e15a0bc90040b63d498e0dad143, type: 3}
       propertyPath: magazineUI
       value: 
       objectReference: {fileID: 14966350172411172}
@@ -3545,6 +3558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19abfac4e117c60479a0e7466710a930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadSound: {fileID: 8300000, guid: 7f89d732b4b0f424b82acb1810b5899e, type: 3}
   playerOwnedWeapons: {fileID: 760860512694016275}
   magazineAmountUI: {fileID: 989182133}
   magazineAmountTextUI: {fileID: 231356348}
@@ -3563,6 +3577,10 @@ PrefabInstance:
       propertyPath: weaponUI
       value: 
       objectReference: {fileID: 7910741880371652262}
+    - target: {fileID: 5275952326444809063, guid: 6e786bcd4dbeb544796bd1818b108d74, type: 3}
+      propertyPath: fireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 52eee3472cd0d7744a172523797ea3ea, type: 3}
     - target: {fileID: 5275952326444809063, guid: 6e786bcd4dbeb544796bd1818b108d74, type: 3}
       propertyPath: magazineUI
       value: 

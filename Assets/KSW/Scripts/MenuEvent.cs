@@ -8,21 +8,31 @@ public class MenuEvent : MonoBehaviour
 
     [Header("- 일시정지")]
     [SerializeField] private InputActionReference pause;
-   
+
+    [Header("- 음소거")]
+    [SerializeField] private InputActionReference mute;
+
     PlayerInputWeapon playerInputManager;
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
 
     private void OnEnable()
     {
 
         pause.action.performed += OnPause;
+        mute.action.performed += OnMute;
 
-   
+
     }
     private void OnDisable()
     {
         pause.action.performed -= OnPause;
+        mute.action.performed -= OnMute;
 
-  
     }
 
     public void SetPlayerWeaponInput(PlayerInputWeapon input)
@@ -32,7 +42,6 @@ public class MenuEvent : MonoBehaviour
 
     void OnPause(InputAction.CallbackContext obj)
     {
-        Debug.Log("정지");
         if (Time.timeScale < 1)
         {
             Time.timeScale = 1f;
@@ -45,5 +54,11 @@ public class MenuEvent : MonoBehaviour
         }
 
        
+    }
+
+    void OnMute(InputAction.CallbackContext obj)
+    {
+        audioManager.Mute();
+
     }
 }

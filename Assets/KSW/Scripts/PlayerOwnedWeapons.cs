@@ -9,6 +9,9 @@ public class PlayerOwnedWeapons : MonoBehaviour
 
     public int Index { get { return index; } set { index = value; } }
 
+    // Comment : 사운드
+    [Header("- 재장전 불가 사운드")]
+    [SerializeField] private AudioClip reloadDenySound;
 
     [Header("- UI 관리")]
     [SerializeField] private PlayerWeaponUI weaponUI;
@@ -86,15 +89,11 @@ public class PlayerOwnedWeapons : MonoBehaviour
 
     public void ReloadGripOnMagazine()
     {
-        if (currentWeapon.MagazineRemainingCheck())
-            return;
-        if (index != 0 && PlayerSpecialBullet.Instance.SpecialBullet[index-1] <= 0)
+        if (currentWeapon.MagazineRemainingCheck() ||
+            index != 0 && PlayerSpecialBullet.Instance.SpecialBullet[index - 1] <= 0 ||
+            weaponUI.GetChangeUIActiveSelf())
         {
-            return;
-        }
-
-        if (weaponUI.GetChangeUIActiveSelf())
-        {
+            AudioManager.Instance.PlaySE(reloadDenySound);
             return;
         }
 

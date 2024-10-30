@@ -11,6 +11,11 @@ public class PlayerGun : MonoBehaviour
     [Header("- 발사 이펙트")]
     [SerializeField] private GameObject fireEffect;
 
+    // Comment : 사운드
+    [Header("- 발사 사운드")]
+    [SerializeField] private AudioClip fireSound; 
+
+
     // Comment : 컴포넌트
     private PlayerGunStatus playerGunStatus;
 
@@ -100,7 +105,10 @@ public class PlayerGun : MonoBehaviour
         {
             CoroutineCheck();
             playerGunStatus.FiringDelay = playerGunStatus.DefaultFiringDelay;
-            firingCoroutine = StartCoroutine(BackgroundFiringCooldown());
+            if (gameObject.activeSelf)
+            {
+                firingCoroutine = StartCoroutine(BackgroundFiringCooldown());
+            }
         }
     }
 
@@ -127,6 +135,8 @@ public class PlayerGun : MonoBehaviour
         fireEffect.SetActive(false);
         animator.SetTrigger("Shot");
         fireEffect.SetActive(true);
+        
+        AudioManager.Instance.PlaySE(fireSound);
 
 
         // 관통
@@ -279,6 +289,7 @@ public class PlayerGun : MonoBehaviour
         }
 
         playerGunStatus.Magazine = amount;
+
 
     }
 

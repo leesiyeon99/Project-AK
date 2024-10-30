@@ -7,6 +7,11 @@ using UnityEngine;
 
 public class PlayerMagazine : MonoBehaviour
 {
+    // Comment : 사운드
+    [Header("- 재장전 사운드")]
+    [SerializeField] private AudioClip reloadSound;
+
+
     GameObject leftController;
 
     [Header("- 플레이어 소유중 무기 스크립트")]
@@ -93,6 +98,7 @@ public class PlayerMagazine : MonoBehaviour
         {
             gameObject.SetActive(false);
             playerOwnedWeapons.ReloadMagazine();
+            AudioManager.Instance.PlaySE(reloadSound);
         }
     }
 }
