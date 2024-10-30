@@ -62,6 +62,12 @@ public class MonsterCount : MonoBehaviour
         }
     }
 
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    score++;
+    //    UpdateScoreText();
+    //}
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
@@ -78,6 +84,7 @@ public class MonsterCount : MonoBehaviour
     private void HandleEnemyEntry(Collider other)
     {
         score++;
+        Debug.Log("일반 몬스터 들어옴");
         UpdateScoreText();
 
         if (other.GetComponent<UnitToScreenBoundary>() != null)
@@ -89,7 +96,8 @@ public class MonsterCount : MonoBehaviour
 
     private void HandleStrongEnemyEntry(Collider other)
     {
-            score++;
+        Debug.Log("강한 몬스터 들어옴");
+        score++;
             UpdateScoreText();
 
             if (other.GetComponent<UnitToScreenBoundary>() != null)
@@ -105,6 +113,7 @@ public class MonsterCount : MonoBehaviour
 
     private void HandleEnemyExit()
     {
+        Debug.Log("일반 몬스터 나감");
         score--;
         UpdateScoreText();
         normalEnemyIcon.gameObject.SetActive(true);
@@ -113,6 +122,7 @@ public class MonsterCount : MonoBehaviour
 
     private void HandleStrongEnemyExit()
     {
+        Debug.Log("간한 몬스터 나감");
         score--;
         UpdateScoreText();
 

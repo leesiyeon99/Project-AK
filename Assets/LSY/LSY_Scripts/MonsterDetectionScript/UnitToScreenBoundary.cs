@@ -23,7 +23,7 @@ public class UnitToScreenBoundary : MonoBehaviour
             UIImage.gameObject.SetActive(true);
             Vector2 pos = Camera.main.WorldToScreenPoint(transform.position);
             pos.x = Mathf.Clamp(pos.x, 0, image.rectTransform.rect.width);
-            pos.y = Mathf.Clamp(pos.y, 0, image.rectTransform.rect.height / 2);
+            pos.y = Mathf.Clamp(pos.y, 40, image.rectTransform.rect.height / 2);
             UIImage.rectTransform.anchoredPosition = pos;
 
 
