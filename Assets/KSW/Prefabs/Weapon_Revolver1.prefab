@@ -271,9 +271,10 @@ MonoBehaviour:
   fireSound: {fileID: 0}
   muzzle: {fileID: 7425703347335938588}
   weaponUI: {fileID: 0}
+  uiPos: {fileID: 0}
   aimMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   firingCoolDown: 0
 --- !u!114 &606393873948870223
 MonoBehaviour:
@@ -318,7 +319,7 @@ MonoBehaviour:
   splashEffectPrefab: {fileID: 0}
   mask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
 --- !u!120 &2664920001799079985
 LineRenderer:
   m_ObjectHideFlags: 0
