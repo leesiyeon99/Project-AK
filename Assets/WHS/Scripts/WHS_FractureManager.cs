@@ -11,13 +11,11 @@ public class WHS_FractureManager : MonoBehaviour
     // Fracture Options -> FragmentCount 에서 파괴후 갈라지는 파편의 개수 조절(10개 내외 권장)
     //                  -> Inside Metarial에서 갈라진 면의 메터리얼(적당히 비슷한 색상으로 설정)
 
-    [SerializeField] float removeDelay = 1.5f; // delay초 뒤 파편 제거
-    [SerializeField] float itemHeight = 1f; // 아이템 생성될 높이
+    [SerializeField] float removeDelay = 1.5f; // delay초 뒤 파편 제거1
 
     private static WHS_FractureManager instance; // 파괴할 Fracture 오브젝트들의 인스턴스
     private Dictionary<GameObject, Fracture> fractureObjects = new Dictionary<GameObject, Fracture>(); // 파괴할 오브젝트와 Fracture 컴포넌트를 저장
-    private Dictionary<GameObject, GameObject> itemPrefabs = new Dictionary<GameObject, GameObject>(); // 파괴할 오브젝트와 아이템 프리팹을 저장
-
+    
     public static WHS_FractureManager Instance
     {
         get
@@ -48,15 +46,14 @@ public class WHS_FractureManager : MonoBehaviour
     }
 
     // Fracture할 오브젝트를 딕셔너리에 등록
-    public void GetFractureObject(GameObject obj, GameObject itemPrefab)
+    public void GetFractureObject(GameObject obj)
     {
         Fracture fracture = obj.GetComponent<Fracture>(); // 오브젝트의 Fracture 컴포넌트 가져오기
 
         if (fracture != null && !fractureObjects.ContainsKey(obj)) // Fracture 컴포넌트가 있고, 아직 등록되지 않았으면
         {
             fractureObjects.Add(obj, fracture); // 딕셔너리에 파괴할 오브젝트 추가
-            itemPrefabs.Add(obj, itemPrefab); // 딕셔너리에 아이템프리팹 추가
-
+            
             fracture.callbackOptions.onCompleted.AddListener(() => FractureOnCompleted(obj)); // Fracture가 완료되면 FractureOnCompleted 호출
         }
     }
@@ -71,8 +68,7 @@ public class WHS_FractureManager : MonoBehaviour
     private IEnumerator RemoveFragments(GameObject obj)
     {
         // 아이템 생성
-        GameObject itemPrefab = itemPrefabs[obj]; // 아이템프리팹 받아오기
-        DropItem(obj, itemPrefab);
+        WHS_ItemManager.Instance.SpawnItem(obj.transform.position);
 
         // removeDelay초 뒤 파편 삭제
         yield return new WaitForSeconds(removeDelay);
@@ -90,21 +86,5 @@ public class WHS_FractureManager : MonoBehaviour
         }
 
         fractureObjects.Remove(obj); // 딕셔너리에서 제거
-        itemPrefabs.Remove(obj);
-    }
-
-    // 아이템 생성, 외부에서 인스턴스의 DropItem 호출해서 사용
-    public void DropItem(GameObject obj, GameObject itemPrefab)
-    {
-        if (itemPrefab != null)
-        {
-            Debug.Log("아이템 생성");
-            Vector3 dropPos = obj.transform.position + new Vector3(0, itemHeight, 0);
-            Instantiate(itemPrefab, dropPos, Quaternion.identity);
-        }
-        else
-        {
-            Debug.Log("등록된 아이템 없음");
-        }
     }
 }

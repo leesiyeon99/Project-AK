@@ -17,35 +17,22 @@ public class WHS_Item : MonoBehaviour
     [SerializeField] float moveDelay = 1f; // 생성 후 플레이어에게 delay초 뒤 이동 (delay초뒤 아이템이 날아와 획득)
     [Header("아이템 날아오는 속도")]
     [SerializeField] float moveToPlayerSpeed = 10f; // 아이템이 다가오는 속도
-    [SerializeField] float itemHeight = 1f; // 아이템 생성되는 위치 높이
     [SerializeField] float itemGetRange = 1f; // 아이템 습득 범위
 
     private bool isMovingtoPlayer = false; // 플레이어에게 이동중인지
 
     [Header("각 총알 개수")]
     [SerializeField] int[] bulletAmounts = new int[3]; // 각 인덱스의 얻을 총알 개수
-    private int bulletIndex; // 특수 총알 인덱스
+    [Range(1,3)]
+    [SerializeField] int bulletIndex; // 특수 총알 인덱스
 
-    [Header("각 아이템 외형")]
-    [SerializeField] Material[] itemMaterials;
-    [SerializeField] Mesh[] itemMeshes;
-    private MeshRenderer itemRender;
-    private MeshFilter itemmeshFilter;
 
     private void Start()
     {
         startPos = transform.position; // 아이템 위치를 저장
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // 플레이어 위치
-        itemRender = GetComponent<MeshRenderer>();
-        itemmeshFilter = GetComponent<MeshFilter>();
-
-        bulletIndex = Random.Range(0, 3); // 아이템에 0~2번 랜덤 인덱스 지정
-
-        itemRender.material = itemMaterials[bulletIndex];
-        itemmeshFilter.mesh = itemMeshes[bulletIndex];
 
         StartCoroutine(MoveToPlayer()); // 플레이어에게 1초 뒤 이동
-
     }
 
     private void Update()
@@ -82,7 +69,8 @@ public class WHS_Item : MonoBehaviour
         // PlayerSpecialBullet의 인스턴스
         if (PlayerSpecialBullet.Instance != null)
         {
-            PlayerSpecialBullet.Instance.SpecialBullet[bulletIndex] += bulletAmounts[bulletIndex];// index번 총알 bulletmount만큼 획득
+            int index = bulletIndex - 1;
+            PlayerSpecialBullet.Instance.SpecialBullet[index] += bulletAmounts[index];// index번 총알 bulletmount만큼 획득
         }
         else
         {
@@ -90,5 +78,4 @@ public class WHS_Item : MonoBehaviour
         }
         Destroy(gameObject);
     }
-
 }
