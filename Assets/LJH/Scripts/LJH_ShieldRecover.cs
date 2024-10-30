@@ -74,9 +74,4 @@ public class LJH_ShieldRecover : MonoBehaviour
             }
         }
     }
-
-    
-
-
-    
 }

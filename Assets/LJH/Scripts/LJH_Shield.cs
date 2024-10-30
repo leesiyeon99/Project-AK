@@ -12,7 +12,7 @@ public class LJH_Shield : MonoBehaviour
     [SerializeField] GameObject invincibility;
 
     [Header("스크립트")]
-    [SerializeField] LJH_UIManager test;
+    [SerializeField] LJH_UIManager uiManagerScript;
 
     [Header("플레이어 위치")]
     [SerializeField] GameObject playerPos;
@@ -69,7 +69,7 @@ public class LJH_Shield : MonoBehaviour
             //fire.action.performed -= GetComponent<PlayerInputWeapon>().OnFire;        총기와 연계 내용이라 머지 이후 주석처리 제거
             //fire.action.performed -= Getcomponent<PlayerInputWeapon>().OffFire;
 
-            damageTest.action.performed += DamagedShield; // 테스트 끝나고 지워야함
+            damageTest.action.performed += DamagedShieldTest; // 테스트 끝나고 지워야함
         
     }
 
@@ -86,7 +86,7 @@ public class LJH_Shield : MonoBehaviour
             //fire.action.performed += GetComponent<PlayerInputWeapon>().OnFire;         총기와 연계 내용이라 머지 이후 주석처리 제거
             //fire.action.performed += Getcomponent<PlayerInputWeapon>().OffFire;
 
-            damageTest.action.performed -= DamagedShield; // 테스트 끝나고 지워야함
+            damageTest.action.performed -= DamagedShieldTest; // 테스트 끝나고 지워야함
 
 
         
@@ -131,7 +131,7 @@ public class LJH_Shield : MonoBehaviour
 
     // Comment: 피격시 역장 내구도 1 감소
     // ToDo:    몬스터의 타격 방식에 따라 내용 변경 필요
-    public void DamagedShield(InputAction.CallbackContext obj)// 인수 지워야함
+    public void DamagedShieldTest(InputAction.CallbackContext obj)// 인수 지워야함
     {
         if (durability > 0)
         {
@@ -148,7 +148,7 @@ public class LJH_Shield : MonoBehaviour
             {
                 Debug.Log("역장 피해입음");
                 durability -= 1;
-                test.UpdateShieldUI(durability);//이거임
+                uiManagerScript.UpdateShieldUI(durability);//이거임
                 invincibility.SetActive(true);
             }
 
