@@ -291,7 +291,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168185667}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.29, y: -1.3153756, z: 2.58}
+  m_LocalPosition: {x: -5.29, y: -1.3153756, z: 16.529999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -326,27 +326,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15085f9ba30b03346af4022914cc7789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 257268178}
-  monster: {fileID: 168185667}
-  monsterType: 0
-  monsterAttackType: 0
-  monsterShieldAtkPower: 5
-  monsterHpAtkPower: 0
-  monsterAttackRange: 0
-  score: 0
-  monsterHp: 10
-  monsterMoveSpeed: 0
-  playerDistance: 0
-  isAttack: 0
-  nowAttack: 0
-  isDie: 0
-  OnEnemyDied:
+  lsy_player: {fileID: 0}
+  lsy_monster: {fileID: 0}
+  lsy_monsterType: 0
+  lsy_monsterAttackType: 0
+  lsy_monsterShieldAtkPower: 2
+  lsy_monsterHpAtkPower: 0
+  lsy_monsterAttackRange: 0
+  lsy_score: 0
+  lsy_monsterHp: 10
+  lsy_monsterMoveSpeed: 0
+  lsy_playerDistance: 0
+  lsy_isAttack: 0
+  lsy_nowAttack: 0
+  lsy_isDie: 0
+  lsy_OnEnemyDied:
     m_PersistentCalls:
       m_Calls: []
-  playerAttackPower: 20
-  isShield: 0
-  hitFlag: 0
-  monsterCount: {fileID: 1678045365}
+  lsy_playerAttackPower: 20
+  lsy_isShield: 0
+  lsy_hitFlag: 0
+  lsy_monsterCount: {fileID: 0}
 --- !u!1 &219764094
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,13 +578,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cinemachineDollyCart: {fileID: 926787806}
-  monsters:
-  - {fileID: 168185667}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  radius: 10.85
+  layer:
+    serializedVersion: 2
+    m_Bits: 256
+  colliders: []
 --- !u!114 &257268185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,7 +648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 267143375}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.37, y: -1.3153756, z: 4.65}
+  m_LocalPosition: {x: 5.37, y: -1.3153756, z: 18.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -749,27 +747,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15085f9ba30b03346af4022914cc7789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 257268178}
-  monster: {fileID: 1983635274}
-  monsterType: 0
-  monsterAttackType: 0
-  monsterShieldAtkPower: 2
-  monsterHpAtkPower: 0
-  monsterAttackRange: 0
-  score: 0
-  monsterHp: 10
-  monsterMoveSpeed: 0
-  playerDistance: 0
-  isAttack: 0
-  nowAttack: 0
-  isDie: 0
-  OnEnemyDied:
+  lsy_player: {fileID: 0}
+  lsy_monster: {fileID: 0}
+  lsy_monsterType: 0
+  lsy_monsterAttackType: 0
+  lsy_monsterShieldAtkPower: 2
+  lsy_monsterHpAtkPower: 0
+  lsy_monsterAttackRange: 0
+  lsy_score: 0
+  lsy_monsterHp: 10
+  lsy_monsterMoveSpeed: 0
+  lsy_playerDistance: 0
+  lsy_isAttack: 0
+  lsy_nowAttack: 0
+  lsy_isDie: 0
+  lsy_OnEnemyDied:
     m_PersistentCalls:
       m_Calls: []
-  playerAttackPower: 20
-  isShield: 0
-  hitFlag: 0
-  monsterCount: {fileID: 1678045365}
+  lsy_playerAttackPower: 20
+  lsy_isShield: 0
+  lsy_hitFlag: 0
+  lsy_monsterCount: {fileID: 0}
 --- !u!1 &314833153
 GameObject:
   m_ObjectHideFlags: 0
@@ -2156,7 +2154,7 @@ MonoBehaviour:
   m_Path: {fileID: 1155323769}
   m_UpdateMethod: 0
   m_PositionUnits: 1
-  m_Speed: 0
+  m_Speed: 2
   m_Position: 0
 --- !u!4 &926787807
 Transform:
@@ -3932,7 +3930,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983635274}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.62, y: -1.4053755, z: 5.07}
+  m_LocalPosition: {x: 7.62, y: -1.4053755, z: 19.019999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3951,27 +3949,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15085f9ba30b03346af4022914cc7789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 257268178}
-  monster: {fileID: 1983635274}
-  monsterType: 0
-  monsterAttackType: 0
-  monsterShieldAtkPower: 2
-  monsterHpAtkPower: 0
-  monsterAttackRange: 0
-  score: 0
-  monsterHp: 10
-  monsterMoveSpeed: 0
-  playerDistance: 0
-  isAttack: 0
-  nowAttack: 0
-  isDie: 0
-  OnEnemyDied:
+  lsy_player: {fileID: 0}
+  lsy_monster: {fileID: 0}
+  lsy_monsterType: 0
+  lsy_monsterAttackType: 0
+  lsy_monsterShieldAtkPower: 2
+  lsy_monsterHpAtkPower: 0
+  lsy_monsterAttackRange: 0
+  lsy_score: 0
+  lsy_monsterHp: 10
+  lsy_monsterMoveSpeed: 0
+  lsy_playerDistance: 0
+  lsy_isAttack: 0
+  lsy_nowAttack: 0
+  lsy_isDie: 0
+  lsy_OnEnemyDied:
     m_PersistentCalls:
       m_Calls: []
-  playerAttackPower: 20
-  isShield: 0
-  hitFlag: 0
-  monsterCount: {fileID: 1678045365}
+  lsy_playerAttackPower: 20
+  lsy_isShield: 0
+  lsy_hitFlag: 0
+  lsy_monsterCount: {fileID: 0}
 --- !u!1 &2064532280
 GameObject:
   m_ObjectHideFlags: 0
@@ -4217,7 +4215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140794524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.84, y: -1.4053755, z: 5.0000014}
+  m_LocalPosition: {x: -5.84, y: -1.4053755, z: 18.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4252,24 +4250,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15085f9ba30b03346af4022914cc7789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 257268178}
-  monster: {fileID: 1983635274}
-  monsterType: 0
-  monsterAttackType: 0
-  monsterShieldAtkPower: 2
-  monsterHpAtkPower: 0
-  monsterAttackRange: 0
-  score: 0
-  monsterHp: 10
-  monsterMoveSpeed: 0
-  playerDistance: 0
-  isAttack: 0
-  nowAttack: 0
-  isDie: 0
-  OnEnemyDied:
+  lsy_player: {fileID: 0}
+  lsy_monster: {fileID: 0}
+  lsy_monsterType: 0
+  lsy_monsterAttackType: 0
+  lsy_monsterShieldAtkPower: 2
+  lsy_monsterHpAtkPower: 0
+  lsy_monsterAttackRange: 0
+  lsy_score: 0
+  lsy_monsterHp: 10
+  lsy_monsterMoveSpeed: 0
+  lsy_playerDistance: 0
+  lsy_isAttack: 0
+  lsy_nowAttack: 0
+  lsy_isDie: 0
+  lsy_OnEnemyDied:
     m_PersistentCalls:
       m_Calls: []
-  playerAttackPower: 20
-  isShield: 0
-  hitFlag: 0
-  monsterCount: {fileID: 1678045365}
+  lsy_playerAttackPower: 20
+  lsy_isShield: 0
+  lsy_hitFlag: 0
+  lsy_monsterCount: {fileID: 0}

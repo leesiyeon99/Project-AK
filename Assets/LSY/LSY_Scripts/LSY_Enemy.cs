@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -195,23 +194,27 @@ public class LSY_Enemy : MonoBehaviour
         if (lsy_monsterHp <= 0) // Comment : 몬스터의 Hp가 0이 되면 몬스터 오브젝트를 삭제한다.
         {
             //----------------------------------lsy
-            if (lsy_monsterCount.Enemies.ContainsKey(this))
+            if (lsy_monsterCount != null)
             {
-                if (lsy_monsterCount.isEnter[this] == true)
+                if (lsy_monsterCount.Enemies.ContainsKey(this))
                 {
-                    ColliderType col = lsy_monsterCount.Enemies[this];
-                    lsy_monsterCount.counters[(int)col]--; 
+                    if (lsy_monsterCount.isEnter[this] == true)
+                    {
+                        ColliderType col = lsy_monsterCount.Enemies[this];
+                        lsy_monsterCount.counters[(int)col]--;
+                    }
+                    lsy_monsterCount.Enemies.Remove(this);
                 }
-                lsy_monsterCount.Enemies.Remove(this);
-            }
-            else
-            {
-                Debug.LogWarning($"Monster not found in Enemies dictionary: {this}");
-            }
+                else
+                {
+                    Debug.LogWarning($"Monster not found in Enemies dictionary: {this}");
+                }
 
-            if (lsy_monsterCount.isEnter.ContainsKey(this))
-            {
-                lsy_monsterCount.isEnter[this] = false; 
+                if (lsy_monsterCount.isEnter.ContainsKey(this))
+                {
+                    lsy_monsterCount.isEnter[this] = false;
+                }
+
             }
 
             Debug.Log("몬스터 사망");
