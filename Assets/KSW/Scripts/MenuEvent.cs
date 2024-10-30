@@ -15,8 +15,32 @@ public class MenuEvent : MonoBehaviour
     PlayerInputWeapon playerInputManager;
     AudioManager audioManager;
 
+    private bool isPause;
+    private bool isMute;
+
+
+    // ΩÃ±€≈Ê
+    private static MenuEvent instance;
+    public static MenuEvent Instance
+    {
+        get
+        {
+            return instance;
+
+        }
+    }
     private void Awake()
     {
+        if (instance == null)
+        {
+
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
@@ -42,15 +66,17 @@ public class MenuEvent : MonoBehaviour
 
     void OnPause(InputAction.CallbackContext obj)
     {
-        if (Time.timeScale < 1)
+        if (isPause)
         {
             Time.timeScale = 1f;
             playerInputManager.enabled = true;
+            isPause = false;
         }
         else
         {
             Time.timeScale = 0f;
             playerInputManager.enabled = false;
+            isPause = true;
         }
 
        
@@ -58,7 +84,21 @@ public class MenuEvent : MonoBehaviour
 
     void OnMute(InputAction.CallbackContext obj)
     {
-        audioManager.Mute();
+        if (isMute)
+        {
+            isMute = false;
+        }
+        else
+        {
+            isMute = true;
+        }
+
+        audioManager.Mute(isMute);
 
     }
+
+
+
+
+
 }

@@ -9,21 +9,19 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource seSource;
     [SerializeField] AudioMixer audioMixer;
 
-    bool mute;
 
-
-
-    public void Mute()
+    public void Mute(bool mute)
     {
         if (mute)
         {
-            audioMixer.SetFloat("MasterVolume", 0f);
-            mute = false;
+            audioMixer.SetFloat("MasterVolume", -80f);
+         
+
         }
         else
         {
-            audioMixer.SetFloat("MasterVolume", -80f);
-            mute = true;
+            audioMixer.SetFloat("MasterVolume", 0f);
+
         }
     }
 
