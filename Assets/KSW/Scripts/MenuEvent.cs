@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,9 @@ public class MenuEvent : MonoBehaviour
 
     [Header("- 음소거")]
     [SerializeField] private InputActionReference mute;
+
+    [Header("- 메뉴 UI")]
+    [SerializeField] private GameMenuUI menu;
 
     PlayerInputWeapon playerInputManager;
     AudioManager audioManager;
@@ -68,18 +72,22 @@ public class MenuEvent : MonoBehaviour
     {
         if (isPause)
         {
+         
             Time.timeScale = 1f;
             playerInputManager.enabled = true;
             isPause = false;
+         
         }
         else
         {
+           
             Time.timeScale = 0f;
             playerInputManager.enabled = false;
             isPause = true;
+           
         }
 
-       
+        menu.TogglePauseUI(isPause);
     }
 
     void OnMute(InputAction.CallbackContext obj)
@@ -87,14 +95,16 @@ public class MenuEvent : MonoBehaviour
         if (isMute)
         {
             isMute = false;
+          
         }
         else
         {
             isMute = true;
+            
         }
 
         audioManager.Mute(isMute);
-
+        menu.ToggleMuteUI(isMute);
     }
 
 
