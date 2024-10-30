@@ -35,6 +35,7 @@ public class PlayerGun : MonoBehaviour
     // Comment : UI
     [Header("- UI °ü¸®")]
     [SerializeField] private PlayerWeaponUI weaponUI;
+    [SerializeField] public Transform uiPos;
     [SerializeField] private LayerMask aimMask;
     private GameObject aim;
 

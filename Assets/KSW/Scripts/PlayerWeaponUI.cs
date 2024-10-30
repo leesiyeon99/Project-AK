@@ -12,6 +12,7 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
 {
     [SerializeField] PlayerOwnedWeapons weapons;
 
+
     // Comment : 남은 탄환 수 UI
     [SerializeField] TextMeshProUGUI magazineUI;
     // Comment : 발사 쿨타임 UI

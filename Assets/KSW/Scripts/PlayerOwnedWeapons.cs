@@ -67,7 +67,9 @@ public class PlayerOwnedWeapons : MonoBehaviour
         currentWeapon.gameObject.SetActive(false);
         currentWeapon = ownedWeapons[index];
         currentWeapon.gameObject.SetActive(true);
-       
+        weaponUI.transform.position = currentWeapon.uiPos.transform.position;
+        weaponUI.transform.rotation = currentWeapon.uiPos.transform.rotation;
+        
     }
 
     // Comment : 특수 탄환 비어 있을때 호출할 기본 무기 교체 함수
