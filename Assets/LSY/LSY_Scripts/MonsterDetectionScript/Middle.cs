@@ -7,6 +7,7 @@ public class Middle : MonoBehaviour
     public MonsterCount monsterCountLeft;
     public MonsterCount monsterCountRight;
 
+    // Comment : 왼쪽 충돌체, 오른쪽 충돌체의 사이에서 코드 혼동을 막기 위한 스크립트
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EliteEnemy"))

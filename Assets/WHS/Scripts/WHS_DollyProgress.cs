@@ -24,6 +24,8 @@ public class WHS_DollyProgress : MonoBehaviour
 
     private CinemachinePathBase path;
 
+    public float progress;
+
     private void Awake()
     {
         if(instance == null)
@@ -57,7 +59,7 @@ public class WHS_DollyProgress : MonoBehaviour
         if(path != null)
         {
             dollyMPos = dollyCart.m_Position;
-            float progress = Mathf.Clamp01(dollyMPos / path.PathLength);
+            progress = Mathf.Clamp01(dollyMPos / path.PathLength);
             progressBar.value = progress;
         }
     }

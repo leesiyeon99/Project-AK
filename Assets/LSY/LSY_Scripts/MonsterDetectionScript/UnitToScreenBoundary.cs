@@ -4,10 +4,13 @@ using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 public class UnitToScreenBoundary : MonoBehaviour
 {
+    [Header("몬스터 인디케이터 배경 이미지")]
+    [SerializeField] public Image image;
+    [Header("몬스터 인디케이터 아이콘 이미지")]
     [SerializeField] public Image UIImage;
+
+    [Header("몬스터 인디케이터 아이콘 활성화 여부")]
     [SerializeField] public bool isActiveUI = false;
-    [SerializeField] Image image;
-    [SerializeField] MonsterCount monsterCount;
 
 
     private void Update()
@@ -31,7 +34,7 @@ public class UnitToScreenBoundary : MonoBehaviour
             pos.y = Mathf.Clamp(pos.y, 40, image.rectTransform.rect.height / 2);
             UIImage.rectTransform.anchoredPosition = pos;
 
-
+            // Comment : 몬스터 인디케이터 배경 위치를 넘어가면 비활성화 시켜줌
             if (pos.x == image.rectTransform.rect.width || pos.y == 0 || pos.y == image.rectTransform.rect.width || pos.x == 0)
             {
                 SetActiveFalse();
@@ -40,23 +43,14 @@ public class UnitToScreenBoundary : MonoBehaviour
 
         if (gameObject.GetComponent<HYJ_Enemy>().isDie == true)
         {
-            Debug.Log("ui코루틴시작");
-            StartCoroutine(MonsterDiedScoreMinus());
+            isActiveUI = false;
+            SetActiveFalse();
         }
     }
 
     public void SetActiveFalse()
     {
         UIImage.gameObject.SetActive(false);
-    }
-
-
-    IEnumerator MonsterDiedScoreMinus()
-    {
-        yield return new WaitForSeconds(1.9f);
-        Debug.Log("몬스터 죽으면 ui 사라지도록");
-        if (UIImage != null)
-        Destroy(UIImage.gameObject);
     }
 
 }
