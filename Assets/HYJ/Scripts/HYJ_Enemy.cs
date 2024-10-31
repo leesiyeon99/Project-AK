@@ -154,7 +154,7 @@ public class HYJ_Enemy : MonoBehaviour
     {
         if(monsterHp <= 0 && !isDie) // Comment : 몬스터의 Hp가 0이 되면 몬스터 오브젝트를 삭제한다.
         {
-            /*
+            
             if (hyj_monsterCount != null)
             {
                 if (hyj_monsterCount.Enemies.ContainsKey(this))
@@ -180,7 +180,7 @@ public class HYJ_Enemy : MonoBehaviour
             {
                 ScoreUIManager.Instance.AddScore(500);
             }
-            */
+            
 
             Debug.Log("몬스터 사망");
             isDie = true;

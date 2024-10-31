@@ -33,8 +33,8 @@ public class ScoreUIManager : MonoBehaviour
 
     public bool isState;
 
-    //public LJH_UIManager ljh_UIManager;
-    //public WHS_DollyProgress whs_DollyProgress;
+    public LJH_UIManager ljh_UIManager;
+    public WHS_DollyProgress whs_DollyProgress;
 
     private void Awake()
     {
@@ -98,8 +98,8 @@ public class ScoreUIManager : MonoBehaviour
     // Comment : 게임클리어시 나오는 UI
     public void WinScoreLine(int score)
     {
-        //remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
-        //float remainHP = ljh_UIManager.curhp / ljh_UIManager.max_hp; 머지하고 수정 // 코루틴 시작하고 0으로 초기화 해줘야 할듯??
+        remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
+        float remainHP = ljh_UIManager.ljh_curHp / 10000; // 코루틴 시작하고 0으로 초기화 해줘야 할듯??
 
         normalEnemyText.text = normalEnemyCount.ToString();
         eliteEnemyText.text = eliteEnemyCount.ToString();
