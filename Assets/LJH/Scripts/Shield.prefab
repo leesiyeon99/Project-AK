@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2961630504544563500}
   - component: {fileID: 2961630504544563503}
   - component: {fileID: 2961630504544563502}
-  - component: {fileID: 2961630504544563537}
   - component: {fileID: 2961630504544563536}
   m_Layer: 0
   m_Name: Shield
@@ -85,19 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2961630504544563537
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2961630504544563539}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2961630504544563536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shieldRecover: {fileID: 3775956352867349804, guid: abe1c26f6e0e8e34d9b59aa832d5ad7d, type: 3}
   invincibility: {fileID: 1726897402767333548, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+  uiManagerScript: {fileID: 0}
+  monsterScript: {fileID: 0}
   playerPos: {fileID: 0}
   shieldOnOff: {fileID: 6722448762290774280, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   damageTest: {fileID: 3612156886115829855, guid: c348712bda248c246b8c49b3db54643f, type: 3}
@@ -124,3 +112,4 @@ MonoBehaviour:
   isInvincibility: 1
   durability: 0
   damage: 1
+  isNow: 0
