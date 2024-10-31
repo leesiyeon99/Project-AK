@@ -6,40 +6,60 @@ using UnityEngine.UI;
 
 public class LJH_DamageManager : MonoBehaviour
 {
-
-    float ljh_curHp = 100;
-    public RawImage ljh_bloodImage;
-    private Coroutine ljh_bloodCoroutine;
-    public Image ljh_shieldImage;
-    private Coroutine ljh_shieldCoroutine;                          // 시연님꺼
-
-    [SerializeField] float ljh_durability;
-    [SerializeField] bool ljh_isInvincibility;
-
-
-    [SerializeField] AudioSource ljh_damagedShield;
-    [SerializeField] AudioSource ljh_damagedHP;
-
     [Header("오브젝트")]
+    [Header("무적 관리 오브젝트")]
     [SerializeField] GameObject ljh_invincibility;
+    [Header("쉴드 오브젝트")]
     [SerializeField] GameObject shield;
+    [Header("몬스터 오브젝트")]
     [SerializeField] GameObject monster;
 
     [Header("스크립트")]
-    [SerializeField] HYJ_Enemy enemyScript;
+    [Header("MonsterTest 스크립트")]
+    [SerializeField] LJH_monsterTest enemyScript;
+    [Header("HYK_Enemy 스크립트")]
+    [SerializeField] HYJ_Enemy hyj_EnemyScript;
+    [Header("Shield 스크립트")]
     [SerializeField] LJH_Shield shieldScript;
+    [Header("UIManager 스크립트")]
     [SerializeField] LJH_UIManager uiManagerScript;
-    
 
-    // Update is called once per frame
+    [Header("변수")]
+    [Header("현재 체력")]
+    float ljh_curHp = 100;
+    [Header("역장 내구도")]
+    [SerializeField] float ljh_durability;
+    [Header("역장 활성화 여부")]
+    [SerializeField] bool ljh_isInvincibility;
+
+
+    [Header("이미지")]
+    [Header("체력 피격 이미지")]
+    public Image ljh_bloodImage;
+    [Header("역장 피격 이미지")]
+    public Image ljh_shieldImage;
+
+    [Header("코루틴")]
+    [Header("체력 피격 코루틴")]
+    private Coroutine ljh_bloodCoroutine;
+    [Header("역장 피격 코루틴")]
+    private Coroutine ljh_shieldCoroutine;
+
+    [Header("오디오")]
+    [Header("역장 피해시 사운드")]
+    [SerializeField] AudioSource ljh_damagedShield;
+    [Header("체력 피해시 사운드")]
+    [SerializeField] AudioSource ljh_damagedHP;
+
     void Update()
     {
         ljh_durability = shield.GetComponent<LJH_Shield>().durability;
-        ljh_isInvincibility = GetComponent<LJH_invincibility>().isInvincibility;
+        ljh_isInvincibility = shield.GetComponent<LJH_Shield>().isInvincibility;
 
-        //if(enemyScript.nowAttack)
-        //{
-            if (shield.GetComponent<LJH_Shield>().isShield)
+
+        if (shield.GetComponent<LJH_Shield>().isShield)
+        {
+            if (monster.GetComponent<HYJ_Enemy>().nowAttack)
             {
                 float damage = TakeDamage(enemyScript);
                 DamagedShield(damage);
@@ -50,7 +70,10 @@ public class LJH_DamageManager : MonoBehaviour
                 }
                 ljh_shieldCoroutine = StartCoroutine(ShowShieldScreen());
             }
-            else if (!shield.GetComponent<LJH_Shield>().isShield)
+        }
+        else if (!shield.GetComponent<LJH_Shield>().isShield)
+        {
+            if (monster.GetComponent<HYJ_Enemy>().nowAttack)
             {
                 float damage = TakeDamage(enemyScript);
                 DamagedHP(damage);
@@ -61,49 +84,19 @@ public class LJH_DamageManager : MonoBehaviour
                 }
                 ljh_bloodCoroutine = StartCoroutine(ShowBloodScreen());
             }
-
+        }
             uiManagerScript.DisplayHpBar();
-        //}
-
         
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            // Todo : 이 부분은 방어가 없을 때 피격이 들어왔을 경우 실행되도록
-            // Comment : 새로운 피격이 들어올 경우 진행하던 코루틴을 멈추고 재시작되도록
-            if (ljh_bloodCoroutine != null)
-            {
-                StopCoroutine(ljh_bloodCoroutine);
-            }
-            ljh_bloodCoroutine = StartCoroutine(ShowBloodScreen());
-            // Todo : 이 부분은 방어가 켜졌을 때 피격 받으면 실행되도록
-            // Comment : 새로운 피격이 들어올 경우 진행하던 코루틴을 멈추고 재시작되도록
-            if (ljh_shieldCoroutine != null)
-            {
-                StopCoroutine(ljh_shieldCoroutine);
-            }
-            ljh_shieldCoroutine = StartCoroutine(ShowShieldScreen());
-        }
-    }
-
-
-    //ToDo: 방식 맞게 재조립해야함
-
 
     public void DamagedHP(float HPDamage)
     {
-        
         Debug.Log("체력 피해입음");
         ljh_curHp -= HPDamage;
         
-        //damaged.Play();
-        Debug.Log(ljh_durability);
+        //damagedHP.Play();
         
     }
-
 
     public void DamagedShield(float shieldDamage)// 인수 지워야함
     {
@@ -126,7 +119,7 @@ public class LJH_DamageManager : MonoBehaviour
                 ljh_invincibility.SetActive(true);
             }
 
-            //damaged.Play();
+            //damagedShield.Play();
             Debug.Log(ljh_durability);
         }
     }
@@ -165,22 +158,18 @@ public class LJH_DamageManager : MonoBehaviour
         ljh_shieldImage.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0);
     }
 
-    public float TakeDamage(HYJ_Enemy monsterScript)
+    public float TakeDamage(LJH_monsterTest monsterScript)
     {
         if(shield.GetComponent<LJH_Shield>().isShield)
         {
             float damage;
-            //Todo: 머지 이후 적용(퍼블릭 이슈)
-            //return damage = monsterScript.GetComponent<HYJ_Enemy>().monsterShieldAtkPower;
-            return damage = 1;
+            return damage = monsterScript.GetComponent<LJH_monsterTest>().monsterShieldAtkPower;
         }
     
         else if(!shield.GetComponent<LJH_Shield>().isShield)
         {
             float damage;
-            //Todo: 머지 이후 적용(퍼블릭 이슈)
-            //return damage = monsterScript.GetComponent<HYJ_Enemy>().monsterHpAtkPower;
-            return damage = 1000;
+            return damage = monsterScript.GetComponent<LJH_monsterTest>().monsterHpAtkPower;
         }
         return 0;
     }

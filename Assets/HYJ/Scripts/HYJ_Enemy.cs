@@ -61,6 +61,7 @@ public class HYJ_Enemy : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         isAttack = false;
         nowAttack = false;
         isDie = false;
