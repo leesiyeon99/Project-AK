@@ -371,17 +371,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9f039d04870fb4caf2d5be9aafd980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Weapon1
-  gunType: 2
-  tier: 2
-  bulletAttack: 50
-  defaultFiringDelay: 0.2
-  firingDelay: 0.2
-  accelerationTime: 5
-  maxMagazine: 300
+  weaponData: {fileID: 11400000, guid: a59be373ca3f4494eb797b10fe1f2fe5, type: 2}
+  firingDelay: 1
   magazine: 0
-  reloadSpeed: 0.8
-  range: 10
   defaultPierceCount: 0
   splashRadius: 0
   splashDamage: 0
