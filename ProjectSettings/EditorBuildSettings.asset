@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/WHS/WHS_Title.unity
+    guid: 8f840485efdf29249814dd3cf9505ffc
+  - enabled: 1
+    path: Assets/KSJ/KSJ1Stage.unity
+    guid: 920c4afd773bebd4f838e52493620376
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 247b871a410df6547b423a46533b951c, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ee8a70df84f4ca04fbeeb0b44a936ddf, type: 2}
