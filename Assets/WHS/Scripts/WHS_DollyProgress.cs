@@ -8,24 +8,57 @@ public class WHS_DollyProgress : MonoBehaviour
 {
     // 맵 진행상황
     // DollyCart의 진행도에 따라 0에서 1까지 슬라이더 이동
-    // UI 배치 논의 필요
+
+    private static WHS_DollyProgress instance;
+
+    public static WHS_DollyProgress Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
     [SerializeField] CinemachineDollyCart dollyCart;
     [SerializeField] Slider progressBar;
 
     private CinemachinePathBase path;
 
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     private void Start()
     {
-        path = dollyCart.m_Path;
+        path = dollyCart.m_Path; 
 
         progressBar.minValue = 0;
         progressBar.maxValue = 1;
     }
 
+    /*
     private void Update()
     {
         float progress = Mathf.Clamp01(dollyCart.m_Position / path.PathLength); // 카트의 위치 / 트랙의 길이
         progressBar.value = progress;
+    }
+    */
+
+    public void UpdateProgress(float dollyMPos)
+    {
+        if(path != null)
+        {
+            dollyMPos = dollyCart.m_Position;
+            float progress = Mathf.Clamp01(dollyMPos / path.PathLength);
+            progressBar.value = progress;
+        }
     }
 }
