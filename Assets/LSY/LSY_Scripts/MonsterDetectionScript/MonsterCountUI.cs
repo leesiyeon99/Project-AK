@@ -8,11 +8,11 @@ public class MonsterCountUI : MonoBehaviour
 {
     public int[] counters = new int[2];
 
-    public Dictionary<LSY_Enemy, ColliderType> Enemies = new();
+    public Dictionary<HYJ_Enemy, ColliderType> Enemies = new();
 
     public bool isEntered;
 
-    public Dictionary<LSY_Enemy, bool> isEnter = new Dictionary<LSY_Enemy, bool>();
+    public Dictionary<HYJ_Enemy, bool> isEnter = new Dictionary<HYJ_Enemy, bool>();
 
     public TextMeshProUGUI rightCount;
     public TextMeshProUGUI leftCount;

@@ -30,9 +30,9 @@ public class MonsterCount : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EliteEnemy"))
         {
-            if (other.GetComponent<LSY_Enemy>() == null) return;
+            if (other.GetComponent<HYJ_Enemy>() == null) return;
 
-            if (other.GetComponent<LSY_Enemy>().lsy_monsterShieldAtkPower >= 3)
+            if (other.GetComponent<HYJ_Enemy>().monsterShieldAtkPower >= 3)
             {
                 HandleStrongEnemyEntry(other);
             }
@@ -45,12 +45,12 @@ public class MonsterCount : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<LSY_Enemy>() == null) return;
+        if (other.GetComponent<HYJ_Enemy>() == null) return;
 
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EliteEnemy"))
         {
 
-            if (other.GetComponent<LSY_Enemy>().lsy_monsterShieldAtkPower >= 3)
+            if (other.GetComponent<HYJ_Enemy>().monsterShieldAtkPower >= 3)
             {
                 // 강한 몬스터 나감
                 HandleStrongEnemyExit(other);
@@ -92,8 +92,8 @@ public class MonsterCount : MonoBehaviour
     private void HandleEnemyEntry(Collider other)
     {
         monsterCountUI.counters[(int)colType]++;
-        LSY_Enemy monster = other.GetComponent<LSY_Enemy>();
-        monster.lsy_monsterCount = monsterCountUI;
+        HYJ_Enemy monster = other.GetComponent<HYJ_Enemy>();
+        //monster.hyj_monsterCount = monsterCountUI;
 
         if (!monsterCountUI.Enemies.ContainsKey(monster))
         {
@@ -115,8 +115,8 @@ public class MonsterCount : MonoBehaviour
     private void HandleEnemyExit(Collider other)
     {
         monsterCountUI.counters[(int)colType]--;
-        LSY_Enemy monster = other.GetComponent<LSY_Enemy>();
-        monster.lsy_monsterCount = monsterCountUI;
+        HYJ_Enemy monster = other.GetComponent<HYJ_Enemy>();
+        //monster.hyj_monsterCount = monsterCountUI;
 
         if (monsterCountUI.Enemies.ContainsKey(monster))
         {
@@ -134,8 +134,8 @@ public class MonsterCount : MonoBehaviour
 
         Debug.Log("강한 몬스터 화면 밖으로 나감");
         monsterCountUI.counters[(int)colType]++;
-        LSY_Enemy monster = other.GetComponent<LSY_Enemy>();
-        monster.lsy_monsterCount = monsterCountUI;
+        HYJ_Enemy monster = other.GetComponent<HYJ_Enemy>();
+        //monster.hyj_monsterCount = monsterCountUI;
         if (!monsterCountUI.Enemies.ContainsKey(monster))
         {
             monsterCountUI.Enemies.Add(monster, colType);
@@ -162,8 +162,8 @@ public class MonsterCount : MonoBehaviour
     private void HandleStrongEnemyExit(Collider other)
     {
         monsterCountUI.counters[(int)colType]--;
-        LSY_Enemy monster = other.GetComponent<LSY_Enemy>();
-        monster.lsy_monsterCount = monsterCountUI;
+        HYJ_Enemy monster = other.GetComponent<HYJ_Enemy>();
+        //monster.hyj_monsterCount = monsterCountUI;
 
         if (monsterCountUI.Enemies.ContainsKey(monster))
         {

@@ -11,9 +11,9 @@ public class Middle : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EliteEnemy"))
         {
-            if (other.GetComponent<LSY_Enemy>() == null) return;
+            if (other.GetComponent<HYJ_Enemy>() == null) return;
 
-            if (other.GetComponent<LSY_Enemy>().lsy_monsterShieldAtkPower >= 3)
+            if (other.GetComponent<HYJ_Enemy>().monsterShieldAtkPower >= 3)
             {
                 monsterCountLeft.isMiddle = true;
                 monsterCountRight.isMiddle = true;
@@ -25,9 +25,9 @@ public class Middle : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EliteEnemy"))
         {
-            if (other.GetComponent<LSY_Enemy>() == null) return;
+            if (other.GetComponent<HYJ_Enemy>() == null) return;
 
-            if (other.GetComponent<LSY_Enemy>().lsy_monsterShieldAtkPower >= 3)
+            if (other.GetComponent<HYJ_Enemy>().monsterShieldAtkPower >= 3)
             {
                 monsterCountLeft.isMiddle = false;
                 monsterCountRight.isMiddle = false;
