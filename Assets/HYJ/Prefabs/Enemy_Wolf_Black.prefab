@@ -60,6 +60,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   weak: 1
+  canvas: {fileID: 0}
+  damageText: {fileID: 0}
 --- !u!1 &4213126397648530060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,7 +1266,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.55, y: 0, z: -6.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4209851296183875612}
   - {fileID: 4209969321396639698}
@@ -1357,6 +1359,7 @@ MonoBehaviour:
   monsterHpAtkPower: 800
   monsterAttackRange: 0
   score: 0
+  setBossHp: 0
   monsterHp: 100
   monsterMoveSpeed: 1
   playerDistance: 0
@@ -1365,6 +1368,7 @@ MonoBehaviour:
   isAttack: 0
   nowAttack: 0
   isDie: 0
+  hyj_monsterCount: {fileID: 0}
   OnEnemyDied:
     m_PersistentCalls:
       m_Calls: []
@@ -1994,3 +1998,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   weak: 0
+  canvas: {fileID: 0}
+  damageText: {fileID: 0}
