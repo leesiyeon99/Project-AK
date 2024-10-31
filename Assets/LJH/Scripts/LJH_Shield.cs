@@ -76,10 +76,9 @@ public class LJH_Shield : MonoBehaviour
             shieldOnOff.action.performed += ShieldOff;
 
             // Comment: 역장 활성화될 때 사격 기능 비활성화
-            fire.action.performed -= GetComponent<PlayerInputWeapon>().OnFire;
-            fire.action.performed -= GetComponent<PlayerInputWeapon>().OffFire;
+            //fire.action.performed -= GetComponent<PlayerInputWeapon>().OnFire;
+            //fire.action.performed -= GetComponent<PlayerInputWeapon>().OffFire;
 
-            damageTest.action.performed += DamagedShieldTest; // 테스트 끝나고 지워야함
         
     }
 
@@ -96,7 +95,6 @@ public class LJH_Shield : MonoBehaviour
             //fire.action.performed += GetComponent<PlayerInputWeapon>().OnFire;
             //fire.action.performed += GetComponent<PlayerInputWeapon>().OffFire;
 
-            damageTest.action.performed -= DamagedShieldTest; // 테스트 끝나고 지워야함
 
 
         
@@ -141,38 +139,6 @@ public class LJH_Shield : MonoBehaviour
         isShield = false;
     }
 
-    // Comment: 피격시 역장 내구도 1 감소 (테스트용 함수, 조립시 주석 처리 후 테스트에만 사용하거나 삭제)
-    // ToDo:    몬스터의 타격 방식에 따라 내용 변경 필요
-    public void DamagedShieldTest(InputAction.CallbackContext obj)// 인수 지워야함
-    {
-        if (durability > 0)
-        {
-            // ToDo : 피격시 사운드 구현해야함
-
-            if (isInvincibility)
-            {
-                // Comment: 무적 상태일 때, 데미지를 0으로 변경
-                float zeroDamage = 0;
-
-                durability -= zeroDamage;
-            }
-            else if (!isInvincibility)
-            {
-
-                durability -= 1;
-                uiManagerScript.UpdateShieldUI(durability);
-
-                isNow = true;
-                Debug.Log(isNow);
-
-
-                invincibility.SetActive(true);
-            }
-
-            damaged.Play();
-        }
-    }
-
     // Comment: 역장 파괴, 역장이 비활성화되며 isBreaked 변수에 값 전달
     public void BreakedShield()
     {
@@ -183,13 +149,8 @@ public class LJH_Shield : MonoBehaviour
         
         gameObject.SetActive(false);
         
-
         breaked.Play();
-        Debug.Log("역장이 파괴되었습니다.");
         
     }
-
-    
-
 
 }

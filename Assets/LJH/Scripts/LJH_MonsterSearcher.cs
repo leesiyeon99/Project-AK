@@ -19,10 +19,8 @@ public class LJH_MonsterSearcher : MonoBehaviour
         // Comment: 트리거엔터에 감지된 ohter가 몬스터일때,
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("몬스터 감지됨");
             // Comment: 몬스터 스탯 변수에 해당 몬스터 컴포넌트를 넣어줌
             monsterStats = other.GetComponentInParent<HYJ_Enemy>();
-            OnTriggerStay(other);
         }
         // Comment: 될지 안될지 몰라서 확인 빡시게 해야함, 안 될 확률 큼
     }
@@ -37,8 +35,7 @@ public class LJH_MonsterSearcher : MonoBehaviour
             {
                 // Comment: TakeDamage에 몬스터 스탯 변수에 있는 스텟을 뽑아서 넣어줌
                 searchMonster.TakeDamage(monsterStats);
-                Debug.Log(monsterStats.monsterHpAtkPower);
-                Debug.Log(monsterStats.monsterShieldAtkPower);
+                monsterStats.nowAttack = false;
             }
         }
     }

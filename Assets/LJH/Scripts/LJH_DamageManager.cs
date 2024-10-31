@@ -8,7 +8,7 @@ public class LJH_DamageManager : MonoBehaviour
 {
     [Header("오브젝트")]
     [Header("무적 관리 오브젝트")]
-    [SerializeField] GameObject ljh_invincibility;
+    [SerializeField] GameObject invincibility;
     [Header("쉴드 오브젝트")]
     [SerializeField] GameObject shield;
 
@@ -22,12 +22,12 @@ public class LJH_DamageManager : MonoBehaviour
 
     
     [Header("현재 체력")]
-    float ljh_curHp = 100;
+    public float ljh_curHp;
     [Header("변수")]
     [Header("역장 내구도")]
-    [SerializeField] float ljh_durability;
+    [SerializeField] public float durability;
     [Header("무적 활성화 여부")]
-    [SerializeField] bool ljh_isInvincibility;
+    [SerializeField] public bool isInvincibility;
     [Header("데미지 계산용 역장 데미지")]
     [SerializeField] float takeShieldDamage;
     [Header("데미지 계산용 체력 데미지")]
@@ -41,9 +41,9 @@ public class LJH_DamageManager : MonoBehaviour
 
     [Header("코루틴")]
     [Header("체력 피격 코루틴")]
-    private Coroutine ljh_bloodCoroutine;
+    private Coroutine bloodCoroutine;
     [Header("역장 피격 코루틴")]
-    private Coroutine ljh_shieldCoroutine;
+    private Coroutine shieldCoroutine;
 
     [Header("오디오")]
     [Header("역장 피해시 사운드")]
@@ -51,11 +51,13 @@ public class LJH_DamageManager : MonoBehaviour
     [Header("체력 피해시 사운드")]
     [SerializeField] AudioSource ljh_damagedHP;
 
+    private void Start()
+    {
+        ljh_curHp = 10000;
+        durability = shield.GetComponent<LJH_Shield>().durability;
+    }
     void Update()
     {
-        ljh_durability = shield.GetComponent<LJH_Shield>().durability;
-        ljh_isInvincibility = shield.GetComponent<LJH_Shield>().isInvincibility;
-
         // Comment: 현재 체력 상황 띄워줌
         uiManagerScript.DisplayHpBar();
 
@@ -63,8 +65,8 @@ public class LJH_DamageManager : MonoBehaviour
 
     public void DamagedHP(float HPDamage)
     {
-        Debug.Log("체력 피해입음");
         ljh_curHp -= HPDamage;
+        Debug.Log(HPDamage);
 
         //damagedHP.Play();
 
@@ -72,27 +74,27 @@ public class LJH_DamageManager : MonoBehaviour
 
     public void DamagedShield(float shieldDamage)
     {
-        if (ljh_durability > 0)
+        if (durability > 0)
         {
 
-            if (ljh_isInvincibility)
+            if (isInvincibility)
             {
                 // Comment: 무적 상태일 때, 데미지를 0으로 변경
                 float zeroDamage = 0;
 
-                Debug.Log("역장 무적 상태");
-                ljh_durability -= zeroDamage;
+                durability -= zeroDamage;
             }
-            else if (!ljh_isInvincibility)
+            else if (!isInvincibility)
             {
-                Debug.Log("역장 피해입음");
-                ljh_durability -= shieldDamage;
-                uiManagerScript.UpdateShieldUI(ljh_durability);
-                ljh_invincibility.SetActive(true);
+                durability -= shieldDamage;
+                Debug.Log(durability);
+
+                uiManagerScript.UpdateShieldUI(durability);
+                invincibility.SetActive(true);
+
+                Debug.Log(shieldDamage);
             }
 
-            //damagedShield.Play();
-            Debug.Log(ljh_durability);
         }
     }
 
@@ -136,12 +138,11 @@ public class LJH_DamageManager : MonoBehaviour
         {
             float damage = monsterScript.GetComponent<HYJ_Enemy>().monsterShieldAtkPower;
             DamagedShield(damage);
-
-            if (ljh_shieldCoroutine != null)
+            if (shieldCoroutine != null)
             {
-                StopCoroutine(ljh_shieldCoroutine);
+                StopCoroutine(shieldCoroutine);
             }
-            ljh_shieldCoroutine = StartCoroutine(ShowShieldScreen());
+            shieldCoroutine = StartCoroutine(ShowShieldScreen());
         }
 
         else if (!shield.GetComponent<LJH_Shield>().isShield)
@@ -149,11 +150,11 @@ public class LJH_DamageManager : MonoBehaviour
             float damage = monsterScript.GetComponent<HYJ_Enemy>().monsterHpAtkPower;
             DamagedHP(damage);
 
-            if (ljh_bloodCoroutine != null)
+            if (bloodCoroutine != null)
             {
-                StopCoroutine(ljh_bloodCoroutine);
+                StopCoroutine(bloodCoroutine);
             }
-            ljh_bloodCoroutine = StartCoroutine(ShowBloodScreen());
+            bloodCoroutine = StartCoroutine(ShowBloodScreen());
         }
     }
 
