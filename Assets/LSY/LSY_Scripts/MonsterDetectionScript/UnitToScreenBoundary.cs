@@ -38,7 +38,7 @@ public class UnitToScreenBoundary : MonoBehaviour
             }
         }
 
-        if (gameObject.GetComponent<LSY_Enemy>().lsy_isDie == true)
+        if (gameObject.GetComponent<HYJ_Enemy>().isDie == true)
         {
             Debug.Log("ui코루틴시작");
             StartCoroutine(MonsterDiedScoreMinus());
