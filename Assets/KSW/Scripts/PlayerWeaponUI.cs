@@ -82,7 +82,7 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
             changeUIBackground[i] = GetUI<Image>(initStringBuilder.ToString());
         }
 
-        weaponExplainScript = GameObject.Find("WeaponExplainCanvas").GetComponent<WeaponExplainScript>();
+        weaponExplainScript = GameObject.Find("WeaponExplain").GetComponent<WeaponExplainScript>();
         weaponExplainScript.gameObject.SetActive(false);
       
     }

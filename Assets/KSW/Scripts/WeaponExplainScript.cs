@@ -18,7 +18,7 @@ public class WeaponExplainScript : BaseUI
 
     Coroutine fadeout;
     bool enableCheck;
-
+    bool destroyCheck;
     void Awake()
     {
         explainList = new List<TextMeshProUGUI>();
@@ -40,7 +40,7 @@ public class WeaponExplainScript : BaseUI
 
     private void OnDestroy()
     {
-        StopAllCoroutines();
+        destroyCheck = true;
     }
 
 
@@ -58,6 +58,8 @@ public class WeaponExplainScript : BaseUI
 
     public void SetFade()
     {
+        if (destroyCheck)
+            return;
         StopAllCoroutines();
         fadeDeltaTime = fadeTime;
         foreach (TextMeshProUGUI explainText in explainList)
@@ -68,7 +70,8 @@ public class WeaponExplainScript : BaseUI
 
     public void StartFadeOut()
     {
-        
+        if (destroyCheck)
+            return;
         SetFade();
         if (!gameObject.activeSelf)
         {
@@ -101,6 +104,8 @@ public class WeaponExplainScript : BaseUI
     }
     public void SetExplain(string weaponName, GunType gunType, float atk, int magazine )
     {
+        if (destroyCheck)
+            return;
         weaponNameUI.text = weaponName;
         weaponAbilityUI.text = gunType.ToString();
         weaponAttackUI.text = atk.ToString();
