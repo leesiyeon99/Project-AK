@@ -31,7 +31,6 @@ public class ScoreUIManager : MonoBehaviour
 
     public TextMeshProUGUI noticeWordText;
 
-    public bool isState;
 
     public LJH_UIManager ljh_UIManager;
     public WHS_DollyProgress whs_DollyProgress;
@@ -70,14 +69,13 @@ public class ScoreUIManager : MonoBehaviour
         Debug.Log(score);
         UpdateScoreUI();
 
-        if (isState)
-        {
-            WinScoreLine(score);
-        }
-        else
-        {
-            LoseScoreLine(score);
-        }
+        
+            //WinScoreLine(score);
+        
+        
+        
+            //LoseScoreLine(score);
+        
     }
 
     // ScoreUIManager.Instance.AddScore(점수); 로 점수 추가 할 수 있게 함
@@ -98,8 +96,8 @@ public class ScoreUIManager : MonoBehaviour
     // Comment : 게임클리어시 나오는 UI
     public void WinScoreLine(int score)
     {
-        remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
-        float remainHP = ljh_UIManager.ljh_curHp / 10000; // 코루틴 시작하고 0으로 초기화 해줘야 할듯??
+        //remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
+        //float remainHP = ljh_UIManager.ljh_curHp / 10000; // 코루틴 시작하고 0으로 초기화 해줘야 할듯??
 
         normalEnemyText.text = normalEnemyCount.ToString();
         eliteEnemyText.text = eliteEnemyCount.ToString();
@@ -118,7 +116,7 @@ public class ScoreUIManager : MonoBehaviour
     public void LoseScoreLine(int score)
     {
         //remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
-        //float remainProgress = whs_DollyProgress.progress; 머지하고 수정 // 코루틴 시작하고 0으로 초기화 해줘야 할듯??
+        //float remainProgress = whs_DollyProgress.progress;// 코루틴 시작하고 0으로 초기화 해줘야 할듯??
 
         normalEnemyText.text = normalEnemyCount.ToString();
         eliteEnemyText.text = eliteEnemyCount.ToString();
