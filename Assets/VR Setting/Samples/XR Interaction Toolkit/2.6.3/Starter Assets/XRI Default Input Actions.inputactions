@@ -2867,6 +2867,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "WHS_TEST",
+            "id": "38668cee-b87d-4a2b-b777-17c2221d5b6b",
+            "actions": [
+                {
+                    "name": "TriggerButton",
+                    "type": "Button",
+                    "id": "40050ba7-fa19-41f0-8919-1252ba6fee86",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MoveStick",
+                    "type": "Value",
+                    "id": "30950a4e-7c79-4677-bad0-e1541f5a322d",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1e59980d-2351-43f1-8ae0-689e2b64257e",
+                    "path": "<XRController>{RightHand}/triggerButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8be50943-5ada-42ee-b4de-925d60f6918b",
+                    "path": "<XRController>{RightHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveStick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
