@@ -2,35 +2,41 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
-public class WHS_TitleScene : MonoBehaviour
+public class WHS_StageSelectScene : MonoBehaviour
 {
-    private enum JoystickDirection
-    {
-        NONE = 0,
-        LEFT = 1,
-        RIGHT = 2
-    }
-
     [SerializeField] TMP_Text stageText;
     [SerializeField] Button leftButton;
     [SerializeField] Button rightButton;
+    [SerializeField] Button startButton;
+    [SerializeField] Transform compassNeedle;
+    private float curAngle = 0f;
+    private float velocity = 0f;
 
     private int curStage = 1;
     private int maxStage = 5;
 
-    [SerializeField] private InputActionReference rightJoystickInput;
-    [SerializeField] private InputActionReference triggerInput;
+    [SerializeField] ActionBasedController rightController;
+    [SerializeField] InputActionProperty rightJoystickInput;
+    [SerializeField] InputActionProperty triggerInput;
 
     private void Start()
     {
         UpdateSelectedStage();
         leftButton.onClick.AddListener(StageDown);
         rightButton.onClick.AddListener(StageUp);
+        startButton.onClick.AddListener(LoadSelectedStage);
+    }
+
+    private void Update()
+    {
+        RotateNeedle();
     }
 
     private void OnEnable()
@@ -47,50 +53,45 @@ public class WHS_TitleScene : MonoBehaviour
         triggerInput.action.performed -= LoadSceneTrigger;
     }
 
-    private JoystickDirection joystickDirection;
-
+    // 컨트롤러 좌우 입력
     private void MoveJoystick(InputAction.CallbackContext context)
     {
         Vector2 joystickVector = context.ReadValue<Vector2>();
-
-        if(Mathf.Abs(joystickVector.x) == 1 || joystickVector == Vector2.zero)
-        {
-            joystickDirection = JoystickDirection.NONE;
-        }
+        Debug.Log(joystickVector);
 
         // 우측
-        if(joystickVector.x > 0 && joystickVector.x < 1)
+        if (joystickVector.x > 0)
         {
-            joystickDirection |= JoystickDirection.RIGHT;
-            joystickDirection &= ~JoystickDirection.LEFT;
             StageUp();
         }
         // 좌측
-        else if (joystickVector.x < 0 && joystickVector.x > -1)
+        else if (joystickVector.x < 0)
         {
-            joystickDirection |= JoystickDirection.LEFT;
-            joystickDirection &= ~JoystickDirection.RIGHT;
             StageDown();
         }
     }
 
-    private void LoadSceneTrigger(InputAction.CallbackContext context)
+    // 트리거버튼
+    public void LoadSceneTrigger(InputAction.CallbackContext context)
     {
-        LoadSelectedStage();
+        if (context.performed)
+        {
+            LoadSelectedStage();
+        }
     }
 
-    private void StageUp()
+    public void StageUp()
     {
-        if(curStage < maxStage)
+        if (curStage < maxStage)
         {
             curStage++;
             UpdateSelectedStage();
         }
     }
 
-    private void StageDown()
+    public void StageDown()
     {
-        if(curStage > 1)
+        if (curStage > 1)
         {
             curStage--;
             UpdateSelectedStage();
@@ -100,21 +101,28 @@ public class WHS_TitleScene : MonoBehaviour
     private void UpdateSelectedStage()
     {
         stageText.text = $"{curStage}";
+        RotateNeedle();
     }
 
-    private void LoadSelectedStage()
+    public void LoadSelectedStage()
     {
+        Debug.Log($"{curStage} 스테이지 진입");
         string sceneName = $"KSJ{curStage}Stage";
-        SceneManager.LoadScene(sceneName);
+
+        if (!Application.CanStreamedLevelBeLoaded(sceneName))
+        {
+            return;
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
-    /*
-    private void OnRightJoystick(InputAction.CallbackContext obj)
+
+    private void RotateNeedle()
     {
-        MoveJoystick(obj.ReadValue<Vector2>());
+        float targetAngle = (curStage - 1) * -20f;
+        curAngle = Mathf.SmoothDamp(curAngle, targetAngle, ref velocity, 0.2f);
+        compassNeedle.localRotation = Quaternion.Euler(0, 0, curAngle);
     }
-    
-    private void OffRightJoystick(InputAction.CallbackContext obj)
-    {
-        MoveJoystick(Vector2.zero);
-    }*/
 }

@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/WHS/WHS_Title.unity
+    path: Assets/WHS/WHS_StageSelect.unity
     guid: 8f840485efdf29249814dd3cf9505ffc
   - enabled: 1
     path: Assets/KSJ/KSJ1Stage.unity
