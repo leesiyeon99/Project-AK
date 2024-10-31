@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.Tilemaps.Tile;
 
 public class HYJ_Enemy : MonoBehaviour
 {
@@ -11,8 +12,6 @@ public class HYJ_Enemy : MonoBehaviour
 
     [Header("몬스터 설정")]
     [SerializeField] GameObject monster;
-    //[SerializeField] GameObject damageText;
-    //[SerializeField] Transform damagePos;
     [SerializeField] public MonsterType monsterType;
     [SerializeField] public MonsterAttackType monsterAttackType;
     [SerializeField] public float monsterShieldAtkPower;
@@ -32,14 +31,13 @@ public class HYJ_Enemy : MonoBehaviour
     public bool isAttack;
     public bool nowAttack;
     public bool isDie;
-    
+
+    //public MonsterCountUI hyj_monsterCount;
+
     public UnityEvent<Collider> OnEnemyDied;
 
     //------------------------임의 변수---------------------------//
     [Header("임의 변수")]
-    public float playerAttackPower=20;
-    public bool isShield;
-
     [SerializeField] public bool hitFlag;
     public bool HitFlag { get { return hitFlag; } set { hitFlag = value; } }
 
@@ -134,19 +132,7 @@ public class HYJ_Enemy : MonoBehaviour
     // Comment : 온트리거 엔터를 이용하여 총알과의 충돌 여부를 확인, 충돌 시, 캐릭터의 공격력 or 무기의 공격력이 완료되면 몬스터 피격 함수를 진행시킨다.
     public void MonsterTakeDamageCalculation(float damage)
     {
-        // float -> 
-        // Comment : 현재는 임의로 playerAttackPower 변수를 활용하여 작성했다.
-        if (monsterType == MonsterType.Nomal)
-        {
-            monsterHp -= damage;
-        }
-        else if(monsterType == MonsterType.Elite)
-        {
-            if(playerAttackPower-15 > 0)
-            {
-                monsterHp -= damage - 15;
-            }
-        }
+        monsterHp -=damage;
     }
 
     public void StartHitFlagCoroutine()
@@ -179,15 +165,47 @@ public class HYJ_Enemy : MonoBehaviour
     // Comment : 몬스터 사망
     public void MonsterDie()
     {
-        if(monsterHp <= 0) // Comment : 몬스터의 Hp가 0이 되면 몬스터 오브젝트를 삭제한다.
+        if(monsterHp <= 0 && !isDie) // Comment : 몬스터의 Hp가 0이 되면 몬스터 오브젝트를 삭제한다.
         {
+            /*
+            if (hyj_monsterCount != null)
+            {
+                if (hyj_monsterCount.Enemies.ContainsKey(this))
+                {
+                    if (hyj_monsterCount.isEnter[this] == true)
+                    {
+                        ColliderType col = hyj_monsterCountt.Enemies[this];
+                        hyj_monsterCount.counters[(int)col]--;
+                    }
+                    hyj_monsterCount.Enemies.Remove(this);
+                }
+                if (hyj_monsterCount.isEnter.ContainsKey(this))
+                {
+                    hyj_monsterCount.isEnter[this] = false;
+                }
+            }
+            */
+
             Debug.Log("몬스터 사망");
-            monsterAnimator.SetTrigger("Die");
             isDie = true;
+            monsterAnimator.SetTrigger("Die");
             OnEnemyDied?.Invoke(GetComponent<Collider>());
             Destroy(gameObject.GetComponent<BoxCollider>());
             Destroy(gameObject.GetComponent<Rigidbody>());
             Destroy(gameObject,2f);
+
+        }
+    }
+
+    public void MonsterScoreSet()
+    {
+        if (monsterType == MonsterType.Elite) // Comment : Elite 몬스터는 score가 600으로 설정 된다.
+        {
+            score = 600;
+        }
+        else if(monsterType == MonsterType.Nomal) // Comment : Nomal 몬스터는 score 가 100으로 설정 된다.
+        {
+            score = 100;
         }
     }
 
@@ -208,12 +226,7 @@ public class HYJ_Enemy : MonoBehaviour
         }
     }
 
-    // TODO : 몬스터 등급에 따른 이펙트 만들기
-    public void MonsterEffect()
-    {
-
-    }
-
+    /*
     // Comment : 다른 오브젝트와 충돌 시
     private void OnTriggerEnter(Collider other)
     {
@@ -226,13 +239,6 @@ public class HYJ_Enemy : MonoBehaviour
             // TODO : 받은 충돌 지점이 머리 / 몸통 어디인지 판별하기
             // TODO : 몸통이면 흰색, 머리면 빨간색으로 데미지 표기
         }
-    }
-    /*
-    public void DamgeText(float damage)
-    {
-        GameObject text = Instantiate(damageText);
-        text.transform.position = damagePos.position;
-        text.GetComponent<HYJ_DamageText>().damage = damage;
     }
     */
 }
