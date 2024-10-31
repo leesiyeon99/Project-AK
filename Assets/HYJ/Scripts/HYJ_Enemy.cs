@@ -17,8 +17,6 @@ public class HYJ_Enemy : MonoBehaviour
     [SerializeField] public float monsterShieldAtkPower;
     [SerializeField] public float monsterHpAtkPower;
     [SerializeField] public float monsterAttackRange;
-    [SerializeField] public float score;
-    [SerializeField] public float setBossHp;
     [SerializeField] public float monsterHp;
     [SerializeField] public float monsterSetHp;
     [SerializeField] public float monsterMoveSpeed;
@@ -94,8 +92,8 @@ public class HYJ_Enemy : MonoBehaviour
     {
         if (player != null && monsterHp>0)
         {
-            playerDistance = Vector3.Distance(monster.transform.position, player.transform.position); // Comment : 플레이어와 몬스터의 거리
-
+            playerDistance = Vector3.Distance(new Vector3(monster.transform.position.x, 0, monster.transform.position.z), new Vector3(player.transform.position.x, 0, player.transform.position.z)); // Comment : 플레이어와 몬스터의 거리(x, z축만 계산)
+            
             if (playerDistance > monsterAttackRange) // Comment : 플레이어와의 거리가 공격범위 밖일 때
             {
                 Debug.Log("이동 중");
@@ -144,7 +142,7 @@ public class HYJ_Enemy : MonoBehaviour
         Debug.Log("몬스터 공격");
         yield return new WaitForSeconds(aniTime);
         nowAttack = true;
-        nowAttack = false;        
+        nowAttack = false;
         yield return new WaitForSeconds(1f);
         isAttack = false;
     }
@@ -169,9 +167,10 @@ public class HYJ_Enemy : MonoBehaviour
                 if (hyj_monsterCount.isEnter.ContainsKey(this))
                 {
                     hyj_monsterCount.isEnter[this] = false;
+                    //this.gameObject.GetComponent<UnitToScreenBoundary>().image.color = Color.white;
                 }
             }
-
+            
             if (monsterType == MonsterType.Nomal)
             {
                 ScoreUIManager.Instance.AddScore(100);
@@ -186,22 +185,9 @@ public class HYJ_Enemy : MonoBehaviour
             isDie = true;
             monsterAnimator.SetTrigger("Die");
             OnEnemyDied?.Invoke(GetComponent<Collider>());
-            //Destroy(gameObject.GetComponent<BoxCollider>());
-            Destroy(gameObject.GetComponent<Rigidbody>());
+            //Destroy(gameObject.GetComponent<SphereCollider>());
             Destroy(gameObject,2f);
 
-        }
-    }
-
-    public void MonsterScoreSet()
-    {
-        if (monsterType == MonsterType.Elite) // Comment : Elite 몬스터는 score가 600으로 설정 된다.
-        {
-            score = 600;
-        }
-        else if(monsterType == MonsterType.Nomal) // Comment : Nomal 몬스터는 score 가 100으로 설정 된다.
-        {
-            score = 100;
         }
     }
 

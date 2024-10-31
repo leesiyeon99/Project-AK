@@ -20,9 +20,7 @@ public class HYJ_EnemyHitPoint : MonoBehaviour
 
     private void Update()
     {
-        damageText.transform.position = Camera.main.WorldToScreenPoint(transform.position+new Vector3(0,1,0));
-
-
+        
     }
 
     public bool TakeDamage(float damage)
@@ -63,7 +61,10 @@ public class HYJ_EnemyHitPoint : MonoBehaviour
         // 몬스터 위에 데미지 폰트 생성
         // 데미지 set damge로 설정
         // 데미지 color 설정 (약점이면 빨강/아니면 하얀색)
+        Debug.Log(isWeak);
+        Debug.Log(damage);
         StartCoroutine(OnDamageText(isWeak, damage));
+        damageText.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1, 0));
     }
 
     public IEnumerator OnDamageText(bool isWeak, float damage)
@@ -82,8 +83,8 @@ public class HYJ_EnemyHitPoint : MonoBehaviour
             damageText.text = damage.ToString();
         }
         canvas.SetActive(true);
-        
-        damageText.color = Color.HSVToRGB(255, (enemy.monsterHp / enemy.monsterSetHp) * 255, (enemy.monsterHp / enemy.monsterSetHp) * 255);
+
+        //damageText.color = new Color32(255, (enemy.monsterHp / enemy.monsterSetHp.t) * 255, (enemy.monsterHp / enemy.monsterSetHp) * 255, 255); //Color.HSVToRGB(255, (enemy.monsterHp / enemy.monsterSetHp) * 255, (enemy.monsterHp / enemy.monsterSetHp) * 255);
         
         for (int i = damageText.fontSize ; i >= 30; i--)
         {
