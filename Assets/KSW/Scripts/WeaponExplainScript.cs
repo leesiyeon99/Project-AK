@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponExplainScript : BaseUI
@@ -16,7 +17,8 @@ public class WeaponExplainScript : BaseUI
     [SerializeField] float fadeDeltaTime;
 
     Coroutine fadeout;
-
+    bool enableCheck;
+    bool destroyCheck;
     void Awake()
     {
         explainList = new List<TextMeshProUGUI>();
@@ -36,15 +38,28 @@ public class WeaponExplainScript : BaseUI
         
     }
 
+    private void OnDestroy()
+    {
+        destroyCheck = true;
+    }
 
 
     private void OnDisable()
     {
         StopAllCoroutines();
+        enableCheck = true;
     }
+
+    private void OnEnable()
+    {
+        enableCheck = false;
+    }
+
 
     public void SetFade()
     {
+        if (destroyCheck)
+            return;
         StopAllCoroutines();
         fadeDeltaTime = fadeTime;
         foreach (TextMeshProUGUI explainText in explainList)
@@ -55,12 +70,15 @@ public class WeaponExplainScript : BaseUI
 
     public void StartFadeOut()
     {
-        
+        if (destroyCheck)
+            return;
         SetFade();
         if (!gameObject.activeSelf)
         {
             return;
         }
+        if (enableCheck)
+            return;
         fadeout = StartCoroutine(FadeOutCoroutine());
         
     }
@@ -86,14 +104,13 @@ public class WeaponExplainScript : BaseUI
     }
     public void SetExplain(string weaponName, GunType gunType, float atk, int magazine )
     {
+        if (destroyCheck)
+            return;
         weaponNameUI.text = weaponName;
         weaponAbilityUI.text = gunType.ToString();
         weaponAttackUI.text = atk.ToString();
         weaponMagazineUI.text = magazine.ToString();
     }
 
-    private void OnDestroy()
-    {
-        StopAllCoroutines();
-    }
+
 }

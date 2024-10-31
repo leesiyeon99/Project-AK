@@ -15,6 +15,7 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
 
     // Comment : ³²Àº ÅºÈ¯ ¼ö UI
     [SerializeField] TextMeshProUGUI magazineUI;
+    [SerializeField] GameObject magazineBackUI;
     // Comment : ¹ß»ç ÄðÅ¸ÀÓ UI
     [SerializeField] TextMeshProUGUI firingCooltimeUI;
 
@@ -57,8 +58,10 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
     {
         StringBuilder initStringBuilder = new StringBuilder();
         changeUI = GetUI("ChangeUI");
+        magazineBackUI = GetUI("BulletsBackground");
         changeJoystick = GetUI<RectTransform>("ChangeJoystick");
         magazineUI = GetUI<TextMeshProUGUI>("RemainingBullets");
+       
         firingCooltimeUI = GetUI<TextMeshProUGUI>("FiringCoolTime");
         for (int i = 0; i < toggleMagazineUI.Length; i++)
         {
@@ -79,7 +82,7 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
             changeUIBackground[i] = GetUI<Image>(initStringBuilder.ToString());
         }
 
-        weaponExplainScript = GameObject.Find("WeaponExplainCanvas").GetComponent<WeaponExplainScript>();
+        weaponExplainScript = GameObject.Find("WeaponExplain").GetComponent<WeaponExplainScript>();
         weaponExplainScript.gameObject.SetActive(false);
       
     }
@@ -90,18 +93,23 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
         UpdateChangeToggleUI();
         UpdateExplainUI(weapons.Index);
         changeUI.SetActive(active);
-        magazineUI.gameObject.SetActive(!active);
+        magazineBackUI.gameObject.SetActive(!active);
 
       
         if (active == false && disable == false)
         {
             weaponExplainScript.StartFadeOut();
         }
-        else
+        if (active == true && disable == false)
         {
             weaponExplainScript.gameObject.SetActive(true);
             weaponExplainScript.SetFade();
         }
+        else
+        {
+            weaponExplainScript.StartFadeOut();
+        }
+       
     }
 
     public bool GetChangeUIActiveSelf()
