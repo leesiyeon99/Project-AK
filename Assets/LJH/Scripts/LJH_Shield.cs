@@ -16,8 +16,6 @@ public class LJH_Shield : MonoBehaviour
     [Header("스크립트")]
     [Header("UIManager 스크립트")]
     [SerializeField] LJH_UIManager uiManagerScript;
-    [Header("monsterTest 스크립트")]
-    [SerializeField] LJH_monsterTest monsterScript;
 
     [Header("플레이어 위치")]
     [SerializeField] GameObject playerPos;
@@ -95,8 +93,8 @@ public class LJH_Shield : MonoBehaviour
             shieldOnOff.action.performed -= ShieldOff;
 
             // Comment: 역장 비활성화될 때 사격 기능 활성화
-            fire.action.performed += GetComponent<PlayerInputWeapon>().OnFire;
-            fire.action.performed += GetComponent<PlayerInputWeapon>().OffFire;
+            //fire.action.performed += GetComponent<PlayerInputWeapon>().OnFire;
+            //fire.action.performed += GetComponent<PlayerInputWeapon>().OffFire;
 
             damageTest.action.performed -= DamagedShieldTest; // 테스트 끝나고 지워야함
 

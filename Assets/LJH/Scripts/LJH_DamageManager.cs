@@ -11,27 +11,27 @@ public class LJH_DamageManager : MonoBehaviour
     [SerializeField] GameObject ljh_invincibility;
     [Header("쉴드 오브젝트")]
     [SerializeField] GameObject shield;
-    [Header("몬스터 오브젝트")]
-    [SerializeField] GameObject monster;
 
     [Header("스크립트")]
-    [Header("MonsterTest 스크립트")]
-    [SerializeField] LJH_monsterTest enemyScript;
-    [Header("HYK_Enemy 스크립트")]
+    [Header("HYJ_Enemy 스크립트")]
     [SerializeField] HYJ_Enemy hyj_EnemyScript;
     [Header("Shield 스크립트")]
     [SerializeField] LJH_Shield shieldScript;
     [Header("UIManager 스크립트")]
     [SerializeField] LJH_UIManager uiManagerScript;
 
-    [Header("변수")]
+    
     [Header("현재 체력")]
     float ljh_curHp = 100;
+    [Header("변수")]
     [Header("역장 내구도")]
     [SerializeField] float ljh_durability;
-    [Header("역장 활성화 여부")]
+    [Header("무적 활성화 여부")]
     [SerializeField] bool ljh_isInvincibility;
-
+    [Header("데미지 계산용 역장 데미지")]
+    [SerializeField] float takeShieldDamage;
+    [Header("데미지 계산용 체력 데미지")]
+    [SerializeField] float takeHpDamage;
 
     [Header("이미지")]
     [Header("체력 피격 이미지")]
@@ -56,56 +56,28 @@ public class LJH_DamageManager : MonoBehaviour
         ljh_durability = shield.GetComponent<LJH_Shield>().durability;
         ljh_isInvincibility = shield.GetComponent<LJH_Shield>().isInvincibility;
 
+        // Comment: 현재 체력 상황 띄워줌
+        uiManagerScript.DisplayHpBar();
 
-        if (shield.GetComponent<LJH_Shield>().isShield)
-        {
-            if (monster.GetComponent<HYJ_Enemy>().nowAttack)
-            {
-                float damage = TakeDamage(enemyScript);
-                DamagedShield(damage);
-
-                if (ljh_shieldCoroutine != null)
-                {
-                    StopCoroutine(ljh_shieldCoroutine);
-                }
-                ljh_shieldCoroutine = StartCoroutine(ShowShieldScreen());
-            }
-        }
-        else if (!shield.GetComponent<LJH_Shield>().isShield)
-        {
-            if (monster.GetComponent<HYJ_Enemy>().nowAttack)
-            {
-                float damage = TakeDamage(enemyScript);
-                DamagedHP(damage);
-
-                if (ljh_bloodCoroutine != null)
-                {
-                    StopCoroutine(ljh_bloodCoroutine);
-                }
-                ljh_bloodCoroutine = StartCoroutine(ShowBloodScreen());
-            }
-        }
-            uiManagerScript.DisplayHpBar();
-        
     }
 
     public void DamagedHP(float HPDamage)
     {
         Debug.Log("체력 피해입음");
         ljh_curHp -= HPDamage;
-        
+
         //damagedHP.Play();
-        
+
     }
 
-    public void DamagedShield(float shieldDamage)// 인수 지워야함
+    public void DamagedShield(float shieldDamage)
     {
         if (ljh_durability > 0)
         {
-            // ToDo : 피격시 사운드 구현해야함
 
             if (ljh_isInvincibility)
             {
+                // Comment: 무적 상태일 때, 데미지를 0으로 변경
                 float zeroDamage = 0;
 
                 Debug.Log("역장 무적 상태");
@@ -158,21 +130,32 @@ public class LJH_DamageManager : MonoBehaviour
         ljh_shieldImage.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0);
     }
 
-    public float TakeDamage(LJH_monsterTest monsterScript)
+    public void TakeDamage(HYJ_Enemy monsterScript)
     {
-        if(shield.GetComponent<LJH_Shield>().isShield)
+        if (shield.GetComponent<LJH_Shield>().isShield)
         {
-            float damage;
-            return damage = monsterScript.GetComponent<LJH_monsterTest>().monsterShieldAtkPower;
+            float damage = monsterScript.GetComponent<HYJ_Enemy>().monsterShieldAtkPower;
+            DamagedShield(damage);
+
+            if (ljh_shieldCoroutine != null)
+            {
+                StopCoroutine(ljh_shieldCoroutine);
+            }
+            ljh_shieldCoroutine = StartCoroutine(ShowShieldScreen());
         }
-    
-        else if(!shield.GetComponent<LJH_Shield>().isShield)
+
+        else if (!shield.GetComponent<LJH_Shield>().isShield)
         {
-            float damage;
-            return damage = monsterScript.GetComponent<LJH_monsterTest>().monsterHpAtkPower;
+            float damage = monsterScript.GetComponent<HYJ_Enemy>().monsterHpAtkPower;
+            DamagedHP(damage);
+
+            if (ljh_bloodCoroutine != null)
+            {
+                StopCoroutine(ljh_bloodCoroutine);
+            }
+            ljh_bloodCoroutine = StartCoroutine(ShowBloodScreen());
         }
-        return 0;
     }
-    
+
 }
 
