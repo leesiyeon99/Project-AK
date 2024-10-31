@@ -9,6 +9,8 @@ public class LJH_ShieldRecover : MonoBehaviour
     [Header("오브젝트")]
     [Header("쉴드 오브젝트")]
     [SerializeField] GameObject shield;
+    [Header("데미지 매니저")]
+    [SerializeField] GameObject damageManager;
 
     [Header("스크립트")]
     [Header("UIManager 스크립트")]
@@ -36,11 +38,12 @@ public class LJH_ShieldRecover : MonoBehaviour
 
     private void OnEnable()
     {
-        durability = shield.GetComponent<LJH_Shield>().durability;
+        durability = damageManager.GetComponent<LJH_DamageManager>().durability;
         isBreaked = shield.GetComponent<LJH_Shield>().isBreaked;
         isRecover = shield.GetComponent<LJH_Shield>().isRecover;
         isShield = shield.GetComponent<LJH_Shield>().isShield;
 
+        Debug.Log($"{durability} 쉴드 재생 스크립트");  //  여기서 지금 피해받았을때 내구도를 못받아오고있음
         if (durability != MAXDURABILITY)
         {
             Coroutine recovery = StartCoroutine(RecoveryShield());
@@ -64,7 +67,7 @@ public class LJH_ShieldRecover : MonoBehaviour
         {
         yield return new WaitForSecondsRealtime(0.5f);
             durability += REPAIR;
-            test.UpdateShieldUI(durability); //이거임
+            test.UpdateShieldUI(durability);
             if (durability == MAXDURABILITY)
             {
                 isRecover = false;

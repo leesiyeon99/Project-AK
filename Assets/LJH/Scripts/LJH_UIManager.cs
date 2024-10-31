@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class LJH_UIManager : MonoBehaviour
 {
+    [Header("스크립트")]
+    [Header("데미지 매니저 스크립트")]
+    [SerializeField] LJH_DamageManager damageManager;
+
+
     [Header("쉴드 내구도 UI")]
     [SerializeField] GameObject[] ljh_shieldImages;     // 내구도 UI용
 
@@ -18,7 +23,7 @@ public class LJH_UIManager : MonoBehaviour
     
     [Header("현재 체력")]
     [Range (0,10000)]
-    [SerializeField] public float ljh_curHp = 10000;
+    [SerializeField] public float ljh_curHp;
 
     [Header("체력 비율")]
     [SerializeField] public float hpPercentage;
@@ -34,6 +39,7 @@ public class LJH_UIManager : MonoBehaviour
 
     private void Update()
     {
+        ljh_curHp = damageManager.GetComponent<LJH_DamageManager>().ljh_curHp;
         DisplayHpBar();
     }
 

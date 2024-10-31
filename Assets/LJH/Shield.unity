@@ -298,7 +298,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &206139448
 GameObject:
@@ -396,7 +396,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &393505904
 GameObject:
@@ -517,13 +517,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f829565026fe145969bdcc0cc316ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ljh_invincibility: {fileID: 1047810273}
+  invincibility: {fileID: 1047810273}
   shield: {fileID: 969695165}
   hyj_EnemyScript: {fileID: 0}
   shieldScript: {fileID: 2961630504398008047}
   uiManagerScript: {fileID: 655023029}
-  ljh_durability: 0
-  ljh_isInvincibility: 0
+  ljh_curHp: 100
+  durability: 0
+  isInvincibility: 0
   takeShieldDamage: 0
   takeHpDamage: 0
   ljh_bloodImage: {fileID: 1997692745}
@@ -640,7 +641,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649397533}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -298.3}
+  m_LocalPosition: {x: 0, y: 0, z: -244.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -649,7 +650,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26.400032, y: 0}
+  m_AnchoredPosition: {x: 26.4, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &649397535
@@ -734,13 +735,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb6042a139bfc142a12ea7115707686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageManager: {fileID: 452737440}
   ljh_shieldImages:
   - {fileID: 173105680}
   - {fileID: 600692674}
   - {fileID: 862781986}
   - {fileID: 1563730912}
   - {fileID: 785444031}
-  ljh_curHp: 0
+  ljh_curHp: 10000
   hpPercentage: 0
   ljh_hpBar: {fileID: 1743678491}
 --- !u!1 &785444031
@@ -1279,6 +1281,10 @@ PrefabInstance:
       propertyPath: shield
       value: 
       objectReference: {fileID: 969695165}
+    - target: {fileID: 1257900680919512123, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
+      propertyPath: damageManager
+      value: 
+      objectReference: {fileID: 452737437}
     - target: {fileID: 1726897402767333548, guid: 48e42c45edd3bab45ad778e9742ab534, type: 3}
       propertyPath: m_Name
       value: Invincibility
@@ -1355,7 +1361,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997692743}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -291.7}
+  m_LocalPosition: {x: 0, y: 0, z: -244.59999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1364,7 +1370,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26.1, y: 0}
+  m_AnchoredPosition: {x: 26.4, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1997692745
@@ -1419,7 +1425,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2961630504544563500, guid: dad9e9eab2b3c084db5bbebd0d943b54, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2961630504544563500, guid: dad9e9eab2b3c084db5bbebd0d943b54, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1550,6 +1556,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 969695165}
     - target: {fileID: 3775956352867349805, guid: abe1c26f6e0e8e34d9b59aa832d5ad7d, type: 3}
+      propertyPath: damageManager
+      value: 
+      objectReference: {fileID: 452737437}
+    - target: {fileID: 3775956352867349805, guid: abe1c26f6e0e8e34d9b59aa832d5ad7d, type: 3}
       propertyPath: ljh_shieldImages.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -1575,7 +1585,7 @@ PrefabInstance:
       objectReference: {fileID: 785444031}
     - target: {fileID: 3775956352867349842, guid: abe1c26f6e0e8e34d9b59aa832d5ad7d, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3775956352867349842, guid: abe1c26f6e0e8e34d9b59aa832d5ad7d, type: 3}
       propertyPath: m_LocalPosition.x
