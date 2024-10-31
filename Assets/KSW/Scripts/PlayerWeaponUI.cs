@@ -234,4 +234,11 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
       
       
     }
+
+    public void SetUIPos()
+    {
+        transform.position = weapons.GetCurrentWeapon().uiPos.transform.position;
+        transform.rotation = weapons.GetCurrentWeapon().uiPos.transform.rotation;
+
+    }
 }
