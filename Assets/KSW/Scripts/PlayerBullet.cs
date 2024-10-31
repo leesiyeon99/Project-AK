@@ -71,7 +71,7 @@ public class PlayerBullet : MonoBehaviour
 
         // 연동 테스트
 
-        if (hit.collider.TryGetComponent(out EnemyHitPoint enemy))
+        if (hit.collider.TryGetComponent(out HYJ_EnemyHitPoint enemy))
         {
             enemy.TakeDamage(playerGunStatus.BulletAttack);
         }
@@ -115,7 +115,7 @@ public class PlayerBullet : MonoBehaviour
             // 연동 테스트
             bool hitFlag = true;
             
-            if (hit[i].collider.TryGetComponent(out EnemyHitPoint enemy))
+            if (hit[i].collider.TryGetComponent(out HYJ_EnemyHitPoint enemy))
             {
                 hitFlag = enemy.TakeDamage(playerGunStatus.BulletAttack);
 
@@ -189,7 +189,7 @@ public class PlayerBullet : MonoBehaviour
         foreach (Collider collider in colliders)
         {
             
-            if (collider.TryGetComponent(out EnemyHitPoint enemy))
+            if (collider.TryGetComponent(out HYJ_EnemyHitPoint enemy))
             {
                 enemy.TakeDamage(playerGunStatus.SplashDamage);
             }
