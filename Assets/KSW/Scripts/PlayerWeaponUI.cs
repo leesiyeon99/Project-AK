@@ -15,6 +15,7 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
 
     // Comment : ³²Àº ÅºÈ¯ ¼ö UI
     [SerializeField] TextMeshProUGUI magazineUI;
+    [SerializeField] GameObject magazineBackUI;
     // Comment : ¹ß»ç ÄðÅ¸ÀÓ UI
     [SerializeField] TextMeshProUGUI firingCooltimeUI;
 
@@ -57,8 +58,10 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
     {
         StringBuilder initStringBuilder = new StringBuilder();
         changeUI = GetUI("ChangeUI");
+        magazineBackUI = GetUI("BulletsBackground");
         changeJoystick = GetUI<RectTransform>("ChangeJoystick");
         magazineUI = GetUI<TextMeshProUGUI>("RemainingBullets");
+       
         firingCooltimeUI = GetUI<TextMeshProUGUI>("FiringCoolTime");
         for (int i = 0; i < toggleMagazineUI.Length; i++)
         {
@@ -90,7 +93,7 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
         UpdateChangeToggleUI();
         UpdateExplainUI(weapons.Index);
         changeUI.SetActive(active);
-        magazineUI.gameObject.SetActive(!active);
+        magazineBackUI.gameObject.SetActive(!active);
 
       
         if (active == false && disable == false)

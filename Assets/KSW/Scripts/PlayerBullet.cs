@@ -50,7 +50,7 @@ public class PlayerBullet : MonoBehaviour
             for (int i = 0; i < playerGunStatus.DefaultPierceCount; i++)
             {
                 GameObject sparkObj = Instantiate(sparkEffectPrefab);
-                spark.Enqueue(Instantiate(sparkObj));
+                spark.Enqueue(sparkObj);
                 sparkObj.SetActive(false);
             }
  
@@ -58,7 +58,7 @@ public class PlayerBullet : MonoBehaviour
         else
         {
             GameObject sparkObj = Instantiate(sparkEffectPrefab);
-            spark.Enqueue(Instantiate(sparkObj));
+            spark.Enqueue(sparkObj);
             sparkObj.SetActive(false);
         }
 
