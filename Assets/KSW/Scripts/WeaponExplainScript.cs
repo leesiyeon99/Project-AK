@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponExplainScript : BaseUI
@@ -16,6 +17,7 @@ public class WeaponExplainScript : BaseUI
     [SerializeField] float fadeDeltaTime;
 
     Coroutine fadeout;
+    bool enableCheck;
 
     void Awake()
     {
@@ -36,12 +38,23 @@ public class WeaponExplainScript : BaseUI
         
     }
 
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
 
 
     private void OnDisable()
     {
         StopAllCoroutines();
+        enableCheck = true;
     }
+
+    private void OnEnable()
+    {
+        enableCheck = false;
+    }
+
 
     public void SetFade()
     {
@@ -61,6 +74,8 @@ public class WeaponExplainScript : BaseUI
         {
             return;
         }
+        if (enableCheck)
+            return;
         fadeout = StartCoroutine(FadeOutCoroutine());
         
     }
@@ -92,8 +107,5 @@ public class WeaponExplainScript : BaseUI
         weaponMagazineUI.text = magazine.ToString();
     }
 
-    private void OnDestroy()
-    {
-        StopAllCoroutines();
-    }
+
 }

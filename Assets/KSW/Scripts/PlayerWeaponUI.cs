@@ -100,11 +100,16 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
         {
             weaponExplainScript.StartFadeOut();
         }
-        else
+        if (active == true && disable == false)
         {
             weaponExplainScript.gameObject.SetActive(true);
             weaponExplainScript.SetFade();
         }
+        else
+        {
+            weaponExplainScript.StartFadeOut();
+        }
+       
     }
 
     public bool GetChangeUIActiveSelf()

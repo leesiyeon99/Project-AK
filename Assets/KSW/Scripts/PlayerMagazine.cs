@@ -29,6 +29,7 @@ public class PlayerMagazine : MonoBehaviour
     WaitForSeconds fadeInWaitForSeconds;
     float timeTick;
 
+   
     private void Awake()
     {
         material = GetComponent<MeshRenderer>().material;
@@ -43,19 +44,24 @@ public class PlayerMagazine : MonoBehaviour
 
     private void OnEnable()
     {
+       
         float speed = playerOwnedWeapons.GetCurrentWeapon().GetReloadSpeed();
         
         timeTick = 1 / (speed * 10f);
 
         ResetAlpha();
+
+      
         fadeIn = StartCoroutine(FadeInCorouine());
+
+       
     }
 
     private void OnDisable()
     {
         ResetAlpha();
         StopAllCoroutines();
-        
+      
     }
 
     private void ResetAlpha()

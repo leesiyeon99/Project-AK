@@ -166,10 +166,13 @@ public class PlayerInputWeapon : MonoBehaviour
 
     void OnRightJoystick(InputAction.CallbackContext obj)
     {
-        playerChangeWeapon.MoveJoystick(obj.ReadValue<Vector2>());
+        if (onToggle)
+            playerChangeWeapon.MoveJoystick(obj.ReadValue<Vector2>());
     }
     void OffRightJoystick(InputAction.CallbackContext obj)
     {
-        playerChangeWeapon.MoveJoystick(Vector2.zero);
+       
+            playerChangeWeapon.MoveJoystick(Vector2.zero);
+
     }
 }
