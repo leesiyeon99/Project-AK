@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Fracture))]
 public class WHS_BreakableObject : MonoBehaviour
 {
     // 파괴할 오브젝트에 Fracture 컴포넌트와 함께 추가해서 사용

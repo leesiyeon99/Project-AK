@@ -1,10 +1,14 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 public class UnitToScreenBoundary : MonoBehaviour
 {
     [SerializeField] public Image UIImage;
     [SerializeField] public bool isActiveUI = false;
     [SerializeField] Image image;
+    [SerializeField] MonsterCount monsterCount;
+
 
     private void Update()
     {
@@ -20,6 +24,7 @@ public class UnitToScreenBoundary : MonoBehaviour
         Vector3 dir = (transform.position - Camera.main.transform.position).normalized;
         if (Vector3.Dot(Camera.main.transform.forward, dir) > 0)
         {
+            if (UIImage == null)return;
             UIImage.gameObject.SetActive(true);
             Vector2 pos = Camera.main.WorldToScreenPoint(transform.position);
             pos.x = Mathf.Clamp(pos.x, 0, image.rectTransform.rect.width);
@@ -32,6 +37,12 @@ public class UnitToScreenBoundary : MonoBehaviour
                 SetActiveFalse();
             }
         }
+
+        if (gameObject.GetComponent<LSY_Enemy>().lsy_isDie == true)
+        {
+            Debug.Log("ui코루틴시작");
+            StartCoroutine(MonsterDiedScoreMinus());
+        }
     }
 
     public void SetActiveFalse()
@@ -39,9 +50,13 @@ public class UnitToScreenBoundary : MonoBehaviour
         UIImage.gameObject.SetActive(false);
     }
 
-    private void EnemyDied()
-    {
 
+    IEnumerator MonsterDiedScoreMinus()
+    {
+        yield return new WaitForSeconds(1.9f);
+        Debug.Log("몬스터 죽으면 ui 사라지도록");
+        if (UIImage != null)
+        Destroy(UIImage.gameObject);
     }
 
 }

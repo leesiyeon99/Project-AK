@@ -54,6 +54,9 @@ public class PlayerGun : MonoBehaviour
     StringBuilder stringBuilder;
 
 
+
+    bool enableCheck;
+
     private void Start()
     {
         UpdateMagazine(playerGunStatus.Magazine);
@@ -90,9 +93,15 @@ public class PlayerGun : MonoBehaviour
        
         if (playerGunStatus.GunType.HasFlag(GunType.REPEATER))
         {
-
             firingCoroutine = StartCoroutine(Firing());
+
+            if (enableCheck)
+            {
+                return;
+            }
+
             firingAccelerationCoroutine = StartCoroutine(FiringAcceleration());
+            
         }
         else
         {
@@ -165,7 +174,7 @@ public class PlayerGun : MonoBehaviour
         // Comment : 특수 탄환 없을 시 기본 무기로 교체
         if (playerOwnedWeapons.Index != 0 && PlayerSpecialBullet.Instance.SpecialBullet[playerOwnedWeapons.Index - 1] <= 0 && playerGunStatus.Magazine <= 0)
         {
-      
+     
             playerOwnedWeapons.SetDefaultWeapon();
             weaponUI.UpdateChangeToggleUI();
         }
@@ -178,6 +187,7 @@ public class PlayerGun : MonoBehaviour
         {
             if (playerGunStatus.Magazine <= 0)
             {
+                
                 CooldownCheck();
                
                 break;
@@ -194,6 +204,7 @@ public class PlayerGun : MonoBehaviour
 
 
         }
+        Debug.Log("A");
     }
     void FiringOnce()
     {
@@ -244,12 +255,17 @@ public class PlayerGun : MonoBehaviour
     // Commnet : 연사 특성 가속 
     IEnumerator FiringAcceleration()
     {
+
+
         // 가속값
         float accle = playerGunStatus.AccelerationRate / (playerGunStatus.AccelerationTime * 10);
 
         // 0.1초 x * 10회 반복
         for (int i = 1; i <= playerGunStatus.AccelerationTime * 10; i++)
         {
+
+
+
             // 0.1초
             yield return firingAccelerationWaitForSeconds;
 
@@ -367,13 +383,17 @@ public class PlayerGun : MonoBehaviour
     {
         playerGunStatus.OnMagazineChanged += UpdateMagazine;
         CooldownCheck();
+
+        enableCheck = false;
     }
 
     private void OnDisable()
     {
         playerGunStatus.OnMagazineChanged -= UpdateMagazine;
         fireEffect.SetActive(false);
+  
         StopAllCoroutines();
+        enableCheck = true;
     }
 
 }

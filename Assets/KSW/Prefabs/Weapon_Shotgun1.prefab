@@ -140,17 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9f039d04870fb4caf2d5be9aafd980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Weapon4
-  gunType: 12
-  tier: 2
-  bulletAttack: 100
-  defaultFiringDelay: 1
+  weaponData: {fileID: 11400000, guid: 5b76f30d394c32f4fb5e09549b0aa63c, type: 2}
   firingDelay: 1
-  accelerationTime: 0
-  maxMagazine: 2
-  magazine: 2
-  reloadSpeed: 2
-  range: 10
+  magazine: 0
   defaultPierceCount: 0
   splashRadius: 0
   splashDamage: 0
