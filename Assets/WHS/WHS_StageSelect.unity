@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 121401170}
   - component: {fileID: 121401171}
+  - component: {fileID: 121401172}
   m_Layer: 0
   m_Name: StageSelectController
   m_TagString: Untagged
@@ -196,6 +197,20 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -770196316445422428, guid: bfb4f30f380a4024aba2c166f89857b4, type: 3}
+--- !u!114 &121401172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121401168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017c5e3933235514c9520e1dace2a4b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ActionAssets:
+  - {fileID: -944628639613478452, guid: bfb4f30f380a4024aba2c166f89857b4, type: 3}
 --- !u!1 &252084173
 GameObject:
   m_ObjectHideFlags: 0
