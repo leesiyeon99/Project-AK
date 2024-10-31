@@ -68,6 +68,15 @@ public class PlayerBullet : MonoBehaviour
 
     public void HitRay(RaycastHit hit)
     {
+
+        // 연동 테스트
+
+        if (hit.collider.TryGetComponent(out EnemyHitPoint enemy))
+        {
+            enemy.TakeDamage(playerGunStatus.BulletAttack);
+        }
+
+
         if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
         {
             Splash(hit.point);
@@ -84,12 +93,6 @@ public class PlayerBullet : MonoBehaviour
 
         }
         
-        // 연동 테스트
-        
-        if (hit.collider.TryGetComponent(out EnemyHitPoint enemy))
-        {
-            enemy.TakeDamage(playerGunStatus.BulletAttack);
-        }
         
 
 
@@ -107,20 +110,7 @@ public class PlayerBullet : MonoBehaviour
 
         for (int i = 0; i < loop; i++)
         {
-            if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
-            {
-                Splash(hit[i].point);
-
-            }
-            else
-            {
-                
-                if (hit[i].collider.TryGetComponent(out Fracture fractureObj))
-                {
-                    fractureObj.CauseFracture();
-                   
-                }
-            }
+            
             
             // 연동 테스트
             bool hitFlag = true;
@@ -140,6 +130,21 @@ public class PlayerBullet : MonoBehaviour
             if (!playerGunStatus.GunType.HasFlag(GunType.SPLASH) && hitFlag )
             {
                 OnSparkEffect(hit[i].point);
+            }
+
+            if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
+            {
+                Splash(hit[i].point);
+
+            }
+            else
+            {
+
+                if (hit[i].collider.TryGetComponent(out Fracture fractureObj))
+                {
+                    fractureObj.CauseFracture();
+
+                }
             }
 
             hitCount--;
