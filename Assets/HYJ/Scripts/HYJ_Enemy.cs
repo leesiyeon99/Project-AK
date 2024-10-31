@@ -18,8 +18,9 @@ public class HYJ_Enemy : MonoBehaviour
     [SerializeField] public float monsterHpAtkPower;
     [SerializeField] public float monsterAttackRange;
     [SerializeField] public float score;
-    //[SerializeField] public float setBossHp;
+    [SerializeField] public float setBossHp;
     [SerializeField] public float monsterHp;
+    [SerializeField] public float monsterSetHp;
     [SerializeField] public float monsterMoveSpeed;
     [SerializeField] public float playerDistance;
 
@@ -32,7 +33,7 @@ public class HYJ_Enemy : MonoBehaviour
     public bool nowAttack;
     public bool isDie;
 
-    //public MonsterCountUI hyj_monsterCount;
+    public MonsterCountUI hyj_monsterCount;
 
     public UnityEvent<Collider> OnEnemyDied;
 
@@ -63,6 +64,7 @@ public class HYJ_Enemy : MonoBehaviour
         isAttack = false;
         nowAttack = false;
         isDie = false;
+        monsterSetHp = monsterHp;
         MonsterTagSet(monsterType);
         //MonsterSetHp();
         MonsterSetAttackRange();
@@ -73,21 +75,6 @@ public class HYJ_Enemy : MonoBehaviour
         MonsterDie();
         MonsterMover();
     }
-
-    /*
-    // Comment : 몬스터타입에 따라 몬스터의 체력을 조정한다.
-    public void MonsterSetHp()
-    {
-        if (monsterType == MonsterType.Boss) // Comment : 몬스터의 타입이 Boss라면 설정한 BossHp로 Hp가 설정한다.
-        {
-            monsterHp = setBossHp;
-        }
-        else // Comment : Boss가 아닌 Nomal, Elite 몬스터는 Hp가 100으로 설정한다.
-        {
-            monsterHp = 100;
-        }
-    }
-    */
 
     // Comment : 몬스터 공격범위를 조정한다.
     public void MonsterSetAttackRange()
@@ -174,7 +161,7 @@ public class HYJ_Enemy : MonoBehaviour
                 {
                     if (hyj_monsterCount.isEnter[this] == true)
                     {
-                        ColliderType col = hyj_monsterCountt.Enemies[this];
+                        ColliderType col = hyj_monsterCount.Enemies[this];
                         hyj_monsterCount.counters[(int)col]--;
                     }
                     hyj_monsterCount.Enemies.Remove(this);
@@ -184,13 +171,22 @@ public class HYJ_Enemy : MonoBehaviour
                     hyj_monsterCount.isEnter[this] = false;
                 }
             }
+
+            if (monsterType == MonsterType.Nomal)
+            {
+                ScoreUIManager.Instance.AddScore(100);
+            }
+            else if (monsterType == MonsterType.Elite)
+            {
+                ScoreUIManager.Instance.AddScore(500);
+            }
             */
 
             Debug.Log("몬스터 사망");
             isDie = true;
             monsterAnimator.SetTrigger("Die");
             OnEnemyDied?.Invoke(GetComponent<Collider>());
-            Destroy(gameObject.GetComponent<BoxCollider>());
+            //Destroy(gameObject.GetComponent<BoxCollider>());
             Destroy(gameObject.GetComponent<Rigidbody>());
             Destroy(gameObject,2f);
 
@@ -238,6 +234,19 @@ public class HYJ_Enemy : MonoBehaviour
             //other.transform.position -> 충돌 지점
             // TODO : 받은 충돌 지점이 머리 / 몸통 어디인지 판별하기
             // TODO : 몸통이면 흰색, 머리면 빨간색으로 데미지 표기
+        }
+    }
+
+    // Comment : 몬스터타입에 따라 몬스터의 체력을 조정한다.
+    public void MonsterSetHp()
+    {
+        if (monsterType == MonsterType.Boss) // Comment : 몬스터의 타입이 Boss라면 설정한 BossHp로 Hp가 설정한다.
+        {
+            monsterHp = setBossHp;
+        }
+        else // Comment : Boss가 아닌 Nomal, Elite 몬스터는 Hp가 100으로 설정한다.
+        {
+            monsterHp = 100;
         }
     }
     */
