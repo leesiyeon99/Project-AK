@@ -102,5 +102,5 @@ MonoBehaviour:
   moveDelay: 1
   moveToPlayerSpeed: 10
   itemGetRange: 1
-  bulletAmounts: 000000000200000000000000
-  bulletIndex: 2
+  bulletAmount: 20
+  bulletIndex: 1
