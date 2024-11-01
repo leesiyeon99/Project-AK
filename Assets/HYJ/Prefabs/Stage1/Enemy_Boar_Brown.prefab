@@ -730,9 +730,9 @@ MonoBehaviour:
   monsterShieldAtkPower: 3
   monsterHpAtkPower: 4000
   monsterAttackRange: 0
-  monsterHp: 400
-  monsterSetHp: 0
-  monsterMoveSpeed: 1
+  monsterNowHp: 0
+  monsterSetHp: 400
+  monsterMoveSpeed: 1.5
   playerDistance: 0
   aniTime: 2
   monsterAnimator: {fileID: 95877805552050624}

@@ -22,11 +22,28 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     private void Start()
     {
         gameObject.tag = "Boss";
+        SetHp = 3500f;
+        monsterMoveSpeed = 1.5f;
         nowHp = SetHp;
     }
 
     private void Update()
     {
         
+    }
+
+    private void PatternHeadSpin()
+    {
+        monsterHpAtkPower = 4000f;
+    }
+    
+    private void PatternBreakDance()
+    {
+
+    }
+
+    private void PatternSiiuuuu()
+    {
+
     }
 }
