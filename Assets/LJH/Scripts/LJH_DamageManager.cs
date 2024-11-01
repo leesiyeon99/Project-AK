@@ -68,7 +68,7 @@ public class LJH_DamageManager : MonoBehaviour
         ljh_curHp -= HPDamage;
         Debug.Log(HPDamage);
 
-        damagedHPSound.Play();
+        //damagedHPSound.Play();
 
     }
 
@@ -94,7 +94,7 @@ public class LJH_DamageManager : MonoBehaviour
 
                 Debug.Log(shieldDamage);
             }
-            damagedShieldSound.Play();
+            //damagedShieldSound.Play();
             Debug.Log("쉴드맞는소리");
 
         }
@@ -136,8 +136,10 @@ public class LJH_DamageManager : MonoBehaviour
 
     public void TakeDamage(HYJ_Enemy monsterScript)
     {
+        Debug.Log("데미지 접수");
         if (shield.GetComponent<LJH_Shield>().isShield)
         {
+            Debug.Log("실드 데미지 접수");
             float damage = monsterScript.GetComponent<HYJ_Enemy>().monsterShieldAtkPower;
             DamagedShield(damage);
             if (shieldCoroutine != null)
@@ -149,6 +151,7 @@ public class LJH_DamageManager : MonoBehaviour
 
         else if (!shield.GetComponent<LJH_Shield>().isShield)
         {
+            Debug.Log("체력 데미지 접수");
             float damage = monsterScript.GetComponent<HYJ_Enemy>().monsterHpAtkPower;
             DamagedHP(damage);
 
