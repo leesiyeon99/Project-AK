@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798be06990bae944f80d81d36e525788, type: 3}
   m_Name: WeaponData_Revolver1
   m_EditorClassIdentifier: 
-  weaponName: Revolver1
+  weaponName: "\uAE30\uBCF8 \uBB34\uAE30"
   gunType: 1
   tier: 0
   bulletAttack: 50

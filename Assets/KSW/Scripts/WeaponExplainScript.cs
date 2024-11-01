@@ -1,3 +1,4 @@
+using Dreamteck.Splines;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -102,12 +103,15 @@ public class WeaponExplainScript : BaseUI
             explainText.alpha = fadeDeltaTime;
         }
     }
-    public void SetExplain(string weaponName, GunType gunType, float atk, int magazine )
+    public void SetExplain(string weaponName, string gunType, string atk, string magazine )
     {
         if (destroyCheck)
             return;
         weaponNameUI.text = weaponName;
-        weaponAbilityUI.text = gunType.ToString();
+
+        weaponAbilityUI.text = gunType;
+        
+        
         weaponAttackUI.text = atk.ToString();
         weaponMagazineUI.text = magazine.ToString();
     }

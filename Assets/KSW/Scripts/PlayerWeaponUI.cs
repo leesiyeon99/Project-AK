@@ -83,7 +83,7 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
         }
 
         weaponExplainScript = GameObject.Find("WeaponExplain").GetComponent<WeaponExplainScript>();
-        weaponExplainScript.gameObject.SetActive(false);
+        //weaponExplainScript.gameObject.SetActive(false);
       
     }
 
