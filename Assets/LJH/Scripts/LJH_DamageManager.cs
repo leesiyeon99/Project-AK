@@ -47,9 +47,9 @@ public class LJH_DamageManager : MonoBehaviour
 
     [Header("오디오")]
     [Header("역장 피해시 사운드")]
-    [SerializeField] AudioSource ljh_damagedShield;
+    [SerializeField] AudioSource damagedShieldSound;
     [Header("체력 피해시 사운드")]
-    [SerializeField] AudioSource ljh_damagedHP;
+    [SerializeField] AudioSource damagedHPSound;
 
     private void Start()
     {
@@ -68,7 +68,7 @@ public class LJH_DamageManager : MonoBehaviour
         ljh_curHp -= HPDamage;
         Debug.Log(HPDamage);
 
-        //damagedHP.Play();
+        damagedHPSound.Play();
 
     }
 
@@ -94,6 +94,8 @@ public class LJH_DamageManager : MonoBehaviour
 
                 Debug.Log(shieldDamage);
             }
+            damagedShieldSound.Play();
+            Debug.Log("쉴드맞는소리");
 
         }
     }
