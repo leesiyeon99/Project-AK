@@ -18,11 +18,6 @@ public class HYJ_EnemyHitPoint : MonoBehaviour
         enemy = GetComponentInParent<HYJ_Enemy>();
     }
 
-    private void Update()
-    {
-        
-    }
-
     public bool TakeDamage(float damage)
     {
         if (enemy.HitFlag == false)
@@ -83,9 +78,11 @@ public class HYJ_EnemyHitPoint : MonoBehaviour
             damageText.text = damage.ToString();
         }
         canvas.SetActive(true);
+        float colorHpF = (enemy.monsterNowHp / enemy.monsterSetHp) * 255;
+        byte colorHpB = (byte)colorHpF;
 
-        //damageText.color = new Color32(255, (enemy.monsterHp / enemy.monsterSetHp.t) * 255, (enemy.monsterHp / enemy.monsterSetHp) * 255, 255); //Color.HSVToRGB(255, (enemy.monsterHp / enemy.monsterSetHp) * 255, (enemy.monsterHp / enemy.monsterSetHp) * 255);
-        
+        damageText.color = new Color32(255, colorHpB, colorHpB, 255); 
+
         for (int i = damageText.fontSize ; i >= 30; i--)
         {
             damageText.fontSize = i;
