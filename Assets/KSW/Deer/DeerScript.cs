@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class DeerScript : MonoBehaviour
 {
+    [SerializeField] GameObject smokeParticle;
     Animator deerAnim;
     BoxCollider deerCollider;
 
@@ -24,7 +25,7 @@ public class DeerScript : MonoBehaviour
     private void OnEnable()
     {
         deerCollider.enabled = true;
-       
+        smokeParticle.SetActive(true);
     }
 
     private void OnDisable()
@@ -44,6 +45,7 @@ public class DeerScript : MonoBehaviour
 
     public void DieDeer()
     {
+        smokeParticle.SetActive(false);
         transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
 
         float rotation = Random.Range(0, 360);
