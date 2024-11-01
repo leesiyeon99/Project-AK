@@ -64,6 +64,7 @@ public class PlayerGun : MonoBehaviour
     private void Start()
     {
         UpdateMagazine(playerGunStatus.Magazine);
+        fireEffect.transform.SetParent(null);
     }
 
     private void Update()
@@ -147,6 +148,8 @@ public class PlayerGun : MonoBehaviour
 
         // Comment : 비주얼적 부분
         fireEffect.SetActive(false);
+        fireEffect.transform.position = muzzle.position;
+        fireEffect.transform.rotation = muzzle.rotation;
         animator.SetTrigger("Shot");
         fireEffect.SetActive(true);
         

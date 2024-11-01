@@ -81,7 +81,7 @@ public class DeerScript : MonoBehaviour
 
         while (transform.position.y < 20)
         {
-            transform.position = Vector3.MoveTowards(transform.position, vec, 15f*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, vec, 17f*Time.deltaTime);
             yield return null;
 
         }
