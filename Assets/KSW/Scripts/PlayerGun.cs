@@ -54,12 +54,17 @@ public class PlayerGun : MonoBehaviour
     StringBuilder stringBuilder;
 
 
+    // Commnet : 1 넣으면 사격 50% 딜레이 증가
+
+    [SerializeField] private float additionalCoolDown;
+    public float AdditionalCoolDown { get { return additionalCoolDown; } set { additionalCoolDown = value; } }
 
     bool enableCheck;
 
     private void Start()
     {
         UpdateMagazine(playerGunStatus.Magazine);
+        fireEffect.transform.SetParent(null);
     }
 
     private void Update()
@@ -143,6 +148,8 @@ public class PlayerGun : MonoBehaviour
 
         // Comment : 비주얼적 부분
         fireEffect.SetActive(false);
+        fireEffect.transform.position = muzzle.position;
+        fireEffect.transform.rotation = muzzle.rotation;
         animator.SetTrigger("Shot");
         fireEffect.SetActive(true);
         
@@ -198,7 +205,7 @@ public class PlayerGun : MonoBehaviour
             if (firingCoolDown <= 0)
             {
                 Fire();
-                firingCoolDown = playerGunStatus.FiringDelay;
+                firingCoolDown = playerGunStatus.FiringDelay + (playerGunStatus.DefaultFiringDelay * (additionalCoolDown * 0.5f));
             }
             yield return null;
 
@@ -217,7 +224,7 @@ public class PlayerGun : MonoBehaviour
         if (firingCoolDown <= 0)
         {
             Fire();
-            firingCoolDown = playerGunStatus.FiringDelay;
+            firingCoolDown = playerGunStatus.FiringDelay + (playerGunStatus.DefaultFiringDelay * (additionalCoolDown * 0.5f));
         }
 
         if(gameObject.activeSelf)

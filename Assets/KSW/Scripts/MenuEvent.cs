@@ -16,7 +16,7 @@ public class MenuEvent : MonoBehaviour
     [Header("- ¸Þ´º UI")]
     [SerializeField] private GameMenuUI menu;
 
-    PlayerInputWeapon playerInputManager;
+
     AudioManager audioManager;
 
     private bool isPause;
@@ -63,10 +63,7 @@ public class MenuEvent : MonoBehaviour
 
     }
 
-    public void SetPlayerWeaponInput(PlayerInputWeapon input)
-    {
-        playerInputManager = input;
-    }
+   
 
     void OnPause(InputAction.CallbackContext obj)
     {
@@ -74,7 +71,7 @@ public class MenuEvent : MonoBehaviour
         {
          
             Time.timeScale = 1f;
-            playerInputManager.enabled = true;
+            PlayerInputWeapon.Instance.enabled = true;
             isPause = false;
          
         }
@@ -82,7 +79,7 @@ public class MenuEvent : MonoBehaviour
         {
            
             Time.timeScale = 0f;
-            playerInputManager.enabled = false;
+            PlayerInputWeapon.Instance.enabled = false;
             isPause = true;
            
         }

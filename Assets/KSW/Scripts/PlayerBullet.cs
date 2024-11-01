@@ -89,7 +89,10 @@ public class PlayerBullet : MonoBehaviour
             {
                 fractureObj.CauseFracture();
             }
-
+            if (hit.collider.TryGetComponent(out DeerScript deer))
+            {
+                deer.DieDeer();
+            }
 
         }
         
@@ -145,6 +148,11 @@ public class PlayerBullet : MonoBehaviour
                     fractureObj.CauseFracture();
 
                 }
+
+                if (hit[i].collider.TryGetComponent(out DeerScript deer))
+                {
+                    deer.DieDeer();
+                }
             }
 
             hitCount--;
@@ -188,7 +196,11 @@ public class PlayerBullet : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            
+            if (collider.TryGetComponent(out DeerScript deer))
+            {
+                deer.DieDeer();
+            }
+
             if (collider.TryGetComponent(out HYJ_EnemyHitPoint enemy))
             {
                 enemy.TakeDamage(playerGunStatus.SplashDamage);
