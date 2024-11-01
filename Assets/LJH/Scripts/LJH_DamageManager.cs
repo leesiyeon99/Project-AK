@@ -66,7 +66,6 @@ public class LJH_DamageManager : MonoBehaviour
     public void DamagedHP(float HPDamage)
     {
         ljh_curHp -= HPDamage;
-        Debug.Log(HPDamage);
 
         //damagedHPSound.Play();
 
@@ -86,17 +85,20 @@ public class LJH_DamageManager : MonoBehaviour
             }
             else if (!isInvincibility)
             {
+                Debug.Log($"실드에 한대 맞기 직전 현재 내구도 :{durability}");
                 durability -= shieldDamage;
-                Debug.Log(durability);
+                Debug.Log($"실드에 한대 맞은 현재 내구도 :{durability}");
 
                 uiManagerScript.UpdateShieldUI(durability);
                 invincibility.SetActive(true);
-
-                Debug.Log(shieldDamage);
             }
             //damagedShieldSound.Play();
-            Debug.Log("쉴드맞는소리");
 
+        }
+
+        if (durability <= 0)
+        {
+            shield.GetComponent<LJH_Shield>().BreakedShield();
         }
     }
 
@@ -136,10 +138,8 @@ public class LJH_DamageManager : MonoBehaviour
 
     public void TakeDamage(HYJ_Enemy monsterScript)
     {
-        Debug.Log("데미지 접수");
         if (shield.GetComponent<LJH_Shield>().isShield)
         {
-            Debug.Log("실드 데미지 접수");
             float damage = monsterScript.GetComponent<HYJ_Enemy>().monsterShieldAtkPower;
             DamagedShield(damage);
             if (shieldCoroutine != null)
@@ -151,7 +151,6 @@ public class LJH_DamageManager : MonoBehaviour
 
         else if (!shield.GetComponent<LJH_Shield>().isShield)
         {
-            Debug.Log("체력 데미지 접수");
             float damage = monsterScript.GetComponent<HYJ_Enemy>().monsterHpAtkPower;
             DamagedHP(damage);
 
