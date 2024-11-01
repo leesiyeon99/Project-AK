@@ -45,10 +45,6 @@ public class WaveTimeline : MonoBehaviour
             Play();
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            DecreaseWaveCount();
-        }
     }
 
     public void Play()

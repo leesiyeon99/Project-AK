@@ -47,6 +47,11 @@ public class PlayerInputWeapon : MonoBehaviour
     [SerializeField] private bool onToggle;
 
 
+    // 실드 상태 체크
+    public bool isShield;
+
+    public bool IsShield { get { return isShield; } set { isShield = value; } }
+
     private void Awake()
     {
         if (instance == null)
@@ -87,6 +92,7 @@ public class PlayerInputWeapon : MonoBehaviour
        
         
         CloseChangeView(true);
+        playerOwnedWeapons.ReloadGripOffMagazine();
 
         downReload.action.performed -= OnDownReload;
 
