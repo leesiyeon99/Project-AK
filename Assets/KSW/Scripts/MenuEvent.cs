@@ -22,6 +22,8 @@ public class MenuEvent : MonoBehaviour
     private bool isPause;
     private bool isMute;
 
+ 
+    public bool IsPause { get { return isPause; } }
 
     // ΩÃ±€≈Ê
     private static MenuEvent instance;
@@ -71,9 +73,12 @@ public class MenuEvent : MonoBehaviour
         {
          
             Time.timeScale = 1f;
-            PlayerInputWeapon.Instance.enabled = true;
+           
             isPause = false;
-         
+
+
+            if (PlayerInputWeapon.Instance.isShield == false)
+                PlayerInputWeapon.Instance.enabled = true;
         }
         else
         {

@@ -75,11 +75,10 @@ public class LJH_Shield : MonoBehaviour
             // Comment: 트리거 버튼에서 ShiledOff 추가
             shieldOnOff.action.performed += ShieldOff;
 
-            // Comment: 역장 활성화될 때 사격 기능 비활성화
-            //fire.action.performed -= GetComponent<PlayerInputWeapon>().OnFire;
-            //fire.action.performed -= GetComponent<PlayerInputWeapon>().OffFire;
+        // Comment: 역장 활성화될 때 사격 기능 비활성화
+        //fire.action.performed -= GetComponent<PlayerInputWeapon>().OnFire;
+        //fire.action.performed -= GetComponent<PlayerInputWeapon>().OffFire;
 
-        
     }
 
     // Comment: 역장이 비활성화 될 때
@@ -91,13 +90,12 @@ public class LJH_Shield : MonoBehaviour
             // Comment: 트리거 버튼에서 ShiledOff 제거
             shieldOnOff.action.performed -= ShieldOff;
 
-            // Comment: 역장 비활성화될 때 사격 기능 활성화
-            //fire.action.performed += GetComponent<PlayerInputWeapon>().OnFire;
-            //fire.action.performed += GetComponent<PlayerInputWeapon>().OffFire;
+        // Comment: 역장 비활성화될 때 사격 기능 활성화
+        //fire.action.performed += GetComponent<PlayerInputWeapon>().OnFire;
+        //fire.action.performed += GetComponent<PlayerInputWeapon>().OffFire;
 
 
 
-        
     }
 
     private void Update()
@@ -119,6 +117,10 @@ public class LJH_Shield : MonoBehaviour
     // Comment: 역장 활성화
     public void ShieldOn(InputAction.CallbackContext obj)
     {
+        // 일시정지때 사용 불가
+        if (MenuEvent.Instance.IsPause)
+            return;
+
         // Comment: 방패 파괴 상태가 아닐때만 해당 함수 불러올 수 있도록
         if (!isBreaked)
         {
@@ -126,17 +128,31 @@ public class LJH_Shield : MonoBehaviour
             gameObject.SetActive(true);
             shieldRecover.SetActive(false);
             isShield = true;
+
+
+            // 총기 인풋 끄기
+            PlayerInputWeapon.Instance.enabled = false;
+            PlayerInputWeapon.Instance.IsShield = isShield;
         }
     }
 
     // Comment: 역장 비활성화
     public void ShieldOff(InputAction.CallbackContext obj)
     {
+        // 일시정지때 사용 불가
+        if (MenuEvent.Instance.IsPause)
+            return;
+
         // Comment: 방패 > 비활성화, 방패 수리 > 활성화, 방패 여부 > 비활성화 
         isRecover = true;
         shieldRecover.SetActive(true);
         gameObject.SetActive(false);
         isShield = false;
+
+        // 총기 인풋 켜기
+
+        PlayerInputWeapon.Instance.enabled = true;
+        PlayerInputWeapon.Instance.IsShield = isShield;
     }
 
     // Comment: 역장 파괴, 역장이 비활성화되며 isBreaked 변수에 값 전달
