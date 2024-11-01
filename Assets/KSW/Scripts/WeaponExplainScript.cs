@@ -7,6 +7,19 @@ using UnityEngine;
 
 public class WeaponExplainScript : BaseUI
 {
+
+    private static WeaponExplainScript instance;
+
+
+    public static WeaponExplainScript Instance
+    {
+        get
+        {
+            return instance;
+
+        }
+    }
+
     [SerializeField] TextMeshProUGUI weaponNameUI;
     [SerializeField] TextMeshProUGUI weaponAbilityUI;
     [SerializeField] TextMeshProUGUI weaponAttackUI;
@@ -22,6 +35,15 @@ public class WeaponExplainScript : BaseUI
     bool destroyCheck;
     void Awake()
     {
+        if (instance == null)
+        {
+
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
         explainList = new List<TextMeshProUGUI>();
         BindAll();
         weaponNameUI = GetUI<TextMeshProUGUI>("Name");
