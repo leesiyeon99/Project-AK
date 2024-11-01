@@ -61,7 +61,7 @@ public class HYJ_Enemy : MonoBehaviour
         isAttack = false;
         nowAttack = false;
         isDie = false;
-        monsterSetHp = monsterNowHp;
+        monsterNowHp = monsterSetHp;
         MonsterTagSet(monsterType);
         //MonsterSetHp();
         MonsterSetAttackRange();
