@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -11,6 +12,8 @@ public class LJH_DamageManager : MonoBehaviour
     [SerializeField] GameObject invincibility;
     [Header("쉴드 오브젝트")]
     [SerializeField] GameObject shield;
+    [Header("보스몬스터 오브젝트")]
+    [SerializeField] GameObject bossMonster;
 
     [Header("스크립트")]
     [Header("HYJ_Enemy 스크립트")]
@@ -85,10 +88,11 @@ public class LJH_DamageManager : MonoBehaviour
             }
             else if (!isInvincibility)
             {
-                Debug.Log($"실드에 한대 맞기 직전 현재 내구도 :{durability}");
+                switch(shieldDamage) //  어택타입을 일일히 지정해달라고 할지 
+                {
+                    //case : 
+                }
                 durability -= shieldDamage;
-                Debug.Log($"실드에 한대 맞은 현재 내구도 :{durability}");
-
                 uiManagerScript.UpdateShieldUI(durability);
                 invincibility.SetActive(true);
             }

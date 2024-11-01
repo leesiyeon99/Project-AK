@@ -64,7 +64,6 @@ public class LJH_ShieldRecover : MonoBehaviour
         {
         yield return new WaitForSecondsRealtime(0.5f);
             durability += REPAIR;
-            Debug.Log($"내구도 회복중.. 현재 내구도{durability}");
             uiManager.UpdateShieldUI(durability);
             if (durability == MAXDURABILITY)
             {

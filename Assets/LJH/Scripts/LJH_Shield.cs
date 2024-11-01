@@ -23,8 +23,6 @@ public class LJH_Shield : MonoBehaviour
     [Header("키입력")]
     [Header("역장 온오프 키입력")]
     [SerializeField] InputActionReference shieldOnOff;
-    [Header("데미지 테스트 키입력")]
-    [SerializeField] InputActionReference damageTest; // 테스트 끝나고 지워야함
     [Header("총 발사 키입력")]
     [SerializeField] InputActionReference fire;
 
@@ -123,7 +121,6 @@ public class LJH_Shield : MonoBehaviour
             // Comment: 방패 > 활성화 , 방패 수리 > 비활성화, 방패 여부 > 활성화
             gameObject.SetActive(true);
             shieldRecover.SetActive(false);
-            Debug.Log($"방패키면서 회복 비활성화 현재 내구도 {durability}");
             isShield = true;
 
 
@@ -144,7 +141,6 @@ public class LJH_Shield : MonoBehaviour
         isRecover = true;
         shieldRecover.SetActive(true);
         gameObject.SetActive(false);
-        Debug.Log($"방패끄면서 회복 활성화 현재 내구도{durability}");
         isShield = false;
 
         // Comment:총기 인풋 켜기
