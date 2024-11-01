@@ -27,6 +27,14 @@ public class LJH_Fairy : MonoBehaviour
     {
         fairyWithCharacter = character.GetComponent<FairyTest>().fairyWithCharacter;
 
+        if (character.transform.position.z - transform.position.z == 3)
+        {
+            character.GetComponent<FairyTest>().fairyWithCharacter = true;
+        }
+
+
+
+
         if (fairyWithCharacter)
         {
             this.gameObject.transform.position = character.transform.position + new Vector3(1, 1, 1);
