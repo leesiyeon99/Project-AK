@@ -5,6 +5,13 @@ using UnityEngine.Playables;
 using UnityEngine.Timeline;
 public class WaveTimeline : MonoBehaviour
 {
+  
+    PlayableDirector director;
+    [SerializeField] PlayableAsset[] wave;
+    [SerializeField] public int[] waveCount;
+    [SerializeField] int waveIndex;
+   
+
     private static WaveTimeline instance;
 
 
@@ -16,11 +23,7 @@ public class WaveTimeline : MonoBehaviour
 
         }
     }
-  
-    PlayableDirector director;
-    [SerializeField] PlayableAsset[] wave;
-    [SerializeField] int waveIndex;
-    [SerializeField] int waveCount;
+
     private void Awake()
     {
         if (instance == null)
@@ -48,5 +51,9 @@ public class WaveTimeline : MonoBehaviour
         director.playableAsset = wave[waveIndex];
         waveIndex++;
         director.Play();
+    }
+    public void DecreaseWaveCount()
+    {
+
     }
 }
