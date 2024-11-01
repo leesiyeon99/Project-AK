@@ -141,7 +141,7 @@ public class HYJ_Enemy : MonoBehaviour
         Debug.Log("몬스터 공격");
         yield return new WaitForSeconds(aniTime);
         nowAttack = true;
-        nowAttack = false;
+        //nowAttack = false;
         yield return new WaitForSeconds(1f);
         isAttack = false;
     }
@@ -152,33 +152,33 @@ public class HYJ_Enemy : MonoBehaviour
         if(monsterNowHp <= 0 && !isDie) // Comment : 몬스터의 Hp가 0이 되면 몬스터 오브젝트를 삭제한다.
         {
             
-            if (hyj_monsterCount != null)
-            {
-                if (hyj_monsterCount.Enemies.ContainsKey(this))
-                {
-                    if (hyj_monsterCount.isEnter[this] == true)
-                    {
-                        ColliderType col = hyj_monsterCount.Enemies[this];
-                        hyj_monsterCount.counters[(int)col]--;
-                    }
-                    hyj_monsterCount.Enemies.Remove(this);
-                }
-                if (hyj_monsterCount.isEnter.ContainsKey(this))
-                {
-                    hyj_monsterCount.isEnter[this] = false;
-                    //this.gameObject.GetComponent<UnitToScreenBoundary>().image.color = Color.white;
-                }
-            }
-            
-            if (monsterType == MonsterType.Nomal)
-            {
-                WaveTimeline.Instance.DecreaseWaveCount();
-               // ScoreUIManager.Instance.AddScore(100);
-            }
-            else if (monsterType == MonsterType.Elite)
-            {
-                ScoreUIManager.Instance.AddScore(500);
-            }
+          // if (hyj_monsterCount != null)
+          // {
+          //     if (hyj_monsterCount.Enemies.ContainsKey(this))
+          //     {
+          //         if (hyj_monsterCount.isEnter[this] == true)
+          //         {
+          //             ColliderType col = hyj_monsterCount.Enemies[this];
+          //             hyj_monsterCount.counters[(int)col]--;
+          //         }
+          //         hyj_monsterCount.Enemies.Remove(this);
+          //     }
+          //     if (hyj_monsterCount.isEnter.ContainsKey(this))
+          //     {
+          //         hyj_monsterCount.isEnter[this] = false;
+          //         //this.gameObject.GetComponent<UnitToScreenBoundary>().image.color = Color.white;
+          //     }
+          // }
+          // 
+           if (monsterType == MonsterType.Nomal)
+           {
+               WaveTimeline.Instance.DecreaseWaveCount();
+               ScoreUIManager.Instance.AddScore(100);
+           }
+           else if (monsterType == MonsterType.Elite)
+           {
+               ScoreUIManager.Instance.AddScore(500);
+           }
             
 
             Debug.Log("몬스터 사망");
