@@ -12,6 +12,7 @@ public class LSY_SceneManager : MonoBehaviour
     [SerializeField] GameState curState;
 
     private void Awake()
+
     {
         if (Instance != null && Instance != this)
         {

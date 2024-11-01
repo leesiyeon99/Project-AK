@@ -45,10 +45,10 @@ public class PlayerStop : MonoBehaviour
     // Comment : 플레이어 주변 OverlapSphere 에 감지되는 Enemy, EliteEnemy레이어가 없다면 다시 출발하도록 함
     private void PlayerMove()
     {
-        if (colliders.Length == 0)
-        {
-            cinemachineDollyCart.m_Speed = 2;
-        }
+        //if (colliders.Length == 0)
+        //{
+        //    cinemachineDollyCart.m_Speed = 2;
+        //}
     }
 
 }
