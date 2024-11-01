@@ -44,16 +44,32 @@ public class WaveTimeline : MonoBehaviour
         {
             Play();
         }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            DecreaseWaveCount();
+        }
     }
 
     public void Play()
     {
         director.playableAsset = wave[waveIndex];
-        waveIndex++;
         director.Play();
     }
     public void DecreaseWaveCount()
     {
+        waveCount[waveIndex]--;
 
+        if(waveCount[waveIndex] <= 0)
+        {
+            
+            waveIndex++; 
+            if (waveCount.Length <= waveIndex)
+            {
+                Debug.Log("³¡");
+                return;
+            }
+            Play();
+        }
     }
 }

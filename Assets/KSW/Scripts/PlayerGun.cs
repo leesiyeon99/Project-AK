@@ -378,7 +378,7 @@ public class PlayerGun : MonoBehaviour
         else
         {
             aimLineRenderer.enabled = false;
-            aim.transform.position = Vector3.zero;
+            aim.transform.position = Vector3.zero -Vector3.up;
         }
 
     }
@@ -397,8 +397,7 @@ public class PlayerGun : MonoBehaviour
     private void OnDisable()
     {
         playerGunStatus.OnMagazineChanged -= UpdateMagazine;
-        fireEffect.SetActive(false);
-  
+ 
         StopAllCoroutines();
         enableCheck = true;
     }
