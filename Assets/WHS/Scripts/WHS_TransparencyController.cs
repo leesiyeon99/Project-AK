@@ -6,7 +6,8 @@ using UnityEngine.Video;
 public class WHS_TransparencyController : MonoBehaviour
 {
     // 몬스터 죽으면서 1초동안 투명해지고 사라지게
-    // 몬스터가 죽을 때 Destroy 대신 StartFadeOut() 호출해 사용
+    // 몬스터가 죽을 때 Destroy 대신 StartFadeOut() 사용
+    // 서서히 드러나는 몬스터가 등장할때 StartFadeIn() 사용
     
     private static WHS_TransparencyController instance;
 
@@ -30,6 +31,7 @@ public class WHS_TransparencyController : MonoBehaviour
         }
     }
 
+    // 투명해지면서 사라짐
     public void StartFadeOut(GameObject obj, float duration)
     {
         StartCoroutine(FadeOut(obj, duration));
@@ -37,13 +39,16 @@ public class WHS_TransparencyController : MonoBehaviour
 
     private IEnumerator FadeOut(GameObject obj, float duration)
     {
-        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+        yield return new WaitForSeconds(0.5f); // 0.5초 (죽는 애니메이션 시간 정도) 뒤부터 사라지게
 
+        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>(); // 자식 오브젝트들의 렌더 
+
+        // RenderingMode를 Transparent로 변경
         foreach (Renderer render in renderers)
         {
             foreach (Material material in render.materials)
             {
-                SetMaterialToTransparent(material); // 죽을 때 RenderingMode를 Transparent로 변경
+                SetMaterialToTransparent(material);
             }
         }
 
@@ -60,7 +65,7 @@ public class WHS_TransparencyController : MonoBehaviour
                 {
                     Color color = material.color;
                     color.a = alpha;
-                    material.color = color;
+                    material.color = color; // 변경된 알파값을 매터리얼에 적용
                 }
             }
 
@@ -70,6 +75,7 @@ public class WHS_TransparencyController : MonoBehaviour
         Destroy(obj);
     }
 
+    // 투명한 오브젝트가 서서히 드러남
     public void StartFadeIn(GameObject obj, float duration)
     {
         StartCoroutine(FadeIn(obj, duration));
@@ -77,16 +83,14 @@ public class WHS_TransparencyController : MonoBehaviour
 
     private IEnumerator FadeIn(GameObject obj, float duration)
     {
-        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>(); // 자식 오브젝트들의 렌더 
 
-        foreach(Renderer render in renderers)
+        // 매터리얼의 렌더 모드를 Transparent로 변경
+        foreach (Renderer render in renderers)
         {
             foreach(Material material in render.materials)
             {
                 SetMaterialToTransparent(material);
-                Color color = material.color;
-                color.a = 0f;
-                material.color = color;
             }
         }
 
@@ -94,7 +98,7 @@ public class WHS_TransparencyController : MonoBehaviour
         while(elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            float alpha = elapsedTime / duration;
+            float alpha = elapsedTime / duration; // 알파값 증가시킴
 
             foreach(Renderer render in renderers)
             {
@@ -102,13 +106,14 @@ public class WHS_TransparencyController : MonoBehaviour
                 {
                     Color color = material.color;
                     color.a = alpha;
-                    material.color = color;
+                    material.color = color; // 변경된 알파값을 매터리얼에 적용
                 }
             }
 
             yield return null;
         }
 
+        // 매터리얼의 렌더 모드를 다시 Opaque로 변경
         foreach (Renderer render in renderers)
         {
             foreach(Material material in render.materials)
@@ -118,6 +123,7 @@ public class WHS_TransparencyController : MonoBehaviour
         }
     }
 
+    // 매터리얼의 Rendering Mode를 Transparent로 변경
     private void SetMaterialToTransparent(Material material)
     {
         material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
@@ -129,6 +135,7 @@ public class WHS_TransparencyController : MonoBehaviour
         material.renderQueue = 3000;
     }
 
+    // 매터리얼의 Rendering Mode를 Opaque로 변경
     private void SetMaterialToOpaque(Material material)
     {
         material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);

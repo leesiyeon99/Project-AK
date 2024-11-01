@@ -17,7 +17,6 @@ public class WHS_StageSelectScene : MonoBehaviour
     [SerializeField] Button startButton;
     [SerializeField] Transform compassNeedle;
     private float curAngle = 0f;
-    private float velocity = 0f;
 
     private int curStage = 1;
     private int maxStage = 5;
@@ -121,8 +120,9 @@ public class WHS_StageSelectScene : MonoBehaviour
 
     private void RotateNeedle()
     {
-        float targetAngle = (curStage - 1) * -20f;
-        curAngle = Mathf.SmoothDamp(curAngle, targetAngle, ref velocity, 0.2f);
+        float rotateSpeed = 20f;
+        curAngle += -rotateSpeed * Time.deltaTime;
+
         compassNeedle.localRotation = Quaternion.Euler(0, 0, curAngle);
     }
 }

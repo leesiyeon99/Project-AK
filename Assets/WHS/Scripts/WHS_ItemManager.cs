@@ -85,7 +85,8 @@ public class WHS_ItemManager : MonoBehaviour
         return null;
     }
 
-    // 랜덤아이템을 무조건 생성 - 엘리트몬스터, 특수지형
+    // 랜덤아이템을 무조건 생성
+    // 엘리트몬스터, 특수지형이 사라질 때 호출
     public void SpawnItem(Vector3 pos)
     {       
         GameObject spawnedItem = GetRandomItem();
@@ -100,7 +101,8 @@ public class WHS_ItemManager : MonoBehaviour
         }
     }
 
-    // 랜덤아이템을 확률로 생성 - 일반몬스터 등  
+    // 랜덤아이템을 확률로 생성
+    // 일반몬스터 등이 사라질 때 호출
     public void SpawnItemWithProbability(Vector3 pos)
     {
         GameObject spawnedItem = GetRandomItemWithProbability();
