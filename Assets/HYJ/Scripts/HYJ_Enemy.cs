@@ -215,21 +215,23 @@ public class HYJ_Enemy : MonoBehaviour
         }
     }
 
-    /*
-    // Comment : 다른 오브젝트와 충돌 시
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("Player"))
         {
+            if (monsterType == MonsterType.Boar)
+            {
+                nowAttack = true;
+            }
             //MonsterTakeDamageCalculation();
             // TODO : 충돌 지점을 받기
-            
+
             //other.transform.position -> 충돌 지점
             // TODO : 받은 충돌 지점이 머리 / 몸통 어디인지 판별하기
             // TODO : 몸통이면 흰색, 머리면 빨간색으로 데미지 표기
         }
     }
-
+    /*
     // Comment : 몬스터타입에 따라 몬스터의 체력을 조정한다.
     public void MonsterSetHp()
     {
@@ -241,6 +243,6 @@ public class HYJ_Enemy : MonoBehaviour
         {
             monsterHp = 100;
         }
-    }
-    */
+    }*/
+    
 }
