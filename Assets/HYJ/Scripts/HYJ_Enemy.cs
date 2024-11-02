@@ -31,9 +31,7 @@ public class HYJ_Enemy : MonoBehaviour
     public bool nowAttack;
     public bool isDie;
 
-    public MonsterCountUI hyj_monsterCount;
-
-    public UnityEvent<Collider> OnEnemyDied;
+    //public MonsterCountUI hyj_monsterCount;
 
     //------------------------임의 변수---------------------------//
     [Header("임의 변수")]
@@ -184,7 +182,6 @@ public class HYJ_Enemy : MonoBehaviour
             Debug.Log("몬스터 사망");
             isDie = true;
             monsterAnimator.SetTrigger("Die");
-            OnEnemyDied?.Invoke(GetComponent<Collider>());
             //Destroy(gameObject.GetComponent<SphereCollider>());
             Destroy(gameObject,2f);
 
