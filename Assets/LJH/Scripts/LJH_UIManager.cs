@@ -76,7 +76,7 @@ public class LJH_UIManager : MonoBehaviour
         ljh_curHp = damageManager.GetComponent<LJH_DamageManager>().ljh_curHp;
         DisplayHpBar();
 
-        LSY_SceneManager.Instance.PlayerDied();
+        //LSY_SceneManager.Instance.PlayerDied();
     }
 
     public void UpdateShieldUI(float durability)
