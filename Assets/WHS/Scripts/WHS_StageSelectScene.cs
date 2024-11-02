@@ -25,6 +25,9 @@ public class WHS_StageSelectScene : MonoBehaviour
     [SerializeField] InputActionProperty rightJoystickInput;
     [SerializeField] InputActionProperty triggerInput;
 
+    private float stageInterval = 0.3f;
+    private Coroutine stageChange;
+
     private void Start()
     {
         UpdateSelectedStage();
@@ -57,7 +60,7 @@ public class WHS_StageSelectScene : MonoBehaviour
     {
         Vector2 joystickVector = context.ReadValue<Vector2>();
         Debug.Log(joystickVector);
-
+        /*
         // 우측
         if (joystickVector.x > 0)
         {
@@ -67,6 +70,39 @@ public class WHS_StageSelectScene : MonoBehaviour
         else if (joystickVector.x < 0)
         {
             StageDown();
+        }
+        */
+        if(Mathf.Abs(joystickVector.x) > 0)
+        {
+            if(stageChange == null)
+            {
+                // 0.3초마다 스테이지 변경
+                stageChange = StartCoroutine(ChangeStageCoroutine(joystickVector.x > 0));
+            }
+        }
+        else
+        {
+            if(stageChange != null)
+            {
+                StopCoroutine(stageChange);
+                stageChange = null;
+            }
+        }
+    }
+
+    private IEnumerator ChangeStageCoroutine(bool isRight)
+    {
+        while (true)
+        {
+            if (isRight)
+            {
+                StageUp();
+            }
+            else
+            {
+                StageDown();
+            }
+            yield return new WaitForSeconds(stageInterval);
         }
     }
 
@@ -105,16 +141,15 @@ public class WHS_StageSelectScene : MonoBehaviour
 
     public void LoadSelectedStage()
     {
-        Debug.Log($"{curStage} 스테이지 진입");
-        string sceneName = $"KSJ{curStage}Stage";
+        int sceneIndex = curStage;
 
-        if (!Application.CanStreamedLevelBeLoaded(sceneName))
+        if (!Application.CanStreamedLevelBeLoaded(sceneIndex))
         {
             return;
         }
         else
         {
-            SceneManager.LoadScene(sceneName);
+            SceneManager.LoadScene(sceneIndex);
         }
     }
 
