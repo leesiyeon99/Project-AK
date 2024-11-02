@@ -61,7 +61,7 @@ public class LJH_Shield : MonoBehaviour
     // Comment: 역장이 활성화 될 때
     private void OnEnable()
     {
-
+        Debug.Log("쉴드활성화");
             isRecover = false;
             // Comment: 트리거 버튼에서 ShieldOn 제거
             shieldOnOff.action.performed -= ShieldOn;
@@ -78,6 +78,7 @@ public class LJH_Shield : MonoBehaviour
     // Comment: 역장이 비활성화 될 때
     private void OnDisable()
     {
+        Debug.Log("쉴드 비활성화");
             // Comment: 트리거 버튼에서 ShieldOn 추가
             shieldOnOff.action.performed += ShieldOn;
 
@@ -158,7 +159,7 @@ public class LJH_Shield : MonoBehaviour
         shieldRecover.SetActive(true);
         
         gameObject.SetActive(false);
-        breaked.Play();
+        //breaked.Play();
         
     }
 
