@@ -20,8 +20,8 @@ public class WHS_StageSelectScene : MonoBehaviour
     [SerializeField] Transform compassNeedle;
     private float curAngle = 0f;
 
-    public int curStage = 1;
-    private int maxStage = 5;
+    // public int curStage = 1;
+    // private int maxStage = 5;
 
     [SerializeField] ActionBasedController rightController;
     [SerializeField] InputActionProperty rightJoystickInput;
@@ -30,19 +30,25 @@ public class WHS_StageSelectScene : MonoBehaviour
     private float stageInterval = 0.3f;
     private Coroutine stageChange;
 
-    public static WHS_StageSelectScene Instance { get; private set; }
+    private static WHS_StageSelectScene instance;
+
+    public static WHS_StageSelectScene Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
     private void Awake()
-
     {
-        if (Instance != null && Instance != this)
+        if (instance == null)
         {
-            Destroy(gameObject);
+            instance = this;
         }
         else
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(this);
         }
     }
 
@@ -136,31 +142,31 @@ public class WHS_StageSelectScene : MonoBehaviour
 
     public void StageUp()
     {
-        if (curStage < maxStage)
+        if (WHS_StageIndex.curStage < WHS_StageIndex.maxStage)
         {
-            curStage++;
+            WHS_StageIndex.curStage++;
             UpdateSelectedStage();
         }
     }
 
     public void StageDown()
     {
-        if (curStage > 1)
+        if (WHS_StageIndex.curStage > 1)
         {
-            curStage--;
+            WHS_StageIndex.curStage--;
             UpdateSelectedStage();
         }
     }
 
     private void UpdateSelectedStage()
     {
-        stageText.text = $"{curStage}";
+        stageText.text = $"{WHS_StageIndex.curStage}";
         RotateNeedle();
     }
 
     public void LoadSelectedStage()
     {
-        int sceneIndex = curStage;
+        int sceneIndex = WHS_StageIndex.curStage;
 
         if (!Application.CanStreamedLevelBeLoaded(sceneIndex))
         {
