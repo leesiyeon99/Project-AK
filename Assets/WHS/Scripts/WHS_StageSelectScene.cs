@@ -8,9 +8,11 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using static LSY_SceneManager;
 
 public class WHS_StageSelectScene : MonoBehaviour
 {
+
     [SerializeField] TMP_Text stageText;
     [SerializeField] Button leftButton;
     [SerializeField] Button rightButton;
@@ -18,12 +20,32 @@ public class WHS_StageSelectScene : MonoBehaviour
     [SerializeField] Transform compassNeedle;
     private float curAngle = 0f;
 
-    private int curStage = 1;
+    public int curStage = 1;
     private int maxStage = 5;
 
     [SerializeField] ActionBasedController rightController;
     [SerializeField] InputActionProperty rightJoystickInput;
     [SerializeField] InputActionProperty triggerInput;
+
+    private float stageInterval = 0.3f;
+    private Coroutine stageChange;
+
+    public static WHS_StageSelectScene Instance { get; private set; }
+
+    private void Awake()
+
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
 
     private void Start()
     {
@@ -57,7 +79,7 @@ public class WHS_StageSelectScene : MonoBehaviour
     {
         Vector2 joystickVector = context.ReadValue<Vector2>();
         Debug.Log(joystickVector);
-
+        /*
         // 우측
         if (joystickVector.x > 0)
         {
@@ -67,6 +89,39 @@ public class WHS_StageSelectScene : MonoBehaviour
         else if (joystickVector.x < 0)
         {
             StageDown();
+        }
+        */
+        if(Mathf.Abs(joystickVector.x) > 0)
+        {
+            if(stageChange == null)
+            {
+                // 0.3초마다 스테이지 변경
+                stageChange = StartCoroutine(ChangeStageCoroutine(joystickVector.x > 0));
+            }
+        }
+        else
+        {
+            if(stageChange != null)
+            {
+                StopCoroutine(stageChange);
+                stageChange = null;
+            }
+        }
+    }
+
+    private IEnumerator ChangeStageCoroutine(bool isRight)
+    {
+        while (true)
+        {
+            if (isRight)
+            {
+                StageUp();
+            }
+            else
+            {
+                StageDown();
+            }
+            yield return new WaitForSeconds(stageInterval);
         }
     }
 
@@ -105,16 +160,15 @@ public class WHS_StageSelectScene : MonoBehaviour
 
     public void LoadSelectedStage()
     {
-        Debug.Log($"{curStage} 스테이지 진입");
-        string sceneName = $"KSJ{curStage}Stage";
+        int sceneIndex = curStage;
 
-        if (!Application.CanStreamedLevelBeLoaded(sceneName))
+        if (!Application.CanStreamedLevelBeLoaded(sceneIndex))
         {
             return;
         }
         else
         {
-            SceneManager.LoadScene(sceneName);
+            SceneManager.LoadScene(sceneIndex);
         }
     }
 
