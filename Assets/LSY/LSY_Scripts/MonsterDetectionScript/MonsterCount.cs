@@ -98,7 +98,7 @@ public class MonsterCount : MonoBehaviour
         // Comment : 해당 충돌체에 맞는 카운트ui의 숫자를 +1 해줌
         monsterCountUI.counters[(int)colType]++;
         HYJ_Enemy monster = other.GetComponent<HYJ_Enemy>();
-        monster.hyj_monsterCount = monsterCountUI;
+       // monster.hyj_monsterCount = monsterCountUI;
 
         if (!monsterCountUI.Enemies.ContainsKey(monster))
         {
@@ -123,7 +123,7 @@ public class MonsterCount : MonoBehaviour
     {
         monsterCountUI.counters[(int)colType]--;
         HYJ_Enemy monster = other.GetComponent<HYJ_Enemy>();
-        monster.hyj_monsterCount = monsterCountUI;
+       // monster.hyj_monsterCount = monsterCountUI;
 
         if (monsterCountUI.Enemies.ContainsKey(monster))
         {
@@ -143,7 +143,7 @@ public class MonsterCount : MonoBehaviour
         Debug.Log("강한 몬스터 화면 밖으로 나감");
         monsterCountUI.counters[(int)colType]++;
         HYJ_Enemy monster = other.GetComponent<HYJ_Enemy>();
-        monster.hyj_monsterCount = monsterCountUI;
+       // monster.hyj_monsterCount = monsterCountUI;
         if (!monsterCountUI.Enemies.ContainsKey(monster))
         {
             monsterCountUI.Enemies.Add(monster, colType);
@@ -172,7 +172,7 @@ public class MonsterCount : MonoBehaviour
     {
         monsterCountUI.counters[(int)colType]--;
         HYJ_Enemy monster = other.GetComponent<HYJ_Enemy>();
-        monster.hyj_monsterCount = monsterCountUI;
+      //  monster.hyj_monsterCount = monsterCountUI;
 
         if (monsterCountUI.Enemies.ContainsKey(monster))
         {

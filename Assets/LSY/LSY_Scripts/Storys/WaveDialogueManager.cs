@@ -38,7 +38,20 @@ public class WaveDialogueManager : MonoBehaviour
                             "요정: 누가 너희에게 넘길 줄 알고?!",
                             "보스: 흠…뭐 그럴 줄 알았어.",
                             "보스: 영역전개",
-                            "보스: 사록멸쇄진"}  
+                            "보스: 사록멸쇄진"},
+            // Comment : 세번째 웨이브 시작 전
+            new string[] { "보스: 주위를 한 번 둘러봐라! 이제 추격전도 끝이다! 나침반이 부숴져 힘을 잃은 너가 과연 날 이겨낼 수 있을까!",
+                            "보스: 보아라! 나의 전투의 춤을!",
+                            "보스: 이 춤의 힘으로 내 부하들은 한 단계 진화한다!",
+                            "요정: 이전이랑 별 차이 없는 것 같은데",
+                            "보스: 힘아 솟아라!",
+                            "보스: 더 빠르게 달려라!",
+                            "보스: 더 오래 맞아라!"},
+            // Comment : 세번째 웨이브 종료 후 멘트 없음
+            // Comment : 네번째 웨이브 시작 전
+            new string[] {"보스: 많이 기다렸지?", "보스: 이제 내가 직접 상대해주마!" },
+            // Comment : 보스 처치 후
+            new string[] { "보스: 내 영혼의…울림을… 느껴봐…" }
         };
     }
 
@@ -74,7 +87,7 @@ public class WaveDialogueManager : MonoBehaviour
         }
     }
 
-    private void StartWave()
+    public void StartWave()
     {
         StartCoroutine(DisplayDialogue(waveDialogues[currentWave]));
         currentWave++;
