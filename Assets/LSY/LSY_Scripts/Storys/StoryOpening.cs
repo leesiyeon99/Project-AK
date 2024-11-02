@@ -81,7 +81,7 @@ public class StoryOpening : MonoBehaviour
             }
             if (currentIndex == dialogues.Length)
             {
-                playertransform.position = new Vector3(0,0, 0);
+                playertransform.position = new Vector3(0,1, 0);
                 nextTextButton.action.performed -= ShowNextDialogue;
                 dialogueText.text = "";
             }
