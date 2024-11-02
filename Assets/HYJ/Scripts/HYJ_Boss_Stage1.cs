@@ -20,7 +20,9 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     [Header("임의 변수")]
     [SerializeField] public bool hitFlag;
     public bool HitFlag { get { return hitFlag; } set { hitFlag = value; } }
-
+    public bool isAttack;
+    public bool nowAttack;
+    public bool isDie;
     Coroutine hitFlagCoroutine;
     WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.1f);
     private bool firstBattleEnd=false;
@@ -42,13 +44,15 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
 
     private void Update()
     {
+        MonsterDie();
+        BossMove();
         if (!firstBattleEnd && !pFirst && !pSecond)
         {
-            StartCoroutine(BossBattleStart());
+            //StartCoroutine(BossBattleStart());
         }
         else if (firstBattleEnd && pFirst && pSecond)
         {
-            StartCoroutine(BossAI());
+            //StartCoroutine(BossAI());
         }
     }
 
@@ -58,6 +62,8 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         Debug.Log("헤드스핀");
         monsterShieldAtkPower = 4000f;
         monsterHpAtkPower = 5f;
+        animator.SetTrigger("HeadSpin");
+
     }
 
     // Comment : 브레이크댄스 패턴
@@ -66,6 +72,8 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         Debug.Log("브레이크댄스");
         monsterShieldAtkPower = 1000;
         monsterHpAtkPower = 3;
+        animator.SetTrigger("BreakDance");
+
     }
 
     // Comment : 세레모니 패턴
@@ -74,16 +82,24 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         Debug.Log("세레머니");
         monsterShieldAtkPower = 3000f;
         monsterHpAtkPower = 1f;
+        animator.SetTrigger("Siuu");
+        Vector3 bossPos = monster.transform.position;
+        //monster.transform.
     }
 
     // Comment : 보스 죽음 패턴
     private void MonsterDie()
     {
-        Debug.Log("사망");
-        Destroy(gameObject, 2f);
+        if (nowHp <= 0)
+        {
+            //사망 애니메이션
+            //monsterAnimator.SetTrigger("Die");
+            Debug.Log("사망");
+            Destroy(gameObject, 2f);
+        }
     }
 
-    // Comment : 보스 조우 패턴
+    // Comment : 보스 조우 패턴 
     IEnumerator BossBattleStart()
     {
         Debug.Log("연습");
@@ -110,38 +126,30 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     // Comment : 
     IEnumerator BossAI()
     {
-        if (nowHp > 0)
+        if (nowHp < 2450f && !p70)
         {
-            if (nowHp < 2450f && !p70)
-            {
-                // Comment : 보스 HP가 처음으로 70퍼 아래가 되어 헤드스핀을 사용한다.
-                p70 = true;
-                PatternHeadSpin();
-                Debug.Log("보스 HP가 처음으로 70퍼 아래가 되어 헤드스핀을 사용한다.");
-                yield return new WaitForSeconds(4f);
-            }
-            else if (nowHp < 1400f && !p40)
-            {
-                // Comment : 보스 HP가 처음으로 40퍼 아래가 되어 헤드스핀을 사용한다."
-                p40 = true;
-                PatternHeadSpin();
-                Debug.Log("보스 HP가 처음으로 40퍼 아래가 되어 헤드스핀을 사용한다.");
-                yield return new WaitForSeconds(4f);
-            }
-            else if (nowHp < 350f && !p10)
-            {
-                // Comment : 보스 HP가 처음으로 10퍼 아래가 되어 헤드스핀을 사용한다.
-                p10 = true;
-                PatternHeadSpin();
-                Debug.Log("보스 HP가 처음으로 10퍼 아래가 되어 헤드스핀을 사용한다.");
-                yield return new WaitForSeconds(4f);
-            }
+            // Comment : 보스 HP가 처음으로 70퍼 아래가 되어 헤드스핀을 사용한다.
+            p70 = true;
+            PatternHeadSpin();
+            Debug.Log("보스 HP가 처음으로 70퍼 아래가 되어 헤드스핀을 사용한다.");
+            yield return new WaitForSeconds(4f);
         }
-        else if(nowHp <= 0)
+        else if (nowHp < 1400f && !p40)
         {
-            MonsterDie();
+            // Comment : 보스 HP가 처음으로 40퍼 아래가 되어 헤드스핀을 사용한다."
+            p40 = true;
+            PatternHeadSpin();
+            Debug.Log("보스 HP가 처음으로 40퍼 아래가 되어 헤드스핀을 사용한다.");
+            yield return new WaitForSeconds(4f);
         }
-        
+        else if (0<nowHp&&nowHp < 350f && !p10)
+        {
+            // Comment : 보스 HP가 처음으로 10퍼 아래가 되어 헤드스핀을 사용한다.
+            p10 = true;
+            PatternHeadSpin();
+            Debug.Log("보스 HP가 처음으로 10퍼 아래가 되어 헤드스핀을 사용한다.");
+            yield return new WaitForSeconds(4f);
+        }
     }
 
     public void MonsterTakeDamageCalculation(float damage)
@@ -164,5 +172,25 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         hitFlag = false;
     }
 
-    
+    void BossMove()
+    {
+        Debug.Log("이동");
+        float xMoveDirection = Time.deltaTime;
+        float xMax = 8f;
+        float xMin = -8f;
+        float xNow = 0f;
+
+        xNow += xMoveDirection;
+        monster.transform.position = new Vector3(xNow, monster.transform.position.y, monster.transform.position.z);
+
+        if (xNow >= xMax)
+        {
+            xMoveDirection = -Time.deltaTime;
+            //monster.transform.position = Vector3.MoveTowards(monster)
+        }
+        else if(xNow <= xMin)
+        {
+            xMoveDirection = Time.deltaTime;
+        }
+    }
 }
