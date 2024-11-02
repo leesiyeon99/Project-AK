@@ -23,8 +23,6 @@ public class LJH_Shield : MonoBehaviour
     [Header("키입력")]
     [Header("역장 온오프 키입력")]
     [SerializeField] InputActionReference shieldOnOff;
-    [Header("데미지 테스트 키입력")]
-    [SerializeField] InputActionReference damageTest; // 테스트 끝나고 지워야함
     [Header("총 발사 키입력")]
     [SerializeField] InputActionReference fire;
 
@@ -45,12 +43,10 @@ public class LJH_Shield : MonoBehaviour
     public bool isInvincibility;
     [Header("역장 내구도")]
     public float durability;                      // Comment: 역장 내구도
-    [Header("역장 최대 내구도")]
-    public const float MAXDURABILITY = 5;         // Comment: 역장 최대 내구도
-    [Header("피해량")]
-    public float damage = 1;                      // Comment: 받은 피해량 ToDo: 몬스터의 쉴드 데미지 받아와야함
     [Header("몬스터의 공격 알람용 Bool 변수")]
     public bool isNow;
+
+
 
 
     private void Awake()
@@ -60,13 +56,11 @@ public class LJH_Shield : MonoBehaviour
         isShield = false;
         isBreaked = false;
         isInvincibility = false;
-        durability = MAXDURABILITY;
     }
 
     // Comment: 역장이 활성화 될 때
     private void OnEnable()
     {
-        durability = MAXDURABILITY;
 
             isRecover = false;
             // Comment: 트리거 버튼에서 ShieldOn 제거
@@ -117,9 +111,9 @@ public class LJH_Shield : MonoBehaviour
     // Comment: 역장 활성화
     public void ShieldOn(InputAction.CallbackContext obj)
     {
-        // 일시정지때 사용 불가
-        if (MenuEvent.Instance.IsPause)
-            return;
+        // Comment: 일시정지때 사용 불가
+       // if (MenuEvent.Instance.IsPause)
+       //     return;
 
         // Comment: 방패 파괴 상태가 아닐때만 해당 함수 불러올 수 있도록
         if (!isBreaked)
@@ -130,18 +124,18 @@ public class LJH_Shield : MonoBehaviour
             isShield = true;
 
 
-            // 총기 인풋 끄기
-            PlayerInputWeapon.Instance.enabled = false;
-            PlayerInputWeapon.Instance.IsShield = isShield;
+            // Comment: 총기 인풋 끄기
+          // PlayerInputWeapon.Instance.enabled = false;
+          // PlayerInputWeapon.Instance.IsShield = isShield;
         }
     }
 
     // Comment: 역장 비활성화
     public void ShieldOff(InputAction.CallbackContext obj)
     {
-        // 일시정지때 사용 불가
-        if (MenuEvent.Instance.IsPause)
-            return;
+        // Comment: 일시정지때 사용 불가
+       // if (MenuEvent.Instance.IsPause)
+       //     return;
 
         // Comment: 방패 > 비활성화, 방패 수리 > 활성화, 방패 여부 > 비활성화 
         isRecover = true;
@@ -149,10 +143,10 @@ public class LJH_Shield : MonoBehaviour
         gameObject.SetActive(false);
         isShield = false;
 
-        // 총기 인풋 켜기
+        // Comment:총기 인풋 켜기
 
-        PlayerInputWeapon.Instance.enabled = true;
-        PlayerInputWeapon.Instance.IsShield = isShield;
+       // PlayerInputWeapon.Instance.enabled = true;
+       // PlayerInputWeapon.Instance.IsShield = isShield;
     }
 
     // Comment: 역장 파괴, 역장이 비활성화되며 isBreaked 변수에 값 전달
@@ -164,7 +158,6 @@ public class LJH_Shield : MonoBehaviour
         shieldRecover.SetActive(true);
         
         gameObject.SetActive(false);
-        
         breaked.Play();
         
     }

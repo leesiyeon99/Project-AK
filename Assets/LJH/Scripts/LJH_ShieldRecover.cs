@@ -14,7 +14,7 @@ public class LJH_ShieldRecover : MonoBehaviour
 
     [Header("스크립트")]
     [Header("UIManager 스크립트")]
-    [SerializeField] LJH_UIManager test;
+    [SerializeField] LJH_UIManager uiManager;
 
     [Header("변수")]
     [Header("내구도 회복량(초당)")]
@@ -30,7 +30,10 @@ public class LJH_ShieldRecover : MonoBehaviour
     [Header("역장 활성화 여부")]
     [SerializeField] public bool isShield;
 
-    void Awake()
+    [Header("코루틴")]
+    private Coroutine recovery;
+
+    void Start()
     {
         gameObject.SetActive(false);
     }
@@ -43,15 +46,9 @@ public class LJH_ShieldRecover : MonoBehaviour
         isRecover = shield.GetComponent<LJH_Shield>().isRecover;
         isShield = shield.GetComponent<LJH_Shield>().isShield;
 
-        Debug.Log($"{durability} 쉴드 재생 스크립트");  //  여기서 지금 피해받았을때 내구도를 못받아오고있음
         if (durability != MAXDURABILITY)
         {
-            Coroutine recovery = StartCoroutine(RecoveryShield());
-
-            if (!isRecover)
-            {
-                StopCoroutine(recovery);
-            }
+            recovery = StartCoroutine(RecoveryShield());
         }
     }
 
@@ -67,14 +64,17 @@ public class LJH_ShieldRecover : MonoBehaviour
         {
         yield return new WaitForSecondsRealtime(0.5f);
             durability += REPAIR;
-            test.UpdateShieldUI(durability);
+            uiManager.UpdateShieldUI(durability);
             if (durability == MAXDURABILITY)
             {
                 isRecover = false;
                 isBreaked = false;
 
+                shield.GetComponent<LJH_Shield>().durability = durability;
+                damageManager.GetComponent<LJH_DamageManager>().durability = durability;
                 shield.GetComponent<LJH_Shield>().isRecover = isRecover;
                 shield.GetComponent<LJH_Shield>().isBreaked = isBreaked;
+                StopCoroutine(recovery);
                 break;
             }
         }
