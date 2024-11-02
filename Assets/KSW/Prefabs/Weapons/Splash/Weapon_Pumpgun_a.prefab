@@ -104,8 +104,9 @@ MonoBehaviour:
   uiPos: {fileID: 1634540891230684172}
   aimMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 919
   firingCoolDown: 0
+  additionalCoolDown: 0
 --- !u!114 &2381152897176946904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +142,7 @@ MonoBehaviour:
   splashEffectPrefab: {fileID: 5754608875452493824, guid: f002f9c6df4cd8e4783e917dcd18a1a3, type: 3}
   mask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 919
 --- !u!120 &6383030911503588873
 LineRenderer:
   m_ObjectHideFlags: 0

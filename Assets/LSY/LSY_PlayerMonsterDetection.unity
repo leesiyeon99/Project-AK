@@ -651,6 +651,10 @@ MonoBehaviour:
   isAttack: 0
   nowAttack: 0
   isDie: 0
+  hyj_monsterCount: {fileID: 0}
+  OnEnemyDied:
+    m_PersistentCalls:
+      m_Calls: []
   hitFlag: 0
 --- !u!1 &168916907
 GameObject:
@@ -1941,11 +1945,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477489165}
   m_CullTransparentMesh: 1
---- !u!1 &503530956 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4404304808478401862, guid: 40c0af27f69ea744fafdd6393feff8b1, type: 3}
-  m_PrefabInstance: {fileID: 1336517652}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &579399767
 GameObject:
   m_ObjectHideFlags: 0
@@ -3602,7 +3601,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincibility: {fileID: 700093348}
   shield: {fileID: 787370012}
-  bossMonster: {fileID: 0}
   hyj_EnemyScript: {fileID: 0}
   shieldScript: {fileID: 787370013}
   uiManagerScript: {fileID: 2122850064}
@@ -3924,18 +3922,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4404304806909042925, guid: 40c0af27f69ea744fafdd6393feff8b1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404304807190208059, guid: 40c0af27f69ea744fafdd6393feff8b1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404304807501872184, guid: 40c0af27f69ea744fafdd6393feff8b1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4404304807578027576, guid: 40c0af27f69ea744fafdd6393feff8b1, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -3946,7 +3932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4404304807578027581, guid: 40c0af27f69ea744fafdd6393feff8b1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4404304807578027582, guid: 40c0af27f69ea744fafdd6393feff8b1, type: 3}
       propertyPath: m_Pivot.x
@@ -4030,26 +4016,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4404304807578027582, guid: 40c0af27f69ea744fafdd6393feff8b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404304808049655184, guid: 40c0af27f69ea744fafdd6393feff8b1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404304808049655186, guid: 40c0af27f69ea744fafdd6393feff8b1, type: 3}
-      propertyPath: m_text
-      value: Press Anykey..
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404304808468276787, guid: 40c0af27f69ea744fafdd6393feff8b1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404304808478401862, guid: 40c0af27f69ea744fafdd6393feff8b1, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404304808800518247, guid: 40c0af27f69ea744fafdd6393feff8b1, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6401,11 +6367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3959368e503f494488218e62a0b76c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreUIobj: {fileID: 503530956}
   score: 5
   scoreline: 5
-  remainHP: 0
-  remainProgress: 0
   levelScore: 5
   eliteEnemyCount: 5
   normalEnemyCount: 5
@@ -7366,7 +7329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2122850063
 Transform:
   m_ObjectHideFlags: 0
