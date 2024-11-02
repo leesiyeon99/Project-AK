@@ -75,10 +75,10 @@ public class ScoreUIManager : MonoBehaviour
         UpdateScoreUI();
 
         
-        if (Input.GetKeyUp(KeyCode.Alpha1))
-        {
-            WinScoreLine(score);
-        }
+        //if (Input.GetKeyUp(KeyCode.Alpha1))
+        //{
+        //    WinScoreLine(score);
+        //}
         
         
         
@@ -98,7 +98,7 @@ public class ScoreUIManager : MonoBehaviour
 
     private void UpdateScoreUI()
     {
-        scoreTextUI.text = "점수: " + score;
+        scoreTextUI.text = score.ToString();
     }
 
     // Comment : 게임클리어시 나오는 UI

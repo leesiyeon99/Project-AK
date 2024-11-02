@@ -172,7 +172,7 @@ public class HYJ_Enemy : MonoBehaviour
            if (monsterType == MonsterType.Nomal)
            {
                WaveTimeline.Instance.DecreaseWaveCount();
-              // ScoreUIManager.Instance.AddScore(100);
+              ScoreUIManager.Instance.AddScore(100);
            }
            else if (monsterType == MonsterType.Elite)
            {
