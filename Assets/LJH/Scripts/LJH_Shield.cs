@@ -56,17 +56,15 @@ public class LJH_Shield : MonoBehaviour
         isShield = false;
         isBreaked = false;
         isInvincibility = false;
-
-        shieldOnOff.action.performed += ShieldOn;
     }
 
     // Comment: 역장이 활성화 될 때
     private void OnEnable()
     {
-        Debug.Log("쉴드활성화");
+
             isRecover = false;
             // Comment: 트리거 버튼에서 ShieldOn 제거
-            shieldOnOff.action.canceled += ShieldOn;
+            shieldOnOff.action.performed -= ShieldOn;
 
             // Comment: 트리거 버튼에서 ShiledOff 추가
             shieldOnOff.action.performed += ShieldOff;
@@ -80,12 +78,11 @@ public class LJH_Shield : MonoBehaviour
     // Comment: 역장이 비활성화 될 때
     private void OnDisable()
     {
-        Debug.Log("쉴드 비활성화");
             // Comment: 트리거 버튼에서 ShieldOn 추가
             shieldOnOff.action.performed += ShieldOn;
 
             // Comment: 트리거 버튼에서 ShiledOff 제거
-            shieldOnOff.action.canceled += ShieldOff;
+            shieldOnOff.action.performed -= ShieldOff;
 
         // Comment: 역장 비활성화될 때 사격 기능 활성화
         //fire.action.performed += GetComponent<PlayerInputWeapon>().OnFire;
@@ -161,7 +158,7 @@ public class LJH_Shield : MonoBehaviour
         shieldRecover.SetActive(true);
         
         gameObject.SetActive(false);
-        //breaked.Play();
+        breaked.Play();
         
     }
 

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shield: {fileID: 2961630504544563539, guid: dad9e9eab2b3c084db5bbebd0d943b54, type: 3}
   damageManager: {fileID: 0}
-  uiManager: {fileID: 0}
+  test: {fileID: 0}
   durability: 0
   isBreaked: 0
   isRecover: 0

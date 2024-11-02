@@ -1,68 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System.ComponentModel;
 
 public class LJH_UIManager : MonoBehaviour
 {
-    [Header("ìŠ¤í¬ë¦½íŠ¸")]
-    [Header("ë°ë¯¸ì§€ ë§¤ë‹ˆì € ìŠ¤í¬ë¦½íŠ¸")]
+    [Header("½ºÅ©¸³Æ®")]
+    [Header("µ¥¹ÌÁö ¸Å´ÏÀú ½ºÅ©¸³Æ®")]
     [SerializeField] LJH_DamageManager damageManager;
 
 
-    [Header("ì‰´ë“œ ë‚´êµ¬ë„ UI")]
-    [SerializeField] GameObject[] ljh_shieldImages;     // ë‚´êµ¬ë„ UIìš©
+    [Header("½¯µå ³»±¸µµ UI")]
+    [SerializeField] GameObject[] ljh_shieldImages;     // ³»±¸µµ UI¿ë
 
-    [Header("ìµœëŒ€ ì²´ë ¥")]
+    [Header("ÃÖ´ë Ã¼·Â")]
     private float ljh_MaxHP = 10000;
-
-    [Header("ì²´ë ¥ë°” ìƒ‰")]
+    
+    [Header("Ã¼·Â¹Ù »ö")]
     private Color ljh_curColor;
     private readonly Color ljh_initColor = Color.green;
-
-    [Header("í˜„ì¬ ì²´ë ¥")]
-    [Range(0, 10000)]
+    
+    [Header("ÇöÀç Ã¼·Â")]
+    [Range (0,10000)]
     [SerializeField] public float ljh_curHp;
 
-    [Header("ì²´ë ¥ ë¹„ìœ¨")]
+    [Header("Ã¼·Â ºñÀ²")]
     [SerializeField] public float hpPercentage;
 
-    [Header("ì²´ë ¥ë°” ì´ë¯¸ì§€")]
+    [Header("Ã¼·Â¹Ù ÀÌ¹ÌÁö")]
     [SerializeField] public Image ljh_hpBar;
-
-    [Header("ì²´ë ¥ í¼ì„¼íŠ¸ í…ìŠ¤íŠ¸")]
-    [SerializeField] public TextMeshProUGUI hpText;
-
-    private static LJH_UIManager instance = null;
-
-    void Awake()
-    {
-        if (null == instance)
-        {
-            instance = this;
-
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    public static LJH_UIManager Instance
-    {
-        get
-        {
-            if (null == instance)
-            {
-                return null;
-            }
-            return instance;
-        }
-    }
 
     private void Start()
     {
@@ -70,13 +37,10 @@ public class LJH_UIManager : MonoBehaviour
         ljh_hpBar.color = ljh_initColor;
     }
 
-
     private void Update()
     {
         ljh_curHp = damageManager.GetComponent<LJH_DamageManager>().ljh_curHp;
         DisplayHpBar();
-
-        //LSY_SceneManager.Instance.PlayerDied();
     }
 
     public void UpdateShieldUI(float durability)
@@ -105,8 +69,5 @@ public class LJH_UIManager : MonoBehaviour
         }
         ljh_hpBar.color = ljh_curColor;
         ljh_hpBar.fillAmount = hpPercentage;
-
-
-        hpText.text = (hpPercentage * 100).ToString("F0") + "%";
     }
 }
