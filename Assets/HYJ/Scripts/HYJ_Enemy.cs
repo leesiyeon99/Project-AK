@@ -168,6 +168,7 @@ public class HYJ_Enemy : MonoBehaviour
           //     }
           // }
           // 
+          /*
            if (monsterType == MonsterType.Nomal)
            {
                WaveTimeline.Instance.DecreaseWaveCount();
@@ -177,13 +178,15 @@ public class HYJ_Enemy : MonoBehaviour
            {
                ScoreUIManager.Instance.AddScore(500);
            }
-            
+            */
 
             Debug.Log("∏ÛΩ∫≈Õ ªÁ∏¡");
             isDie = true;
             monsterAnimator.SetTrigger("Die");
             //Destroy(gameObject.GetComponent<SphereCollider>());
-            Destroy(gameObject,2f);
+            // Destroy(gameObject,2f);
+            WHS_TransparencyController.Instance.StartFadeOut(gameObject, 1);
+            WHS_ItemManager.Instance.SpawnItemWithProbability(gameObject.transform.position);
 
         }
     }
