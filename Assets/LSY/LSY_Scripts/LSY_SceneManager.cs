@@ -61,21 +61,18 @@ public class LSY_SceneManager : MonoBehaviour
     public void GameStart()
     {
         curState = GameState.Running;
-        ScoreUIManager.Instance.ResetScore();
     }
 
     public void GameOver()
     {
         curState = GameState.GameOver;
-        //점수판 나오는 곳으로 씬을 로딩하거나, 씬을 보여줌
-        ScoreUIManager.Instance.LoseScoreLine(ScoreUIManager.Instance.score);
+        ReStart();
     }
 
     public void GameClear()
     {
         curState = GameState.GameClear;
-        ScoreUIManager.Instance.WinScoreLine(ScoreUIManager.Instance.score);
-        // 다음씬으로
+        ReStart();
     }
 
     public void ReStart()
@@ -85,7 +82,8 @@ public class LSY_SceneManager : MonoBehaviour
 
     public void PlayerDied()
     {
-        GameOver();
+        ReStart();
+        // TODO : 새 씬 로드
     }
 
     public void LoadScene(int index)
