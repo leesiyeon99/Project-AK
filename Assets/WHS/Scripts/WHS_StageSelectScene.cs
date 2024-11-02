@@ -11,6 +11,22 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class WHS_StageSelectScene : MonoBehaviour
 {
+    public static WHS_StageSelectScene Instance;
+
+    private void Awake()
+
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     [SerializeField] TMP_Text stageText;
     [SerializeField] Button leftButton;
     [SerializeField] Button rightButton;
@@ -114,6 +130,7 @@ public class WHS_StageSelectScene : MonoBehaviour
         }
         else
         {
+            LSY_SceneManager.Instance.GameStart();
             SceneManager.LoadScene(sceneName);
         }
     }
