@@ -64,7 +64,7 @@ public class PlayerGun : MonoBehaviour
     private void Start()
     {
         UpdateMagazine(playerGunStatus.Magazine);
-        fireEffect.transform.SetParent(null);
+       // fireEffect.transform.SetParent(null);
     }
 
     private void Update()
