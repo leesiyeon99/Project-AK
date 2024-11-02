@@ -1,0 +1,81 @@
+무기 장전 시 소리
+	이름: Pump_Reload
+	위치: PostApocalypseGuns
+
+남은 총알 없는데 장전 시도할 때
+	이름: Quick Transition (4)
+	위치: Interface and Item Sounds
+
+
+스테이지 1 일반 무기
+	이름 : pistol_1
+	위치 : Polygonal Modern Weapons Collection 1 Asset Package 
+발사 소리
+	이름 : SuppressorPistol_1p_01
+	위치 : PostApocalypseGuns
+
+스테이지 1 특수 무기 1
+	이름: machine_gun_1
+	위치: Polygonal Modern Weapons Collection 1 Asset Package 
+발사 소리
+	이름: CompactOne_1p_01
+	위치: PostApocalypseGuns
+
+스테이지 1 특수 무기 2
+	이름: submachine_gun_2
+	위치: Polygonal Modern Weapons Collection 1 Asset Package 
+발사 소리
+	이름: PropellerRifle_1p_01
+	위치: PostApocalypseGuns
+
+스테이지 1 특수 무기 3
+	이름: shotgun_2
+	위치  Polygonal Modern Weapons Collection 1 Asset Package 
+발사 소리
+	이름: Pump_p1_01
+	위치: PostApocalypseGuns
+
+스테이지 2 일반 무기
+	이름: pistol_1
+	위치: Polygonal Modern Weapons Collection 2 Asset Package
+발사 소리
+	이름: CompactOne_1p_01
+	위치: PostApocalypseGuns
+
+스테이지 2 특수 무기 1
+	이름: machine_gun_2
+	위치: Polygonal Modern Weapons Collection 1 Asset Package
+발사 소리
+	이름: AR_1p_02
+	위치: PostApocalypseGuns
+
+스테이지 2 특수 무기 2
+	이름: machine_gun_2
+	위치: Polygonal Modern Weapons Collection 1 Asset Package
+발사 소리
+	이름: RiotController_1p_01
+	위치: PostApocalypseGuns
+
+스테이지 2 특수 무기 3
+	이름: rocket_launcher_1
+	위치: Polygonal Modern Weapons Collection 1 Asset Package
+발사 소리
+	이름: VortexCanon_1p_01
+	위치: PostApocalypseGuns
+
+스테이지 2 배경음
+	이름: Forest SHORT AMBIENT LOOP
+	위치: Ultimate Game Music Collection
+스테이지 2 보스
+	이름: Frantic Battle LOOP
+	위치: Ultimate Game Music Collection
+
+스테이지 1 배경음
+	이름: Circle of Death LOOP
+	위치: Ultimate Game Music Collection
+스테이지 1 3웨이브 
+	이름: Combat Drums 2 Loop
+	위치: Ultimate Game Music Collection
+스테이지 1 보스
+	이름: Boss Battle 3 Loop
+	위치: Ultimate Game Music Collection

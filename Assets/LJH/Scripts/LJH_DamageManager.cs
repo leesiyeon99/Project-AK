@@ -51,13 +51,13 @@ public class LJH_DamageManager : MonoBehaviour
     [Header("오디오")]
     [Header("역장 피해시 사운드")]
     [SerializeField] AudioSource damagedShieldSound;
-    [Header("체력 피해시 사운드")]
-    [SerializeField] AudioSource damagedHPSound;
 
     private void Start()
     {
         ljh_curHp = 10000;
         durability = shield.GetComponent<LJH_Shield>().durability;
+
+        damagedShieldSound = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -69,8 +69,6 @@ public class LJH_DamageManager : MonoBehaviour
     public void DamagedHP(float HPDamage)
     {
         ljh_curHp -= HPDamage;
-
-        //damagedHPSound.Play();
 
     }
 
@@ -88,15 +86,13 @@ public class LJH_DamageManager : MonoBehaviour
             }
             else if (!isInvincibility)
             {
-                switch(shieldDamage) //  어택타입을 일일히 지정해달라고 할지 
-                {
-                    //case : 
-                }
                 durability -= shieldDamage;
                 uiManagerScript.UpdateShieldUI(durability);
                 invincibility.SetActive(true);
+
+                damagedShieldSound.Play();
             }
-            //damagedShieldSound.Play();
+            
 
         }
 

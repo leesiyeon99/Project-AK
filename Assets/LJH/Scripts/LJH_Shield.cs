@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.Audio;
 
 public class LJH_Shield : MonoBehaviour
 {
@@ -25,12 +26,6 @@ public class LJH_Shield : MonoBehaviour
     [SerializeField] InputActionReference shieldOnOff;
     [Header("총 발사 키입력")]
     [SerializeField] InputActionReference fire;
-
-    [Header("오디오")]
-    [Header("역장 피해시 사운드")]
-    [SerializeField] AudioSource damaged;
-    [Header("역장 파괴시 사운드")]
-    [SerializeField] AudioSource breaked;
 
     [Header("변수")]
     [Header("역장 활성화 여부")]
@@ -58,6 +53,7 @@ public class LJH_Shield : MonoBehaviour
         isInvincibility = false;
 
         durability = 5;
+
     }
 
     // Comment: 역장이 활성화 될 때
@@ -160,8 +156,7 @@ public class LJH_Shield : MonoBehaviour
         shieldRecover.SetActive(true);
         
         gameObject.SetActive(false);
-        //breaked.Play();
-        
     }
+    
 
 }

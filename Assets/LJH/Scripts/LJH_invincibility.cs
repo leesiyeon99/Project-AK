@@ -29,7 +29,14 @@ public class LJH_invincibility : MonoBehaviour
     void OnDisable()
     {
         isInvincibility = false;
-        damageManager.GetComponent<LJH_DamageManager>().isInvincibility = isInvincibility;
+        if (damageManager == null)
+        {
+            return;
+        }
+        else
+        {
+            damageManager.GetComponent<LJH_DamageManager>().isInvincibility = isInvincibility;
+        }
     }
 
     void ObjOff()

@@ -453,6 +453,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Device Simulator
       objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
 --- !u!1 &407163553 stripped
@@ -1523,6 +1527,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997692743}
   m_CullTransparentMesh: 1
+--- !u!1 &2090698316 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2616748439503208132, guid: 0d2d4edbf43a0e7439f768036940f9c0, type: 3}
+  m_PrefabInstance: {fileID: 2616748438983779702}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2135262526 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3775956352867349804, guid: abe1c26f6e0e8e34d9b59aa832d5ad7d, type: 3}
@@ -1589,17 +1598,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d2d4edbf43a0e7439f768036940f9c0, type: 3}
---- !u!114 &2616748438983779703 stripped
+--- !u!114 &2616748438983779705
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2611185888204087404, guid: 0d2d4edbf43a0e7439f768036940f9c0, type: 3}
-  m_PrefabInstance: {fileID: 2616748438983779702}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2090698316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f342ac6ff92bce42baca67d5fa4cecc, type: 3}
+  m_Script: {fileID: 11500000, guid: b56f6a8bffa341c408c20716b769b165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageManager: {fileID: 452737440}
+  ljh_shieldImages:
+  - {fileID: 173105680}
+  - {fileID: 600692674}
+  - {fileID: 862781986}
+  - {fileID: 1563730912}
+  - {fileID: 785444031}
+  ljh_curHp: 0
+  hpPercentage: 0
+  ljh_hpBar: {fileID: 1743678491}
+  hpText: {fileID: 0}
 --- !u!1001 &2775871717435467931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1739,7 +1760,7 @@ PrefabInstance:
     - target: {fileID: 2961630504544563536, guid: dad9e9eab2b3c084db5bbebd0d943b54, type: 3}
       propertyPath: uiManagerScript
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2616748438983779705}
     - target: {fileID: 2961630504544563536, guid: dad9e9eab2b3c084db5bbebd0d943b54, type: 3}
       propertyPath: ljh_shieldImages.Array.size
       value: 5
@@ -1807,7 +1828,7 @@ PrefabInstance:
     - target: {fileID: 3775956352867349805, guid: abe1c26f6e0e8e34d9b59aa832d5ad7d, type: 3}
       propertyPath: uiManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2616748438983779705}
     - target: {fileID: 3775956352867349805, guid: abe1c26f6e0e8e34d9b59aa832d5ad7d, type: 3}
       propertyPath: damageManager
       value: 
@@ -1912,7 +1933,11 @@ PrefabInstance:
     - target: {fileID: 5220578737575441218, guid: 3d9c02e329a53c24d879604b1ada09ec, type: 3}
       propertyPath: uiManagerScript
       value: 
-      objectReference: {fileID: 2616748438983779703}
+      objectReference: {fileID: 2616748438983779705}
+    - target: {fileID: 5220578737575441218, guid: 3d9c02e329a53c24d879604b1ada09ec, type: 3}
+      propertyPath: damagedShieldSound
+      value: 
+      objectReference: {fileID: 3913502362976218308, guid: 724d7cefad6d42c4195e5a3287c2a47f, type: 3}
     - target: {fileID: 5220578737575441277, guid: 3d9c02e329a53c24d879604b1ada09ec, type: 3}
       propertyPath: m_RootOrder
       value: 9
