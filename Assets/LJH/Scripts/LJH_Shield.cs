@@ -56,6 +56,8 @@ public class LJH_Shield : MonoBehaviour
         isShield = false;
         isBreaked = false;
         isInvincibility = false;
+
+        durability = 5;
     }
 
     // Comment: 역장이 활성화 될 때

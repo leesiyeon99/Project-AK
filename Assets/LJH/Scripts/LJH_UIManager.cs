@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,16 +31,50 @@ public class LJH_UIManager : MonoBehaviour
     [Header("체력바 이미지")]
     [SerializeField] public Image ljh_hpBar;
 
+    [Header("체력 퍼센트 텍스트")]
+    [SerializeField] public TextMeshProUGUI hpText;
+
+    private static LJH_UIManager instance = null;
+
+    void Awake()
+    {
+        if (null == instance)
+        {
+            instance = this;
+
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public static LJH_UIManager Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
+
     private void Start()
     {
         ljh_curColor = ljh_initColor;
         ljh_hpBar.color = ljh_initColor;
     }
 
+
     private void Update()
     {
         ljh_curHp = damageManager.GetComponent<LJH_DamageManager>().ljh_curHp;
         DisplayHpBar();
+
+        //LSY_SceneManager.Instance.PlayerDied();
     }
 
     public void UpdateShieldUI(float durability)
@@ -69,5 +103,7 @@ public class LJH_UIManager : MonoBehaviour
         }
         ljh_hpBar.color = ljh_curColor;
         ljh_hpBar.fillAmount = hpPercentage;
+
+        hpText.text = (hpPercentage * 100).ToString("F0") + "%";
     }
 }
