@@ -31,6 +31,9 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     private bool p10 = false;
     private bool p40 = false;
     private bool p70 = false;
+    [SerializeField] float xNow = 0;
+    [SerializeField] float xMoveDirection = 0.1f;
+    private bool isSiuu = false;
 
     public void Start()
     {
@@ -39,20 +42,22 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         SetHp = 3500f;
         monsterMoveSpeed = 1.5f;
         nowHp = SetHp;
-        
     }
 
     private void Update()
     {
         MonsterDie();
-        BossMove();
+        if (!isSiuu)
+        {
+            BossMove();
+        }
         if (!firstBattleEnd && !pFirst && !pSecond)
         {
-            //StartCoroutine(BossBattleStart());
+            StartCoroutine(BossBattleStart());
         }
         else if (firstBattleEnd && pFirst && pSecond)
         {
-            //StartCoroutine(BossAI());
+            StartCoroutine(BossAI());
         }
     }
 
@@ -63,6 +68,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         monsterShieldAtkPower = 4000f;
         monsterHpAtkPower = 5f;
         animator.SetTrigger("HeadSpin");
+        nowAttack = true;
 
     }
 
@@ -73,16 +79,19 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         monsterShieldAtkPower = 1000;
         monsterHpAtkPower = 3;
         animator.SetTrigger("BreakDance");
+        nowAttack = true;
 
     }
 
     // Comment : 세레모니 패턴
     private void PatternSiiuuuu()
     {
+        isSiuu = true;
         Debug.Log("세레머니");
         monsterShieldAtkPower = 3000f;
         monsterHpAtkPower = 1f;
         animator.SetTrigger("Siuu");
+        nowAttack = true;
         Vector3 bossPos = monster.transform.position;
         //monster.transform.
     }
@@ -174,23 +183,23 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
 
     void BossMove()
     {
-        Debug.Log("이동");
-        float xMoveDirection = Time.deltaTime;
+        
         float xMax = 8f;
         float xMin = -8f;
-        float xNow = 0f;
+        
 
         xNow += xMoveDirection;
         monster.transform.position = new Vector3(xNow, monster.transform.position.y, monster.transform.position.z);
 
         if (xNow >= xMax)
         {
-            xMoveDirection = -Time.deltaTime;
-            //monster.transform.position = Vector3.MoveTowards(monster)
+            Debug.Log("방향 전환");
+            Debug.Log(xMoveDirection);
+            xMoveDirection = -Time.deltaTime * 3f;
         }
         else if(xNow <= xMin)
         {
-            xMoveDirection = Time.deltaTime;
+            xMoveDirection = Time.deltaTime * 3f;
         }
     }
 }
