@@ -40,11 +40,12 @@ public class HYJ_Enemy : MonoBehaviour
 
     Coroutine hitFlagCoroutine;
     WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.1f);
-    
+
     public enum MonsterType
     {
         Nomal,
-        Elite
+        Elite,
+        Boar
     }
 
     public enum MonsterAttackType
@@ -74,12 +75,12 @@ public class HYJ_Enemy : MonoBehaviour
     // Comment : 몬스터 공격범위를 조정한다.
     public void MonsterSetAttackRange()
     {
-        if(monsterAttackType == MonsterAttackType.shortAttackRange) // Comment : 근거리 타입이라면 공격범위를 3으로 설정한다.
+        if (monsterAttackType == MonsterAttackType.shortAttackRange) // Comment : 근거리 타입이라면 공격범위를 3으로 설정한다.
         {
             monsterAttackRange = 3;
         }
-        else if(monsterAttackType == MonsterAttackType.longAttackRange) // Commnet : 원거리 타입이라면 공격 범위를 7로 설정한다.
-        { 
+        else if (monsterAttackType == MonsterAttackType.longAttackRange) // Commnet : 원거리 타입이라면 공격 범위를 7로 설정한다.
+        {
             monsterAttackRange = 7;
         }
     }
@@ -87,18 +88,25 @@ public class HYJ_Enemy : MonoBehaviour
     // Comment : Player 태그의 오브젝트를 찾고 해당 오브젝트로 Monster가 이동한다.
     public void MonsterMover()
     {
-        if (player != null && monsterNowHp > 0)
+      
+            if (player != null && monsterNowHp > 0)
         {
+            if (monsterType == MonsterType.Boar)
+            {
+                monsterAnimator.SetBool("Run Forward", true);
+                return;
+            }
+
             playerDistance = Vector3.Distance(new Vector3(monster.transform.position.x, 0, monster.transform.position.z), new Vector3(player.transform.position.x, 0, player.transform.position.z)); // Comment : 플레이어와 몬스터의 거리(x, z축만 계산)
-            
+
             if (playerDistance > monsterAttackRange) // Comment : 플레이어와의 거리가 공격범위 밖일 때
             {
                 Debug.Log("이동 중");
-                monsterAnimator.SetBool("Run Forward",true);
-                monster.transform.position = Vector3.MoveTowards(monster.transform.position, new Vector3(player.transform.position.x,0,player.transform.position.z), monsterMoveSpeed/50);
-                monster.transform.LookAt(new Vector3(player.transform.position.x,0,player.transform.position.z)); // Comment : 몬스터 
+                monsterAnimator.SetBool("Run Forward", true);
+                monster.transform.position = Vector3.MoveTowards(monster.transform.position, new Vector3(player.transform.position.x, 0, player.transform.position.z), monsterMoveSpeed / 50);
+                monster.transform.LookAt(new Vector3(player.transform.position.x, 0, player.transform.position.z)); // Comment : 몬스터 
             }
-            else if(playerDistance <= monsterAttackRange && isAttack==false && monsterNowHp > 0) //Comment : 플레이어가 몬스터의 공격범위로 들어왔을 때
+            else if (playerDistance <= monsterAttackRange && isAttack == false && monsterNowHp > 0) //Comment : 플레이어가 몬스터의 공격범위로 들어왔을 때
             {
                 monsterAnimator.SetBool("Run Forward", false);
                 isAttack = true;
@@ -119,7 +127,7 @@ public class HYJ_Enemy : MonoBehaviour
 
     public void StartHitFlagCoroutine()
     {
-        if(hitFlagCoroutine != null)
+        if (hitFlagCoroutine != null)
         {
             StopCoroutine(hitFlagCoroutine);
         }
@@ -147,44 +155,47 @@ public class HYJ_Enemy : MonoBehaviour
     // Comment : 몬스터 사망
     public void MonsterDie()
     {
-        if(monsterNowHp <= 0 && !isDie) // Comment : 몬스터의 Hp가 0이 되면 몬스터 오브젝트를 삭제한다.
+        if (monsterNowHp <= 0 && !isDie) // Comment : 몬스터의 Hp가 0이 되면 몬스터 오브젝트를 삭제한다.
         {
-            
-          // if (hyj_monsterCount != null)
-          // {
-          //     if (hyj_monsterCount.Enemies.ContainsKey(this))
-          //     {
-          //         if (hyj_monsterCount.isEnter[this] == true)
-          //         {
-          //             ColliderType col = hyj_monsterCount.Enemies[this];
-          //             hyj_monsterCount.counters[(int)col]--;
-          //         }
-          //         hyj_monsterCount.Enemies.Remove(this);
-          //     }
-          //     if (hyj_monsterCount.isEnter.ContainsKey(this))
-          //     {
-          //         hyj_monsterCount.isEnter[this] = false;
-          //         //this.gameObject.GetComponent<UnitToScreenBoundary>().image.color = Color.white;
-          //     }
-          // }
-          // 
-          /*
-           if (monsterType == MonsterType.Nomal)
-           {
-               WaveTimeline.Instance.DecreaseWaveCount();
-              // ScoreUIManager.Instance.AddScore(100);
-           }
-           else if (monsterType == MonsterType.Elite)
-           {
-               ScoreUIManager.Instance.AddScore(500);
-           }
-            */
+
+            // if (hyj_monsterCount != null)
+            // {
+            //     if (hyj_monsterCount.Enemies.ContainsKey(this))
+            //     {
+            //         if (hyj_monsterCount.isEnter[this] == true)
+            //         {
+            //             ColliderType col = hyj_monsterCount.Enemies[this];
+            //             hyj_monsterCount.counters[(int)col]--;
+            //         }
+            //         hyj_monsterCount.Enemies.Remove(this);
+            //     }
+            //     if (hyj_monsterCount.isEnter.ContainsKey(this))
+            //     {
+            //         hyj_monsterCount.isEnter[this] = false;
+            //         //this.gameObject.GetComponent<UnitToScreenBoundary>().image.color = Color.white;
+            //     }
+            // }
+            // 
+
+            if (monsterType == MonsterType.Nomal)
+            {
+                WaveTimeline.Instance.DecreaseWaveCount();
+                // ScoreUIManager.Instance.AddScore(100);
+            }
+            else if (monsterType == MonsterType.Elite)
+            {
+               // ScoreUIManager.Instance.AddScore(500);
+            }
+
 
             Debug.Log("몬스터 사망");
             isDie = true;
             monsterAnimator.SetTrigger("Die");
+            transform.SetParent(null);
             //Destroy(gameObject.GetComponent<SphereCollider>());
             // Destroy(gameObject,2f);
+
+            // 몬스터 사망 후 사라짐, 아이템 생성
             WHS_TransparencyController.Instance.StartFadeOut(gameObject, 1);
             WHS_ItemManager.Instance.SpawnItemWithProbability(gameObject.transform.position);
 
@@ -194,7 +205,7 @@ public class HYJ_Enemy : MonoBehaviour
     // Comment : 적 등급 설정에 따른 태그 변경
     public void MonsterTagSet(MonsterType monsterType)
     {
-        if(monsterType == MonsterType.Nomal)
+        if (monsterType == MonsterType.Nomal)
         {
             gameObject.tag = "Enemy";
         }
