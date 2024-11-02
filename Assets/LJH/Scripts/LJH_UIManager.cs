@@ -8,32 +8,32 @@ using System.ComponentModel;
 
 public class LJH_UIManager : MonoBehaviour
 {
-    [Header("½ºÅ©¸³Æ®")]
-    [Header("µ¥¹ÌÁö ¸Å´ÏÀú ½ºÅ©¸³Æ®")]
+    [Header("ìŠ¤í¬ë¦½íŠ¸")]
+    [Header("ë°ë¯¸ì§€ ë§¤ë‹ˆì € ìŠ¤í¬ë¦½íŠ¸")]
     [SerializeField] LJH_DamageManager damageManager;
 
 
-    [Header("½¯µå ³»±¸µµ UI")]
-    [SerializeField] GameObject[] ljh_shieldImages;     // ³»±¸µµ UI¿ë
+    [Header("ì‰´ë“œ ë‚´êµ¬ë„ UI")]
+    [SerializeField] GameObject[] ljh_shieldImages;     // ë‚´êµ¬ë„ UIìš©
 
-    [Header("ÃÖ´ë Ã¼·Â")]
+    [Header("ìµœëŒ€ ì²´ë ¥")]
     private float ljh_MaxHP = 10000;
 
-    [Header("Ã¼·Â¹Ù »ö")]
+    [Header("ì²´ë ¥ë°” ìƒ‰")]
     private Color ljh_curColor;
     private readonly Color ljh_initColor = Color.green;
 
-    [Header("ÇöÀç Ã¼·Â")]
+    [Header("í˜„ì¬ ì²´ë ¥")]
     [Range(0, 10000)]
     [SerializeField] public float ljh_curHp;
 
-    [Header("Ã¼·Â ºñÀ²")]
+    [Header("ì²´ë ¥ ë¹„ìœ¨")]
     [SerializeField] public float hpPercentage;
 
-    [Header("Ã¼·Â¹Ù ÀÌ¹ÌÁö")]
+    [Header("ì²´ë ¥ë°” ì´ë¯¸ì§€")]
     [SerializeField] public Image ljh_hpBar;
 
-    [Header("Ã¼·Â ÆÛ¼¾Æ® ÅØ½ºÆ®")]
+    [Header("ì²´ë ¥ í¼ì„¼íŠ¸ í…ìŠ¤íŠ¸")]
     [SerializeField] public TextMeshProUGUI hpText;
 
     private static LJH_UIManager instance = null;
@@ -105,6 +105,7 @@ public class LJH_UIManager : MonoBehaviour
         }
         ljh_hpBar.color = ljh_curColor;
         ljh_hpBar.fillAmount = hpPercentage;
+
 
         hpText.text = (hpPercentage * 100).ToString("F0") + "%";
     }
