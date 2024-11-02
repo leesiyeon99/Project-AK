@@ -353,12 +353,13 @@ public class PlayerGun : MonoBehaviour
 
     public void UpdateMagazine(int magazine)
     {
-        weaponUI.UpdateMagazineUI(magazine, playerGunStatus.MaxMagazine);
+        
+        weaponUI.UpdateMagazineUI(magazine, playerOwnedWeapons.Index);
        
     }
     public void UpdateMagazine()
     {
-        weaponUI.UpdateMagazineUI(playerGunStatus.Magazine, playerGunStatus.MaxMagazine);
+        weaponUI.UpdateMagazineUI(playerGunStatus.Magazine, playerOwnedWeapons.Index );
         weaponUI.UpdateFiringCooltimeUI(firingCoolDown);
 
     }

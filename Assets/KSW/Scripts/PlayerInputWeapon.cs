@@ -47,6 +47,7 @@ public class PlayerInputWeapon : MonoBehaviour
     [SerializeField] private bool onToggle;
 
 
+
     // 실드 상태 체크
     public bool isShield;
 
@@ -156,6 +157,10 @@ public class PlayerInputWeapon : MonoBehaviour
 
     void OnChangeView(InputAction.CallbackContext obj)
     {
+        if (playerOwnedWeapons.OntGrip)
+        {
+            return;
+        }
      
         weaponUI.OnOffChangeUI(true, false);
       
