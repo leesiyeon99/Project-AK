@@ -8,9 +8,11 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using static LSY_SceneManager;
 
 public class WHS_StageSelectScene : MonoBehaviour
 {
+
     [SerializeField] TMP_Text stageText;
     [SerializeField] Button leftButton;
     [SerializeField] Button rightButton;
@@ -18,7 +20,7 @@ public class WHS_StageSelectScene : MonoBehaviour
     [SerializeField] Transform compassNeedle;
     private float curAngle = 0f;
 
-    private int curStage = 1;
+    public int curStage = 1;
     private int maxStage = 5;
 
     [SerializeField] ActionBasedController rightController;
@@ -27,6 +29,23 @@ public class WHS_StageSelectScene : MonoBehaviour
 
     private float stageInterval = 0.3f;
     private Coroutine stageChange;
+
+    public static WHS_StageSelectScene Instance { get; private set; }
+
+    private void Awake()
+
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
 
     private void Start()
     {
