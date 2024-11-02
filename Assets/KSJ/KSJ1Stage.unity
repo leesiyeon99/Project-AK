@@ -450,6 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curState: 0
+  nextTextButton: {fileID: -2766732272227372719, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   playerTransform: {fileID: 776911691}
   lsy_isdie: 0
 --- !u!4 &69207743
@@ -10221,6 +10222,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &705402793 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7453079467911073584, guid: 8423a290b963f7a4d9fefc5587a8733c, type: 3}
+  m_PrefabInstance: {fileID: 916544844}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &706386246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22979,6 +22985,81 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1122850974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1122850976}
+  - component: {fileID: 1122850975}
+  m_Layer: 0
+  m_Name: SelectStageSceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1122850975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122850974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e85206460e4234a95a0663c172e552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageText: {fileID: 0}
+  leftButton: {fileID: 0}
+  rightButton: {fileID: 0}
+  startButton: {fileID: 0}
+  compassNeedle: {fileID: 0}
+  curStage: 1
+  rightController: {fileID: 0}
+  rightJoystickInput:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Right Joystick Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 93e021d6-0281-4a04-873e-69678a44c7a9
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  triggerInput:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Trigger Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a9237613-7b9c-4305-acf6-40ff221104da
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+--- !u!4 &1122850976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122850974}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1127356581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28401,11 +28482,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7035393cb24fd649b71a587530c609f, type: 3}
---- !u!1 &1375976157 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7453079468548094722, guid: 8423a290b963f7a4d9fefc5587a8733c, type: 3}
-  m_PrefabInstance: {fileID: 916544844}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1375976158 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7453079468548094749, guid: 8423a290b963f7a4d9fefc5587a8733c, type: 3}
@@ -37943,7 +38019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3959368e503f494488218e62a0b76c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreUIobj: {fileID: 1375976157}
+  scoreUIobj: {fileID: 705402793}
   score: 0
   scoreline: 0
   levelScore: 0
@@ -40718,7 +40794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6768793288629545258, guid: 52d017b7850a46d4b84133903874b192, type: 3}
       propertyPath: m_InitialState
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6768793288629545258, guid: 52d017b7850a46d4b84133903874b192, type: 3}
       propertyPath: m_PlayableAsset
