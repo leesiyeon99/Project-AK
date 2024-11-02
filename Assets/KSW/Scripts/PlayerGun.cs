@@ -54,9 +54,17 @@ public class PlayerGun : MonoBehaviour
     StringBuilder stringBuilder;
 
 
+    // Commnet : 1 넣으면 사격 50% 딜레이 증가
+
+    [SerializeField] private float additionalCoolDown;
+    public float AdditionalCoolDown { get { return additionalCoolDown; } set { additionalCoolDown = value; } }
+
+    bool enableCheck;
+
     private void Start()
     {
         UpdateMagazine(playerGunStatus.Magazine);
+        fireEffect.transform.SetParent(null);
     }
 
     private void Update()
@@ -90,9 +98,15 @@ public class PlayerGun : MonoBehaviour
        
         if (playerGunStatus.GunType.HasFlag(GunType.REPEATER))
         {
-
             firingCoroutine = StartCoroutine(Firing());
+
+            if (enableCheck)
+            {
+                return;
+            }
+
             firingAccelerationCoroutine = StartCoroutine(FiringAcceleration());
+            
         }
         else
         {
@@ -134,6 +148,8 @@ public class PlayerGun : MonoBehaviour
 
         // Comment : 비주얼적 부분
         fireEffect.SetActive(false);
+        fireEffect.transform.position = muzzle.position;
+        fireEffect.transform.rotation = muzzle.rotation;
         animator.SetTrigger("Shot");
         fireEffect.SetActive(true);
         
@@ -165,7 +181,7 @@ public class PlayerGun : MonoBehaviour
         // Comment : 특수 탄환 없을 시 기본 무기로 교체
         if (playerOwnedWeapons.Index != 0 && PlayerSpecialBullet.Instance.SpecialBullet[playerOwnedWeapons.Index - 1] <= 0 && playerGunStatus.Magazine <= 0)
         {
-      
+     
             playerOwnedWeapons.SetDefaultWeapon();
             weaponUI.UpdateChangeToggleUI();
         }
@@ -178,6 +194,7 @@ public class PlayerGun : MonoBehaviour
         {
             if (playerGunStatus.Magazine <= 0)
             {
+                
                 CooldownCheck();
                
                 break;
@@ -188,12 +205,13 @@ public class PlayerGun : MonoBehaviour
             if (firingCoolDown <= 0)
             {
                 Fire();
-                firingCoolDown = playerGunStatus.FiringDelay;
+                firingCoolDown = playerGunStatus.FiringDelay + (playerGunStatus.DefaultFiringDelay * (additionalCoolDown * 0.5f));
             }
             yield return null;
 
 
         }
+        Debug.Log("A");
     }
     void FiringOnce()
     {
@@ -206,7 +224,7 @@ public class PlayerGun : MonoBehaviour
         if (firingCoolDown <= 0)
         {
             Fire();
-            firingCoolDown = playerGunStatus.FiringDelay;
+            firingCoolDown = playerGunStatus.FiringDelay + (playerGunStatus.DefaultFiringDelay * (additionalCoolDown * 0.5f));
         }
 
         if(gameObject.activeSelf)
@@ -244,12 +262,17 @@ public class PlayerGun : MonoBehaviour
     // Commnet : 연사 특성 가속 
     IEnumerator FiringAcceleration()
     {
+
+
         // 가속값
         float accle = playerGunStatus.AccelerationRate / (playerGunStatus.AccelerationTime * 10);
 
         // 0.1초 x * 10회 반복
         for (int i = 1; i <= playerGunStatus.AccelerationTime * 10; i++)
         {
+
+
+
             // 0.1초
             yield return firingAccelerationWaitForSeconds;
 
@@ -330,12 +353,13 @@ public class PlayerGun : MonoBehaviour
 
     public void UpdateMagazine(int magazine)
     {
-        weaponUI.UpdateMagazineUI(magazine, playerGunStatus.MaxMagazine);
+        
+        weaponUI.UpdateMagazineUI(magazine, playerOwnedWeapons.Index);
        
     }
     public void UpdateMagazine()
     {
-        weaponUI.UpdateMagazineUI(playerGunStatus.Magazine, playerGunStatus.MaxMagazine);
+        weaponUI.UpdateMagazineUI(playerGunStatus.Magazine, playerOwnedWeapons.Index );
         weaponUI.UpdateFiringCooltimeUI(firingCoolDown);
 
     }
@@ -355,7 +379,7 @@ public class PlayerGun : MonoBehaviour
         else
         {
             aimLineRenderer.enabled = false;
-            aim.transform.position = Vector3.zero;
+            aim.transform.position = Vector3.zero -Vector3.up;
         }
 
     }
@@ -367,13 +391,16 @@ public class PlayerGun : MonoBehaviour
     {
         playerGunStatus.OnMagazineChanged += UpdateMagazine;
         CooldownCheck();
+
+        enableCheck = false;
     }
 
     private void OnDisable()
     {
         playerGunStatus.OnMagazineChanged -= UpdateMagazine;
-        fireEffect.SetActive(false);
+ 
         StopAllCoroutines();
+        enableCheck = true;
     }
 
 }

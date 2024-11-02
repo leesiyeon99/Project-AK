@@ -50,7 +50,7 @@ public class PlayerBullet : MonoBehaviour
             for (int i = 0; i < playerGunStatus.DefaultPierceCount; i++)
             {
                 GameObject sparkObj = Instantiate(sparkEffectPrefab);
-                spark.Enqueue(Instantiate(sparkObj));
+                spark.Enqueue(sparkObj);
                 sparkObj.SetActive(false);
             }
  
@@ -58,7 +58,7 @@ public class PlayerBullet : MonoBehaviour
         else
         {
             GameObject sparkObj = Instantiate(sparkEffectPrefab);
-            spark.Enqueue(Instantiate(sparkObj));
+            spark.Enqueue(sparkObj);
             sparkObj.SetActive(false);
         }
 
@@ -68,6 +68,15 @@ public class PlayerBullet : MonoBehaviour
 
     public void HitRay(RaycastHit hit)
     {
+
+        // 연동 테스트
+
+        if (hit.collider.TryGetComponent(out HYJ_EnemyHitPoint enemy))
+        {
+            enemy.TakeDamage(playerGunStatus.BulletAttack);
+        }
+
+
         if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
         {
             Splash(hit.point);
@@ -80,16 +89,13 @@ public class PlayerBullet : MonoBehaviour
             {
                 fractureObj.CauseFracture();
             }
-
+            if (hit.collider.TryGetComponent(out DeerScript deer))
+            {
+                deer.DieDeer();
+            }
 
         }
         
-        // 연동 테스트
-        
-        if (hit.collider.TryGetComponent(out EnemyHitPoint enemy))
-        {
-            enemy.TakeDamage(playerGunStatus.BulletAttack);
-        }
         
 
 
@@ -107,25 +113,12 @@ public class PlayerBullet : MonoBehaviour
 
         for (int i = 0; i < loop; i++)
         {
-            if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
-            {
-                Splash(hit[i].point);
-
-            }
-            else
-            {
-                
-                if (hit[i].collider.TryGetComponent(out Fracture fractureObj))
-                {
-                    fractureObj.CauseFracture();
-                   
-                }
-            }
+            
             
             // 연동 테스트
             bool hitFlag = true;
             
-            if (hit[i].collider.TryGetComponent(out EnemyHitPoint enemy))
+            if (hit[i].collider.TryGetComponent(out HYJ_EnemyHitPoint enemy))
             {
                 hitFlag = enemy.TakeDamage(playerGunStatus.BulletAttack);
 
@@ -140,6 +133,26 @@ public class PlayerBullet : MonoBehaviour
             if (!playerGunStatus.GunType.HasFlag(GunType.SPLASH) && hitFlag )
             {
                 OnSparkEffect(hit[i].point);
+            }
+
+            if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
+            {
+                Splash(hit[i].point);
+
+            }
+            else
+            {
+
+                if (hit[i].collider.TryGetComponent(out Fracture fractureObj))
+                {
+                    fractureObj.CauseFracture();
+
+                }
+
+                if (hit[i].collider.TryGetComponent(out DeerScript deer))
+                {
+                    deer.DieDeer();
+                }
             }
 
             hitCount--;
@@ -183,8 +196,12 @@ public class PlayerBullet : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            
-            if (collider.TryGetComponent(out EnemyHitPoint enemy))
+            if (collider.TryGetComponent(out DeerScript deer))
+            {
+                deer.DieDeer();
+            }
+
+            if (collider.TryGetComponent(out HYJ_EnemyHitPoint enemy))
             {
                 enemy.TakeDamage(playerGunStatus.SplashDamage);
             }

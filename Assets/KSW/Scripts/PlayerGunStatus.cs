@@ -25,11 +25,11 @@ public struct ExplainStatus
 
 
     public string weaponName;
-    public GunType gunType;
-    public int magazine;
-    public float atk;
+    public string gunType;
+    public string magazine;
+    public string atk;
 
-    public ExplainStatus(string _weaponName, GunType _gunType, int _magazine, float _atk)
+    public ExplainStatus(string _weaponName, string _gunType, string _magazine, string _atk)
     {
         weaponName = _weaponName;
         gunType = _gunType;
@@ -43,28 +43,12 @@ public class PlayerGunStatus : MonoBehaviour
     // Comment : 설명 UI용 구조체
     ExplainStatus status;
 
-    [Header("- 이름")]
-    [SerializeField] private string weaponName;
-    [Header("- 총기 특성")]
-    [SerializeField] private GunType gunType;
-    [Header("- 무기 티어")]
-    [SerializeField] private Tier tier;
-    [Header("- 공격력")]
-    [SerializeField] private float bulletAttack;
-    [Header("- 기본 발사 간격")]
-    [SerializeField] private float defaultFiringDelay;
+    [Header("- 무기 정보")]
+    [SerializeField] private WeaponData weaponData;
     [Header("- 현재 발사 간격")]
     [SerializeField] private float firingDelay;
-    [Header("- 가속 도달 시간")]
-    [SerializeField] private float accelerationTime;
-    [Header("- 최대 장탄량")]
-    [SerializeField] private int maxMagazine;
     [Header("- 현재 장탄량")]
     [SerializeField] private int magazine;
-    [Header("- 재장전 속도")]
-    [SerializeField] private float reloadSpeed;
-    [Header("- 사정거리")]
-    [SerializeField] private float range;
     [Header("- 관통 횟수")]
     [SerializeField] private int defaultPierceCount;
     [Header("- 스플래시 범위(원형)")]
@@ -75,58 +59,79 @@ public class PlayerGunStatus : MonoBehaviour
     [SerializeField] private float accelerationRate;
 
 
+    private string ablityTextString;
+
     public ExplainStatus Status { get { return status; } }
 
-    public string WeaponName { get { return weaponName; } }
-    public GunType GunType { get { return gunType; } }
-    public float BulletAttack { get { return bulletAttack; } }
+    public string WeaponName { get { return weaponData.weaponName; } }
+    public GunType GunType { get { return weaponData.gunType; } }
+    public float BulletAttack { get { return weaponData.bulletAttack; } }
 
-    public float DefaultFiringDelay { get { return defaultFiringDelay; } }
+    public float DefaultFiringDelay { get { return weaponData.defaultFiringDelay; } }
     public float FiringDelay { get { return firingDelay; } set { firingDelay = value; } }
-    public float AccelerationTime { get { return accelerationTime; }  }
-    public int MaxMagazine { get { return maxMagazine; } }
+    public float AccelerationTime { get { return weaponData.accelerationTime; }  }
+    public int MaxMagazine { get { return weaponData.maxMagazine; } }
     public int Magazine { get { return magazine; } set { magazine = value; OnMagazineChanged?.Invoke(magazine); } }
 
     public UnityAction<int> OnMagazineChanged;
 
-    public float ReloadSpeed { get { return reloadSpeed; } }
+    public float ReloadSpeed { get { return weaponData.reloadSpeed; } }
 
-    public Tier Tier { get { return tier; } }
+    public Tier Tier { get { return weaponData.tier; } }
 
-    public float Range { get { return range; } }
+    public float Range { get { return weaponData.range; } }
 
     public int DefaultPierceCount { get { return defaultPierceCount; } }
     public float SplashRadius { get { return splashRadius; } }
     public float SplashDamage { get { return splashDamage; } }
     public float AccelerationRate { get { return accelerationRate; } }
 
+    public string AblityTextString { get { return ablityTextString; } }
 
     public void Init()
     {
-        status = new ExplainStatus(weaponName,gunType,maxMagazine,bulletAttack);
-
-        switch (tier)
+        ablityTextString = null;
+        FiringDelay = DefaultFiringDelay;
+        switch (weaponData.tier)
         {
             case Tier.Tier1:
                 defaultPierceCount = 2;
                 splashRadius = 0.3f;
                 accelerationRate = 0.3f;
-                splashDamage = bulletAttack * 0.3f;
+                splashDamage = BulletAttack * 0.3f;
+
                 break;
             case Tier.Tier2:
                 defaultPierceCount = 3;
                 splashRadius = 0.5f;
                 accelerationRate = 0.5f;
-                splashDamage = bulletAttack * 0.5f;
+                splashDamage = BulletAttack * 0.5f;
                 break;
             case Tier.Tier3:
                 defaultPierceCount = 4;
                 splashRadius = 1f;
                 accelerationRate = 0.7f;
-                splashDamage = bulletAttack;
+                splashDamage = BulletAttack;
                 break;
         }
 
 
+        if (GunType.HasFlag(GunType.PIERCE))
+        {
+            ablityTextString += "<sprite name=gantong";
+            ablityTextString += ((int)weaponData.tier + 1).ToString() + ">";
+        }
+        if (GunType.HasFlag(GunType.SPLASH))
+        {
+            ablityTextString += "<sprite name=pockbal";
+            ablityTextString += ((int)weaponData.tier + 1).ToString() + ">";
+        }
+        if (GunType.HasFlag(GunType.REPEATER))
+        {
+            ablityTextString += "<sprite name=yeonsa";
+            ablityTextString += ((int)weaponData.tier + 1).ToString() + ">";
+        }
+
+        status = new ExplainStatus(WeaponName, "특성 : " + AblityTextString, "최대 탄창 : " + MaxMagazine.ToString(), "공격력 : " + BulletAttack.ToString());
     }
 }

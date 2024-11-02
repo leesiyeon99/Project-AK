@@ -23,9 +23,18 @@ public class PlayerOwnedWeapons : MonoBehaviour
     [Header("- 탄창 오브젝트")]
     [SerializeField] PlayerMagazine magazine;
 
+
+
+    [Header("- 장전 중 확인")]
+    [SerializeField] private bool ontGrip;
+
+
+    public bool OntGrip { get { return ontGrip; } set { ontGrip = value; } }
+
     private void Awake()
     {
         SetWeapons();
+        weaponUI.SetUIPos();
     }
 
     // Comment : 무기 초기화 함수 호출
@@ -67,9 +76,7 @@ public class PlayerOwnedWeapons : MonoBehaviour
         currentWeapon.gameObject.SetActive(false);
         currentWeapon = ownedWeapons[index];
         currentWeapon.gameObject.SetActive(true);
-        weaponUI.transform.position = currentWeapon.uiPos.transform.position;
-        weaponUI.transform.rotation = currentWeapon.uiPos.transform.rotation;
-        
+        weaponUI.SetUIPos();
     }
 
     // Comment : 특수 탄환 비어 있을때 호출할 기본 무기 교체 함수
@@ -77,10 +84,12 @@ public class PlayerOwnedWeapons : MonoBehaviour
     {
        
         currentWeapon.gameObject.SetActive(false);
+        
         index = 0;
         currentWeapon = ownedWeapons[index];
         currentWeapon.gameObject.SetActive(true);
         currentWeapon.UpdateMagazine();
+      
     }
 
     // Comment : 재장전
@@ -100,11 +109,13 @@ public class PlayerOwnedWeapons : MonoBehaviour
         }
 
         magazine.gameObject.SetActive(true);
+        ontGrip = true;
     }
 
     public void ReloadGripOffMagazine()
     {
         magazine.gameObject.SetActive(false);
+        ontGrip = false;
     }
 
    

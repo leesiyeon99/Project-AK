@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,12 +13,17 @@ public class MenuEvent : MonoBehaviour
     [Header("- ¿Ωº“∞≈")]
     [SerializeField] private InputActionReference mute;
 
-    PlayerInputWeapon playerInputManager;
+    [Header("- ∏ﬁ¥∫ UI")]
+    [SerializeField] private GameMenuUI menu;
+
+
     AudioManager audioManager;
 
     private bool isPause;
     private bool isMute;
 
+ 
+    public bool IsPause { get { return isPause; } }
 
     // ΩÃ±€≈Ê
     private static MenuEvent instance;
@@ -59,27 +65,31 @@ public class MenuEvent : MonoBehaviour
 
     }
 
-    public void SetPlayerWeaponInput(PlayerInputWeapon input)
-    {
-        playerInputManager = input;
-    }
+   
 
     void OnPause(InputAction.CallbackContext obj)
     {
         if (isPause)
         {
+         
             Time.timeScale = 1f;
-            playerInputManager.enabled = true;
+           
             isPause = false;
+
+
+            if (PlayerInputWeapon.Instance.isShield == false)
+                PlayerInputWeapon.Instance.enabled = true;
         }
         else
         {
+           
             Time.timeScale = 0f;
-            playerInputManager.enabled = false;
+            PlayerInputWeapon.Instance.enabled = false;
             isPause = true;
+           
         }
 
-       
+        menu.TogglePauseUI(isPause);
     }
 
     void OnMute(InputAction.CallbackContext obj)
@@ -87,14 +97,16 @@ public class MenuEvent : MonoBehaviour
         if (isMute)
         {
             isMute = false;
+          
         }
         else
         {
             isMute = true;
+            
         }
 
         audioManager.Mute(isMute);
-
+        menu.ToggleMuteUI(isMute);
     }
 
 

@@ -34,8 +34,8 @@ public class PlayerChangeWeapon : MonoBehaviour
     {
       
         joystickVec = vec;
-
-        weaponUI.UpdateJoystickUI(joystickVec * 3);
+      
+        //weaponUI.UpdateJoystickUI(joystickVec * 3);
 
         if (Mathf.Abs(joystickVec.x) == 1 || Mathf.Abs(joystickVec.y) == 1 || joystickVec == Vector2.zero)
         {
@@ -47,6 +47,7 @@ public class PlayerChangeWeapon : MonoBehaviour
         {
             joystickDirection |= JoystickDirection.RIGHT;
             joystickDirection &= ~JoystickDirection.LEFT;
+           
         }
         // ÁÂÃø
         else if (joystickVec.x < 0 && -1 < joystickVec.x)
@@ -73,13 +74,30 @@ public class PlayerChangeWeapon : MonoBehaviour
        
         index = weapons.Index;
         if (joystickDirection.HasFlag(JoystickDirection.RIGHT) && joystickDirection.HasFlag(JoystickDirection.TOP))
+        {
             index = 0;
+            weaponUI.UpdateJoystickUI(new Vector2(0.71f, 0.71f) * 3);
+        }
         if (joystickDirection.HasFlag(JoystickDirection.RIGHT) && joystickDirection.HasFlag(JoystickDirection.BOTTOM))
+        {
             index = 1;
+            weaponUI.UpdateJoystickUI(new Vector2(0.71f, -0.71f) * 3);
+        }
         if (joystickDirection.HasFlag(JoystickDirection.LEFT) && joystickDirection.HasFlag(JoystickDirection.BOTTOM))
+        {
             index = 2;
+            weaponUI.UpdateJoystickUI(new Vector2(-0.71f, -0.71f) * 3);
+        }
         if (joystickDirection.HasFlag(JoystickDirection.LEFT) && joystickDirection.HasFlag(JoystickDirection.TOP))
+        {
             index = 3;
+            weaponUI.UpdateJoystickUI(new Vector2(-0.71f, 0.71f) * 3);
+        }
+
+        if(joystickDirection == JoystickDirection.NONE)
+        {
+            weaponUI.UpdateJoystickUI(Vector2.zero);
+        }
       
         weaponUI.UpdateExplainUI(index);
     }

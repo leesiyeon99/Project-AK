@@ -5,11 +5,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputWeapon : MonoBehaviour
 {
+    private static PlayerInputWeapon instance;
+
+
+    public static PlayerInputWeapon Instance
+    {
+        get
+        {
+            return instance;
+
+        }
+    }
+
     // Comment : 인풋 시스템 관리
     // TODO : 추후 인풋 시스템 수정 합의 필요
 
-    // 일지정지 메뉴 이벤트
-    MenuEvent menuEvent;
 
     private PlayerOwnedWeapons playerOwnedWeapons;
     private PlayerChangeWeapon playerChangeWeapon;
@@ -37,10 +47,24 @@ public class PlayerInputWeapon : MonoBehaviour
     [SerializeField] private bool onToggle;
 
 
+
+    // 실드 상태 체크
+    public bool isShield;
+
+    public bool IsShield { get { return isShield; } set { isShield = value; } }
+
     private void Awake()
     {
-        menuEvent = GameObject.Find("MenuInputManager").GetComponent<MenuEvent>();
-        menuEvent.SetPlayerWeaponInput(this);
+        if (instance == null)
+        {
+
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         playerOwnedWeapons = GetComponent<PlayerOwnedWeapons>();
         playerChangeWeapon = GetComponent<PlayerChangeWeapon>();
     }
@@ -69,6 +93,7 @@ public class PlayerInputWeapon : MonoBehaviour
        
         
         CloseChangeView(true);
+        playerOwnedWeapons.ReloadGripOffMagazine();
 
         downReload.action.performed -= OnDownReload;
 
@@ -117,8 +142,11 @@ public class PlayerInputWeapon : MonoBehaviour
         }
         else
         {
-
-            playerOwnedWeapons.GetCurrentWeapon().OnFireCoroutine();
+            if (playerOwnedWeapons.GetCurrentWeapon().gameObject.activeSelf)
+            {
+              
+                playerOwnedWeapons.GetCurrentWeapon().OnFireCoroutine();
+            }
         }
 
     }
@@ -129,6 +157,10 @@ public class PlayerInputWeapon : MonoBehaviour
 
     void OnChangeView(InputAction.CallbackContext obj)
     {
+        if (playerOwnedWeapons.OntGrip)
+        {
+            return;
+        }
      
         weaponUI.OnOffChangeUI(true, false);
       
@@ -144,12 +176,18 @@ public class PlayerInputWeapon : MonoBehaviour
 
     void CloseChangeView(bool disable)
     {
+        if (!disable)
+        {
+            playerChangeWeapon.ChangeWeapon();
+
+        }
 
         playerChangeWeapon.MoveJoystick(Vector2.zero);
         weaponUI.OnOffChangeUI(false, disable);
 
         onToggle = false;
 
+        
         playerOwnedWeapons.GetCurrentWeapon().UpdateMagazine();
     }
 
@@ -157,10 +195,15 @@ public class PlayerInputWeapon : MonoBehaviour
 
     void OnRightJoystick(InputAction.CallbackContext obj)
     {
-        playerChangeWeapon.MoveJoystick(obj.ReadValue<Vector2>());
+        if (onToggle)
+            playerChangeWeapon.MoveJoystick(obj.ReadValue<Vector2>());
     }
     void OffRightJoystick(InputAction.CallbackContext obj)
     {
-        playerChangeWeapon.MoveJoystick(Vector2.zero);
+       
+            playerChangeWeapon.MoveJoystick(Vector2.zero);
+
     }
+
+
 }

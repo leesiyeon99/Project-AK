@@ -1317,9 +1317,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "LJHTest",
+                    "name": "LSY_TEST",
                     "type": "Button",
-                    "id": "bc90cded-eab7-4b79-a6da-c04ace48467a",
+                    "id": "567b7e0d-c11a-4ae3-b137-8b0f2e080612",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1626,12 +1626,12 @@
                 },
                 {
                     "name": "",
-                    "id": "7d07118f-b510-4043-a45c-24770f3d5add",
-                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "id": "d35ade25-c7a9-48eb-8342-c48193accd5f",
+                    "path": "<XRController>{RightHand}/primaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LJHTest",
+                    "action": "LSY_TEST",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -2816,17 +2816,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "bd52d594-6e09-4ca5-b7d9-02b206e94d58",
-                    "path": "<XRController>{RightHand}/{SecondaryButton}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "6f3d6335-aa49-41ba-b769-78a8e7782b97",

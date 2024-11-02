@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class LJH_invincibility : MonoBehaviour
 {
+    [Header("오브젝트")]
+    [Header("쉴드 오브젝트")]
     [SerializeField] GameObject shield;
+    [SerializeField] GameObject damageManager;
+
+    [Header("변수")]
+    [Header("역장 무적 여부")]
     public bool isInvincibility;
 
     private void Awake()
@@ -15,17 +21,15 @@ public class LJH_invincibility : MonoBehaviour
     void OnEnable()
     {
         if(!isInvincibility)
-        Debug.Log("무적 발동");
         isInvincibility = true;
-        shield.GetComponent<LJH_Shield>().isInvincibility = isInvincibility;
+        damageManager.GetComponent<LJH_DamageManager>().isInvincibility = isInvincibility;
         Invoke("ObjOff", 0.2f);
     }
 
     void OnDisable()
     {
-        Debug.Log("무적 해제");
         isInvincibility = false;
-        shield.GetComponent<LJH_Shield>().isInvincibility = isInvincibility;
+        damageManager.GetComponent<LJH_DamageManager>().isInvincibility = isInvincibility;
     }
 
     void ObjOff()
