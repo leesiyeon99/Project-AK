@@ -57,7 +57,6 @@ public class LJH_DamageManager : MonoBehaviour
         ljh_curHp = 10000;
         durability = shield.GetComponent<LJH_Shield>().durability;
 
-        damagedShieldSound = GetComponent<AudioSource>();
     }
     void Update()
     {
