@@ -62,7 +62,7 @@ public class LJH_DamageManager : MonoBehaviour
     void Update()
     {
         // Comment: 현재 체력 상황 띄워줌
-        uiManagerScript.DisplayHpBar();
+        LJH_UIManager.Instance.DisplayHpBar();
 
     }
 

@@ -76,7 +76,7 @@ public class LJH_UIManager : MonoBehaviour
         ljh_curHp = damageManager.GetComponent<LJH_DamageManager>().ljh_curHp;
         DisplayHpBar();
 
-        LSY_SceneManager.Instance.PlayerDied();
+        //LSY_SceneManager.Instance.PlayerDied();
     }
 
     public void UpdateShieldUI(float durability)
@@ -106,6 +106,6 @@ public class LJH_UIManager : MonoBehaviour
         ljh_hpBar.color = ljh_curColor;
         ljh_hpBar.fillAmount = hpPercentage;
 
-        //hpText.text = (hpPercentage * 100).ToString("F0") + "%";
+        hpText.text = (hpPercentage * 100).ToString("F0") + "%";
     }
 }
