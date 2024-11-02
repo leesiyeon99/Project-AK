@@ -7,13 +7,18 @@ public class ScoreUIManager : MonoBehaviour
 {
     public static ScoreUIManager Instance { get; private set; }
 
-    public int score = 0;
-    public int scoreline = 0;
+    public GameObject scoreUIobj;
 
-    public int levelScore;
-    public int eliteEnemyCount;
-    public int normalEnemyCount;
-    public int remainBulletCount;
+    public float score = 0;
+    public float scoreline = 0;
+
+    public float remainHP;
+    public float remainProgress;
+
+    public float levelScore;
+    public float eliteEnemyCount;
+    public float normalEnemyCount;
+    public float remainBulletCount;
 
     public TextMeshProUGUI scoreTextUI;
     public TextMeshProUGUI scorelineText;
@@ -70,7 +75,10 @@ public class ScoreUIManager : MonoBehaviour
         UpdateScoreUI();
 
         
-            //WinScoreLine(score);
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            WinScoreLine(score);
+        }
         
         
         
@@ -79,7 +87,7 @@ public class ScoreUIManager : MonoBehaviour
     }
 
     // ScoreUIManager.Instance.AddScore(점수); 로 점수 추가 할 수 있게 함
-    public void AddScore(int monsterScore)
+    public void AddScore(float monsterScore)
     {
         if (monsterScore == 100) normalEnemyCount++;
         if (monsterScore == 500) eliteEnemyCount++;
@@ -94,10 +102,10 @@ public class ScoreUIManager : MonoBehaviour
     }
 
     // Comment : 게임클리어시 나오는 UI
-    public void WinScoreLine(int score)
+    public void WinScoreLine(float score)
     {
         //remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
-        //float remainHP = ljh_UIManager.ljh_curHp / 10000; // 코루틴 시작하고 0으로 초기화 해줘야 할듯??
+        //remainHP = ljh_UIManager.ljh_curHp / 10000; // 코루틴 시작하고 0으로 초기화 해줘야 할듯??
 
         normalEnemyText.text = normalEnemyCount.ToString();
         eliteEnemyText.text = eliteEnemyCount.ToString();
@@ -113,10 +121,10 @@ public class ScoreUIManager : MonoBehaviour
     }
 
     // Comment : 게임 중간에 플레이어가 사망시 나오는 UI
-    public void LoseScoreLine(int score)
+    public void LoseScoreLine(float score)
     {
         //remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
-        //float remainProgress = whs_DollyProgress.progress;// 코루틴 시작하고 0으로 초기화 해줘야 할듯??
+        //remainProgress = whs_DollyProgress.progress;// 코루틴 시작하고 0으로 초기화 해줘야 할듯??
 
         normalEnemyText.text = normalEnemyCount.ToString();
         eliteEnemyText.text = eliteEnemyCount.ToString();
@@ -135,7 +143,8 @@ public class ScoreUIManager : MonoBehaviour
     {
         WaitForSeconds delay = new WaitForSeconds(0.3f);
 
-        yield return delay;
+        scoreUIobj.SetActive(true);
+        yield return new WaitForSeconds(1f);
         normalEnemyText.gameObject.SetActive(true);
         normalEnemyUI.gameObject.SetActive(true);
         yield return delay;
@@ -156,12 +165,18 @@ public class ScoreUIManager : MonoBehaviour
 
     public void ResetScore()
     {
+        scoreUIobj.SetActive(false);
+
         score = 0;
         scoreline = 0;
         levelScore = 0;
+
         eliteEnemyCount = 0;
         normalEnemyCount = 0;
         remainBulletCount = 0;  
+
+        remainProgress = 0;
+        remainHP = 0;
 
         UpdateScoreUI();
     }
