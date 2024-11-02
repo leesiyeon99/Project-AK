@@ -160,7 +160,7 @@ public class LJH_Shield : MonoBehaviour
         shieldRecover.SetActive(true);
         
         gameObject.SetActive(false);
-        breaked.Play();
+        //breaked.Play();
         
     }
 

@@ -42,7 +42,7 @@ public class LJH_UIManager : MonoBehaviour
         {
             instance = this;
 
-            DontDestroyOnLoad(this.gameObject);
+           // DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -73,8 +73,15 @@ public class LJH_UIManager : MonoBehaviour
     {
         ljh_curHp = damageManager.GetComponent<LJH_DamageManager>().ljh_curHp;
         DisplayHpBar();
+        if (ljh_curHp <= 0)
+        {
+            PlayerDied();
+        }
+    }
 
-        //LSY_SceneManager.Instance.PlayerDied();
+    private void PlayerDied()
+    {
+        LSY_SceneManager.Instance.PlayerDied();
     }
 
     public void UpdateShieldUI(float durability)
