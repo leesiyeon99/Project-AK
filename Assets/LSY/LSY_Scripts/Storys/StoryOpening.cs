@@ -83,6 +83,7 @@ public class StoryOpening : MonoBehaviour
             {
                 playertransform.position = new Vector3(0,1, 0);
                 nextTextButton.action.performed -= ShowNextDialogue;
+                nextTextButton.action.Disable();
                 dialogueText.text = "";
             }
         }

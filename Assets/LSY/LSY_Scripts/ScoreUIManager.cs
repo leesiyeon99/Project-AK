@@ -35,8 +35,6 @@ public class ScoreUIManager : MonoBehaviour
 
     public TextMeshProUGUI noticeWordText;
 
-
-    public LJH_UIManager ljh_UIManager;
     //public WHS_DollyProgress whs_DollyProgress;
 
     private void Awake()
@@ -50,6 +48,7 @@ public class ScoreUIManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        ResetScore();
     }
 
     private void Start()
@@ -73,14 +72,6 @@ public class ScoreUIManager : MonoBehaviour
     {
         Debug.Log(score);
         UpdateScoreUI();
-
-        
-            //WinScoreLine(score);
-        
-        
-        
-            //LoseScoreLine(score);
-        
     }
 
     // ScoreUIManager.Instance.AddScore(점수); 로 점수 추가 할 수 있게 함
@@ -95,14 +86,23 @@ public class ScoreUIManager : MonoBehaviour
 
     private void UpdateScoreUI()
     {
+        if (scoreTextUI == null) return;
         scoreTextUI.text = score.ToString();
     }
 
     // Comment : 게임클리어시 나오는 UI
     public void WinScoreLine()
     {
-        //remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
-        //remainHP = ljh_UIManager.ljh_curHp / 10000; // 코루틴 시작하고 0으로 초기화 해줘야 할듯??
+        remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
+        remainHP = LJH_UIManager.Instance.ljh_curHp / 10000;
+        //if (WHS_StageSelectScene.Instance.curStage == 1)
+        //{
+        //    levelScore = 1;
+        //}
+        //else if (WHS_StageSelectScene.Instance.curStage == 2)
+        //{
+        //    levelScore = 2;
+        //}
 
         normalEnemyText.text = normalEnemyCount.ToString();
         eliteEnemyText.text = eliteEnemyCount.ToString();
@@ -110,7 +110,7 @@ public class ScoreUIManager : MonoBehaviour
         remainBulletText.text = remainBulletCount.ToString();
 
         //최종점수 = 20000 * 난이도 * 남은체력 + score + 남은 특수 탄환 * 100
-        scoreline = 20000 * levelScore * /*remainHP*/ + score + remainBulletCount * 100;
+        scoreline = 20000 * levelScore * remainHP + score + remainBulletCount * 100;
 
         scorelineText.text = scoreline.ToString();
 
@@ -120,8 +120,17 @@ public class ScoreUIManager : MonoBehaviour
     // Comment : 게임 중간에 플레이어가 사망시 나오는 UI
     public void LoseScoreLine()
     {
-        //remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
-        //remainProgress = whs_DollyProgress.progress;// 코루틴 시작하고 0으로 초기화 해줘야 할듯??
+        remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
+        //if (WHS_StageSelectScene.Instance.curStage == 1)
+        //{
+        //    levelScore = 1;
+        //   remainProgress = LSY_WaveBar.instance.wavePercent;
+        //}
+        //else if (WHS_StageSelectScene.Instance.curStage == 2)
+        //{
+        //    levelScore = 2;
+        //    remainProgress = WHS_DollyProgress.Instance.progress;
+        //}
 
         normalEnemyText.text = normalEnemyCount.ToString();
         eliteEnemyText.text = eliteEnemyCount.ToString();
@@ -129,7 +138,7 @@ public class ScoreUIManager : MonoBehaviour
         remainBulletText.text = remainBulletCount.ToString();
 
         //최종점수 = 20000 * 난이도 * 진행정도 + score + 남은 특수 탄환 * 100
-        scoreline = 20000 * levelScore * /*remainProgress*/ + score + remainBulletCount * 100;
+        scoreline = 20000 * levelScore * remainProgress + score + remainBulletCount * 100;
 
         scorelineText.text = scoreline.ToString();
 
@@ -140,24 +149,32 @@ public class ScoreUIManager : MonoBehaviour
     {
         WaitForSeconds delay = new WaitForSeconds(0.3f);
         scoreUIobj.SetActive(true);
+
         yield return new WaitForSeconds(2f);
-        normalEnemyText.gameObject.SetActive(true);
-        normalEnemyUI.gameObject.SetActive(true);
+
+        if (normalEnemyText != null) normalEnemyText.gameObject.SetActive(true);
+        if (normalEnemyUI != null) normalEnemyUI.gameObject.SetActive(true);
         yield return delay;
-        eliteEnemyText.gameObject.SetActive(true);
-        eliteEnemyUI.gameObject.SetActive(true);
+
+        if (eliteEnemyText != null) eliteEnemyText.gameObject.SetActive(true);
+        if (eliteEnemyUI != null) eliteEnemyUI.gameObject.SetActive(true);
         yield return delay;
-        levelScoreText.gameObject.SetActive(true);
-        levelScoreUI.gameObject.SetActive(true);
+
+        if (levelScoreText != null) levelScoreText.gameObject.SetActive(true);
+        if (levelScoreUI != null) levelScoreUI.gameObject.SetActive(true);
         yield return delay;
-        remainBulletText.gameObject.SetActive(true);
-        remainBulletUI.gameObject.SetActive(true);
+
+        if (remainBulletText != null) remainBulletText.gameObject.SetActive(true);
+        if (remainBulletUI != null) remainBulletUI.gameObject.SetActive(true);
         yield return delay;
-        scorelineText.gameObject.SetActive(true);
-        scorelineUI.gameObject.SetActive(true);
+
+        if (scorelineText != null) scorelineText.gameObject.SetActive(true);
+        if (scorelineUI != null) scorelineUI.gameObject.SetActive(true);
         yield return delay;
-        noticeWordText.gameObject.SetActive(true);
+
+        if (noticeWordText != null) noticeWordText.gameObject.SetActive(true);
     }
+
 
     public void ResetScore()
     {
@@ -168,7 +185,9 @@ public class ScoreUIManager : MonoBehaviour
         levelScore = 0;
         eliteEnemyCount = 0;
         normalEnemyCount = 0;
-        remainBulletCount = 0;  
+        remainBulletCount = 0; 
+        remainProgress = 0;
+        remainHP = 0;
 
         UpdateScoreUI();
     }

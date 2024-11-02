@@ -5,6 +5,8 @@ using TMPro;
 
 public class WaveDialogueManager : MonoBehaviour
 {
+    public GameObject background;
+
     public TextMeshProUGUI fairyText;
     public TextMeshProUGUI playertText;
     public TextMeshProUGUI narrationText;
@@ -16,6 +18,8 @@ public class WaveDialogueManager : MonoBehaviour
 
     void Start()
     {
+        background.gameObject.SetActive(false);
+
         waveDialogues = new string[][]
         {
             // Comment : 첫번째 웨이브 시작 전
@@ -63,25 +67,31 @@ public class WaveDialogueManager : MonoBehaviour
             if (line.StartsWith("요정:"))
             {
                 fairyText.text = line;
-                yield return new WaitForSeconds(2f); 
+                yield return new WaitForSeconds(3f);
                 fairyText.text = ""; 
             }
             else if (line.StartsWith("주인공:"))
             {
+                background.gameObject.SetActive(true);
                 playertText.text = line;
                 yield return new WaitForSeconds(2f);
+                background.gameObject.SetActive(false);
                 playertText.text = ""; 
             }
             else if (line.StartsWith("보스:"))
             {
+                background.gameObject.SetActive(true);
                 playertText.text = line;
                 yield return new WaitForSeconds(2f);
+                background.gameObject.SetActive(false);
                 playertText.text = "";
             }
             else
             {
+                background.gameObject.SetActive(true);
                 narrationText.text = line; 
                 yield return new WaitForSeconds(2f);
+                background.gameObject.SetActive(false);
                 narrationText.text = ""; 
             }
         }
