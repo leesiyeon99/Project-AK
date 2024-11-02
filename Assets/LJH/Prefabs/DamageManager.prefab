@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &265491369395725831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 265491369395725829}
+  - component: {fileID: 265491369395725882}
+  m_Layer: 0
+  m_Name: DamageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &265491369395725829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265491369395725831}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.2563596, y: -3.5804586, z: 11.747718}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &265491369395725882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265491369395725831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f829565026fe145969bdcc0cc316ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invincibility: {fileID: 0}
+  shield: {fileID: 0}
+  bossMonster: {fileID: 0}
+  hyj_EnemyScript: {fileID: 0}
+  shieldScript: {fileID: 0}
+  uiManagerScript: {fileID: 0}
+  ljh_curHp: 100
+  durability: 0
+  isInvincibility: 0
+  takeShieldDamage: 0
+  takeHpDamage: 0
+  ljh_bloodImage: {fileID: 0}
+  ljh_shieldImage: {fileID: 0}
+  damagedShieldSound: {fileID: 4005845336438921899, guid: 2b191127f18ead44ba8c485533ba9051, type: 3}
+  damagedHPSound: {fileID: 3913502362976218308, guid: 724d7cefad6d42c4195e5a3287c2a47f, type: 3}
