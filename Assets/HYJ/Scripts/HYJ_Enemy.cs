@@ -168,7 +168,7 @@ public class HYJ_Enemy : MonoBehaviour
           //     }
           // }
           // 
-          /*
+          
            if (monsterType == MonsterType.Nomal)
            {
                WaveTimeline.Instance.DecreaseWaveCount();
@@ -178,13 +178,15 @@ public class HYJ_Enemy : MonoBehaviour
            {
                ScoreUIManager.Instance.AddScore(500);
            }
-            */
+            
 
             Debug.Log("몬스터 사망");
             isDie = true;
             monsterAnimator.SetTrigger("Die");
             //Destroy(gameObject.GetComponent<SphereCollider>());
             // Destroy(gameObject,2f);
+
+            // 몬스터 사망 후 사라짐, 아이템 생성
             WHS_TransparencyController.Instance.StartFadeOut(gameObject, 1);
             WHS_ItemManager.Instance.SpawnItemWithProbability(gameObject.transform.position);
 
