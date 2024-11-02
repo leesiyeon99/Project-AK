@@ -99,7 +99,7 @@ public class ScoreUIManager : MonoBehaviour
     }
 
     // Comment : 게임클리어시 나오는 UI
-    public void WinScoreLine(float score)
+    public void WinScoreLine()
     {
         //remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
         //remainHP = ljh_UIManager.ljh_curHp / 10000; // 코루틴 시작하고 0으로 초기화 해줘야 할듯??
@@ -118,7 +118,7 @@ public class ScoreUIManager : MonoBehaviour
     }
 
     // Comment : 게임 중간에 플레이어가 사망시 나오는 UI
-    public void LoseScoreLine(float score)
+    public void LoseScoreLine()
     {
         //remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
         //remainProgress = whs_DollyProgress.progress;// 코루틴 시작하고 0으로 초기화 해줘야 할듯??

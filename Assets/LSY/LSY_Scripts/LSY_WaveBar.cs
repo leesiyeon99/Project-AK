@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class LSY_WaveBar : MonoBehaviour
 {
     [SerializeField] Image waveBarImage;
+
     int maxCount = 0;
     int curCount = 0;
 
