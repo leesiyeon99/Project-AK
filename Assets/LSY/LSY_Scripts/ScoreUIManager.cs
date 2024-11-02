@@ -7,13 +7,16 @@ public class ScoreUIManager : MonoBehaviour
 {
     public static ScoreUIManager Instance { get; private set; }
 
-    public int score = 0;
-    public int scoreline = 0;
+    public float score = 0;
+    public float scoreline = 0;
 
-    public int levelScore;
-    public int eliteEnemyCount;
-    public int normalEnemyCount;
-    public int remainBulletCount;
+    public float levelScore;
+    public float eliteEnemyCount;
+    public float normalEnemyCount;
+    public float remainBulletCount;
+
+    public float remainHP;
+    public float remainProgress;
 
     public TextMeshProUGUI scoreTextUI;
     public TextMeshProUGUI scorelineText;
@@ -97,7 +100,7 @@ public class ScoreUIManager : MonoBehaviour
     public void WinScoreLine(int score)
     {
         //remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
-        //float remainHP = ljh_UIManager.ljh_curHp / 10000; // 코루틴 시작하고 0으로 초기화 해줘야 할듯??
+        //remainHP = ljh_UIManager.ljh_curHp / 10000; // 코루틴 시작하고 0으로 초기화 해줘야 할듯??
 
         normalEnemyText.text = normalEnemyCount.ToString();
         eliteEnemyText.text = eliteEnemyCount.ToString();
@@ -116,7 +119,7 @@ public class ScoreUIManager : MonoBehaviour
     public void LoseScoreLine(int score)
     {
         //remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
-        //float remainProgress = whs_DollyProgress.progress;// 코루틴 시작하고 0으로 초기화 해줘야 할듯??
+        //remainProgress = whs_DollyProgress.progress;// 코루틴 시작하고 0으로 초기화 해줘야 할듯??
 
         normalEnemyText.text = normalEnemyCount.ToString();
         eliteEnemyText.text = eliteEnemyCount.ToString();
@@ -162,6 +165,8 @@ public class ScoreUIManager : MonoBehaviour
         eliteEnemyCount = 0;
         normalEnemyCount = 0;
         remainBulletCount = 0;  
+        remainHP = 0;
+        remainProgress = 0;
 
         UpdateScoreUI();
     }
