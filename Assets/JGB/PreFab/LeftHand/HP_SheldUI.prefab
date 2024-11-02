@@ -38,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.09399998}
+  m_AnchoredPosition: {x: 0, y: 0.09399414}
   m_SizeDelta: {x: 863.0823, y: 495.864}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &43610004969806936
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 43610005148761373}
   - component: {fileID: 43610005148761374}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Shield2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,7 +214,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.673, y: 0}
   m_AnchorMax: {x: 0.96, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -19, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &43610005159444894
@@ -247,8 +247,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100 %
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 82f91323df609a144ace30f23ec35155, type: 2}
-  m_sharedMaterial: {fileID: 6943209738325626847, guid: 82f91323df609a144ace30f23ec35155, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bcb7486b20a409940ba1064401a205ed, type: 2}
+  m_sharedMaterial: {fileID: -248552507327630263, guid: bcb7486b20a409940ba1064401a205ed, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 43610005841936874}
   - component: {fileID: 43610005841936875}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Shield1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 43610006490245677}
   - component: {fileID: 43610006490245678}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: Shield4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -633,7 +633,7 @@ GameObject:
   - component: {fileID: 43610006801587898}
   - component: {fileID: 43610006801587899}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: Shield5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 43610006928199313}
   - component: {fileID: 43610006928199314}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Shield3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

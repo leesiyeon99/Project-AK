@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,6 +31,9 @@ public class LJH_UIManager : MonoBehaviour
 
     [Header("체력바 이미지")]
     [SerializeField] public Image ljh_hpBar;
+
+    [Header("체력 퍼센트")]
+    [SerializeField] public TextMeshProUGUI hpText;
 
     private void Start()
     {
@@ -69,5 +73,7 @@ public class LJH_UIManager : MonoBehaviour
         }
         ljh_hpBar.color = ljh_curColor;
         ljh_hpBar.fillAmount = hpPercentage;
+
+        hpText.text = (hpPercentage * 100).ToString("F0") + "%";
     }
 }

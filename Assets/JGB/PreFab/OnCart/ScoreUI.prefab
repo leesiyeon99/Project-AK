@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Score: 10000'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 82f91323df609a144ace30f23ec35155, type: 2}
-  m_sharedMaterial: {fileID: 6943209738325626847, guid: 82f91323df609a144ace30f23ec35155, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bcb7486b20a409940ba1064401a205ed, type: 2}
+  m_sharedMaterial: {fileID: -248552507327630263, guid: bcb7486b20a409940ba1064401a205ed, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -172,7 +172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.036699988, y: -0.08400001}
+  m_AnchoredPosition: {x: -0.03668213, y: -0.083984375}
   m_SizeDelta: {x: 1502.4336, y: 495.864}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4131696353879454799
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &4131696353879454785
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1092,6 +1092,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyHitDead
       objectReference: {fileID: 0}
+    - target: {fileID: 1253866266968716043, guid: edb256ac1c9246843b5ed24ae5317318, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1253866266968716045, guid: edb256ac1c9246843b5ed24ae5317318, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1379,6 +1383,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 496954529}
     m_Modifications:
+    - target: {fileID: 3482301645441732838, guid: 5cae6a8ccfbffb74da33b26354d0dacd, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 3482301645441732838, guid: 5cae6a8ccfbffb74da33b26354d0dacd, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 3482301645780807029, guid: 5cae6a8ccfbffb74da33b26354d0dacd, type: 3}
       propertyPath: m_Name
       value: Incart
@@ -1427,6 +1439,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3693064657962296190, guid: 5cae6a8ccfbffb74da33b26354d0dacd, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 3693064657962296190, guid: 5cae6a8ccfbffb74da33b26354d0dacd, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6867274724373508819, guid: 5cae6a8ccfbffb74da33b26354d0dacd, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6867274724373508819, guid: 5cae6a8ccfbffb74da33b26354d0dacd, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cae6a8ccfbffb74da33b26354d0dacd, type: 3}
 --- !u!1001 &8448178888421082771

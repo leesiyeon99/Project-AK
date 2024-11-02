@@ -66,11 +66,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC77C\uC2DC\uC815\uC9C0: <sprite name=\"AB\"> <sprite name=\"XB\">\n\uC74C\uC18C\uAC70:
-    <sprite name=\"BB\"> <sprite name=\"YB\">"
+  m_text: "\uC77C\uC2DC\uC815\uC9C0:  <sprite name=\"XB\">\n\uC74C\uC18C\uAC70: 
+    <sprite name=\"YB\">"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 82f91323df609a144ace30f23ec35155, type: 2}
-  m_sharedMaterial: {fileID: 6943209738325626847, guid: 82f91323df609a144ace30f23ec35155, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bcb7486b20a409940ba1064401a205ed, type: 2}
+  m_sharedMaterial: {fileID: -248552507327630263, guid: bcb7486b20a409940ba1064401a205ed, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -173,7 +173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1.297, y: -0.079}
+  m_AnchoredPosition: {x: 1.2969971, y: -0.07897949}
   m_SizeDelta: {x: 1502.4336, y: 495.864}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5405734615213796523
