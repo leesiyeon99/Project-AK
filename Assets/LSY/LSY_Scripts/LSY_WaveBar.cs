@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class LSY_WaveBar : MonoBehaviour
 {
+    static public LSY_WaveBar instance {  get; private set; }
+
     [SerializeField] Image waveBarImage;
 
-    int maxCount = 0;
-    int curCount = 0;
+    public float maxCount = 0;
+    public float curCount = 0;
+    public float wavePercent;
 
     private void Start()
     {
@@ -19,11 +22,11 @@ public class LSY_WaveBar : MonoBehaviour
     {
         CurCount();
 
-        float wavePercent = (float)curCount / maxCount;
+        wavePercent = curCount / maxCount;
         waveBarImage.fillAmount = 1 - wavePercent;
     }
 
-    private int MaxCount()
+    private float MaxCount()
     {
         maxCount = 0;
 
@@ -35,7 +38,7 @@ public class LSY_WaveBar : MonoBehaviour
         return maxCount;
     }
 
-    private int CurCount()
+    private float CurCount()
     {
         curCount = 0;
 

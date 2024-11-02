@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class LSY_SceneManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class LSY_SceneManager : MonoBehaviour
 
     [SerializeField] GameState curState;
 
+    public InputActionReference nextTextButton;
 
     public Transform playerTransform;
 
@@ -79,28 +81,52 @@ public class LSY_SceneManager : MonoBehaviour
         curState = GameState.GameClear;
         lsy_isdie = true;
         ScoreUIManager.Instance.WinScoreLine();
-        //if (아무키나 누르면)
-        //다음씬으로
+        DisplayScoreScreen(); 
     }
 
     public void ReStart()
     {   
-        //만약 현재씬이 스테이지 1이라면
-        SceneManager.LoadScene("KSJ1Stage");
-        //만약 현재씬이 스테이지 2라면
+        //if (WHS_StageSelectScene.Instance.curStage == 1)
+        //{
+        //    SceneManager.LoadScene("KSJ1Stage");
+        //}
+        //else if (WHS_StageSelectScene.Instance.curStage == 2)
+        //{
+            
+        //}
     }
 
     public void PlayerDied()
     {
         GameOver();
         lsy_isdie = true;
-        ScoreUIManager.Instance.WinScoreLine();
-        //if (아무키나 누르면)
-        ReStart();
+        ScoreUIManager.Instance.LoseScoreLine();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("KSJ1Stage");
+        }
+        DisplayScoreScreen();
+
     }
 
-    //public void LoadScene(int index)
-    //{
-    //    LoadScene(index);
-    //}
+    private void DisplayScoreScreen()
+    {
+        nextTextButton.action.Enable();
+        nextTextButton.action.performed += NextRoad;
+        ScoreUIManager.Instance.LoseScoreLine();
+
+    }
+
+    void NextRoad(InputAction.CallbackContext obj)
+    {
+        //if (WHS_StageSelectScene.Instance.curStage == 1)
+        //{
+        //    SceneManager.LoadScene("KSJ1Stage");
+        //}
+        //else if (WHS_StageSelectScene.Instance.curStage == 2)
+        //{
+
+        //}
+    }
+
 }
