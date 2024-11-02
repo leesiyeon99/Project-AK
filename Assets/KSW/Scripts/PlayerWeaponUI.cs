@@ -122,7 +122,7 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
         changeJoystick.anchoredPosition = vec;
     }
 
-    public void UpdateMagazineUI(int magazine, int maxMagazine)
+    public void UpdateMagazineUI(int magazine,int index)
     {
       
         stringBuilder.Clear();
@@ -131,7 +131,16 @@ public class PlayerWeaponUI : PlayerWeaponUIBase
         NumberReplace(magazine);
 
         stringBuilder.Append("/");
-        NumberReplace(maxMagazine);
+
+        if (index == 0)
+        {
+            stringBuilder.Append("¡Ä");
+           
+        }
+        else
+        {
+            stringBuilder.Append(PlayerSpecialBullet.Instance.SpecialBullet[index - 1]);
+        }
         magazineUI.text = stringBuilder.ToString();
 
     }

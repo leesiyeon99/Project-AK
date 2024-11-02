@@ -23,6 +23,14 @@ public class PlayerOwnedWeapons : MonoBehaviour
     [Header("- 탄창 오브젝트")]
     [SerializeField] PlayerMagazine magazine;
 
+
+
+    [Header("- 장전 중 확인")]
+    [SerializeField] private bool ontGrip;
+
+
+    public bool OntGrip { get { return ontGrip; } set { ontGrip = value; } }
+
     private void Awake()
     {
         SetWeapons();
@@ -101,11 +109,13 @@ public class PlayerOwnedWeapons : MonoBehaviour
         }
 
         magazine.gameObject.SetActive(true);
+        ontGrip = true;
     }
 
     public void ReloadGripOffMagazine()
     {
         magazine.gameObject.SetActive(false);
+        ontGrip = false;
     }
 
    

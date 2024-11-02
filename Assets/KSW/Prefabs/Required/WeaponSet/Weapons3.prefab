@@ -1031,6 +1031,7 @@ MonoBehaviour:
   - {fileID: 925517838810388357}
   currentWeapon: {fileID: 373436035321830498}
   magazine: {fileID: 8433243881161421546}
+  ontGrip: 0
 --- !u!114 &8073095936411102077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2820,6 +2821,10 @@ PrefabInstance:
       value: Weapon_Grenade_Launcher
       objectReference: {fileID: 0}
     - target: {fileID: 3751740375048415678, guid: 52321ec2160eb0847a217556c5e130c1, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751740375048415678, guid: 52321ec2160eb0847a217556c5e130c1, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2939,6 +2944,10 @@ PrefabInstance:
     - target: {fileID: 7321765805047215164, guid: e71a562082e534b47b50215aee54c6d4, type: 3}
       propertyPath: m_Name
       value: Weapon_Magazine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321765805047215164, guid: e71a562082e534b47b50215aee54c6d4, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7321765805047215164, guid: e71a562082e534b47b50215aee54c6d4, type: 3}
       propertyPath: m_IsActive
@@ -3061,6 +3070,10 @@ PrefabInstance:
       value: Weapon_Buzzsub
       objectReference: {fileID: 0}
     - target: {fileID: 9009920092245053365, guid: 88b4f02d06e55e845b46743617c56ba3, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9009920092245053365, guid: 88b4f02d06e55e845b46743617c56ba3, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -3136,6 +3149,10 @@ PrefabInstance:
     - target: {fileID: 1843919623399395871, guid: 7559d9350f04a6e4a993e252b881bba5, type: 3}
       propertyPath: m_Name
       value: Weapon_Nsp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843919623399395871, guid: 7559d9350f04a6e4a993e252b881bba5, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1843919623399395871, guid: 7559d9350f04a6e4a993e252b881bba5, type: 3}
       propertyPath: m_IsActive
@@ -3217,6 +3234,10 @@ PrefabInstance:
     - target: {fileID: 4377864401013494763, guid: 305706f687b3ebc43a07bb3713d006bb, type: 3}
       propertyPath: m_Name
       value: Weapon_Submachine5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377864401013494763, guid: 305706f687b3ebc43a07bb3713d006bb, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4377864401013494763, guid: 305706f687b3ebc43a07bb3713d006bb, type: 3}
       propertyPath: m_IsActive

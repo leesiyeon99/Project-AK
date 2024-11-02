@@ -22,6 +22,9 @@ public class PlayerMagazine : MonoBehaviour
     [SerializeField] TextMeshProUGUI magazineAmountTextUI;
 
 
+    private BoxCollider boxCollider;
+
+
     // Comment : 페이드인 관련 변수
     Material material;
     Color color;
@@ -32,6 +35,7 @@ public class PlayerMagazine : MonoBehaviour
    
     private void Awake()
     {
+        boxCollider = GetComponent<BoxCollider>();
         material = GetComponent<MeshRenderer>().material;
         fadeInWaitForSeconds = new WaitForSeconds(0.1f);
 
@@ -44,7 +48,7 @@ public class PlayerMagazine : MonoBehaviour
 
     private void OnEnable()
     {
-       
+        boxCollider.enabled = false;
         float speed = playerOwnedWeapons.GetCurrentWeapon().GetReloadSpeed();
         
         timeTick = 1 / (speed * 10f);
@@ -95,6 +99,7 @@ public class PlayerMagazine : MonoBehaviour
     
       
         magazineAmountTextUI.text = magazine.ToString();
+        boxCollider.enabled = true;
         magazineAmountUI.SetActive(true);
     }
 

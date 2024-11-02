@@ -1455,6 +1455,7 @@ MonoBehaviour:
   - {fileID: 1415458888190957360}
   currentWeapon: {fileID: 3028447905256880202}
   magazine: {fileID: 8433243881161421546}
+  ontGrip: 0
 --- !u!114 &8073095936411102077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2798,6 +2799,10 @@ PrefabInstance:
       value: Weapon_ClusterShotgun
       objectReference: {fileID: 0}
     - target: {fileID: 3257083148594941662, guid: d5c06b72f48d1f243b0e5a5f720dd6ed, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257083148594941662, guid: d5c06b72f48d1f243b0e5a5f720dd6ed, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2901,6 +2906,10 @@ PrefabInstance:
       value: Weapon_Sturmgewehr46
       objectReference: {fileID: 0}
     - target: {fileID: 2986011808553418338, guid: c43fef8d6e2063b49a9abf46fe72e100, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986011808553418338, guid: c43fef8d6e2063b49a9abf46fe72e100, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2980,6 +2989,10 @@ PrefabInstance:
     - target: {fileID: 7571574759398946559, guid: dc3d05d759e57bc449c97c984dfd40b8, type: 3}
       propertyPath: m_Name
       value: Weapon_Pistol9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571574759398946559, guid: dc3d05d759e57bc449c97c984dfd40b8, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8966503256470704936, guid: dc3d05d759e57bc449c97c984dfd40b8, type: 3}
       propertyPath: m_RootOrder
@@ -3099,6 +3112,10 @@ PrefabInstance:
       value: Weapon_Magazine
       objectReference: {fileID: 0}
     - target: {fileID: 7321765805047215164, guid: e71a562082e534b47b50215aee54c6d4, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321765805047215164, guid: e71a562082e534b47b50215aee54c6d4, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -3213,6 +3230,10 @@ PrefabInstance:
     - target: {fileID: 2852979173907235099, guid: e5d9d219e9e0fca4e8c9f32069537004, type: 3}
       propertyPath: m_Name
       value: Weapon_RP9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852979173907235099, guid: e5d9d219e9e0fca4e8c9f32069537004, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2852979173907235099, guid: e5d9d219e9e0fca4e8c9f32069537004, type: 3}
       propertyPath: m_IsActive
