@@ -25,11 +25,11 @@ public struct ExplainStatus
 
 
     public string weaponName;
-    public GunType gunType;
-    public int magazine;
-    public float atk;
+    public string gunType;
+    public string magazine;
+    public string atk;
 
-    public ExplainStatus(string _weaponName, GunType _gunType, int _magazine, float _atk)
+    public ExplainStatus(string _weaponName, string _gunType, string _magazine, string _atk)
     {
         weaponName = _weaponName;
         gunType = _gunType;
@@ -58,6 +58,9 @@ public class PlayerGunStatus : MonoBehaviour
     [Header("- 가속률")]
     [SerializeField] private float accelerationRate;
 
+
+    private string ablityTextString;
+
     public ExplainStatus Status { get { return status; } }
 
     public string WeaponName { get { return weaponData.weaponName; } }
@@ -83,10 +86,11 @@ public class PlayerGunStatus : MonoBehaviour
     public float SplashDamage { get { return splashDamage; } }
     public float AccelerationRate { get { return accelerationRate; } }
 
+    public string AblityTextString { get { return ablityTextString; } }
 
     public void Init()
     {
-        status = new ExplainStatus(WeaponName, GunType, MaxMagazine, BulletAttack);
+        ablityTextString = null;
         FiringDelay = DefaultFiringDelay;
         switch (weaponData.tier)
         {
@@ -95,6 +99,7 @@ public class PlayerGunStatus : MonoBehaviour
                 splashRadius = 0.3f;
                 accelerationRate = 0.3f;
                 splashDamage = BulletAttack * 0.3f;
+
                 break;
             case Tier.Tier2:
                 defaultPierceCount = 3;
@@ -111,5 +116,22 @@ public class PlayerGunStatus : MonoBehaviour
         }
 
 
+        if (GunType.HasFlag(GunType.PIERCE))
+        {
+            ablityTextString += "<sprite name=gantong";
+            ablityTextString += ((int)weaponData.tier + 1).ToString() + ">";
+        }
+        if (GunType.HasFlag(GunType.SPLASH))
+        {
+            ablityTextString += "<sprite name=pockbal";
+            ablityTextString += ((int)weaponData.tier + 1).ToString() + ">";
+        }
+        if (GunType.HasFlag(GunType.REPEATER))
+        {
+            ablityTextString += "<sprite name=yeonsa";
+            ablityTextString += ((int)weaponData.tier + 1).ToString() + ">";
+        }
+
+        status = new ExplainStatus(WeaponName, "특성 : " + AblityTextString, "최대 탄창 : " + MaxMagazine.ToString(), "공격력 : " + BulletAttack.ToString());
     }
 }
