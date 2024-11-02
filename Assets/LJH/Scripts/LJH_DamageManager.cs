@@ -89,8 +89,10 @@ public class LJH_DamageManager : MonoBehaviour
                 durability -= shieldDamage;
                 uiManagerScript.UpdateShieldUI(durability);
                 invincibility.SetActive(true);
+
+                damagedShieldSound.Play();
             }
-            damagedShieldSound.Play();
+            
 
         }
 

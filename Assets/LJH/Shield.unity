@@ -1937,7 +1937,7 @@ PrefabInstance:
     - target: {fileID: 5220578737575441218, guid: 3d9c02e329a53c24d879604b1ada09ec, type: 3}
       propertyPath: damagedShieldSound
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3913502362976218308, guid: 724d7cefad6d42c4195e5a3287c2a47f, type: 3}
     - target: {fileID: 5220578737575441277, guid: 3d9c02e329a53c24d879604b1ada09ec, type: 3}
       propertyPath: m_RootOrder
       value: 9
