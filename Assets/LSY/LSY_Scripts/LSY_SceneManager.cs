@@ -95,7 +95,6 @@ public class LSY_SceneManager : MonoBehaviour
         {
             PlayerRespawnStage1.Instance.lsy_isdie = false;
         }
-        ScoreUIManager.Instance.LoseScoreLine();
         DisplayScoreScreen();
     }
     private void DisplayScoreScreen()

@@ -106,8 +106,8 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
             //monsterAnimator.SetTrigger("Die");
             Debug.Log("사망");
             Destroy(gameObject, 2f);
+            LSY_SceneManager.Instance.GameClear();
         }
-        LSY_SceneManager.Instance.GameClear();
     }
 
     // Comment : 보스 조우 패턴 

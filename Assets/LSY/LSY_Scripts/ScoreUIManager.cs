@@ -72,6 +72,7 @@ public class ScoreUIManager : MonoBehaviour
     // Comment : 게임클리어시 나오는 UI
     public void WinScoreLine()
     {
+        Debug.Log("게임 클리어 점수판");
         if (PlayerSpecialBullet.Instance == null || LJH_UIManager.Instance == null)
         {
             return;
@@ -98,6 +99,7 @@ public class ScoreUIManager : MonoBehaviour
     // Comment : 게임 중간에 플레이어가 사망시 나오는 UI
     public void LoseScoreLine()
     {
+        Debug.Log("게임 오버 점수판");
         if (normalEnemyText == null) return;
         if (PlayerSpecialBullet.Instance == null)
         {
