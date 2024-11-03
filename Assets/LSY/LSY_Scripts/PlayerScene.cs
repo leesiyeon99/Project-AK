@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScene : MonoBehaviour
@@ -10,8 +8,17 @@ public class PlayerScene : MonoBehaviour
         if (PlayerRespawnStage1.Instance.lsy_isdie == true)
         {
             gameObject.transform.position = new Vector3(0, 1, 0);
+
+
+        }
+    }
+
+    private void Start()
+    {
+        if (PlayerRespawnStage1.Instance == null) return;
+        if (PlayerRespawnStage1.Instance.lsy_isdie == true)
+        {
             WaveTimeline.Instance.Play();
-            
         }
     }
 
