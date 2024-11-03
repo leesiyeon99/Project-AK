@@ -17,7 +17,7 @@ public class WHS_StageSelectScene : MonoBehaviour
     [SerializeField] Button leftButton;
     [SerializeField] Button rightButton;
     [SerializeField] Button startButton;
-    [SerializeField] Transform compassNeedle;
+    //[SerializeField] Transform compassNeedle;
     private float curAngle = 0f;
 
     // public int curStage = 1;
@@ -61,10 +61,10 @@ public class WHS_StageSelectScene : MonoBehaviour
         startButton.onClick.AddListener(LoadSelectedStage);
     }
 
-    private void Update()
-    {
-        RotateNeedle();
-    }
+    //private void Update()
+    //{
+    //    RotateNeedle();
+    //}
 
     private void OnEnable()
     {
@@ -161,7 +161,7 @@ public class WHS_StageSelectScene : MonoBehaviour
     private void UpdateSelectedStage()
     {
         stageText.text = $"{WHS_StageIndex.curStage}";
-        RotateNeedle();
+       // RotateNeedle();
     }
 
     public void LoadSelectedStage()
@@ -178,11 +178,11 @@ public class WHS_StageSelectScene : MonoBehaviour
         }
     }
 
-    private void RotateNeedle()
-    {
-        float rotateSpeed = 20f;
-        curAngle += -rotateSpeed * Time.deltaTime;
+    //private void RotateNeedle()
+    //{
+    //    float rotateSpeed = 20f;
+    //    curAngle += -rotateSpeed * Time.deltaTime;
 
-        compassNeedle.localRotation = Quaternion.Euler(0, 0, curAngle);
-    }
+    //    compassNeedle.localRotation = Quaternion.Euler(0, 0, curAngle);
+    //}
 }
