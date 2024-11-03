@@ -9057,6 +9057,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2685706248651373134, guid: 693ceb54ce5a42b4fb2497968c706b26, type: 3}
   m_PrefabInstance: {fileID: 303225987}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &484485586 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1175188611857293424, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
+  m_PrefabInstance: {fileID: 1210020551}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &496848620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9285,7 +9290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 20945187, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -6.47
+      value: -7.93
       objectReference: {fileID: 0}
     - target: {fileID: 20945189, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_fontAsset
@@ -9317,7 +9322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1186845722, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -11.94
+      value: -14.86
       objectReference: {fileID: 0}
     - target: {fileID: 1186845724, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_fontAsset
@@ -18039,11 +18044,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 2077098364}
-  bossBackGround: {fileID: 0}
+  bossBackGround: {fileID: 484485586}
   fairyText: {fileID: 2102089953}
   playertText: {fileID: 417460531}
   narrationText: {fileID: 417460531}
-  bossText: {fileID: 417460531}
+  bossText: {fileID: 2129983759}
 --- !u!4 &783072522
 Transform:
   m_ObjectHideFlags: 0
@@ -33233,6 +33238,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 468047161}
     m_Modifications:
+    - target: {fileID: 1175188611857293424, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695114153120627192, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3393933709258098357, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101294208513647133, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
       propertyPath: m_Name
       value: Boss_Stage1_New
@@ -56443,6 +56460,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2129983759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2695114153120627192, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
+  m_PrefabInstance: {fileID: 1210020551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2135939140
 PrefabInstance:
   m_ObjectHideFlags: 0

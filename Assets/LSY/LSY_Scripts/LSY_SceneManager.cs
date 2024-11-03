@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class LSY_SceneManager : MonoBehaviour
 {
-    public enum GameState { Ready, Running, GameOver, GameClear }
+    public enum GameState { Ready, Running, GameOver, GameClear, Stage2GameOver }
     public static LSY_SceneManager Instance { get; private set; }
-    [SerializeField] GameState curState;
+    [SerializeField] public GameState curState;
     public InputActionReference nextTextButton;
     public Transform playerTransform;
     public LJH_DamageManager damageManager;
@@ -31,23 +31,22 @@ public class LSY_SceneManager : MonoBehaviour
     }
     private void Update()
     {
-        if (curState == GameState.Ready)
-        {
-            GameReady();
-        }
-        if (curState == GameState.Running)
-        {
-            GameStart();
-        }
-        else if (curState == GameState.GameOver)
-        {
-            PlayerDied();
-            curState = GameState.Running;
-        }
-        else if (curState == GameState.GameClear)
-        {
-            curState = GameState.Ready;
-        }
+        //if (curState == GameState.Ready)
+        //{
+        //    GameReady();
+        //}
+        //if (curState == GameState.Running)
+        //{
+        //    GameStart();
+        //}
+        //else if (curState == GameState.GameOver)
+        //{
+        //    PlayerDied();
+        //}
+        //else if (curState == GameState.GameClear)
+        //{
+        //    curState = GameState.Ready;
+        //}
     }
     public void GameReady()
     {
@@ -60,6 +59,7 @@ public class LSY_SceneManager : MonoBehaviour
     public void GameOver()
     {
         curState = GameState.GameOver;
+        if (damageManager.ljh_bloodImage == null) return;
         damageManager.ljh_bloodImage.gameObject.SetActive(false);
     }
     public void GameClear()
@@ -109,16 +109,21 @@ public class LSY_SceneManager : MonoBehaviour
         {
             if (curState == GameState.GameOver)
             {
+                Debug.Log("a");
                 SceneManager.LoadScene("KSJ1Stage");
                 GameStart();
             }
             else
             {
+                Debug.Log("b");
+                WHS_StageIndex.curStage += 1;
                 SceneManager.LoadScene("KYH_Stage2");
             }
         }
-        else if (WHS_StageIndex.curStage == 2)
+        else 
+        if (WHS_StageIndex.curStage == 2)
         {
+            Debug.Log("a2");
             SceneManager.LoadScene("KYH_Stage2");
         }
         nextTextButton.action.Disable();

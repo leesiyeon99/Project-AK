@@ -20,7 +20,7 @@ public class WaveDialogueManager : MonoBehaviour
     void Start()
     {
         background.gameObject.SetActive(false);
-        //bossBackGround.gameObject.SetActive(false);
+        bossBackGround.gameObject.SetActive(false);
 
         waveDialogues = new string[][]
         {
