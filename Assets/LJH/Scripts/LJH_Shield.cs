@@ -111,8 +111,8 @@ public class LJH_Shield : MonoBehaviour
     public void ShieldOn(InputAction.CallbackContext obj)
     {
         // Comment: 일시정지때 사용 불가
-       // if (MenuEvent.Instance.IsPause)
-       //     return;
+        if (MenuEvent.Instance.IsPause)
+            return;
 
         // Comment: 방패 파괴 상태가 아닐때만 해당 함수 불러올 수 있도록
         if (!isBreaked)
@@ -140,8 +140,8 @@ public class LJH_Shield : MonoBehaviour
     public void ShieldOff(InputAction.CallbackContext obj)
     {
         // Comment: 일시정지때 사용 불가
-       // if (MenuEvent.Instance.IsPause)
-       //     return;
+        if (MenuEvent.Instance.IsPause)
+            return;
 
         // Comment: 방패 > 비활성화, 방패 수리 > 활성화, 방패 여부 > 비활성화 
         isRecover = true;
