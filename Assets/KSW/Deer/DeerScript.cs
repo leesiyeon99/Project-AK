@@ -13,8 +13,9 @@ public class DeerScript : MonoBehaviour
 
     public UnityAction<DeerScript> DieEvent;
 
+    public Transform ridingPoint;
 
-  
+    public RidingEnemy enemy;
 
     private void Awake()
     {
@@ -86,6 +87,12 @@ public class DeerScript : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, vec, 17f*Time.deltaTime);
             yield return null;
 
+        }
+
+        if(enemy != null)
+        {
+            enemy.Die();
+            enemy = null;
         }
 
         DieEvent?.Invoke(this);
