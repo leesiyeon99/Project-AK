@@ -7,7 +7,6 @@ public class StopPoint : MonoBehaviour
 {
     [SerializeField] CinemachineDollyCart dolly;
     [SerializeField] EachTimeLine timeLine;
-    
   
     private void OnTriggerEnter(Collider other)
     {
@@ -16,6 +15,14 @@ public class StopPoint : MonoBehaviour
         {
             dolly.m_Speed = 0;
             timeLine.Play();
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            dolly.m_Speed = 5;
         }
     }
 
