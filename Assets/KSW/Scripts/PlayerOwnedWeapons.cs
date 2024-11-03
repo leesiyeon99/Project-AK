@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +30,16 @@ public class PlayerOwnedWeapons : MonoBehaviour
 
     public bool OntGrip { get { return ontGrip; } set { ontGrip = value; } }
 
+    [Header("- 슬로우")]
+    // Commnet : 1 넣으면 사격 50% 딜레이 증가
+    [SerializeField] private float additionalCoolDown;
+    public float AdditionalCoolDown { get { return additionalCoolDown; } set { additionalCoolDown = value; } }
+
+
+    Coroutine slowCoroutine;
+    WaitForSeconds slowWaitForSeconds = new WaitForSeconds(3.0f);
+    bool disableFlag;
+
     private void Awake()
     {
         SetWeapons();
@@ -45,7 +54,7 @@ public class PlayerOwnedWeapons : MonoBehaviour
 
             weapon.InitGun();
         }
-      
+
     }
 
     // Comment : 사용중인 무기 반환
@@ -54,7 +63,7 @@ public class PlayerOwnedWeapons : MonoBehaviour
         return currentWeapon;
     }
 
-  
+
 
     // Comment : 보유중인 무기 반환
     public PlayerGun GetOwnedWeapons(int _index)
@@ -66,13 +75,13 @@ public class PlayerOwnedWeapons : MonoBehaviour
     // Comment : 보유중인 무기 수 반환
     public int GetOwnedWeaponsCount()
     {
-        return ownedWeapons.Count-1;
+        return ownedWeapons.Count - 1;
     }
 
-   // Comment : 무기 교체
+    // Comment : 무기 교체
     public void SetCurrentWeapon()
     {
-       
+
         currentWeapon.gameObject.SetActive(false);
         currentWeapon = ownedWeapons[index];
         currentWeapon.gameObject.SetActive(true);
@@ -82,14 +91,14 @@ public class PlayerOwnedWeapons : MonoBehaviour
     // Comment : 특수 탄환 비어 있을때 호출할 기본 무기 교체 함수
     public void SetDefaultWeapon()
     {
-       
+
         currentWeapon.gameObject.SetActive(false);
-        
+
         index = 0;
         currentWeapon = ownedWeapons[index];
         currentWeapon.gameObject.SetActive(true);
         currentWeapon.UpdateMagazine();
-      
+
     }
 
     // Comment : 재장전
@@ -118,6 +127,37 @@ public class PlayerOwnedWeapons : MonoBehaviour
         ontGrip = false;
     }
 
-   
 
+    // Comment : 슬로우 시작
+    public void StartSlow()
+    {
+        if (disableFlag)
+            return;
+
+        if (slowCoroutine != null)
+            StopCoroutine(slowCoroutine);
+        slowCoroutine = StartCoroutine(SlowEnd());
+        additionalCoolDown = 1;
+    }
+
+    IEnumerator SlowEnd()
+    {
+        yield return slowWaitForSeconds;
+        additionalCoolDown = 0;
+    }
+
+    // 예외 처리
+    private void OnEnable()
+    {
+        disableFlag = false;
+    }
+    private void OnDisable()
+    {
+        disableFlag = true;
+    }
+
+    private void OnDestroy()
+    {
+        disableFlag = true;
+    }
 }
