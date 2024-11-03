@@ -11,7 +11,6 @@ public class LSY_SceneManager : MonoBehaviour
     [SerializeField] GameState curState;
     public InputActionReference nextTextButton;
     public Transform playerTransform;
-    public bool lsy_isdie = false;
     public LJH_DamageManager damageManager;
     private void Awake()
     {
@@ -66,7 +65,10 @@ public class LSY_SceneManager : MonoBehaviour
     public void GameClear()
     {
         curState = GameState.GameClear;
-        lsy_isdie = true;
+        if (WHS_StageIndex.curStage == 1)
+        {
+            PlayerRespawnStage1.Instance.lsy_isdie = false;
+        }
         ScoreUIManager.Instance.WinScoreLine();
         DisplayScoreScreen();
     }
@@ -86,11 +88,11 @@ public class LSY_SceneManager : MonoBehaviour
         GameOver();
         if (WHS_StageIndex.curStage == 1)
         {
-            lsy_isdie = true;
+            PlayerRespawnStage1.Instance.lsy_isdie = true;
         }
         else if (WHS_StageIndex.curStage == 2)
         {
-            lsy_isdie = false;
+            PlayerRespawnStage1.Instance.lsy_isdie = false;
         }
         ScoreUIManager.Instance.LoseScoreLine();
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -109,11 +111,16 @@ public class LSY_SceneManager : MonoBehaviour
     {
         if (WHS_StageIndex.curStage == 1)
         {
+            if (curState == GameState.GameClear)
+            {
+                SceneManager.LoadScene("KYH_Stage2");
+                GameStart();
+            }
             SceneManager.LoadScene("KSJ1Stage");
         }
         else if (WHS_StageIndex.curStage == 2)
         {
-            SceneManager.LoadScene("KSJ1Stage");
+            SceneManager.LoadScene("KYH_Stage2");
         }
         nextTextButton.action.Disable();
         nextTextButton.action.performed -= NextRoad;

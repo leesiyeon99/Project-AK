@@ -36,11 +36,16 @@ public class StoryOpening : MonoBehaviour
             "주인공: 으아아",
             ""
         };
-        if (LSY_SceneManager.Instance == null) return;
-        if (LSY_SceneManager.Instance.lsy_isdie == false)
+        if (PlayerRespawnStage1.Instance == null) return;
+        if (PlayerRespawnStage1.Instance.lsy_isdie == false)
         {
             nextTextButton.action.performed += ShowNextDialogue;
             nextTextButton.action.Enable();
+        }
+        else
+        {
+            nextTextButton.action.performed -= ShowNextDialogue;
+            nextTextButton.action.Disable();
         }
     }
     IEnumerator TextRoutine()
@@ -49,7 +54,7 @@ public class StoryOpening : MonoBehaviour
         float duration = 1.5f;
         float elapsedTime = 0f;
         Color initialColor = text.color;
-        // Commet : 1초 동안 점차 이미지가 투명해지도록 설정
+        // Comment : 1초 동안 점차 이미지가 투명해지도록 설정
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
@@ -61,18 +66,19 @@ public class StoryOpening : MonoBehaviour
     }
     void ShowNextDialogue(InputAction.CallbackContext obj)
     {
-        if (compassImage == null) return;
         if (currentIndex < dialogues.Length)
         {
             dialogueText.text = dialogues[currentIndex];
             currentIndex++;
             if (currentIndex == 5)
             {
+                if (compassImage != null)
                 compassImage.gameObject.SetActive(true);
             }
             if (currentIndex == 10)
             {
-                compassImage.gameObject.SetActive(false);
+                if (compassImage != null)
+                    compassImage.gameObject.SetActive(false);
                 Debug.Log("나침반 폭발");
             }
             if (currentIndex == dialogues.Length)
@@ -82,8 +88,6 @@ public class StoryOpening : MonoBehaviour
                 nextTextButton.action.Disable();
                 dialogueText.text = "";
             }
-            nextTextButton.action.performed -= ShowNextDialogue;
-            nextTextButton.action.Disable();
         }
         else
         {
