@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
-
 public class StoryOpening : MonoBehaviour
 {
     public TextMeshProUGUI dialogueText;
@@ -12,17 +11,13 @@ public class StoryOpening : MonoBehaviour
     private string[] dialogues;
     private int currentIndex = 0;
     public InputActionReference nextTextButton;
-
     public Transform playertransform;
-
     public Image compassImage;
-
     void Start()
     {
         dialogueText.text = "주인공: 오늘도 더러운 하루. 하늘은 누렇고 기분은 진창같구나";
         text.text = "오른쪽 컨트롤러 A버튼을 눌러주세요.";
         StartCoroutine(TextRoutine());
-
         dialogues = new string[]
         {
             "그 때, 날개 달린 작은 그림자가 바닥을 스쳐 지나간다. 툭 소리와 함께 뭔가 떨어진다.",
@@ -41,11 +36,13 @@ public class StoryOpening : MonoBehaviour
             "주인공: 으아아",
             ""
         };
-
-        nextTextButton.action.performed += ShowNextDialogue;
-        nextTextButton.action.Enable(); 
+        if (LSY_SceneManager.Instance == null) return;
+        if (LSY_SceneManager.Instance.lsy_isdie == false)
+        {
+            nextTextButton.action.performed += ShowNextDialogue;
+            nextTextButton.action.Enable();
+        }
     }
-
     IEnumerator TextRoutine()
     {
         yield return new WaitForSeconds(1);
@@ -62,10 +59,9 @@ public class StoryOpening : MonoBehaviour
         }
         text.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0);
     }
-
-
     void ShowNextDialogue(InputAction.CallbackContext obj)
     {
+        if (compassImage == null) return;
         if (currentIndex < dialogues.Length)
         {
             dialogueText.text = dialogues[currentIndex];
@@ -81,11 +77,13 @@ public class StoryOpening : MonoBehaviour
             }
             if (currentIndex == dialogues.Length)
             {
-                playertransform.position = new Vector3(0,1, 0);
+                playertransform.position = new Vector3(0, 1, 0);
                 nextTextButton.action.performed -= ShowNextDialogue;
                 nextTextButton.action.Disable();
                 dialogueText.text = "";
             }
+            nextTextButton.action.performed -= ShowNextDialogue;
+            nextTextButton.action.Disable();
         }
         else
         {

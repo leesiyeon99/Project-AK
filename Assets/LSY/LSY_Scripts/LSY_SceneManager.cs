@@ -4,23 +4,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-
 public class LSY_SceneManager : MonoBehaviour
 {
     public enum GameState { Ready, Running, GameOver, GameClear }
-
     public static LSY_SceneManager Instance { get; private set; }
-
     [SerializeField] GameState curState;
-
     public InputActionReference nextTextButton;
-
     public Transform playerTransform;
-
     public bool lsy_isdie = false;
-
+    public LJH_DamageManager damageManager;
     private void Awake()
-
     {
         if (Instance != null && Instance != this)
         {
@@ -29,16 +22,14 @@ public class LSY_SceneManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
-
     private void Start()
     {
         curState = GameState.Ready;
+        playerTransform = GameObject.FindWithTag("Player").transform;
+        damageManager = FindObjectOfType<LJH_DamageManager>();
     }
-
-
     private void Update()
     {
         if (curState == GameState.Ready)
@@ -58,32 +49,27 @@ public class LSY_SceneManager : MonoBehaviour
         {
             curState = GameState.Ready;
         }
-
     }
-
     public void GameReady()
     {
         curState = GameState.Ready;
     }
-
     public void GameStart()
     {
         curState = GameState.Running;
     }
-
     public void GameOver()
     {
         curState = GameState.GameOver;
+        damageManager.ljh_bloodImage.gameObject.SetActive(false);
     }
-
     public void GameClear()
     {
         curState = GameState.GameClear;
         lsy_isdie = true;
         ScoreUIManager.Instance.WinScoreLine();
-        DisplayScoreScreen(); 
+        DisplayScoreScreen();
     }
-
     public void ReStart()
     {
         if (WHS_StageIndex.curStage == 1)
@@ -95,13 +81,12 @@ public class LSY_SceneManager : MonoBehaviour
             SceneManager.LoadScene("KYH_Stage2");
         }
     }
-
     public void PlayerDied()
     {
         GameOver();
         if (WHS_StageIndex.curStage == 1)
         {
-             lsy_isdie = true;
+            lsy_isdie = true;
         }
         else if (WHS_StageIndex.curStage == 2)
         {
@@ -113,17 +98,13 @@ public class LSY_SceneManager : MonoBehaviour
             SceneManager.LoadScene("KSJ1Stage");
         }
         DisplayScoreScreen();
-
     }
-
     private void DisplayScoreScreen()
     {
         nextTextButton.action.Enable();
         nextTextButton.action.performed += NextRoad;
         ScoreUIManager.Instance.LoseScoreLine();
-
     }
-
     void NextRoad(InputAction.CallbackContext obj)
     {
         if (WHS_StageIndex.curStage == 1)
@@ -134,6 +115,7 @@ public class LSY_SceneManager : MonoBehaviour
         {
             SceneManager.LoadScene("KSJ1Stage");
         }
+        nextTextButton.action.Disable();
+        nextTextButton.action.performed -= NextRoad;
     }
-
 }

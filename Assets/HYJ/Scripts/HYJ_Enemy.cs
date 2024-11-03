@@ -34,8 +34,8 @@ public class HYJ_Enemy : MonoBehaviour
 
     //public MonsterCountUI hyj_monsterCount;
 
-    [Header("데미지 매니져 스크립트")]
-    [SerializeField] LJH_DamageManager damageManager;
+    [Header("데미지 매니져")]
+    [SerializeField] GameObject damageManager;
 
 
 
@@ -66,7 +66,7 @@ public class HYJ_Enemy : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        //damageManager = GameObject.FindGameObjectWithTag("DamagerManager");
+        damageManager = GameObject.FindGameObjectWithTag("DamagerManager");
         isAttack = false;
         nowAttack = false;
         isDie = false;
@@ -162,8 +162,8 @@ public class HYJ_Enemy : MonoBehaviour
         monsterAnimator.SetTrigger("Attack");
         Debug.Log("몬스터 공격");
         yield return new WaitForSeconds(aniTime);
-        nowAttack = true;
-        damageManager.TakeDamage(this);
+        //nowAttack = true;
+        damageManager.GetComponent<LJH_DamageManager>().TakeDamage(this);
         yield return new WaitForSeconds(1f);
         isAttack = false;
     }
@@ -244,7 +244,7 @@ public class HYJ_Enemy : MonoBehaviour
         {
             if (monsterType == MonsterType.Boar)
             {
-                damageManager.TakeDamage(this);
+                damageManager.GetComponent<LJH_DamageManager>().TakeDamage(this);
             }
             //MonsterTakeDamageCalculation();
             // TODO : 충돌 지점을 받기
