@@ -54,6 +54,8 @@ public class WaveDialogue2Manager : MonoBehaviour
                             "주인공: 안돼! 이건 나한테 중요한거야!"}
             // TODO: 보스 전 시작 시 보스 멘트는 용진님 쪽에서 할지 이쪽에서 할지 정해야 함
         };
+
+        StartWave();
     }
 
 

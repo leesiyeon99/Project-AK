@@ -7,7 +7,7 @@ public class StopPoint : MonoBehaviour
 {
     [SerializeField] CinemachineDollyCart dolly;
     [SerializeField] EachTimeLine timeLine;
-    
+    [SerializeField] WaveDialogue2Manager waveDialogue;
   
     private void OnTriggerEnter(Collider other)
     {
@@ -22,5 +22,6 @@ public class StopPoint : MonoBehaviour
     public void ResumeDolly()
     {
         dolly.m_Speed = 20;
+        waveDialogue.StartWave();
     }
 }
