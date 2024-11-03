@@ -85,15 +85,15 @@ public class LSY_SceneManager : MonoBehaviour
     }
 
     public void ReStart()
-    {   
-        //if (WHS_StageSelectScene.Instance.curStage == 1)
-        //{
-        //    SceneManager.LoadScene("KSJ1Stage");
-        //}
-        //else if (WHS_StageSelectScene.Instance.curStage == 2)
-        //{
-            
-        //}
+    {
+        if (WHS_StageIndex.curStage == 1)
+        {
+            SceneManager.LoadScene("KSJ1Stage");
+        }
+        else if (WHS_StageIndex.curStage == 2)
+        {
+            SceneManager.LoadScene("KYH_Stage2");
+        }
     }
 
     public void PlayerDied()
@@ -119,14 +119,14 @@ public class LSY_SceneManager : MonoBehaviour
 
     void NextRoad(InputAction.CallbackContext obj)
     {
-        //if (WHS_StageSelectScene.Instance.curStage == 1)
-        //{
-        //    SceneManager.LoadScene("KSJ1Stage");
-        //}
-        //else if (WHS_StageSelectScene.Instance.curStage == 2)
-        //{
-
-        //}
+        if (WHS_StageIndex.curStage == 1)
+        {
+            SceneManager.LoadScene("KSJ1Stage");
+        }
+        else if (WHS_StageIndex.curStage == 2)
+        {
+            SceneManager.LoadScene("KSJ1Stage");
+        }
     }
 
 }
