@@ -67,10 +67,11 @@ public class LSY_SceneManager : MonoBehaviour
         curState = GameState.GameClear;
         if (WHS_StageIndex.curStage == 1)
         {
-            PlayerRespawnStage1.Instance.lsy_isdie = false;
+            PlayerRespawnStage1.Instance.lsy_isdie = true;
         }
         ScoreUIManager.Instance.WinScoreLine();
-        DisplayScoreScreen();
+        nextTextButton.action.Enable();
+        nextTextButton.action.performed += NextRoad;
     }
     public void ReStart()
     {
@@ -95,10 +96,6 @@ public class LSY_SceneManager : MonoBehaviour
             PlayerRespawnStage1.Instance.lsy_isdie = false;
         }
         ScoreUIManager.Instance.LoseScoreLine();
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("KSJ1Stage");
-        }
         DisplayScoreScreen();
     }
     private void DisplayScoreScreen()
@@ -111,12 +108,15 @@ public class LSY_SceneManager : MonoBehaviour
     {
         if (WHS_StageIndex.curStage == 1)
         {
-            if (curState == GameState.GameClear)
+            if (curState == GameState.GameOver)
             {
-                SceneManager.LoadScene("KYH_Stage2");
+                SceneManager.LoadScene("KSJ1Stage");
                 GameStart();
             }
-            SceneManager.LoadScene("KSJ1Stage");
+            else
+            {
+                SceneManager.LoadScene("KYH_Stage2");
+            }
         }
         else if (WHS_StageIndex.curStage == 2)
         {
