@@ -2151,6 +2151,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7453079467306054830, guid: 8423a290b963f7a4d9fefc5587a8733c, type: 3}
+      propertyPath: m_text
+      value: "-\uC624\uB978\uCABD \uCEE8\uD2B8\uB864\uB7EC A \uD0A4\uB97C \uB20C\uB7EC\uC8FC\uC138\uC694-"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7453079467306054830, guid: 8423a290b963f7a4d9fefc5587a8733c, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
