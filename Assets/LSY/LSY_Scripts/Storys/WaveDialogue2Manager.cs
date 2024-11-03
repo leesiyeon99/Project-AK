@@ -6,6 +6,7 @@ using UnityEngine;
 public class WaveDialogue2Manager : MonoBehaviour
 {
     public GameObject background;
+    public GameObject bossBackGround;
 
     public TextMeshProUGUI fairyText;
     public TextMeshProUGUI playertText;
@@ -19,6 +20,7 @@ public class WaveDialogue2Manager : MonoBehaviour
     void Start()
     {
         background.gameObject.SetActive(false);
+        bossBackGround.gameObject.SetActive(false);
 
         waveDialogues = new string[][]
         {
@@ -75,11 +77,10 @@ public class WaveDialogue2Manager : MonoBehaviour
             }
             else if (line.StartsWith("보스:"))
             {
-                // TODO: 보스 멘트 어느쪽에서 할지 결정해야 함
-                background.gameObject.SetActive(true);
+                bossBackGround.gameObject.SetActive(true);
                 playertText.text = line;
                 yield return new WaitForSeconds(2f);
-                background.gameObject.SetActive(false);
+                bossBackGround.gameObject.SetActive(false);
                 playertText.text = "";
             }
             else
