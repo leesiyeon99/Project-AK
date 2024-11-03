@@ -12,14 +12,8 @@ public class LJH_DamageManager : MonoBehaviour
     [SerializeField] GameObject invincibility;
     [Header("쉴드 오브젝트")]
     [SerializeField] GameObject shield;
-    [Header("보스몬스터 오브젝트")]
-    [SerializeField] GameObject bossMonster;
 
     [Header("스크립트")]
-    [Header("HYJ_Enemy 스크립트")]
-    [SerializeField] HYJ_Enemy hyj_EnemyScript;
-    [Header("Shield 스크립트")]
-    [SerializeField] LJH_Shield shieldScript;
     [Header("UIManager 스크립트")]
     [SerializeField] LJH_UIManager uiManagerScript;
 
@@ -57,7 +51,6 @@ public class LJH_DamageManager : MonoBehaviour
         ljh_curHp = 10000;
         durability = shield.GetComponent<LJH_Shield>().durability;
 
-        damagedShieldSound = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -160,6 +153,12 @@ public class LJH_DamageManager : MonoBehaviour
             }
             bloodCoroutine = StartCoroutine(ShowBloodScreen());
         }
+        DamageTaked(monsterScript);
+    }
+
+    public void DamageTaked(HYJ_Enemy monsterScript)
+    {
+        monsterScript.nowAttack = false;
     }
 
 }
