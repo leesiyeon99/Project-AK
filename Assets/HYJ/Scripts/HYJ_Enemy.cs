@@ -66,6 +66,7 @@ public class HYJ_Enemy : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        //damageManager = GameObject.FindGameObjectWithTag("DamagerManager");
         isAttack = false;
         nowAttack = false;
         isDie = false;
@@ -162,7 +163,7 @@ public class HYJ_Enemy : MonoBehaviour
         Debug.Log("몬스터 공격");
         yield return new WaitForSeconds(aniTime);
         nowAttack = true;
-        //damageManager.TakeDamage(this);
+        damageManager.TakeDamage(this);
         yield return new WaitForSeconds(1f);
         isAttack = false;
     }
@@ -202,7 +203,7 @@ public class HYJ_Enemy : MonoBehaviour
                 {
                     EnemyDecreaseWaveCount();
                 }
-                //ScoreUIManager.Instance.AddScore(100);
+                ScoreUIManager.Instance.AddScore(100);
             }
             else if (monsterType == MonsterType.Elite)
             {
