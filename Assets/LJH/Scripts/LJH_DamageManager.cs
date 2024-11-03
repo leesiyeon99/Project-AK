@@ -45,6 +45,7 @@ public class LJH_DamageManager : MonoBehaviour
     [Header("오디오")]
     [Header("역장 피해시 사운드")]
     [SerializeField] AudioSource damagedShieldSound;
+    [SerializeField] AudioClip[] adClip;
 
     private void Start()
     {
@@ -83,7 +84,7 @@ public class LJH_DamageManager : MonoBehaviour
                 uiManagerScript.UpdateShieldUI(durability);
                 invincibility.SetActive(true);
 
-                damagedShieldSound.Play();
+                Sound();
             }
             
 
@@ -159,6 +160,12 @@ public class LJH_DamageManager : MonoBehaviour
     public void DamageTaked(HYJ_Enemy monsterScript)
     {
         monsterScript.nowAttack = false;
+    }
+
+    public void Sound()
+    {
+        damagedShieldSound.clip = adClip[Random.Range(0, 2)];
+        damagedShieldSound.Play();
     }
 
 }

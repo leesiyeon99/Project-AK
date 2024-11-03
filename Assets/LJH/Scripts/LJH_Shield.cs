@@ -67,6 +67,7 @@ public class LJH_Shield : MonoBehaviour
             // Comment: 트리거 버튼에서 ShiledOff 추가
             shieldOnOff.action.performed += ShieldOff;
 
+        //shieldOnOff.
         // Comment: 역장 활성화될 때 사격 기능 비활성화
         //fire.action.performed -= GetComponent<PlayerInputWeapon>().OnFire;
         //fire.action.performed -= GetComponent<PlayerInputWeapon>().OffFire;
