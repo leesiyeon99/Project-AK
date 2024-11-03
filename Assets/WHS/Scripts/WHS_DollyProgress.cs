@@ -20,7 +20,7 @@ public class WHS_DollyProgress : MonoBehaviour
     }
 
     [SerializeField] CinemachineDollyCart dollyCart;
-    [SerializeField] Slider progressBar;
+    [SerializeField] Image progressBar;
 
     private CinemachinePathBase path;
 
@@ -41,26 +41,13 @@ public class WHS_DollyProgress : MonoBehaviour
     private void Start()
     {
         path = dollyCart.m_Path; 
-
-        progressBar.minValue = 0;
-        progressBar.maxValue = 1;
     }
 
-    /*
+
     private void Update()
     {
         float progress = Mathf.Clamp01(dollyCart.m_Position / path.PathLength); // 카트의 위치 / 트랙의 길이
-        progressBar.value = progress;
+        progressBar.fillAmount = progress;
     }
-    */
 
-    public void UpdateProgress(float dollyMPos)
-    {
-        if(path != null)
-        {
-            dollyMPos = dollyCart.m_Position;
-            progress = Mathf.Clamp01(dollyMPos / path.PathLength);
-            progressBar.value = progress;
-        }
-    }
 }

@@ -99,7 +99,14 @@ public class LSY_SceneManager : MonoBehaviour
     public void PlayerDied()
     {
         GameOver();
-        lsy_isdie = true;
+        if (WHS_StageIndex.curStage == 1)
+        {
+             lsy_isdie = true;
+        }
+        else if (WHS_StageIndex.curStage == 2)
+        {
+            lsy_isdie = false;
+        }
         ScoreUIManager.Instance.LoseScoreLine();
         if (Input.GetKeyDown(KeyCode.Escape))
         {

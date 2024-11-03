@@ -12,6 +12,6 @@ public class WHS_ASDF : MonoBehaviour
     {
         float curPos = dollyCart.m_Position;
 
-        WHS_DollyProgress.Instance.UpdateProgress(curPos);
+        //WHS_DollyProgress.Instance.UpdateProgress(curPos);
     }
 }
