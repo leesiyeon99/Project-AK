@@ -31,7 +31,13 @@ public class HYJ_Enemy : MonoBehaviour
     public bool nowAttack;
     public bool isDie;
 
+
     //public MonsterCountUI hyj_monsterCount;
+
+    [Header("데미지 매니져 스크립트")]
+    [SerializeField] LJH_DamageManager damageManager;
+
+
 
     //------------------------임의 변수---------------------------//
     [Header("임의 변수")]
@@ -41,6 +47,9 @@ public class HYJ_Enemy : MonoBehaviour
     Coroutine hitFlagCoroutine;
     WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.1f);
 
+    [SerializeField] EachTimeLine eachTimeLine;
+    [SerializeField] bool isReady;
+    [SerializeField] bool isKeyEnemy;
     public enum MonsterType
     {
         Nomal,
@@ -88,7 +97,12 @@ public class HYJ_Enemy : MonoBehaviour
     // Comment : Player 태그의 오브젝트를 찾고 해당 오브젝트로 Monster가 이동한다.
     public void MonsterMover()
     {
-      
+        if (isReady)
+        {
+            return;
+        }
+
+
             if (player != null && monsterNowHp > 0)
         {
             if (monsterType == MonsterType.Boar)
@@ -141,13 +155,14 @@ public class HYJ_Enemy : MonoBehaviour
     }
 
     // Comment : 몬스터 공격 코루틴
+
     IEnumerator MonsterAttackCo()
     {
         monsterAnimator.SetTrigger("Attack");
         Debug.Log("몬스터 공격");
         yield return new WaitForSeconds(aniTime);
         nowAttack = true;
-        //nowAttack = false;
+        //damageManager.TakeDamage(this);
         yield return new WaitForSeconds(1f);
         isAttack = false;
     }
@@ -179,8 +194,15 @@ public class HYJ_Enemy : MonoBehaviour
 
             if (monsterType == MonsterType.Nomal)
             {
-                WaveTimeline.Instance.DecreaseWaveCount();
-                ScoreUIManager.Instance.AddScore(100);
+                if (eachTimeLine == null)
+                {
+                    WaveTimeline.Instance.DecreaseWaveCount();
+                }
+                else
+                {
+                    EnemyDecreaseWaveCount();
+                }
+                //ScoreUIManager.Instance.AddScore(100);
             }
             else if (monsterType == MonsterType.Elite)
             {
@@ -221,7 +243,7 @@ public class HYJ_Enemy : MonoBehaviour
         {
             if (monsterType == MonsterType.Boar)
             {
-                nowAttack = true;
+                damageManager.TakeDamage(this);
             }
             //MonsterTakeDamageCalculation();
             // TODO : 충돌 지점을 받기
@@ -245,4 +267,19 @@ public class HYJ_Enemy : MonoBehaviour
         }
     }*/
     
+
+
+    public void EnemyDecreaseWaveCount()
+    {
+        if (eachTimeLine != null)
+        {
+            eachTimeLine.DecreaseWaveCount(isKeyEnemy);
+
+        }
+    }
+
+    public void ReadyEnemy()
+    {
+        isReady = false;
+    }
 }

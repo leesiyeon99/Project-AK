@@ -2794,6 +2794,10 @@ PrefabInstance:
       propertyPath: weaponUI
       value: 
       objectReference: {fileID: 8333909740904098150}
+    - target: {fileID: 1546612419838689679, guid: d5c06b72f48d1f243b0e5a5f720dd6ed, type: 3}
+      propertyPath: aimMask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     - target: {fileID: 3257083148594941662, guid: d5c06b72f48d1f243b0e5a5f720dd6ed, type: 3}
       propertyPath: m_Name
       value: Weapon_ClusterShotgun
@@ -2805,6 +2809,10 @@ PrefabInstance:
     - target: {fileID: 3257083148594941662, guid: d5c06b72f48d1f243b0e5a5f720dd6ed, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214658445597920931, guid: d5c06b72f48d1f243b0e5a5f720dd6ed, type: 3}
+      propertyPath: mask.m_Bits
+      value: 915
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5c06b72f48d1f243b0e5a5f720dd6ed, type: 3}
@@ -2897,10 +2905,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8635334987721283221}
     m_Modifications:
+    - target: {fileID: 452587366687297734, guid: c43fef8d6e2063b49a9abf46fe72e100, type: 3}
+      propertyPath: mask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     - target: {fileID: 1193104029324840037, guid: c43fef8d6e2063b49a9abf46fe72e100, type: 3}
       propertyPath: weaponUI
       value: 
       objectReference: {fileID: 8333909740904098150}
+    - target: {fileID: 1193104029324840037, guid: c43fef8d6e2063b49a9abf46fe72e100, type: 3}
+      propertyPath: aimMask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     - target: {fileID: 2986011808553418338, guid: c43fef8d6e2063b49a9abf46fe72e100, type: 3}
       propertyPath: m_Name
       value: Weapon_Sturmgewehr46
@@ -2986,6 +3002,14 @@ PrefabInstance:
       propertyPath: weaponUI
       value: 
       objectReference: {fileID: 8333909740904098150}
+    - target: {fileID: 4254741601040915710, guid: dc3d05d759e57bc449c97c984dfd40b8, type: 3}
+      propertyPath: aimMask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597468314171588409, guid: dc3d05d759e57bc449c97c984dfd40b8, type: 3}
+      propertyPath: mask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     - target: {fileID: 7571574759398946559, guid: dc3d05d759e57bc449c97c984dfd40b8, type: 3}
       propertyPath: m_Name
       value: Weapon_Pistol9
@@ -3183,6 +3207,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8635334987721283221}
     m_Modifications:
+    - target: {fileID: 1756390839780717424, guid: e5d9d219e9e0fca4e8c9f32069537004, type: 3}
+      propertyPath: mask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     - target: {fileID: 2852979173907235098, guid: e5d9d219e9e0fca4e8c9f32069537004, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3243,6 +3271,10 @@ PrefabInstance:
       propertyPath: weaponUI
       value: 
       objectReference: {fileID: 8333909740904098150}
+    - target: {fileID: 8129698513280143643, guid: e5d9d219e9e0fca4e8c9f32069537004, type: 3}
+      propertyPath: aimMask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5d9d219e9e0fca4e8c9f32069537004, type: 3}
 --- !u!114 &647872125501530402 stripped

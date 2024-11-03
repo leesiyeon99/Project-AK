@@ -2816,6 +2816,10 @@ PrefabInstance:
       propertyPath: weaponUI
       value: 
       objectReference: {fileID: 3278537877146562556}
+    - target: {fileID: 1597334156398552060, guid: 52321ec2160eb0847a217556c5e130c1, type: 3}
+      propertyPath: aimMask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     - target: {fileID: 3751740375048415678, guid: 52321ec2160eb0847a217556c5e130c1, type: 3}
       propertyPath: m_Name
       value: Weapon_Grenade_Launcher
@@ -2827,6 +2831,10 @@ PrefabInstance:
     - target: {fileID: 3751740375048415678, guid: 52321ec2160eb0847a217556c5e130c1, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342804245250693788, guid: 52321ec2160eb0847a217556c5e130c1, type: 3}
+      propertyPath: mask.m_Bits
+      value: 915
       objectReference: {fileID: 0}
     - target: {fileID: 8731786448855723265, guid: 52321ec2160eb0847a217556c5e130c1, type: 3}
       propertyPath: m_RootOrder
@@ -3021,6 +3029,14 @@ PrefabInstance:
       propertyPath: weaponUI
       value: 
       objectReference: {fileID: 3278537877146562556}
+    - target: {fileID: 1490233042133658004, guid: 88b4f02d06e55e845b46743617c56ba3, type: 3}
+      propertyPath: aimMask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404374015225787178, guid: 88b4f02d06e55e845b46743617c56ba3, type: 3}
+      propertyPath: mask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     - target: {fileID: 9009920092245053364, guid: 88b4f02d06e55e845b46743617c56ba3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3158,10 +3174,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5144502783786025583, guid: 7559d9350f04a6e4a993e252b881bba5, type: 3}
+      propertyPath: mask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     - target: {fileID: 7437678595460310432, guid: 7559d9350f04a6e4a993e252b881bba5, type: 3}
       propertyPath: weaponUI
       value: 
       objectReference: {fileID: 3278537877146562556}
+    - target: {fileID: 7437678595460310432, guid: 7559d9350f04a6e4a993e252b881bba5, type: 3}
+      propertyPath: aimMask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7559d9350f04a6e4a993e252b881bba5, type: 3}
 --- !u!114 &373436035321830498 stripped
@@ -3247,6 +3271,14 @@ PrefabInstance:
       propertyPath: weaponUI
       value: 
       objectReference: {fileID: 3278537877146562556}
+    - target: {fileID: 7402571622901414472, guid: 305706f687b3ebc43a07bb3713d006bb, type: 3}
+      propertyPath: aimMask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767712937995610033, guid: 305706f687b3ebc43a07bb3713d006bb, type: 3}
+      propertyPath: mask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 305706f687b3ebc43a07bb3713d006bb, type: 3}
 --- !u!114 &679733272034062220 stripped

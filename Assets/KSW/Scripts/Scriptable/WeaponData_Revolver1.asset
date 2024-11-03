@@ -15,9 +15,9 @@ MonoBehaviour:
   weaponName: "\uAE30\uBCF8 \uBB34\uAE30"
   gunType: 1
   tier: 0
-  bulletAttack: 50
+  bulletAttack: 500
   defaultFiringDelay: 0.5
   accelerationTime: 1
-  maxMagazine: 6
+  maxMagazine: 60
   reloadSpeed: 0.8
   range: 30
