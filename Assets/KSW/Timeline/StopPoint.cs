@@ -28,6 +28,6 @@ public class StopPoint : MonoBehaviour
 
     public void ResumeDolly()
     {
-        dolly.m_Speed = 5;
+        dolly.m_Speed = 20;
     }
 }

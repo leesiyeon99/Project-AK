@@ -2832,6 +2832,10 @@ PrefabInstance:
       propertyPath: fireEffect
       value: 
       objectReference: {fileID: 6137905809949063610}
+    - target: {fileID: 1663116110891927733, guid: 084529d9d2ae1c9459afe5a10f4b4888, type: 3}
+      propertyPath: aimMask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     - target: {fileID: 2462245325468043143, guid: 084529d9d2ae1c9459afe5a10f4b4888, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2876,6 +2880,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3158946851440923715, guid: 084529d9d2ae1c9459afe5a10f4b4888, type: 3}
+      propertyPath: mask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 084529d9d2ae1c9459afe5a10f4b4888, type: 3}
 --- !u!114 &145593390686082496 stripped
@@ -2918,6 +2926,10 @@ PrefabInstance:
       propertyPath: fireEffect
       value: 
       objectReference: {fileID: 4783329835761536314}
+    - target: {fileID: 1862066961915834226, guid: d40660a6bc4527f468b847e6e17f7b80, type: 3}
+      propertyPath: aimMask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     - target: {fileID: 4899250312714266700, guid: d40660a6bc4527f468b847e6e17f7b80, type: 3}
       propertyPath: m_Name
       value: Weapon_Sce5
@@ -2974,6 +2986,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5591929483188859010, guid: d40660a6bc4527f468b847e6e17f7b80, type: 3}
+      propertyPath: mask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d40660a6bc4527f468b847e6e17f7b80, type: 3}
 --- !u!114 &4606446711696833714 stripped
@@ -3012,6 +3028,10 @@ PrefabInstance:
       propertyPath: fireEffect
       value: 
       objectReference: {fileID: 2766138965247285502}
+    - target: {fileID: 930567885016296495, guid: d076dd158ab8fc04da94c1e4378b6dd3, type: 3}
+      propertyPath: aimMask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     - target: {fileID: 1076506889923845888, guid: d076dd158ab8fc04da94c1e4378b6dd3, type: 3}
       propertyPath: m_Name
       value: Weapon_Auge
@@ -3023,6 +3043,10 @@ PrefabInstance:
     - target: {fileID: 1076506889923845888, guid: d076dd158ab8fc04da94c1e4378b6dd3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5821395124055340839, guid: d076dd158ab8fc04da94c1e4378b6dd3, type: 3}
+      propertyPath: mask.m_Bits
+      value: 915
       objectReference: {fileID: 0}
     - target: {fileID: 6289931700332852649, guid: d076dd158ab8fc04da94c1e4378b6dd3, type: 3}
       propertyPath: m_RootOrder
@@ -3226,6 +3250,10 @@ PrefabInstance:
       propertyPath: fireEffect
       value: 
       objectReference: {fileID: 6897579643168944301}
+    - target: {fileID: 1008603511550995981, guid: 3b4c3f9f083650747b017e1f9949d1e7, type: 3}
+      propertyPath: aimMask.m_Bits
+      value: 915
+      objectReference: {fileID: 0}
     - target: {fileID: 3776736255498147240, guid: 3b4c3f9f083650747b017e1f9949d1e7, type: 3}
       propertyPath: m_Name
       value: Weapon_Pumpgun_a
@@ -3281,6 +3309,10 @@ PrefabInstance:
     - target: {fileID: 3776736255498147255, guid: 3b4c3f9f083650747b017e1f9949d1e7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5164285653198594446, guid: 3b4c3f9f083650747b017e1f9949d1e7, type: 3}
+      propertyPath: mask.m_Bits
+      value: 915
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b4c3f9f083650747b017e1f9949d1e7, type: 3}
