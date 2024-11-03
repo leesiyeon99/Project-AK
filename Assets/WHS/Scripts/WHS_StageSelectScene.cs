@@ -151,7 +151,7 @@ public class WHS_StageSelectScene : MonoBehaviour
 
     public void StageDown()
     {
-        if (WHS_StageIndex.curStage > 1)
+        if (WHS_StageIndex.curStage+1 > 1)
         {
             WHS_StageIndex.curStage--;
             UpdateSelectedStage();
