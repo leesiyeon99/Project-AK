@@ -107,13 +107,12 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
             Debug.Log("사망");
             Destroy(gameObject, 2f);
         }
-        //LSY_SceneManager.Instance.GameClear();
+        LSY_SceneManager.Instance.GameClear();
     }
 
     // Comment : 보스 조우 패턴 
     IEnumerator BossBattleStart()
     {
-        Debug.Log("연습");
         if (!pFirst)
         {
             // Comment : 첫 패턴으로 브레이크 댄스를 한다.
@@ -186,7 +185,6 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     // Comment : 보스 이동
     void BossMove()
     {
-        
         float xMax = 8f;
         float xMin = -8f;
         
