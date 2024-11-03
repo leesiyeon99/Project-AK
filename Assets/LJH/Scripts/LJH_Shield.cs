@@ -131,8 +131,8 @@ public class LJH_Shield : MonoBehaviour
 
 
             // Comment: 총기 인풋 끄기
-          // PlayerInputWeapon.Instance.enabled = false;
-          // PlayerInputWeapon.Instance.IsShield = isShield;
+           PlayerInputWeapon.Instance.enabled = false;
+           PlayerInputWeapon.Instance.IsShield = isShield;
         }
     }
 
@@ -151,8 +151,8 @@ public class LJH_Shield : MonoBehaviour
 
         // Comment:총기 인풋 켜기
 
-       // PlayerInputWeapon.Instance.enabled = true;
-       // PlayerInputWeapon.Instance.IsShield = isShield;
+        PlayerInputWeapon.Instance.enabled = true;
+        PlayerInputWeapon.Instance.IsShield = isShield;
     }
 
     // Comment: 역장 파괴, 역장이 비활성화되며 isBreaked 변수에 값 전달

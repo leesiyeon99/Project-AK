@@ -38,15 +38,7 @@ public class WaveTimeline : MonoBehaviour
         director = GetComponent<PlayableDirector>();
     }
   
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Play();
-        }
-
-    }
-
+   
     public void Play()
     {
         director.playableAsset = wave[waveIndex];
@@ -69,4 +61,21 @@ public class WaveTimeline : MonoBehaviour
         }
     }
 
+
+    public void DecreaseWaveCount(int num)
+    {
+        waveCount[waveIndex]=0;
+
+        if (waveCount[waveIndex] <= 0)
+        {
+
+            waveIndex++;
+            if (waveCount.Length <= waveIndex)
+            {
+                Debug.Log("³¡");
+                return;
+            }
+            Play();
+        }
+    }
 }

@@ -15,7 +15,8 @@ public class DeerPool : MonoBehaviour
     Coroutine spawnCoroutine;
     WaitForSeconds spawnWaitForSeconds;
 
-    DeerScript recentDeer;
+
+    [SerializeField] RidingEnemy[] enemyPool;
 
     private void Awake()
     {
@@ -69,7 +70,16 @@ public class DeerPool : MonoBehaviour
               
                 deer.transform.rotation = spawnPoint[i].rotation;
 
-                recentDeer = deer;
+                for (i = 0; i < enemyPool.Length; i++)
+                {
+                    if (enemyPool[i].ready)
+                    {
+
+                        enemyPool[i].Ride(deer.ridingPoint);
+                        deer.enemy = enemyPool[i];
+                        enemyPool[i].ready = false;
+                    }
+                }
                
                 i++;
                 if (i >= spawnPoint.Length)
@@ -85,9 +95,5 @@ public class DeerPool : MonoBehaviour
         }
     }
 
-    public DeerScript GetRidingPoint()
-    {
-   
-        return recentDeer;
-    }
+ 
 }
