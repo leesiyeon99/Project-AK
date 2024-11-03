@@ -118,9 +118,16 @@ public class LJH_Shield : MonoBehaviour
         if (!isBreaked)
         {
             // Comment: 방패 > 활성화 , 방패 수리 > 비활성화, 방패 여부 > 활성화
-            gameObject.SetActive(true);
-            shieldRecover.SetActive(false);
-            isShield = true;
+            if (this.gameObject == null)
+            {
+                return;
+            }
+            else
+            {
+                gameObject.SetActive(true);
+                shieldRecover.SetActive(false);
+                isShield = true;
+            }
 
 
             // Comment: 총기 인풋 끄기
