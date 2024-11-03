@@ -93,16 +93,21 @@ public class ScoreUIManager : MonoBehaviour
     // Comment : 게임클리어시 나오는 UI
     public void WinScoreLine()
     {
+        if (PlayerSpecialBullet.Instance == null || LJH_UIManager.Instance == null)
+        {
+            return;
+        }
         remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
         remainHP = LJH_UIManager.Instance.ljh_curHp / 10000;
-        //if (WHS_StageSelectScene.Instance.curStage == 1)
-        //{
-        //    levelScore = 1;
-        //}
-        //else if (WHS_StageSelectScene.Instance.curStage == 2)
-        //{
-        //    levelScore = 2;
-        //}
+
+        if (WHS_StageIndex.curStage == 1)
+        {
+            levelScore = 1;
+        }
+        else if (WHS_StageIndex.curStage == 2)
+        {
+            levelScore = 2;
+        }
 
         normalEnemyText.text = normalEnemyCount.ToString();
         eliteEnemyText.text = eliteEnemyCount.ToString();
@@ -120,30 +125,36 @@ public class ScoreUIManager : MonoBehaviour
     // Comment : 게임 중간에 플레이어가 사망시 나오는 UI
     public void LoseScoreLine()
     {
+        if (PlayerSpecialBullet.Instance == null)
+        {
+            return;
+        }
+
         remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
-        //if (WHS_StageSelectScene.Instance.curStage == 1)
-        //{
-        //    levelScore = 1;
-        //   remainProgress = LSY_WaveBar.instance.wavePercent;
-        //}
-        //else if (WHS_StageSelectScene.Instance.curStage == 2)
-        //{
-        //    levelScore = 2;
-        //    remainProgress = WHS_DollyProgress.Instance.progress;
-        //}
+
+        if (WHS_StageIndex.curStage == 1)
+        {
+            levelScore = 1;
+            remainProgress = LSY_WaveBar.instance?.wavePercent ?? 0;
+        }
+        else if (WHS_StageIndex.curStage == 2)
+        {
+            levelScore = 2;
+            remainProgress = WHS_DollyProgress.Instance?.progress ?? 0;
+        }
 
         normalEnemyText.text = normalEnemyCount.ToString();
         eliteEnemyText.text = eliteEnemyCount.ToString();
         levelScoreText.text = levelScore.ToString();
         remainBulletText.text = remainBulletCount.ToString();
 
-        //최종점수 = 20000 * 난이도 * 진행정도 + score + 남은 특수 탄환 * 100
         scoreline = 20000 * levelScore * remainProgress + score + remainBulletCount * 100;
 
         scorelineText.text = scoreline.ToString();
 
         StartCoroutine(ScoreDisplayRoutine());
     }
+
 
     IEnumerator ScoreDisplayRoutine()
     {

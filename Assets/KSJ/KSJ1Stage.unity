@@ -719,7 +719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
@@ -3922,7 +3922,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 379820751}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.21}
+  m_LocalPosition: {x: 0, y: 0, z: 0.9}
   m_LocalScale: {x: 0.0015787199, y: 0.0015787199, z: 0.0015787199}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -8990,16 +8990,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 20945187, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -6.47
+      value: -7.93
       objectReference: {fileID: 0}
     - target: {fileID: 20945189, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: bcb7486b20a409940ba1064401a205ed, type: 2}
     - target: {fileID: 20945189, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -248552507327630263, guid: bcb7486b20a409940ba1064401a205ed, type: 2}
+    - target: {fileID: 20945189, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1186845722, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -9018,7 +9022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1186845722, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -11.94
+      value: -14.86
       objectReference: {fileID: 0}
     - target: {fileID: 1186845724, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_fontAsset
@@ -9059,11 +9063,15 @@ PrefabInstance:
     - target: {fileID: 1237626588, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: bcb7486b20a409940ba1064401a205ed, type: 2}
     - target: {fileID: 1237626588, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -248552507327630263, guid: bcb7486b20a409940ba1064401a205ed, type: 2}
+    - target: {fileID: 1237626588, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1643230949, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -9091,11 +9099,15 @@ PrefabInstance:
     - target: {fileID: 1900599871, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: bcb7486b20a409940ba1064401a205ed, type: 2}
     - target: {fileID: 1900599871, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: -248552507327630263, guid: bcb7486b20a409940ba1064401a205ed, type: 2}
+    - target: {fileID: 1900599871, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3304096680954340941, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_Depth
       value: 0
@@ -22994,57 +23006,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1122850976}
-  - component: {fileID: 1122850975}
   m_Layer: 0
   m_Name: SelectStageSceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1122850975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1122850974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8e85206460e4234a95a0663c172e552, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageText: {fileID: 0}
-  leftButton: {fileID: 0}
-  rightButton: {fileID: 0}
-  startButton: {fileID: 0}
-  compassNeedle: {fileID: 0}
-  curStage: 1
-  rightController: {fileID: 0}
-  rightJoystickInput:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Joystick Input
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 93e021d6-0281-4a04-873e-69678a44c7a9
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  triggerInput:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Trigger Input
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: a9237613-7b9c-4305-acf6-40ff221104da
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
+  m_IsActive: 1
 --- !u!4 &1122850976
 Transform:
   m_ObjectHideFlags: 0
@@ -40794,7 +40762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6768793288629545258, guid: 52d017b7850a46d4b84133903874b192, type: 3}
       propertyPath: m_InitialState
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6768793288629545258, guid: 52d017b7850a46d4b84133903874b192, type: 3}
       propertyPath: m_PlayableAsset
@@ -44269,7 +44237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2077098365
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44304,7 +44272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.52156866}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
