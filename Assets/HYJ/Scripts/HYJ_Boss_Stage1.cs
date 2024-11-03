@@ -64,8 +64,8 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     private void PatternHeadSpin()
     {
         Debug.Log("헤드스핀");
-        monsterShieldAtkPower = 4000f;
-        monsterHpAtkPower = 5f;
+        monsterHpAtkPower = 4000f;
+        monsterShieldAtkPower = 5f;
         animator.SetTrigger("HeadSpin");
         nowAttack = true;
 
@@ -76,8 +76,8 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     private void PatternBreakDance()
     {
         Debug.Log("브레이크댄스");
-        monsterShieldAtkPower = 1000;
-        monsterHpAtkPower = 3;
+        monsterHpAtkPower = 1000;
+        monsterShieldAtkPower = 3;
         animator.SetTrigger("BreakDance");
         isSiuu =true;
         nowAttack = true;
@@ -89,8 +89,8 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     {
         isSiuu = true;
         Debug.Log("세레머니");
-        monsterShieldAtkPower = 3000f;
-        monsterHpAtkPower = 1f;
+        monsterHpAtkPower = 3000f;
+        monsterShieldAtkPower = 1f;
         animator.SetTrigger("Siuu");
         nowAttack = true;
         Vector3 beforeBossPos = monster.transform.position;
@@ -107,6 +107,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
             Debug.Log("사망");
             Destroy(gameObject, 2f);
         }
+        //LSY_SceneManager.Instance.GameClear();
     }
 
     // Comment : 보스 조우 패턴 
