@@ -3,7 +3,7 @@ using UnityEngine;
 public class RidingEnemy : MonoBehaviour
 {
     [SerializeField] DeerPool pool;
-
+    [SerializeField] Transform ridingEnemy;
     public bool ready;
 
     private void Start()
@@ -17,6 +17,7 @@ public class RidingEnemy : MonoBehaviour
         transform.SetParent(deerTransform);
 
         transform.localPosition = Vector3.zero;
+        ridingEnemy.localRotation = Quaternion.Euler(0, 180f, ridingEnemy.localRotation.z);
         gameObject.SetActive(true);
 
     }
