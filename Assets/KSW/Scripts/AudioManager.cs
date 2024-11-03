@@ -5,9 +5,14 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] AudioSource bgmSource;
-    [SerializeField] AudioSource seSource;
+    [SerializeField] AudioSource titleSource;
+    [SerializeField] AudioSource stage1Source;
+    [SerializeField] AudioSource stage2Source;
     [SerializeField] AudioMixer audioMixer;
+
+    [SerializeField] AudioClip titleClip;
+    [SerializeField] AudioClip stage1Clip;
+    [SerializeField] AudioClip stage2Clip;
 
 
     public void Mute(bool mute)
@@ -27,13 +32,25 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySE(AudioClip clip)
     {
-        seSource.PlayOneShot(clip);
+        //seSource.PlayOneShot(clip);
     }
 
-    public void PlayBGM(AudioClip clip)
+    public void PlayTitle(AudioClip clip)
     {
-        bgmSource.clip = clip;
-        bgmSource.Play();
+        titleSource.clip = clip;
+        titleSource.Play();
+    }
+
+    public void PlayStage1(AudioClip clip)
+    {
+        stage1Source.clip = clip;
+        stage1Source.Play();
+    }
+
+    public void PlayStage2(AudioClip clip)
+    {
+        stage2Source.clip = clip;
+        stage2Source.Play();
     }
 
 
@@ -66,14 +83,15 @@ public class AudioManager : MonoBehaviour
         if (WHS_StageIndex.curStage == 0)
         {
             Debug.Log("CURStage0");
+            PlayTitle(titleClip);
         }
         else if (WHS_StageIndex.curStage == 1)
         {
-            Debug.Log("CURStage1");
+            PlayStage1(stage1Clip);
         }
         else if (WHS_StageIndex.curStage == 2)
         {
-            Debug.Log("CURStage2");
+            PlayStage2(stage2Clip);
         }
     }
 
