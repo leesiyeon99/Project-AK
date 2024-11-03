@@ -14,6 +14,9 @@ public class DeerPool : MonoBehaviour
 
     Coroutine spawnCoroutine;
     WaitForSeconds spawnWaitForSeconds;
+
+    DeerScript recentDeer;
+
     private void Awake()
     {
         deerQueue = new Queue<DeerScript>();
@@ -65,6 +68,9 @@ public class DeerPool : MonoBehaviour
                 deer.transform.position = spawnPoint[i].position;
               
                 deer.transform.rotation = spawnPoint[i].rotation;
+
+                recentDeer = deer;
+               
                 i++;
                 if (i >= spawnPoint.Length)
                 {
@@ -77,5 +83,11 @@ public class DeerPool : MonoBehaviour
             yield return spawnWaitForSeconds;
 
         }
+    }
+
+    public DeerScript GetRidingPoint()
+    {
+   
+        return recentDeer;
     }
 }
