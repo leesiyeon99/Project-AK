@@ -15,6 +15,7 @@ TagManager:
   - Animal
   - middle
   - Missile
+  - DamagerManager
   layers:
   - Default
   - TransparentFX
