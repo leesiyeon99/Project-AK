@@ -142,7 +142,7 @@ public class WHS_StageSelectScene : MonoBehaviour
 
     public void StageUp()
     {
-        if (WHS_StageIndex.curStage < WHS_StageIndex.maxStage)
+        if (WHS_StageIndex.curStage+1 < WHS_StageIndex.maxStage)
         {
             WHS_StageIndex.curStage++;
             UpdateSelectedStage();
@@ -160,13 +160,13 @@ public class WHS_StageSelectScene : MonoBehaviour
 
     private void UpdateSelectedStage()
     {
-        stageText.text = $"{WHS_StageIndex.curStage}";
+        stageText.text = $"{WHS_StageIndex.curStage + 1}";
        // RotateNeedle();
     }
 
     public void LoadSelectedStage()
     {
-        int sceneIndex = WHS_StageIndex.curStage;
+        int sceneIndex = WHS_StageIndex.curStage + 1;
 
         if (!Application.CanStreamedLevelBeLoaded(sceneIndex))
         {
@@ -174,6 +174,7 @@ public class WHS_StageSelectScene : MonoBehaviour
         }
         else
         {
+            if (WHS_StageIndex.curStage == 0) WHS_StageIndex.curStage = 1;
             SceneManager.LoadScene(sceneIndex);
         }
     }

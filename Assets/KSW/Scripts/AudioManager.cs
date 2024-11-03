@@ -59,10 +59,22 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(this);
         }
-
-
-
     }
 
+    private void Start()
+    {
+        if (WHS_StageIndex.curStage == 0)
+        {
+            Debug.Log("CURStage0");
+        }
+        else if (WHS_StageIndex.curStage == 1)
+        {
+            Debug.Log("CURStage1");
+        }
+        else if (WHS_StageIndex.curStage == 2)
+        {
+            Debug.Log("CURStage2");
+        }
+    }
 
 }
