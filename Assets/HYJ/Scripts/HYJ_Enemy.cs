@@ -56,7 +56,8 @@ public class HYJ_Enemy : MonoBehaviour
         None,
         Wolf,
         Boar,
-        Spider
+        Spider,
+        Spawn
     }
     public enum MonsterType
     {
