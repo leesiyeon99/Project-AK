@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6080013723199211303
+--- !u!1 &433522407291267207
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2691936082779988357}
-  - component: {fileID: 8690050316138932953}
-  - component: {fileID: 8725646047948120413}
-  - component: {fileID: 7881488741027681789}
+  - component: {fileID: 8592603705535548965}
+  - component: {fileID: 3097879138471888249}
+  - component: {fileID: 3130875612713160445}
+  - component: {fileID: 4540770066395609693}
   m_Layer: 0
   m_Name: WHS_Managers
   m_TagString: Untagged
@@ -19,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2691936082779988357
+--- !u!4 &8592603705535548965
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6080013723199211303}
+  m_GameObject: {fileID: 433522407291267207}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,47 +34,97 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8690050316138932953
+--- !u!114 &3097879138471888249
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6080013723199211303}
+  m_GameObject: {fileID: 433522407291267207}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d4e296b6fdff3a4a8161c0eb443b61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   removeDelay: 1.5
---- !u!114 &8725646047948120413
+--- !u!114 &3130875612713160445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6080013723199211303}
+  m_GameObject: {fileID: 433522407291267207}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 705ae967fc07773448a4455c5d278414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfos:
-  - itemPrefab: {fileID: 6702503975447286583, guid: fbc01de5a4b89dc4d83d57baaa778292, type: 3}
-    dropRate: 20
-  - itemPrefab: {fileID: 6702503975447286583, guid: 2bd42460f648d884b834933b48bbcb57, type: 3}
-    dropRate: 20
-  - itemPrefab: {fileID: 6702503975447286583, guid: 1f84d34b619cad74aab4d1025d6437f5, type: 3}
-    dropRate: 20
-  itemHeight: 1
-  noneDropRate: 40
---- !u!114 &7881488741027681789
+  itemPrefab: {fileID: 6702503975447286583, guid: 2b8448e9011398c42a2066fbda19942e, type: 3}
+  dropInfo:
+  - monsterType: Wolf
+    items:
+    - bulletIndex: 0
+      bulletAmount: 3
+      dropRate: 40
+    - bulletIndex: 1
+      bulletAmount: 6
+      dropRate: 10
+    - bulletIndex: 2
+      bulletAmount: 2
+      dropRate: 20
+    - bulletIndex: -1
+      bulletAmount: 0
+      dropRate: 30
+  - monsterType: Boar
+    items:
+    - bulletIndex: 0
+      bulletAmount: 4
+      dropRate: 20
+    - bulletIndex: 1
+      bulletAmount: 8
+      dropRate: 60
+    - bulletIndex: 2
+      bulletAmount: 2
+      dropRate: 10
+    - bulletIndex: -1
+      bulletAmount: 0
+      dropRate: 10
+  - monsterType: Spider
+    items:
+    - bulletIndex: 0
+      bulletAmount: 2
+      dropRate: 15
+    - bulletIndex: 1
+      bulletAmount: 4
+      dropRate: 5
+    - bulletIndex: 2
+      bulletAmount: 1
+      dropRate: 30
+    - bulletIndex: -1
+      bulletAmount: 0
+      dropRate: 50
+  objectDrops:
+    monsterType: Object
+    items:
+    - bulletIndex: 0
+      bulletAmount: 6
+      dropRate: 33.33
+    - bulletIndex: 1
+      bulletAmount: 12
+      dropRate: 33.33
+    - bulletIndex: 2
+      bulletAmount: 0
+      dropRate: 33.33
+    - bulletIndex: -1
+      bulletAmount: 3
+      dropRate: 0.01
+--- !u!114 &4540770066395609693
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6080013723199211303}
+  m_GameObject: {fileID: 433522407291267207}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b35e2777d7229a43994d272081fe7b3, type: 3}

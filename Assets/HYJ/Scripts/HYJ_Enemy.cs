@@ -50,6 +50,14 @@ public class HYJ_Enemy : MonoBehaviour
     [SerializeField] EachTimeLine eachTimeLine;
     [SerializeField] bool isReady;
     [SerializeField] bool isKeyEnemy;
+    [SerializeField] MonsterSpecies monsterSpecies;
+    public enum MonsterSpecies
+    {
+        None,
+        Wolf,
+        Boar,
+        Spider
+    }
     public enum MonsterType
     {
         Nomal,
@@ -163,7 +171,7 @@ public class HYJ_Enemy : MonoBehaviour
         Debug.Log("몬스터 공격");
         yield return new WaitForSeconds(1f);
         nowAttack = true;
-        //damageManager.GetComponent<LJH_DamageManager>().TakeDamage(this);
+        damageManager.GetComponent<LJH_DamageManager>().TakeDamage(this);
         yield return new WaitForSeconds(aniTime);
         isAttack = false;
     }
@@ -220,7 +228,7 @@ public class HYJ_Enemy : MonoBehaviour
 
             // 몬스터 사망 후 사라짐, 아이템 생성
             WHS_TransparencyController.Instance.StartFadeOut(gameObject, 1);
-            WHS_ItemManager.Instance.SpawnItemWithProbability(gameObject.transform.position);
+            WHS_ItemManager.Instance.SpawnItem(gameObject.transform.position, monsterSpecies.ToString());
 
         }
     }
