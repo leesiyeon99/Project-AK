@@ -12,10 +12,14 @@ public class LJH_DamageManager : MonoBehaviour
     [SerializeField] GameObject invincibility;
     [Header("쉴드 오브젝트")]
     [SerializeField] GameObject shield;
+    [Header("오디오 매니저")]
+    [SerializeField] GameObject audioManager;
+
 
     [Header("스크립트")]
     [Header("UIManager 스크립트")]
     [SerializeField] LJH_UIManager uiManagerScript;
+    
 
     
     [Header("현재 체력")]
@@ -42,10 +46,6 @@ public class LJH_DamageManager : MonoBehaviour
     [Header("역장 피격 코루틴")]
     private Coroutine shieldCoroutine;
 
-    [Header("오디오")]
-    [Header("역장 피해시 사운드")]
-    [SerializeField] AudioSource damagedShieldSound;
-    [SerializeField] AudioClip[] adClip;
 
     private void Start()
     {
@@ -84,7 +84,7 @@ public class LJH_DamageManager : MonoBehaviour
                 uiManagerScript.UpdateShieldUI(durability);
                 invincibility.SetActive(true);
 
-                Sound();
+                audioManager.GetComponent<AudioManager>().PlayTakeShield();
             }
             
 
@@ -164,11 +164,6 @@ public class LJH_DamageManager : MonoBehaviour
         monsterScript.nowAttack = false;
     }
 
-    public void Sound()
-    {
-        damagedShieldSound.clip = adClip[Random.Range(0, 2)];
-        damagedShieldSound.Play();
-    }
 
 }
 

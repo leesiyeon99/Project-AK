@@ -8,13 +8,13 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource titleSource;
     [SerializeField] AudioSource stage1Source;
     [SerializeField] AudioSource stage2Source;
+    [SerializeField] AudioSource shieldSource;
     [SerializeField] AudioMixer audioMixer;
 
     [SerializeField] AudioClip titleClip;
     [SerializeField] AudioClip stage1Clip;
     [SerializeField] AudioClip stage2Clip;
-
-
+    [SerializeField] AudioClip[] adClip;
     public void Mute(bool mute)
     {
         if (mute)
@@ -51,6 +51,11 @@ public class AudioManager : MonoBehaviour
     {
         stage2Source.clip = clip;
         stage2Source.Play();
+    }
+    public void PlayTakeShield()
+    {
+        shieldSource.clip = adClip[Random.Range(0, 2)];
+        shieldSource.Play();
     }
 
 
