@@ -84,6 +84,7 @@ public class StoryOpening : MonoBehaviour
             if (currentIndex == dialogues.Length)
             {
                 playertransform.position = new Vector3(0, 1, 0);
+                WaveTimeline.Instance.Play();
                 nextTextButton.action.performed -= ShowNextDialogue;
                 nextTextButton.action.Disable();
                 dialogueText.text = "";
