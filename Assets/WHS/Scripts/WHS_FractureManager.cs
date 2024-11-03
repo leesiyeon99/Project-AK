@@ -20,14 +20,6 @@ public class WHS_FractureManager : MonoBehaviour
     {
         get
         {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<WHS_FractureManager>(); // 인스턴스가 없으면 씬에서 FractureManager를 찾음
-                if (instance == null)
-                {
-                    instance = new GameObject("WHS_FractureManager").AddComponent<WHS_FractureManager>(); // 없다면 FractureManager를 생성
-                }
-            }
             return instance;
         }
     }
@@ -37,7 +29,6 @@ public class WHS_FractureManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // 씬에 있는 FractureManager를 인스턴스로 설정
         }
         else
         {
@@ -68,6 +59,7 @@ public class WHS_FractureManager : MonoBehaviour
     private IEnumerator RemoveFragments(GameObject obj)
     {
         // 아이템 생성
+        Debug.Log("아이템 생성");
         WHS_ItemManager.Instance.SpawnItem(obj.transform.position);
 
         // removeDelay초 뒤 파편 삭제

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,27 +7,42 @@ using UnityEngine;
 public class WHS_ItemManager : MonoBehaviour
 {
 
-    private static WHS_ItemManager instance;
+    [SerializeField] GameObject itemPrefab;
 
-    [System.Serializable]
+    [System.Serializable]    
     public class ItemInfo
     {
-        [Header("아이템 프리팹")]
-        public GameObject itemPrefab;
+        [Header("총알 인덱스")]
+        public int bulletIndex;
+        [Header("총알 개수")]
+        public int bulletAmount;
         [Header("아이템 드랍률")]
         public float dropRate;
-    }    
-    [SerializeField] List<ItemInfo> itemInfos;
-    [Header("아이템 생성 높이")]
-    [SerializeField] float itemHeight = 1f;
-    [Header("아이템이 안 뜰 확률")]
-    [Range(0, 100)]
-    [SerializeField] float noneDropRate = 40;
+    }
+
+    [System.Serializable]
+    public class DropInfo
+    {
+        [Header("몬스터 종류")]
+        public string monsterType;
+        [Header("아이템 테이블")]
+        public List<ItemInfo> items;
+    }
+
+    [Header("몬스터 드랍률")]
+    [SerializeField] List<DropInfo> dropInfo;
+
+    [Header("오브젝트 드랍률")]
+    [SerializeField] DropInfo objectDrops;
+
+    private float itemHeight = 1f;
+
+    private static WHS_ItemManager instance;
 
     public static WHS_ItemManager Instance
-    { 
+    {
         get
-        { 
+        {
             return instance;
         }
     }
@@ -36,7 +52,6 @@ public class WHS_ItemManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -44,28 +59,62 @@ public class WHS_ItemManager : MonoBehaviour
         }
     }
 
-    // 안 뜰 확률이 있는 랜덤 아이템 드랍
-    private GameObject GetRandomItemWithProbability()
+    // 몬스터의 아이템 드랍
+    public void SpawnItem(Vector3 pos, string monsterType)
     {
-        float randomValue = Random.Range(0, 100f);
-        if(randomValue < noneDropRate) // noneDropRate보다 낮으면 아이템이 생성되지 않음
+        // 몬스터의 종류 받아오기
+        DropInfo itemDrops = dropInfo.Find(a => a.monsterType == monsterType);
+
+        if (itemDrops != null)
         {
-            return null;
+            ItemInfo selectedItem = GetRandomItem(itemDrops.items);
+            if (selectedItem != null)
+            {
+                // 인덱스 -1일땐 아이템 생성하지 않음 (꽝)
+                if (selectedItem.bulletIndex == -1)
+                {
+                    Debug.Log("아이템 획득하지 않음");
+                }
+                // 해당 인덱스의 아이템 획득
+                else
+                {
+                    SpawnSelectedItem(pos, selectedItem);
+                    Debug.Log($"{selectedItem.bulletIndex + 1}번 총알 {selectedItem.bulletAmount}개 생성");
+                }
+            }
         }
-        return GetRandomItem();
+
+        else
+        {
+            Debug.Log($"타입 일치하지 않음 {monsterType}");
+        }
     }
 
-    // 아이템을 무조건 드랍
-    private GameObject GetRandomItem()
+    // 오브젝트의 아이템 드랍
+    public void SpawnItem(Vector3 pos)
     {
-        if(itemInfos.Count == 0)
-        {
-            Debug.Log("등록된 아이템이 없음");
-            return null;
-        }
+        ItemInfo selectedItem = GetRandomItem(objectDrops.items);
 
+        if (selectedItem != null)
+        {
+            // -1번이면 다시 굴리기?
+            if (selectedItem.bulletIndex == -1)
+            {
+                SpawnItem(pos);
+            }
+            else
+            {
+                SpawnSelectedItem(pos, selectedItem);
+            }
+        }
+    }
+
+
+    // 드랍 테이블에서 랜덤 아이템 획득
+    private ItemInfo GetRandomItem(List<ItemInfo> items)
+    {
         float totalRate = 0;
-        foreach(var item in itemInfos)
+        foreach (ItemInfo item in items)
         {
             totalRate += item.dropRate;
         }
@@ -73,48 +122,26 @@ public class WHS_ItemManager : MonoBehaviour
         float randomValue = Random.Range(0, totalRate);
         float curRate = 0;
 
-        foreach(var item in itemInfos)
+        foreach (ItemInfo item in items)
         {
             curRate += item.dropRate;
-            if(randomValue <= curRate)
+            if (randomValue <= curRate)
             {
-                return item.itemPrefab;
+                return item;
             }
         }
 
         return null;
     }
 
-    // 랜덤아이템을 무조건 생성
-    // 엘리트몬스터, 특수지형이 사라질 때 호출
-    public void SpawnItem(Vector3 pos)
-    {       
-        GameObject spawnedItem = GetRandomItem();
-        if (spawnedItem != null)
-        {
-            Vector3 dropPos = pos + new Vector3(0, itemHeight, 0);
-            Instantiate(spawnedItem, dropPos, Quaternion.identity);
-        }
-        else
-        {
-            Debug.Log("아이템 등록되지 않음");
-        }
-    }
-
-    // 랜덤아이템을 확률로 생성
-    // 일반몬스터 등이 사라질 때 호출
-    public void SpawnItemWithProbability(Vector3 pos)
+    // 아이템 생성
+    private void SpawnSelectedItem(Vector3 Pos, ItemInfo itemInfo)
     {
-        GameObject spawnedItem = GetRandomItemWithProbability();
-        if (spawnedItem != null)
-        {
-            Vector3 dropPos = pos + new Vector3(0, itemHeight, 0);
-            Instantiate(spawnedItem, dropPos, Quaternion.identity);            
-        }
-        else
-        {
-            Debug.Log("아이템 생성되지 않음");
-        }
-    }
+        Vector3 dropPos = Pos + new Vector3(0, itemHeight, 0);
+        GameObject spawnedItem = Instantiate(itemPrefab, dropPos, Quaternion.identity);
 
+        // WHS_Item의 bulletIndex, bulletAmount 설정
+        WHS_Item item = spawnedItem.GetComponent<WHS_Item>();
+        item.SetItemInfo(itemInfo.bulletIndex, itemInfo.bulletAmount);
+    }
 }

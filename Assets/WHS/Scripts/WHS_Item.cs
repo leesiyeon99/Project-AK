@@ -16,16 +16,13 @@ public class WHS_Item : MonoBehaviour
     [Header("생성 후 n초 뒤 획득")]
     [SerializeField] float moveDelay = 1f; // 생성 후 플레이어에게 delay초 뒤 이동 (delay초뒤 아이템이 날아와 획득)
     [Header("아이템 날아오는 속도")]
-    [SerializeField] float moveToPlayerSpeed = 10f; // 아이템이 다가오는 속도
+    [SerializeField] float moveToPlayerSpeed = 15f; // 아이템이 다가오는 속도
     [SerializeField] float itemGetRange = 1f; // 아이템 습득 범위
 
     private bool isMovingtoPlayer = false; // 플레이어에게 이동중인지
 
-    [Header("획득 총알 개수")]
-    [SerializeField] int bulletAmount; // 지정된 인덱스의 총알 개수
-    [Range(0,2)]
-    [SerializeField] int bulletIndex; // 3가지 특수 총알 인덱스
-
+    private int bulletAmount; // 지정된 인덱스의 총알 개수
+    private int bulletIndex; // 3가지 특수 총알 인덱스
 
     private void Start()
     {
@@ -78,5 +75,11 @@ public class WHS_Item : MonoBehaviour
             Debug.Log("PlayerSpecialBullet 인스턴스 찾을 수 없음");
         }
         Destroy(gameObject);
+    }
+
+    public void SetItemInfo(int index, int amount)
+    {
+        bulletIndex = index;
+        bulletAmount = amount;
     }
 }
