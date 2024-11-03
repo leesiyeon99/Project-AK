@@ -10,8 +10,8 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     [Header("보스 설정")]
     [SerializeField] Animator animator;
     [SerializeField] GameObject monster;
-    [SerializeField] float nowHp;
-    [SerializeField] float SetHp;
+    [SerializeField] public float nowHp;
+    [SerializeField] public float SetHp;
     //[SerializeField] float 
     [SerializeField] public float monsterShieldAtkPower;
     [SerializeField] public float monsterHpAtkPower;
@@ -34,6 +34,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     [SerializeField] float xNow = 0;
     [SerializeField] float xMoveDirection = 0.1f;
     private bool isSiuu = false;
+    bool isPattern = false;
 
     public void Start()
     {
@@ -47,10 +48,8 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     private void Update()
     {
         MonsterDie();
-        if (!isSiuu)
-        {
-            BossMove();
-        }
+        BossMove();
+
         if (!firstBattleEnd && !pFirst && !pSecond)
         {
             StartCoroutine(BossBattleStart());
@@ -70,6 +69,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         animator.SetTrigger("HeadSpin");
         nowAttack = true;
 
+
     }
 
     // Comment : 브레이크댄스 패턴
@@ -79,6 +79,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         monsterShieldAtkPower = 1000;
         monsterHpAtkPower = 3;
         animator.SetTrigger("BreakDance");
+        isSiuu =true;
         nowAttack = true;
 
     }
@@ -92,7 +93,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         monsterHpAtkPower = 1f;
         animator.SetTrigger("Siuu");
         nowAttack = true;
-        Vector3 bossPos = monster.transform.position;
+        Vector3 beforeBossPos = monster.transform.position;
         //monster.transform.
     }
 
@@ -114,7 +115,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         Debug.Log("연습");
         if (!pFirst)
         {
-            // Comment : 
+            // Comment : 첫 패턴으로 브레이크 댄스를 한다.
             Debug.Log("보스 학습용 첫 패턴으로 브레이크 댄스를 한다.");
             PatternBreakDance();
             pFirst = true;
@@ -122,7 +123,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         }
         if (pFirst && !pSecond)
         {
-            // Comment : 
+            // Comment : 브레이크 댄스를 한 후, 세레모니 패턴을 한다.
             Debug.Log("보스 학습용 두번째 패턴으로 세레모니 패턴을 한다.");
             PatternSiiuuuu();
             pSecond = true;
@@ -132,7 +133,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     }
 
 
-    // Comment : 
+    // Comment : 보스의 패턴 AI
     IEnumerator BossAI()
     {
         if (nowHp < 2450f && !p70)
@@ -181,6 +182,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         hitFlag = false;
     }
 
+    // Comment : 보스 이동
     void BossMove()
     {
         
@@ -202,4 +204,6 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
             xMoveDirection = Time.deltaTime * 3f;
         }
     }
+
+    
 }
