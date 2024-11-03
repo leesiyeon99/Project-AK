@@ -228,9 +228,7 @@ public class HYJ_Enemy : MonoBehaviour
 
             // 몬스터 사망 후 사라짐, 아이템 생성
             WHS_TransparencyController.Instance.StartFadeOut(gameObject, 1);
-            //WHS_ItemManager.Instance.SpawnItemWithProbability(gameObject.transform.position);
-            // 머지 후 주석 풀어야함
-            //WHS_ItemManager.Instance.SpawnItem(gameObject.transform.position, monsterSpecies.ToString());
+            WHS_ItemManager.Instance.SpawnItem(gameObject.transform.position, monsterSpecies.ToString());
 
         }
     }

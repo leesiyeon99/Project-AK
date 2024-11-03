@@ -3160,6 +3160,10 @@ PrefabInstance:
       propertyPath: monsterType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6421843649568537809, guid: 23a78b0c791a5844089b79f62d014897, type: 3}
+      propertyPath: monsterSpecies
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23a78b0c791a5844089b79f62d014897, type: 3}
 --- !u!4 &251899977 stripped
@@ -5926,6 +5930,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
 --- !u!1 &435296096 stripped
@@ -7296,6 +7304,10 @@ PrefabInstance:
     - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
@@ -8957,6 +8969,10 @@ PrefabInstance:
     - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
@@ -11002,6 +11018,10 @@ PrefabInstance:
       propertyPath: monsterType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6421843649568537809, guid: 23a78b0c791a5844089b79f62d014897, type: 3}
+      propertyPath: monsterSpecies
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23a78b0c791a5844089b79f62d014897, type: 3}
 --- !u!4 &583269003 stripped
@@ -12393,6 +12413,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6b80c70e4ad9b804eab3be22cbfb72a4, type: 2}
     - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -14453,6 +14477,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
 --- !u!4 &713486709 stripped
@@ -15815,6 +15843,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6b80c70e4ad9b804eab3be22cbfb72a4, type: 2}
     - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -17757,6 +17789,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
 --- !u!4 &769815513 stripped
@@ -19394,6 +19430,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
 --- !u!4 &807196772 stripped
@@ -20897,6 +20937,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6b80c70e4ad9b804eab3be22cbfb72a4, type: 2}
     - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -22726,6 +22770,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
 --- !u!4 &903308745 stripped
@@ -24102,6 +24150,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
 --- !u!4 &909116309 stripped
@@ -25471,6 +25523,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
 --- !u!4 &920694004 stripped
@@ -26767,6 +26823,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6b80c70e4ad9b804eab3be22cbfb72a4, type: 2}
     - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -28303,6 +28363,10 @@ PrefabInstance:
     - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
@@ -30173,6 +30237,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 18002e3ccb50c9e4eb0294f7d29e8cdd, type: 2}
     - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -32693,6 +32761,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
 --- !u!4 &1172794469 stripped
@@ -35012,6 +35084,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
 --- !u!4 &1300217846 stripped
@@ -36547,6 +36623,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6421843649568537809, guid: 23a78b0c791a5844089b79f62d014897, type: 3}
       propertyPath: monsterType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421843649568537809, guid: 23a78b0c791a5844089b79f62d014897, type: 3}
+      propertyPath: monsterSpecies
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -38223,6 +38303,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
 --- !u!4 &1393893205 stripped
@@ -39580,6 +39664,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6b80c70e4ad9b804eab3be22cbfb72a4, type: 2}
     - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -41025,6 +41113,10 @@ PrefabInstance:
     - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
@@ -43089,6 +43181,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
 --- !u!1001 &1573228478
@@ -44376,6 +44472,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -45747,6 +45847,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6b80c70e4ad9b804eab3be22cbfb72a4, type: 2}
     - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -47182,6 +47286,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6421843649568537809, guid: 23a78b0c791a5844089b79f62d014897, type: 3}
       propertyPath: monsterType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421843649568537809, guid: 23a78b0c791a5844089b79f62d014897, type: 3}
+      propertyPath: monsterSpecies
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -50561,6 +50669,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6421843649568537809, guid: 23a78b0c791a5844089b79f62d014897, type: 3}
       propertyPath: monsterType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421843649568537809, guid: 23a78b0c791a5844089b79f62d014897, type: 3}
+      propertyPath: monsterSpecies
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -54189,6 +54301,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
 --- !u!4 &2043538954 stripped
@@ -55659,6 +55775,10 @@ PrefabInstance:
     - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487975002025236162, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
+      propertyPath: monsterSpecies
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e18b7376304e448bd96ef05ae12d1e, type: 3}
@@ -57738,6 +57858,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6421843649568537809, guid: 23a78b0c791a5844089b79f62d014897, type: 3}
       propertyPath: monsterType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421843649568537809, guid: 23a78b0c791a5844089b79f62d014897, type: 3}
+      propertyPath: monsterSpecies
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
