@@ -6,6 +6,7 @@ using TMPro;
 public class WaveDialogueManager : MonoBehaviour
 {
     public GameObject background;
+    public GameObject bossBackGround;
 
     public TextMeshProUGUI fairyText;
     public TextMeshProUGUI playertText;
@@ -19,6 +20,7 @@ public class WaveDialogueManager : MonoBehaviour
     void Start()
     {
         background.gameObject.SetActive(false);
+        //bossBackGround.gameObject.SetActive(false);
 
         waveDialogues = new string[][]
         {
@@ -80,10 +82,10 @@ public class WaveDialogueManager : MonoBehaviour
             }
             else if (line.StartsWith("º¸½º:"))
             {
-                background.gameObject.SetActive(true);
+                bossBackGround.gameObject.SetActive(true);
                 playertText.text = line;
                 yield return new WaitForSeconds(2f);
-                background.gameObject.SetActive(false);
+                bossBackGround.gameObject.SetActive(false);
                 playertText.text = "";
             }
             else
