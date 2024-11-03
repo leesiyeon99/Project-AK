@@ -98,6 +98,8 @@ public class LJH_DamageManager : MonoBehaviour
 
     IEnumerator ShowBloodScreen()
     {
+        if (ljh_bloodImage == null) yield break;
+
         ljh_bloodImage.color = new Color(1, 0, 0, UnityEngine.Random.Range(0.9f, 1f));
         float duration = 1.5f;
         float elapsedTime = 0f;
