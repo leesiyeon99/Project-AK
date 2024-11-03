@@ -109,6 +109,6 @@ public class LJH_UIManager : MonoBehaviour
         ljh_hpBar.color = ljh_curColor;
         ljh_hpBar.fillAmount = hpPercentage;
 
-        hpText.text = (hpPercentage * 100).ToString("F0") + "%";
+        //hpText.text = (hpPercentage * 100).ToString("F0") + "%";
     }
 }
