@@ -6,7 +6,7 @@ using UnityEngine;
 public class WaveDialogue2Manager : MonoBehaviour
 {
     public GameObject background;
-    public GameObject bossBackGround;
+    //public GameObject bossBackGround;
 
     public TextMeshProUGUI fairyText;
     public TextMeshProUGUI playertText;
@@ -20,7 +20,7 @@ public class WaveDialogue2Manager : MonoBehaviour
     void Start()
     {
         background.gameObject.SetActive(false);
-        bossBackGround.gameObject.SetActive(false);
+        //bossBackGround.gameObject.SetActive(false);
 
         waveDialogues = new string[][]
         {
@@ -77,10 +77,10 @@ public class WaveDialogue2Manager : MonoBehaviour
             }
             else if (line.StartsWith("º¸½º:"))
             {
-                bossBackGround.gameObject.SetActive(true);
+                //bossBackGround.gameObject.SetActive(true);
                 playertText.text = line;
                 yield return new WaitForSeconds(2f);
-                bossBackGround.gameObject.SetActive(false);
+                //bossBackGround.gameObject.SetActive(false);
                 playertText.text = "";
             }
             else
