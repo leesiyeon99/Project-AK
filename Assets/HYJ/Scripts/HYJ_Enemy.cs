@@ -74,6 +74,7 @@ public class HYJ_Enemy : MonoBehaviour
         MonsterTagSet(monsterType);
         //MonsterSetHp();
         MonsterSetAttackRange();
+        monster.transform.LookAt(new Vector3(player.transform.position.x, 0, player.transform.position.z)); // Comment : 몬스터가 플레이어를 바라본다.
     }
 
     void Update()
@@ -91,7 +92,7 @@ public class HYJ_Enemy : MonoBehaviour
         }
         else if (monsterAttackType == MonsterAttackType.longAttackRange) // Commnet : 원거리 타입이라면 공격 범위를 7로 설정한다.
         {
-            monsterAttackRange = 7;
+            monsterAttackRange = 10000;
         }
     }
 
@@ -119,7 +120,6 @@ public class HYJ_Enemy : MonoBehaviour
                 Debug.Log("이동 중");
                 monsterAnimator.SetBool("Run Forward", true);
                 monster.transform.position = Vector3.MoveTowards(monster.transform.position, new Vector3(player.transform.position.x, 0, player.transform.position.z), monsterMoveSpeed / 50);
-                monster.transform.LookAt(new Vector3(player.transform.position.x, 0, player.transform.position.z)); // Comment : 몬스터 
             }
             else if (playerDistance <= monsterAttackRange && isAttack == false && monsterNowHp > 0) //Comment : 플레이어가 몬스터의 공격범위로 들어왔을 때
             {
@@ -161,10 +161,10 @@ public class HYJ_Enemy : MonoBehaviour
     {
         monsterAnimator.SetTrigger("Attack");
         Debug.Log("몬스터 공격");
-        yield return new WaitForSeconds(aniTime);
-        //nowAttack = true;
-        damageManager.GetComponent<LJH_DamageManager>().TakeDamage(this);
         yield return new WaitForSeconds(1f);
+        nowAttack = true;
+        //damageManager.GetComponent<LJH_DamageManager>().TakeDamage(this);
+        yield return new WaitForSeconds(aniTime);
         isAttack = false;
     }
 
