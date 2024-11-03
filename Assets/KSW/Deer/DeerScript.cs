@@ -69,7 +69,12 @@ public class DeerScript : MonoBehaviour
             yield return null;
 
         }
-      
+        if (enemy != null)
+        {
+            enemy.Die();
+            enemy = null;
+        }
+
         DieEvent?.Invoke(this);
         gameObject.SetActive(false);
     }
@@ -88,12 +93,12 @@ public class DeerScript : MonoBehaviour
             yield return null;
 
         }
-
-        if(enemy != null)
+        if (enemy != null)
         {
             enemy.Die();
             enemy = null;
         }
+
 
         DieEvent?.Invoke(this);
         gameObject.SetActive(false);
@@ -101,6 +106,8 @@ public class DeerScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag == "Respawn")
+            return;
             DieDeer();
         
     }

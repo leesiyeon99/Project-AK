@@ -10,6 +10,17 @@ public class PlayerScene : MonoBehaviour
         if (LSY_SceneManager.Instance.lsy_isdie == true)
         {
             gameObject.transform.position = new Vector3(0, 1, 0);
+            WaveTimeline.Instance.Play();
+            
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            gameObject.transform.position = new Vector3(0, 1, 0);
+            WaveTimeline.Instance.Play();
         }
     }
 }

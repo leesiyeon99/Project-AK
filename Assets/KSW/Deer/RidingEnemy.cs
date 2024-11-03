@@ -1,34 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RidingEnemy : MonoBehaviour
 {
     [SerializeField] DeerPool pool;
 
+    public bool ready;
 
     private void Start()
     {
-        Ride();
+        ready = true;
     }
 
-    public void Ride()
+    public void Ride(Transform deerTransform)
     {
-        transform.SetParent(pool.GetRidingPoint().transform);
-        pool.GetRidingPoint().enemy = this;
+
+        transform.SetParent(deerTransform);
+
         transform.localPosition = Vector3.zero;
-    }
+        gameObject.SetActive(true);
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Respawn")
-        Ride();
     }
 
     public void Die()
     {
-        Debug.Log("NOOO");
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        ready = true;
     }
 
 }
