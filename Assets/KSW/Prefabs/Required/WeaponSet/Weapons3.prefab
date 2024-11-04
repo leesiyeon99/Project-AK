@@ -1078,7 +1078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6339e6440864414ca99483704bf7f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialBullet: 0a0000000a0000000a000000
+  specialBullet: 0a000000320000000a000000
 --- !u!1 &3990586667040685021
 GameObject:
   m_ObjectHideFlags: 0
