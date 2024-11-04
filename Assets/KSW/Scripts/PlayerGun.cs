@@ -172,7 +172,7 @@ public class PlayerGun : MonoBehaviour
         }
 
         playerGunStatus.Magazine--;
-        
+        playerOwnedWeapons.SetReloadText();
 
         // Comment : 특수 탄환 없을 시 기본 무기로 교체
         if (playerOwnedWeapons.Index != 0 && PlayerSpecialBullet.Instance.SpecialBullet[playerOwnedWeapons.Index - 1] <= 0 && playerGunStatus.Magazine <= 0)

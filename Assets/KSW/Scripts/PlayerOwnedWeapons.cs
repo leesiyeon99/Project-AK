@@ -127,6 +127,10 @@ public class PlayerOwnedWeapons : MonoBehaviour
         ontGrip = false;
     }
 
+    public void SetReloadText()
+    {
+        magazine.SetTextMagazine();
+    }
 
     // Comment : 슬로우 시작
     public void StartSlow()
