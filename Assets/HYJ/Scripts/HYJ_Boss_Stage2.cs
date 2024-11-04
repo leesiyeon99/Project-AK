@@ -95,6 +95,7 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
         monsterShieldAtkPower = 1f;
         monsterHpAtkPower = 3000f;
         //FireBall 오브젝트 제작
+        //animator.SetTrigger("");
         Instantiate(fireBallPrefab, new Vector3(monster.transform.position.x, monster.transform.position.y + 2f, monster.transform.position.z + 0.5f), Quaternion.LookRotation(player.transform.position));
         Instantiate(fireBallPrefab, new Vector3(monster.transform.position.x + 2f, monster.transform.position.y + 2f, monster.transform.position.z + 0.5f), Quaternion.LookRotation(player.transform.position));
         Instantiate(fireBallPrefab, new Vector3(monster.transform.position.x - 2f, monster.transform.position.y + 2f, monster.transform.position.z + 0.5f), Quaternion.LookRotation(player.transform.position)); 
@@ -112,8 +113,15 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     {
         monsterShieldAtkPower = 1f;
         monsterHpAtkPower = 1000f;
-        // 스톤파 오브젝트 제작
-        Instantiate(stonePaPrefab);
+        // 스톤파 오브젝트 제작 10개
+        for(int i = 0; i < 10; i++)
+        {
+            float x = Random.Range(-3,3);
+            float y = Random.Range(0.5f,3.5f);
+            float z = Random.Range(1,3.5f);
+            
+            Instantiate(stonePaPrefab, new Vector3(x, y, z),Quaternion.LookRotation(player.transform.position));
+        }
         yield return new WaitForSeconds(10f);
     }
 
