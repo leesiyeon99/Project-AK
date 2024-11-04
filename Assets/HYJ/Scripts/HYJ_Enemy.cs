@@ -57,7 +57,11 @@ public class HYJ_Enemy : MonoBehaviour
         Wolf,
         Boar,
         Spider,
-        Spawn
+        Spawn,
+        Elite,
+        Banshee,
+        Raider,
+        ArmoredKnight
     }
     public enum MonsterType
     {

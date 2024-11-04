@@ -813,7 +813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
@@ -4323,6 +4323,14 @@ PrefabInstance:
     - target: {fileID: 433522407291267207, guid: 39a71df82ced15a48ba88c10cfa08031, type: 3}
       propertyPath: m_Name
       value: WHS_Managers
+      objectReference: {fileID: 0}
+    - target: {fileID: 3130875612713160445, guid: 39a71df82ced15a48ba88c10cfa08031, type: 3}
+      propertyPath: objectDrops.items.Array.data[2].bulletAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3130875612713160445, guid: 39a71df82ced15a48ba88c10cfa08031, type: 3}
+      propertyPath: objectDrops.items.Array.data[3].bulletAmount
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8592603705535548965, guid: 39a71df82ced15a48ba88c10cfa08031, type: 3}
       propertyPath: m_RootOrder
@@ -9348,7 +9356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 20945187, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -7.93
+      value: -6.47
       objectReference: {fileID: 0}
     - target: {fileID: 20945189, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_fontAsset
@@ -9380,7 +9388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1186845722, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -14.86
+      value: -11.94
       objectReference: {fileID: 0}
     - target: {fileID: 1186845724, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_fontAsset
