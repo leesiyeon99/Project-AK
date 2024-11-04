@@ -20,4 +20,4 @@ MonoBehaviour:
   accelerationTime: 1
   maxMagazine: 60
   reloadSpeed: 0.8
-  range: 30
+  range: 100

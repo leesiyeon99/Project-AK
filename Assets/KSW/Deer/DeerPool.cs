@@ -16,7 +16,7 @@ public class DeerPool : MonoBehaviour
     WaitForSeconds spawnWaitForSeconds;
 
 
-    [SerializeField] RidingEnemy[] enemyPool;
+    [SerializeField] List<RidingEnemy> enemyPool;
 
     private void Awake()
     {
@@ -70,17 +70,20 @@ public class DeerPool : MonoBehaviour
               
                 deer.transform.rotation = spawnPoint[i].rotation;
 
-                for (i = 0; i < enemyPool.Length; i++)
+                foreach(RidingEnemy pool in enemyPool)
                 {
-                    if (enemyPool[i].ready)
+                    if (pool != null)
                     {
-
-                        enemyPool[i].Ride(deer.ridingPoint);
-                        deer.enemy = enemyPool[i];
-                        enemyPool[i].ready = false;
+                        if (pool.ready)
+                        {
+                            pool.Ride(deer.ridingPoint);
+                            deer.enemy = pool;
+                            pool.ready = false;
+                        }
                     }
                 }
-               
+
+            
                 i++;
                 if (i >= spawnPoint.Length)
                 {
