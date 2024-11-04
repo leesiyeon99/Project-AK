@@ -153,7 +153,11 @@ public class LJH_Shield : MonoBehaviour
         isBreaked = true;
         isShield = false;
         shieldRecover.SetActive(true);
-        
+
+        PlayerInputWeapon.Instance.enabled = true;
+        PlayerInputWeapon.Instance.IsShield = isShield;
+
+
         gameObject.SetActive(false);
     }
     
