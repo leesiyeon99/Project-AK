@@ -85,22 +85,30 @@ public class PlayerMagazine : MonoBehaviour
             color.a += timeTick;
             material.color = color;
         }
+       
+
+        SetTextMagazine();
+
+
+        boxCollider.enabled = true;
+        magazineAmountUI.SetActive(true);
+    }
+
+    public void SetTextMagazine()
+    {
         int magazine = playerOwnedWeapons.GetCurrentWeapon().GetMaxMagazine() - playerOwnedWeapons.GetCurrentWeapon().GetMagazine();
 
         if (playerOwnedWeapons.Index != 0)
         {
-           if(  magazine - PlayerSpecialBullet.Instance.SpecialBullet[playerOwnedWeapons.Index - 1] > 0)
+            if (magazine - PlayerSpecialBullet.Instance.SpecialBullet[playerOwnedWeapons.Index - 1] > 0)
             {
                 magazine = PlayerSpecialBullet.Instance.SpecialBullet[playerOwnedWeapons.Index - 1];
             }
-        
+
 
         }
-    
-      
         magazineAmountTextUI.text = magazine.ToString();
-        boxCollider.enabled = true;
-        magazineAmountUI.SetActive(true);
+
     }
 
     private void OnTriggerEnter(Collider other)
