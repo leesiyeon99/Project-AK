@@ -11,7 +11,7 @@ public class HYJ_EnemyHitPoint : MonoBehaviour
 
     [Header("데미지 텍스트 설정")]
     [SerializeField] public GameObject canvas;
-    [SerializeField] public Text damageText;  
+    [SerializeField] public Text damageText;
  
     private void Awake()
     {
@@ -59,7 +59,7 @@ public class HYJ_EnemyHitPoint : MonoBehaviour
         Debug.Log(isWeak);
         Debug.Log(damage);
         StartCoroutine(OnDamageText(isWeak, damage));
-        damageText.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1, 0));
+        //damageText.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1, 0));
     }
 
     public IEnumerator OnDamageText(bool isWeak, float damage)

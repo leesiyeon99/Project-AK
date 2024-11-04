@@ -60,7 +60,7 @@ public class HYJ_BossHitPoint : MonoBehaviour
         Debug.Log(isWeak);
         Debug.Log(damage);
         StartCoroutine(OnDamageText(isWeak, damage));
-        damageText.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 2, 0));
+        //damageText.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 2, 0));
     }
 
     public IEnumerator OnDamageText(bool isWeak, float damage)
