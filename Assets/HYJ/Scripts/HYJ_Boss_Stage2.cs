@@ -29,7 +29,7 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     public bool nowAttack;
     public bool isDie;
     Coroutine hitFlagCoroutine;
-    WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.1f);
+    WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.05f);
     public float fireBallCoolTime = 10;
 
     void Start()

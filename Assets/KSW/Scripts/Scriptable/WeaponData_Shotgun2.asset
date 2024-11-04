@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: WeaponData_Shotgun2
   m_EditorClassIdentifier: 
   weaponName: "\uD3ED\uBC1C \uBB34\uAE30"
-  gunType: 8
+  gunType: 14
   tier: 2
-  bulletAttack: 100
-  defaultFiringDelay: 3
+  bulletAttack: 200
+  defaultFiringDelay: 1
   accelerationTime: 1
-  maxMagazine: 3
-  reloadSpeed: 2
+  maxMagazine: 50
+  reloadSpeed: 0.9
   range: 100
