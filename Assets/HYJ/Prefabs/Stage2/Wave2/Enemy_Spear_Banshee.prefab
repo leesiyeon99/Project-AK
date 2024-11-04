@@ -1038,6 +1038,7 @@ MonoBehaviour:
   nowAttack: 0
   isDie: 0
   damageManager: {fileID: 0}
+  clip: {fileID: 8300000, guid: 3214604d463c5c341b5fa2145be1e600, type: 3}
   hitFlag: 0
   eachTimeLine: {fileID: 0}
   isReady: 0

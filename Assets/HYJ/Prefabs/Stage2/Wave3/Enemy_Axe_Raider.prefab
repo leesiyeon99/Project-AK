@@ -803,6 +803,7 @@ MonoBehaviour:
   nowAttack: 0
   isDie: 0
   damageManager: {fileID: 0}
+  clip: {fileID: 8300000, guid: 769e17c9bfdc3d4489aa71e48aab251d, type: 3}
   hitFlag: 0
   eachTimeLine: {fileID: 0}
   isReady: 0
