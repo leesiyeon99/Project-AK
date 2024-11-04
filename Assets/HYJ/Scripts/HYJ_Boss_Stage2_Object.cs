@@ -14,7 +14,7 @@ public class HYJ_Boss_Stage2_Object : MonoBehaviour
     [SerializeField] public bool hitFlag;
     public bool HitFlag { get { return hitFlag; } set { hitFlag = value; } }
     Coroutine hitFlagCoroutine;
-    WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.1f);
+    WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.05f);
 
     private void Start()
     {
