@@ -91,6 +91,5 @@ public class HYJ_Boss2_Object_HitPoint : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
         damageText.text = "";
-
     }
 }
