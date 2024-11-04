@@ -15,6 +15,7 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     [SerializeField] public float monsterShieldAtkPower;
     [SerializeField] public float monsterHpAtkPower;
     [SerializeField] public float monsterMoveSpeed;
+    [SerializeField] public bool canAttack;
 
     [Header("기믹 오브젝트")]
     [SerializeField] GameObject fireBallPrefab;
@@ -41,11 +42,47 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        bossRoutine = StartCoroutine(BossPatternRoutine());
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(bossRoutine);
+    }
+
+    Coroutine bossRoutine;
+
     void Update()
     {
         if(nowHp < 50)
         {
             fireBallCoolTime = 4f;
+        }
+    }
+
+    IEnumerator BossPatternRoutine()
+    {
+        while (true)
+        {
+            if(true/*마법진을 부수면*/)
+            {
+                Defenseless();
+            }
+
+            switch (Random.Range(0, 3))
+            {
+                case 0:
+                    yield return FireBall();
+                    break;
+                case 1:
+                    yield return SilentBall();
+                    break;
+                case 2:
+                    yield return StonePa();
+                    break;
+            }
         }
     }
 
@@ -82,9 +119,10 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
         yield return new WaitForSeconds(10f);
     }
 
-    public void Defenseless()
+    // Comment : 마법진을 파괴하여 보스가 무력화
+    IEnumerator Defenseless()
     {
-
+        yield return new WaitForSeconds(6f);
     }
 
     public void MonsterTakeDamageCalculation(float damage)
@@ -107,5 +145,8 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
         hitFlag = false;
     }
 
-    
+    public void KnightCreate()
+    {
+
+    }
 }
