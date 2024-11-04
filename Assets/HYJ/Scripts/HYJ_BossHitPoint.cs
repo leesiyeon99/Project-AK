@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class HYJ_BossHitPoint : MonoBehaviour
 {
     [SerializeField] HYJ_Boss_Stage1 boss;
-    [SerializeField] bool weak;
+    [SerializeField] public bool weak;
 
     [Header("데미지 텍스트 설정")]
     [SerializeField] public GameObject canvas;
