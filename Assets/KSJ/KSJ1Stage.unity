@@ -31158,7 +31158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1142011686
 Animator:
   serializedVersion: 5
@@ -33541,7 +33541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8101294208513647133, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8873855451214837927, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
       propertyPath: m_RootOrder
@@ -49312,6 +49312,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7869556354385943376, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101294208513647133, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -49363,6 +49367,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4962423663379349623, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
     - {fileID: 3617744409946055873, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
+    - {fileID: 7869556354385943376, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
 --- !u!4 &1723021101 stripped
 Transform:
