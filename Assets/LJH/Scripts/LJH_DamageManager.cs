@@ -157,6 +157,14 @@ public class LJH_DamageManager : MonoBehaviour
         {
             float damage = monsterScript.GetComponent<HYJ_Enemy>().monsterHpAtkPower;
             DamagedHP(damage);
+            
+            if(monsterScript.transform.gameObject.CompareTag("Boss")) /// 수정 필요
+            {
+                audioManager.GetComponent<AudioManager>().PlayTakeHp();
+                
+            }
+
+
 
             if (bloodCoroutine != null)
             {
