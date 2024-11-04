@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 8425295195823858600}
   m_Father: {fileID: 3148937607461284373}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7156101894222068663
 BoxCollider:
@@ -784,6 +784,7 @@ Transform:
   - {fileID: 3146896785897430485}
   - {fileID: 3147188182107458773}
   - {fileID: 8921672688707579371}
+  - {fileID: 4895263121192129484}
   - {fileID: 2277648628601428459}
   - {fileID: 4895263121192129484}
   m_Father: {fileID: 0}
@@ -5079,7 +5080,7 @@ RectTransform:
   m_Children:
   - {fileID: 5886469220839483489}
   m_Father: {fileID: 3148937607461284373}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

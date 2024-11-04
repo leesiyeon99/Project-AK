@@ -67,13 +67,13 @@ public class HYJ_EnemyHitPoint : MonoBehaviour
         if (isWeak)
         {
             damage = damage * 2f;
-            damageText.fontSize = 70;
+            //damageText.fontSize = 70;
             //damageText ±½°Ô
             damageText.text = "<b>"+damage.ToString()+"</b>";
         }
         else if (!isWeak)
         {
-            damageText.fontSize = 60;
+            //damageText.fontSize = 60;
             //damageText ±½Áö ¾Ê°Ô
             damageText.text = damage.ToString();
         }
