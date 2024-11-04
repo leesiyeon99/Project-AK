@@ -14,9 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/KYH/KYH_Stage2.unity
     guid: 31ce9131863200e45b96899109f166f9
-  - enabled: 1
-    path: Assets/LSY/LSY_PlayerMonsterDetection.unity
-    guid: 4a1d34dc7a3141546a3e066d53996b28
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 247b871a410df6547b423a46533b951c, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ee8a70df84f4ca04fbeeb0b44a936ddf, type: 2}

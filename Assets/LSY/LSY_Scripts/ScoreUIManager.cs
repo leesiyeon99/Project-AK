@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class ScoreUIManager : MonoBehaviour
 {
     public static ScoreUIManager Instance { get; private set; }
@@ -14,6 +15,9 @@ public class ScoreUIManager : MonoBehaviour
     public float remainBulletCount;
     public float remainProgress;
     public float remainHP;
+
+    public TextMeshProUGUI scoreResultText;
+
     public TextMeshProUGUI scoreTextUI;
     public TextMeshProUGUI scorelineText;
     public TextMeshProUGUI scorelineUI;
@@ -27,6 +31,8 @@ public class ScoreUIManager : MonoBehaviour
     public TextMeshProUGUI remainBulletText;
     public TextMeshProUGUI remainBulletUI;
     public TextMeshProUGUI noticeWordText;
+
+    public Image noticeWordImage;
     //public WHS_DollyProgress whs_DollyProgress;
     private void Awake()
     {
@@ -87,6 +93,7 @@ public class ScoreUIManager : MonoBehaviour
         {
             levelScore = 2;
         }
+        scoreResultText.text = "-Á¡¼ö È¹µæ °á°ú(½Â¸®)-";
         normalEnemyText.text = normalEnemyCount.ToString();
         eliteEnemyText.text = eliteEnemyCount.ToString();
         levelScoreText.text = levelScore.ToString();
@@ -116,6 +123,7 @@ public class ScoreUIManager : MonoBehaviour
             levelScore = 2;
             remainProgress = WHS_DollyProgress.Instance?.progress ?? 0;
         }
+        scoreResultText.text = "-Á¡¼ö È¹µæ °á°ú(ÆÐ¹è)-";
         normalEnemyText.text = normalEnemyCount.ToString();
         eliteEnemyText.text = eliteEnemyCount.ToString();
         levelScoreText.text = levelScore.ToString();
@@ -144,11 +152,17 @@ public class ScoreUIManager : MonoBehaviour
         if (scorelineText != null) scorelineText.gameObject.SetActive(true);
         if (scorelineUI != null) scorelineUI.gameObject.SetActive(true);
         yield return delay;
-        if (noticeWordText != null) noticeWordText.gameObject.SetActive(true);
+        if (noticeWordText != null) 
+        { 
+            noticeWordText.gameObject.SetActive(true);
+            noticeWordImage.gameObject.SetActive(true);
+        }
+
     }
     public void ResetScore()
     {
         scoreUIobj.SetActive(false);
+        noticeWordImage.gameObject.SetActive(false);
         score = 0;
         scoreline = 0;
         levelScore = 0;
