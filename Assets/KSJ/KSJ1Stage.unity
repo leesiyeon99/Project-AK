@@ -7404,6 +7404,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2052439765}
     m_Modifications:
+    - target: {fileID: 3880422412419402582, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
+      propertyPath: monsterSpecies
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7188048329088903236, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -9113,6 +9117,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 453284639}
     m_Modifications:
+    - target: {fileID: 3880422412419402582, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
+      propertyPath: monsterSpecies
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7188048329088903236, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -31196,6 +31204,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 258341275}
     m_Modifications:
+    - target: {fileID: 3880422412419402582, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
+      propertyPath: monsterSpecies
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7188048329088903236, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -31316,6 +31328,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 898365260}
     m_Modifications:
+    - target: {fileID: 3880422412419402582, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
+      propertyPath: monsterSpecies
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7188048329088903236, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -37305,6 +37321,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 64561162}
     m_Modifications:
+    - target: {fileID: 3880422412419402582, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
+      propertyPath: monsterSpecies
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7188048329088903236, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -41804,6 +41824,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 818282752}
     m_Modifications:
+    - target: {fileID: 3880422412419402582, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
+      propertyPath: monsterSpecies
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7188048329088903236, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
       propertyPath: m_RootOrder
       value: 1
