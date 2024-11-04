@@ -18,6 +18,6 @@ MonoBehaviour:
   bulletAttack: 50
   defaultFiringDelay: 0.5
   accelerationTime: 1
-  maxMagazine: 60
+  maxMagazine: 6
   reloadSpeed: 0.8
   range: 100

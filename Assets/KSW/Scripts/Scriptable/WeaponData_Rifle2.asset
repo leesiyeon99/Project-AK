@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: "\uC5F0\uC0AC \uBB34\uAE30"
   gunType: 2
-  tier: 2
+  tier: 0
   bulletAttack: 25
   defaultFiringDelay: 0.2
   accelerationTime: 1
