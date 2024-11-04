@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
 public class LJH_DamageManager : MonoBehaviour
@@ -134,6 +135,8 @@ public class LJH_DamageManager : MonoBehaviour
 
     public void TakeDamage(HYJ_Enemy monsterScript)
     {
+        if (LSY_SceneManager.Instance.curState == LSY_SceneManager.GameState.GameOver || LSY_SceneManager.Instance.curState == LSY_SceneManager.GameState.GameClear) return;
+
         if (shield.GetComponent<LJH_Shield>().isShield)
         {
             float damage = monsterScript.GetComponent<HYJ_Enemy>().monsterShieldAtkPower;
