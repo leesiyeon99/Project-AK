@@ -215,7 +215,7 @@ public class HYJ_Enemy : MonoBehaviour
                ScoreUIManager.Instance.AddScore(500);
             }
 
-            if (eachTimeLine == null && monsterSpecies != MonsterSpecies.Spider && monsterSpecies != MonsterSpecies.Spawn)
+            if (eachTimeLine == null && monsterSpecies != MonsterSpecies.Spider && monsterSpecies != MonsterSpecies.Spawn && monsterSpecies != MonsterSpecies.Boar)
             {
                 WaveTimeline.Instance.DecreaseWaveCount();
             }
