@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] AudioSource seSource;
     [SerializeField] AudioSource titleSource;
     [SerializeField] AudioSource stage1Source;
     [SerializeField] AudioSource stage2Source;
@@ -32,7 +33,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySE(AudioClip clip)
     {
-        //seSource.PlayOneShot(clip);
+        seSource.PlayOneShot(clip);
     }
 
     public void PlayTitle(AudioClip clip)
