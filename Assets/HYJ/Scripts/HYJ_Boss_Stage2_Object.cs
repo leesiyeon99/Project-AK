@@ -18,7 +18,7 @@ public class HYJ_Boss_Stage2_Object : MonoBehaviour
 
     private void Awake()
     {
-        boss = GetComponent<HYJ_Boss_Stage2>();
+        boss = GetComponentInParent<HYJ_Boss_Stage2>();
     }
 
     private void OnEnable()
@@ -31,6 +31,7 @@ public class HYJ_Boss_Stage2_Object : MonoBehaviour
     private void OnDisable()
     {
         MagicCircleRecovery();
+
     }
 
     private void Update()
@@ -38,17 +39,24 @@ public class HYJ_Boss_Stage2_Object : MonoBehaviour
         if(magicCircleNowHp <= 0)
         {
             boss.canAttack = true;
-            gameObject.SetActive(false);
-            StartCoroutine(MagicCircleRecovery());
+            //gameObject.SetActive(false);
+
+            if(MagicCircleRecoveryCo == null)
+            MagicCircleRecoveryCo = StartCoroutine(MagicCircleRecovery());
+
         }
     }
 
+    Coroutine MagicCircleRecoveryCo;
     
 
     IEnumerator MagicCircleRecovery()
     {
+        //boss.canAttack = true;
         yield return new WaitForSeconds(recoveryTime);
         gameObject.SetActive(true);
+        magicCircleNowHp = magicCircleSetHp;
+        MagicCircleRecoveryCo = null;
     }
 
     public void MonsterTakeDamageCalculation(float damage)
