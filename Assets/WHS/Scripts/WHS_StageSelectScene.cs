@@ -175,6 +175,7 @@ public class WHS_StageSelectScene : MonoBehaviour
         else
         {
             if (WHS_StageIndex.curStage == 0) WHS_StageIndex.curStage = 1;
+            if (sceneIndex == 2) WHS_StageIndex.curStage = 2;
             SceneManager.LoadScene(sceneIndex);
         }
     }
