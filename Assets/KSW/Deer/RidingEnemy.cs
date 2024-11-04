@@ -17,7 +17,10 @@ public class RidingEnemy : MonoBehaviour
         transform.SetParent(deerTransform);
 
         transform.localPosition = Vector3.zero;
-        ridingEnemy.localRotation = Quaternion.Euler(0, 180f, ridingEnemy.localRotation.z);
+        if (ridingEnemy != null)
+        {
+            ridingEnemy.localRotation = Quaternion.Euler(0, 180f, ridingEnemy.localRotation.z);
+        }
         gameObject.SetActive(true);
 
     }

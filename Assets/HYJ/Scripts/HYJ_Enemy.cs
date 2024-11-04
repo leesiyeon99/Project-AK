@@ -204,14 +204,7 @@ public class HYJ_Enemy : MonoBehaviour
 
             if (monsterType == MonsterType.Nomal)
             {
-                if (eachTimeLine == null)
-                {
-                    WaveTimeline.Instance.DecreaseWaveCount();
-                }
-                else
-                {
-                    EnemyDecreaseWaveCount();
-                }
+               
                 ScoreUIManager.Instance.AddScore(100);
             }
             else if (monsterType == MonsterType.Elite)
@@ -219,6 +212,14 @@ public class HYJ_Enemy : MonoBehaviour
                ScoreUIManager.Instance.AddScore(500);
             }
 
+            if (eachTimeLine == null && monsterSpecies != MonsterSpecies.Spider && monsterSpecies != MonsterSpecies.Spawn)
+            {
+                WaveTimeline.Instance.DecreaseWaveCount();
+            }
+            else
+            {
+                EnemyDecreaseWaveCount();
+            }
 
             Debug.Log("∏ÛΩ∫≈Õ ªÁ∏¡");
             isDie = true;

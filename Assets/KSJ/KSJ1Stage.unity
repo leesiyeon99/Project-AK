@@ -3211,6 +3211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincibility: {fileID: 2063795769}
   shield: {fileID: 988957974}
+  audioManager: {fileID: 0}
   uiManagerScript: {fileID: 9008696}
   ljh_curHp: 0
   durability: 0
@@ -3219,10 +3220,6 @@ MonoBehaviour:
   takeHpDamage: 0
   ljh_bloodImage: {fileID: 114598286}
   ljh_shieldImage: {fileID: 1784646849}
-  damagedShieldSound: {fileID: 252634950}
-  adClip:
-  - {fileID: 8300000, guid: 9e8edd470a403dd43ae3fb8ae7a7e834, type: 3}
-  - {fileID: 8300000, guid: e1802c5311e9ab740baa237c1f4acd8f, type: 3}
 --- !u!4 &252634949
 Transform:
   m_ObjectHideFlags: 0
@@ -7504,6 +7501,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2052439765}
     m_Modifications:
+    - target: {fileID: 3880422412419402582, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
+      propertyPath: monsterSpecies
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7188048329088903236, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -9213,6 +9214,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 453284639}
     m_Modifications:
+    - target: {fileID: 3880422412419402582, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
+      propertyPath: monsterSpecies
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7188048329088903236, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -31400,6 +31405,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 898365260}
     m_Modifications:
+    - target: {fileID: 3880422412419402582, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
+      propertyPath: monsterSpecies
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7188048329088903236, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -37389,6 +37398,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 64561162}
     m_Modifications:
+    - target: {fileID: 3880422412419402582, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
+      propertyPath: monsterSpecies
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7188048329088903236, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -41888,6 +41901,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 818282752}
     m_Modifications:
+    - target: {fileID: 3880422412419402582, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
+      propertyPath: monsterSpecies
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7188048329088903236, guid: 260130714f1833a498d64c83d7513cb2, type: 3}
       propertyPath: m_RootOrder
       value: 1
