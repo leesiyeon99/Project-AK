@@ -92,10 +92,11 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
 
     IEnumerator FireBall()
     {
+        Debug.Log("파이어 볼");
         monsterShieldAtkPower = 1f;
         monsterHpAtkPower = 3000f;
         //FireBall 오브젝트 제작
-        //animator.SetTrigger("");
+        animator.SetTrigger("FireBall");
         Instantiate(fireBallPrefab, new Vector3(monster.transform.position.x, monster.transform.position.y + 2f, monster.transform.position.z + 0.5f), Quaternion.LookRotation(player.transform.position));
         Instantiate(fireBallPrefab, new Vector3(monster.transform.position.x + 2f, monster.transform.position.y + 2f, monster.transform.position.z + 0.5f), Quaternion.LookRotation(player.transform.position));
         Instantiate(fireBallPrefab, new Vector3(monster.transform.position.x - 2f, monster.transform.position.y + 2f, monster.transform.position.z + 0.5f), Quaternion.LookRotation(player.transform.position)); 
@@ -104,16 +105,20 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
 
     IEnumerator SilentBall()
     {
+        Debug.Log("사일런트 볼");
         // 투척 거미 스크립트를 활용하여 SilentBall 제작
+        animator.SetTrigger("SilentBall");
         Instantiate(silentBallPrefab, new Vector3(monster.transform.position.x, monster.transform.position.y + 2f, monster.transform.position.z + 0.5f), Quaternion.LookRotation(player.transform.position));
         yield return new WaitForSeconds(10f);
     }
 
     IEnumerator StonePa()
     {
+        Debug.Log("스톤파");
         monsterShieldAtkPower = 1f;
         monsterHpAtkPower = 1000f;
         // 스톤파 오브젝트 제작 10개
+        animator.SetTrigger("StonePa");
         for(int i = 0; i < 10; i++)
         {
             float x = Random.Range(-3,3);
