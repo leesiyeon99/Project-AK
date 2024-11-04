@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-7582561334589528410
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: bcd9fa4bc5d9940428104303f3555cf8
+  m_EffectName: Attenuation
+  m_MixLevel: 1bfc1587b69b1a346b02278819f3164f
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-7374726472112449215
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -15,6 +29,25 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -5569164148168737532}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &-6290478524174811861
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HpBoss
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 564370cb95953e844ac0dff3756140b9
+  m_Children: []
+  m_Volume: 3b48a0dd9b4c8674b9882a02f30807a5
+  m_Pitch: b5285fe74ec45494d99fb7ea6b91f361
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -7582561334589528410}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -126,6 +159,7 @@ AudioMixerController:
     - 0af762d92c84b6d498c04a428eb1f447
     - 089d43722eb00674784c98c86e3c4100
     - 3c3794443dc09324fa4ac4febc3fd42a
+    - 564370cb95953e844ac0dff3756140b9
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -145,6 +179,7 @@ AudioMixerGroupController:
   - {fileID: 441288853053259187}
   - {fileID: -3393665871129850764}
   - {fileID: -7374726472112449215}
+  - {fileID: -6290478524174811861}
   m_Volume: 782423878e6fd4b449a6bb28c549217c
   m_Pitch: 0ef9ad08f1dd031478d77f03ef4d5590
   m_Send: 00000000000000000000000000000000
