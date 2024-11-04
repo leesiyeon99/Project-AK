@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 798be06990bae944f80d81d36e525788, type: 3}
-  m_Name: WeaponData_Rifle2
+  m_Name: WeaponData_Shotgun2
   m_EditorClassIdentifier: 
-  weaponName: "\uC5F0\uC0AC \uBB34\uAE30"
-  gunType: 2
+  weaponName: "\uD3ED\uBC1C \uBB34\uAE30"
+  gunType: 8
   tier: 2
-  bulletAttack: 25
-  defaultFiringDelay: 0.2
+  bulletAttack: 100
+  defaultFiringDelay: 3
   accelerationTime: 1
-  maxMagazine: 40
-  reloadSpeed: 1.2
+  maxMagazine: 3
+  reloadSpeed: 2
   range: 100

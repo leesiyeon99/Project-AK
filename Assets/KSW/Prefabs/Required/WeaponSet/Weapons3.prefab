@@ -1032,6 +1032,7 @@ MonoBehaviour:
   currentWeapon: {fileID: 373436035321830498}
   magazine: {fileID: 8433243881161421546}
   ontGrip: 0
+  additionalCoolDown: 0
 --- !u!114 &8073095936411102077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1851,8 +1852,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 17.165, y: -4}
-  m_SizeDelta: {x: 28.33, y: 6}
+  m_AnchoredPosition: {x: 17.16, y: -4}
+  m_SizeDelta: {x: 28.32, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6872068466282907584
 CanvasRenderer:
@@ -3033,6 +3034,10 @@ PrefabInstance:
       propertyPath: aimMask.m_Bits
       value: 915
       objectReference: {fileID: 0}
+    - target: {fileID: 5014312488042376912, guid: 88b4f02d06e55e845b46743617c56ba3, type: 3}
+      propertyPath: weaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: ff731d6d4c51c2e42b92b4034771f3b6, type: 2}
     - target: {fileID: 8404374015225787178, guid: 88b4f02d06e55e845b46743617c56ba3, type: 3}
       propertyPath: mask.m_Bits
       value: 915
@@ -3174,6 +3179,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4927589790657912161, guid: 7559d9350f04a6e4a993e252b881bba5, type: 3}
+      propertyPath: weaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f457bfc86dc0df4ab907dae7383cf2e, type: 2}
     - target: {fileID: 5144502783786025583, guid: 7559d9350f04a6e4a993e252b881bba5, type: 3}
       propertyPath: mask.m_Bits
       value: 915
@@ -3275,6 +3284,10 @@ PrefabInstance:
       propertyPath: aimMask.m_Bits
       value: 915
       objectReference: {fileID: 0}
+    - target: {fileID: 7982076070873812320, guid: 305706f687b3ebc43a07bb3713d006bb, type: 3}
+      propertyPath: weaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: 957fd314258989143a27a5476471ecc4, type: 2}
     - target: {fileID: 8767712937995610033, guid: 305706f687b3ebc43a07bb3713d006bb, type: 3}
       propertyPath: mask.m_Bits
       value: 915
