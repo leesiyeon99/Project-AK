@@ -37,7 +37,8 @@ public class HYJ_Enemy : MonoBehaviour
     [Header("데미지 매니져")]
     [SerializeField] GameObject damageManager;
 
-
+    [Header("사망 사운드")]
+    [SerializeField] AudioClip clip;
 
     //------------------------임의 변수---------------------------//
     [Header("임의 변수")]
@@ -228,6 +229,11 @@ public class HYJ_Enemy : MonoBehaviour
             else
             {
                 EnemyDecreaseWaveCount();
+            }
+
+            if (clip != null)
+            {
+                AudioManager.Instance.PlaySE(clip);
             }
 
             Debug.Log("몬스터 사망");
