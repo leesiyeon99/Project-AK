@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HYJ_Boss2_Object_HitPoint : MonoBehaviour
+public class HYJ_SilentBall_HitPoint : MonoBehaviour
 {
-    [SerializeField] HYJ_Boss_Stage2_Object magicCircle;
+    [SerializeField] HYJ_SilentBall silentBall;
     [SerializeField] bool weak;
 
     [Header("데미지 텍스트 설정")]
@@ -14,28 +14,28 @@ public class HYJ_Boss2_Object_HitPoint : MonoBehaviour
 
     private void Awake()
     {
-        magicCircle = GetComponentInParent<HYJ_Boss_Stage2_Object>();
+        silentBall = GetComponent<HYJ_SilentBall>();
     }
 
     public bool TakeDamage(float damage)
     {
         Debug.Log("피격");
-        if (magicCircle.HitFlag == false)
+        if (silentBall.HitFlag == false)
         {
+
             if (weak)
             {
                 Debug.Log("약점");
-                magicCircle.MonsterTakeDamageCalculation(damage);
+                silentBall.MonsterTakeDamageCalculation(damage * 2f);
             }
             else
             {
                 Debug.Log("일반");
-                magicCircle.MonsterTakeDamageCalculation(0);
+                silentBall.MonsterTakeDamageCalculation(damage);
             }
-
             DamageText(weak, damage);
-            magicCircle.HitFlag = true;
-            magicCircle.StartHitFlagCoroutine();
+            silentBall.HitFlag = true;
+            silentBall.StartHitFlagCoroutine();
 
             return true;
         }
@@ -47,9 +47,8 @@ public class HYJ_Boss2_Object_HitPoint : MonoBehaviour
 
     public bool GetHitFlag()
     {
-        return magicCircle.HitFlag;
+        return silentBall.HitFlag;
     }
-
 
     public void DamageText(bool isWeak, float damage)
     {
@@ -59,7 +58,7 @@ public class HYJ_Boss2_Object_HitPoint : MonoBehaviour
         Debug.Log(isWeak);
         Debug.Log(damage);
         StartCoroutine(OnDamageText(isWeak, damage));
-        damageText.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 2, 0));
+        //damageText.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 2, 0));
     }
 
     public IEnumerator OnDamageText(bool isWeak, float damage)
@@ -78,7 +77,7 @@ public class HYJ_Boss2_Object_HitPoint : MonoBehaviour
             damageText.text = damage.ToString();
         }
         canvas.SetActive(true);
-        float colorHpF = (magicCircle.magicCircleNowHp / magicCircle.magicCircleSetHp) * 255;
+        float colorHpF = (silentBall.nowHp / silentBall.setHp) * 255;
         byte colorHpB = (byte)colorHpF;
 
         damageText.color = new Color32(255, colorHpB, colorHpB, 255);
@@ -89,8 +88,7 @@ public class HYJ_Boss2_Object_HitPoint : MonoBehaviour
             yield return new WaitForFixedUpdate(); // 다음 FixedUpdte까지 기다림
         }
 
-        yield return new WaitForSeconds(0.2f);
-        damageText.text = "";
+        yield return new WaitForSeconds(1.5f);
 
     }
 }

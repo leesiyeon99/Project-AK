@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HYJ_FireBall : MonoBehaviour
 {
-    [SerializeField] float nowHp;
-    [SerializeField] float setHp;
+    [SerializeField] public float nowHp;
+    [SerializeField] public float setHp;
     [SerializeField] public bool hitFlag;
     public bool HitFlag { get { return hitFlag; } set { hitFlag = value; } }
     Coroutine hitFlagCoroutine;
@@ -20,6 +20,10 @@ public class HYJ_FireBall : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.forward * 10f * Time.deltaTime);
+        if(nowHp <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     public void MonsterTakeDamageCalculation(float damage)
     {
