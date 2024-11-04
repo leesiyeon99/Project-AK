@@ -7,7 +7,7 @@ using TMPro;
 using System.ComponentModel;
 
 public class LJH_UIManagerOld : MonoBehaviour
-{
+{/*
     [Header("스크립트")]
     [Header("데미지 매니저 스크립트")]
     [SerializeField] LJH_DamageManager damageManager;
@@ -78,5 +78,5 @@ public class LJH_UIManagerOld : MonoBehaviour
         ljh_hpBar.fillAmount = hpPercentage;
 
         //hpText.text = (hpPercentage * 100).ToString("F0") + "%";
-    }
+    }*/
 }

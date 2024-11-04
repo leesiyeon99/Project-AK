@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class LJH_DamageManagerOld : MonoBehaviour
-{
+{/*
     [Header("오브젝트")]
     [Header("무적 관리 오브젝트")]
     [SerializeField] GameObject ljh_invincibility;
@@ -172,7 +172,7 @@ public class LJH_DamageManagerOld : MonoBehaviour
             return damage = monsterScript.GetComponent<HYJ_Enemy>().monsterHpAtkPower;
         }
         return 0;
-    }
+    }*/
     
 }
 
