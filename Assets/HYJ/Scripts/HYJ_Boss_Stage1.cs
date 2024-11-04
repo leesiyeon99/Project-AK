@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
 public class HYJ_Boss_Stage1 : MonoBehaviour
 {
     [Header("플레이어")]
@@ -12,11 +11,10 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     [SerializeField] GameObject monster;
     [SerializeField] public float nowHp;
     [SerializeField] public float SetHp;
-    //[SerializeField] float 
+    //[SerializeField] float
     [SerializeField] public float monsterShieldAtkPower;
     [SerializeField] public float monsterHpAtkPower;
     [SerializeField] public float monsterMoveSpeed;
-
     [Header("임의 변수")]
     [SerializeField] public bool hitFlag;
     public bool HitFlag { get { return hitFlag; } set { hitFlag = value; } }
@@ -25,7 +23,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     public bool isDie;
     Coroutine hitFlagCoroutine;
     WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.05f);
-    private bool firstBattleEnd=false;
+    private bool firstBattleEnd = false;
     private bool pFirst = false;
     private bool pSecond = false;
     private bool p10 = false;
@@ -35,7 +33,6 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     [SerializeField] float xMoveDirection = 0.1f;
     private bool isSiuu = false;
     bool isPattern = false;
-
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -44,12 +41,10 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         monsterMoveSpeed = 1.5f;
         nowHp = SetHp;
     }
-
     private void Update()
     {
         MonsterDie();
         BossMove();
-        
         if (!firstBattleEnd && !pFirst && !pSecond)
         {
             BattleStartCO = StartCoroutine(BossBattleStart());
@@ -59,11 +54,10 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
             StopCoroutine(BattleStartCO);
             if (BossAiCo == null)
             {
-                BossAiCo =StartCoroutine(BossAI());
+                BossAiCo = StartCoroutine(BossAI());
             }
         }
     }
-
     Coroutine BattleStartCO;
     Coroutine BossAiCo;
     // Comment : 헤드스핀 패턴
@@ -75,9 +69,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         animator.SetTrigger("HeadSpin");
         nowAttack = true;
         yield return new WaitForSeconds(2);
-
     }
-
     // Comment : 브레이크댄스 패턴
     IEnumerator PatternBreakDance()
     {
@@ -90,7 +82,6 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         yield return new WaitForSeconds(5.5f);
         //isSiuu=false;
     }
-
     // Comment : 세레모니 패턴
     IEnumerator PatternSiiuuuu()
     {
@@ -98,19 +89,18 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         Debug.Log("세레머니");
         monsterHpAtkPower = 3000f;
         monsterShieldAtkPower = 1f;
-        animator.SetBool("Siu",true);
+        animator.SetBool("Siu", true);
         nowAttack = true;
         Vector3 beforeBossPos = monster.transform.position; //원위치 용
-        while (Vector3.Distance(player.transform.position,monster.transform.position) > 1f)
+        while (Vector3.Distance(player.transform.position, monster.transform.position) > 1f)
         {
             monster.transform.position = Vector3.MoveTowards(monster.transform.position, player.transform.position, Time.deltaTime * 20f);
             yield return null;
         }
-        animator.SetBool("Siu",false);
+        animator.SetBool("Siu", false);
         monster.transform.position = beforeBossPos;
-        isSiuu=false;
+        isSiuu = false;
     }
-
     // Comment : 보스 죽음 패턴
     private void MonsterDie()
     {
@@ -123,8 +113,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
             LSY_SceneManager.Instance.GameClear();
         }
     }
-
-    // Comment : 보스 조우 패턴 
+    // Comment : 보스 조우 패턴
     IEnumerator BossBattleStart()
     {
         if (!pFirst)
@@ -145,8 +134,6 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
             firstBattleEnd = true;
         }
     }
-
-
     // Comment : 보스의 패턴 AI
     IEnumerator BossAI()
     {
@@ -183,17 +170,15 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
                     break;
                 case 1:
                     yield return PatternBreakDance();
-                        break;
+                    break;
             }
             yield return new WaitForSeconds(4);
         }
     }
-
     public void MonsterTakeDamageCalculation(float damage)
     {
         nowHp -= damage;
     }
-
     public void StartHitFlagCoroutine()
     {
         if (hitFlagCoroutine != null)
@@ -202,13 +187,11 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         }
         hitFlagCoroutine = StartCoroutine(HitFlagCoroutine());
     }
-
     IEnumerator HitFlagCoroutine()
     {
         yield return hitFlagWaitForSeconds;
         hitFlag = false;
     }
-
     // Comment : 보스 이동
     void BossMove()
     {
@@ -216,11 +199,8 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         {
             float xMax = 8f;
             float xMin = -8f;
-
-
             xNow += xMoveDirection;
             monster.transform.position = new Vector3(xNow, monster.transform.position.y, monster.transform.position.z);
-
             if (xNow >= xMax)
             {
                 Debug.Log("방향 전환");
@@ -232,7 +212,6 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
             }
         }
     }
-
     void SiuuMove()
     {
         Vector3 beforeBossPos = monster.transform.position; //원위치 용
