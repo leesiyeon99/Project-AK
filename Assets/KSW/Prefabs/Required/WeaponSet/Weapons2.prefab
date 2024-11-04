@@ -1456,6 +1456,7 @@ MonoBehaviour:
   currentWeapon: {fileID: 3028447905256880202}
   magazine: {fileID: 8433243881161421546}
   ontGrip: 0
+  additionalCoolDown: 0
 --- !u!114 &8073095936411102077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2489,8 +2490,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 17.165, y: -4}
-  m_SizeDelta: {x: 28.33, y: 6}
+  m_AnchoredPosition: {x: 17.16, y: -4}
+  m_SizeDelta: {x: 28.32, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2393666464793386629
 CanvasRenderer:
@@ -2810,6 +2811,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3522289503874626826, guid: d5c06b72f48d1f243b0e5a5f720dd6ed, type: 3}
+      propertyPath: weaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: ac0901f450d906e4e88b0b3384a883f6, type: 2}
     - target: {fileID: 8214658445597920931, guid: d5c06b72f48d1f243b0e5a5f720dd6ed, type: 3}
       propertyPath: mask.m_Bits
       value: 915

@@ -21,7 +21,7 @@ public class StopPoint : MonoBehaviour
 
     public void ResumeDolly()
     {
-        dolly.m_Speed = 20;
+        dolly.m_Speed = 10;
         waveDialogue.StartWave();
     }
 }

@@ -96,20 +96,20 @@ public class PlayerGunStatus : MonoBehaviour
         {
             case Tier.Tier1:
                 defaultPierceCount = 2;
-                splashRadius = 0.3f;
+                splashRadius = 0.5f;
                 accelerationRate = 0.3f;
                 splashDamage = BulletAttack * 0.3f;
 
                 break;
             case Tier.Tier2:
                 defaultPierceCount = 3;
-                splashRadius = 0.5f;
+                splashRadius = 1f;
                 accelerationRate = 0.5f;
                 splashDamage = BulletAttack * 0.5f;
                 break;
             case Tier.Tier3:
                 defaultPierceCount = 4;
-                splashRadius = 1f;
+                splashRadius = 2f;
                 accelerationRate = 0.7f;
                 splashDamage = BulletAttack;
                 break;

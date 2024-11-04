@@ -1839,6 +1839,7 @@ MonoBehaviour:
   currentWeapon: {fileID: 145593390686082496}
   magazine: {fileID: 8433243881161421546}
   ontGrip: 0
+  additionalCoolDown: 0
 --- !u!114 &8073095936411102077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2625,8 +2626,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 17.165, y: -4}
-  m_SizeDelta: {x: 28.33, y: 6}
+  m_AnchoredPosition: {x: 17.16, y: -4}
+  m_SizeDelta: {x: 28.32, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &178053443338854839
 CanvasRenderer:
@@ -3254,6 +3255,10 @@ PrefabInstance:
       propertyPath: aimMask.m_Bits
       value: 915
       objectReference: {fileID: 0}
+    - target: {fileID: 2381152897176946904, guid: 3b4c3f9f083650747b017e1f9949d1e7, type: 3}
+      propertyPath: weaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: ac0901f450d906e4e88b0b3384a883f6, type: 2}
     - target: {fileID: 3776736255498147240, guid: 3b4c3f9f083650747b017e1f9949d1e7, type: 3}
       propertyPath: m_Name
       value: Weapon_Pumpgun_a
