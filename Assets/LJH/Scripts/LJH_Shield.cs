@@ -82,6 +82,11 @@ public class LJH_Shield : MonoBehaviour
 
     private void Update()
     {
+        if (WHS_StageIndex.curStage == 1)
+        {
+            transform.position = new Vector3(0, 1, 0);
+        }
+        else
         // Comment: 역장의 위치는 플레이어 위치로 따라다니게
         transform.position = playerPos.transform.position;
 
