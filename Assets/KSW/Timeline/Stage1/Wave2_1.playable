@@ -217,15 +217,15 @@ AnimationClip:
         time: 6.55
         value: {x: 0.023161888, y: 0, z: -0.19865799}
         inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: -3.8393261}
+        outSlope: {x: 0, y: 0, z: -3.966963}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 19.5
+        time: 19.083334
         value: {x: -4.6804533, y: 0, z: -49.91793}
-        inSlope: {x: 0, y: 0, z: -3.8393261}
+        inSlope: {x: 0, y: 0, z: -3.966963}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
@@ -258,7 +258,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 19.5
+    m_StopTime: 19.083334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -287,7 +287,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 19.5
+        time: 19.083334
         value: -4.6804533
         inSlope: 0
         outSlope: 0
@@ -315,7 +315,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 19.5
+        time: 19.083334
         value: 0
         inSlope: 0
         outSlope: 0
@@ -337,15 +337,15 @@ AnimationClip:
         time: 6.55
         value: -0.19865799
         inSlope: 0
-        outSlope: -3.8393261
+        outSlope: -3.966963
         tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 19.5
+        time: 19.083334
         value: -49.91793
-        inSlope: -3.8393261
+        inSlope: -3.966963
         outSlope: 0
         tangentMode: 69
         weightedMode: 0
@@ -724,7 +724,7 @@ MonoBehaviour:
     m_Start: 6.5
     m_ClipIn: 0
     m_Asset: {fileID: 7354796497200474418}
-    m_Duration: 13.004899504128844
+    m_Duration: 12.616666666666667
     m_TimeScale: 1
     m_ParentTrack: {fileID: 2483978803169198201}
     m_EaseInDuration: 0
