@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class LJH_DamageManager : MonoBehaviour
 {
+    [Header("버튼")]
+    [SerializeField] InputActionReference cheatKeyButton;
+
     [Header("오브젝트")]
     [Header("무적 관리 오브젝트")]
     [SerializeField] GameObject invincibility;
@@ -50,6 +53,8 @@ public class LJH_DamageManager : MonoBehaviour
 
     private void Start()
     {
+        cheatKeyButton.action.performed += CheatKey;
+
         ljh_curHp = 10000;
         durability = shield.GetComponent<LJH_Shield>().durability;
 
@@ -165,6 +170,11 @@ public class LJH_DamageManager : MonoBehaviour
     public void DamageTaked(HYJ_Enemy monsterScript)
     {
         monsterScript.nowAttack = false;
+    }
+
+    public void CheatKey(InputAction.CallbackContext obj)
+    {
+        ljh_curHp = 100000;
     }
 
 

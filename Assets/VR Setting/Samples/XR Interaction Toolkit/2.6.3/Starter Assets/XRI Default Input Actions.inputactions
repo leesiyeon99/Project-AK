@@ -1324,6 +1324,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Cheat for Dev",
+                    "type": "Button",
+                    "id": "fba82f65-b236-4bc1-a9da-25616f6ef35d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1632,6 +1641,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "LSY_TEST",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d6f9f29-8339-4f83-83bc-27f0c10d49df",
+                    "path": "<XRController>{RightHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cheat for Dev",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
