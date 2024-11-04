@@ -45,7 +45,7 @@ public class HYJ_Enemy : MonoBehaviour
     public bool HitFlag { get { return hitFlag; } set { hitFlag = value; } }
 
     Coroutine hitFlagCoroutine;
-    WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.1f);
+    WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.05f);
 
     [SerializeField] EachTimeLine eachTimeLine;
     [SerializeField] bool isReady;

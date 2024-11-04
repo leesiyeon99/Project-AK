@@ -6,6 +6,9 @@ public class PlayerBullet : MonoBehaviour
     [Header("- 스파크 이펙트 프리팹")]
     [SerializeField] private GameObject sparkEffectPrefab;
     private Queue<GameObject> spark;
+    [Header("- 스파크 이펙트 약점 프리팹")]
+    [SerializeField] private GameObject sparkEffectWeakPrefab;
+    private Queue<GameObject> sparkWeak;
     [Header("- 스플래시 이펙트 프리팹")]
     [SerializeField] private GameObject splashEffectPrefab;
     private Queue<GameObject> splash;
@@ -20,6 +23,7 @@ public class PlayerBullet : MonoBehaviour
     private void SetEffect()
     {
         spark = new Queue<GameObject>();
+        sparkWeak = new Queue<GameObject>();
         splash = new Queue<GameObject>();
         if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
         {
@@ -39,6 +43,10 @@ public class PlayerBullet : MonoBehaviour
                 GameObject sparkObj = Instantiate(sparkEffectPrefab);
                 spark.Enqueue(sparkObj);
                 sparkObj.SetActive(false);
+
+                GameObject sparkWeakObj = Instantiate(sparkEffectWeakPrefab);
+                sparkWeak.Enqueue(sparkWeakObj);
+                sparkWeakObj.SetActive(false);
             }
         }
         else
@@ -46,18 +54,25 @@ public class PlayerBullet : MonoBehaviour
             GameObject sparkObj = Instantiate(sparkEffectPrefab);
             spark.Enqueue(sparkObj);
             sparkObj.SetActive(false);
+
+            GameObject sparkWeakObj = Instantiate(sparkEffectWeakPrefab);
+            sparkWeak.Enqueue(sparkWeakObj);
+            sparkWeakObj.SetActive(false);
         }
     }
     public void HitRay(RaycastHit hit)
     {
+        bool weak = false;
         // 연동 테스트
         if (hit.collider.TryGetComponent(out HYJ_EnemyHitPoint enemy))
         {
             enemy.TakeDamage(playerGunStatus.BulletAttack);
+            weak = enemy.weak;
         }
         if (hit.collider.TryGetComponent(out HYJ_BossHitPoint boss))
         {
             boss.TakeDamage(playerGunStatus.BulletAttack);
+            weak = boss.weak;
         }
         if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
         {
@@ -65,7 +80,7 @@ public class PlayerBullet : MonoBehaviour
         }
         else
         {
-            OnSparkEffect(hit.point);
+            OnSparkEffect(hit.point, weak);
             if (hit.collider.TryGetComponent(out Fracture fractureObj))
             {
                 fractureObj.CauseFracture();
@@ -103,7 +118,7 @@ public class PlayerBullet : MonoBehaviour
             }
             if (!playerGunStatus.GunType.HasFlag(GunType.SPLASH) && hitFlag)
             {
-                OnSparkEffect(hit[i].point);
+                OnSparkEffect(hit[i].point, true);
             }
             if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
             {
@@ -127,14 +142,27 @@ public class PlayerBullet : MonoBehaviour
             }
         }
     }
-    private void OnSparkEffect(Vector3 vec)
+    private void OnSparkEffect(Vector3 vec, bool weak)
     {
-        GameObject sparkObj = spark.Dequeue();
-        sparkObj.SetActive(false);
-        sparkObj.transform.position = vec;
-        sparkObj.transform.LookAt(transform.position);
-        sparkObj.SetActive(true);
-        spark.Enqueue(sparkObj);
+        if (weak)
+        {
+            GameObject sparkObj = sparkWeak.Dequeue();
+            sparkObj.SetActive(false);
+            sparkObj.transform.position = vec;
+            sparkObj.transform.LookAt(transform.position);
+            sparkObj.SetActive(true);
+            sparkWeak.Enqueue(sparkObj);
+        }
+        else
+        {
+            GameObject sparkObj = spark.Dequeue();
+            sparkObj.SetActive(false);
+            sparkObj.transform.position = vec;
+            sparkObj.transform.LookAt(transform.position);
+            sparkObj.SetActive(true);
+            spark.Enqueue(sparkObj);
+        }
+       
     }
     private void Splash(Vector3 vec)
     {

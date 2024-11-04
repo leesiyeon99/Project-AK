@@ -16,8 +16,8 @@ MonoBehaviour:
   gunType: 2
   tier: 2
   bulletAttack: 25
-  defaultFiringDelay: 0.2
+  defaultFiringDelay: 0.1
   accelerationTime: 1
-  maxMagazine: 40
-  reloadSpeed: 1.2
+  maxMagazine: 80
+  reloadSpeed: 0.7
   range: 100

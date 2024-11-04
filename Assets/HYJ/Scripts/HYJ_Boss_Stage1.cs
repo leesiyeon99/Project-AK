@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HYJ_Boss_Stage1 : MonoBehaviour
@@ -24,7 +24,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     public bool nowAttack;
     public bool isDie;
     Coroutine hitFlagCoroutine;
-    WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.1f);
+    WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.05f);
     private bool firstBattleEnd=false;
     private bool pFirst = false;
     private bool pSecond = false;
@@ -49,52 +49,66 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     {
         MonsterDie();
         BossMove();
-
+        
         if (!firstBattleEnd && !pFirst && !pSecond)
         {
-            StartCoroutine(BossBattleStart());
+            BattleStartCO = StartCoroutine(BossBattleStart());
         }
         else if (firstBattleEnd && pFirst && pSecond)
         {
-            StartCoroutine(BossAI());
+            StopCoroutine(BattleStartCO);
+            if (BossAiCo == null)
+            {
+                BossAiCo =StartCoroutine(BossAI());
+            }
         }
     }
 
+    Coroutine BattleStartCO;
+    Coroutine BossAiCo;
     // Comment : 헤드스핀 패턴
-    private void PatternHeadSpin()
+    IEnumerator PatternHeadSpin()
     {
         Debug.Log("헤드스핀");
         monsterHpAtkPower = 4000f;
         monsterShieldAtkPower = 5f;
         animator.SetTrigger("HeadSpin");
         nowAttack = true;
-
+        yield return new WaitForSeconds(2);
 
     }
 
     // Comment : 브레이크댄스 패턴
-    private void PatternBreakDance()
+    IEnumerator PatternBreakDance()
     {
         Debug.Log("브레이크댄스");
         monsterHpAtkPower = 1000;
         monsterShieldAtkPower = 3;
         animator.SetTrigger("BreakDance");
-        isSiuu =true;
+        //isSiuu =true;
         nowAttack = true;
-
+        yield return new WaitForSeconds(5.5f);
+        //isSiuu=false;
     }
 
     // Comment : 세레모니 패턴
-    private void PatternSiiuuuu()
+    IEnumerator PatternSiiuuuu()
     {
         isSiuu = true;
         Debug.Log("세레머니");
         monsterHpAtkPower = 3000f;
         monsterShieldAtkPower = 1f;
-        animator.SetTrigger("Siuu");
+        animator.SetBool("Siu",true);
         nowAttack = true;
-        Vector3 beforeBossPos = monster.transform.position;
-        //monster.transform.
+        Vector3 beforeBossPos = monster.transform.position; //원위치 용
+        while (Vector3.Distance(player.transform.position,monster.transform.position) > 1f)
+        {
+            monster.transform.position = Vector3.MoveTowards(monster.transform.position, player.transform.position, Time.deltaTime * 20f);
+            yield return null;
+        }
+        animator.SetBool("Siu",false);
+        monster.transform.position = beforeBossPos;
+        isSiuu=false;
     }
 
     // Comment : 보스 죽음 패턴
@@ -136,29 +150,42 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     // Comment : 보스의 패턴 AI
     IEnumerator BossAI()
     {
-        if (nowHp < 2450f && !p70)
+        while (true)
         {
-            // Comment : 보스 HP가 처음으로 70퍼 아래가 되어 헤드스핀을 사용한다.
-            p70 = true;
-            PatternHeadSpin();
-            Debug.Log("보스 HP가 처음으로 70퍼 아래가 되어 헤드스핀을 사용한다.");
-            yield return new WaitForSeconds(4f);
-        }
-        else if (nowHp < 1400f && !p40)
-        {
-            // Comment : 보스 HP가 처음으로 40퍼 아래가 되어 헤드스핀을 사용한다."
-            p40 = true;
-            PatternHeadSpin();
-            Debug.Log("보스 HP가 처음으로 40퍼 아래가 되어 헤드스핀을 사용한다.");
-            yield return new WaitForSeconds(4f);
-        }
-        else if (0<nowHp&&nowHp < 350f && !p10)
-        {
-            // Comment : 보스 HP가 처음으로 10퍼 아래가 되어 헤드스핀을 사용한다.
-            p10 = true;
-            PatternHeadSpin();
-            Debug.Log("보스 HP가 처음으로 10퍼 아래가 되어 헤드스핀을 사용한다.");
-            yield return new WaitForSeconds(4f);
+            if (nowHp < 2450f && !p70)
+            {
+                // Comment : 보스 HP가 처음으로 70퍼 아래가 되어 헤드스핀을 사용한다.
+                p70 = true;
+                PatternHeadSpin();
+                Debug.Log("보스 HP가 처음으로 70퍼 아래가 되어 헤드스핀을 사용한다.");
+                yield return new WaitForSeconds(4f);
+            }
+            else if (nowHp < 1400f && !p40)
+            {
+                // Comment : 보스 HP가 처음으로 40퍼 아래가 되어 헤드스핀을 사용한다."
+                p40 = true;
+                PatternHeadSpin();
+                Debug.Log("보스 HP가 처음으로 40퍼 아래가 되어 헤드스핀을 사용한다.");
+                yield return new WaitForSeconds(4f);
+            }
+            else if (0 < nowHp && nowHp < 350f && !p10)
+            {
+                // Comment : 보스 HP가 처음으로 10퍼 아래가 되어 헤드스핀을 사용한다.
+                p10 = true;
+                PatternHeadSpin();
+                Debug.Log("보스 HP가 처음으로 10퍼 아래가 되어 헤드스핀을 사용한다.");
+                yield return new WaitForSeconds(4f);
+            }
+            switch (Random.Range(0, 2))
+            {
+                case 0:
+                    yield return PatternSiiuuuu();
+                    break;
+                case 1:
+                    yield return PatternBreakDance();
+                        break;
+            }
+            yield return new WaitForSeconds(4);
         }
     }
 
@@ -185,24 +212,30 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     // Comment : 보스 이동
     void BossMove()
     {
-        float xMax = 8f;
-        float xMin = -8f;
-        
-
-        xNow += xMoveDirection;
-        monster.transform.position = new Vector3(xNow, monster.transform.position.y, monster.transform.position.z);
-
-        if (xNow >= xMax)
+        if (!isSiuu)
         {
-            Debug.Log("방향 전환");
-            Debug.Log(xMoveDirection);
-            xMoveDirection = -Time.deltaTime * 3f;
-        }
-        else if(xNow <= xMin)
-        {
-            xMoveDirection = Time.deltaTime * 3f;
+            float xMax = 8f;
+            float xMin = -8f;
+
+
+            xNow += xMoveDirection;
+            monster.transform.position = new Vector3(xNow, monster.transform.position.y, monster.transform.position.z);
+
+            if (xNow >= xMax)
+            {
+                Debug.Log("방향 전환");
+                xMoveDirection = -Time.deltaTime * 3f;
+            }
+            else if (xNow <= xMin)
+            {
+                xMoveDirection = Time.deltaTime * 3f;
+            }
         }
     }
 
-    
+    void SiuuMove()
+    {
+        Vector3 beforeBossPos = monster.transform.position; //원위치 용
+        transform.Translate(transform.forward * 3f * Time.deltaTime);
+    }
 }

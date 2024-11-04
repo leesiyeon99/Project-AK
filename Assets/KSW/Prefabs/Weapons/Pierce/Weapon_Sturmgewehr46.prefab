@@ -171,7 +171,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 919
   firingCoolDown: 0
-  additionalCoolDown: 0
 --- !u!114 &8524533994872761497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sparkEffectPrefab: {fileID: 5009965501609980282, guid: 40bac7deaa418ae49848745c218f0aec, type: 3}
+  sparkEffectWeakPrefab: {fileID: 7275790650172235671, guid: 24b473a847d9b3a4ea0f2d2d9ec10eab, type: 3}
   splashEffectPrefab: {fileID: 0}
   mask:
     serializedVersion: 2
