@@ -18,6 +18,7 @@ public class HYJ_FireBall_HitPoint : MonoBehaviour
         fireBall = GetComponent<HYJ_FireBall>();
     }
 
+    /*
     public bool TakeDamage(float damage)
     {
         Debug.Log("ÇÇ°Ý");
@@ -26,4 +27,5 @@ public class HYJ_FireBall_HitPoint : MonoBehaviour
 
         }
     }
+    */
 }
