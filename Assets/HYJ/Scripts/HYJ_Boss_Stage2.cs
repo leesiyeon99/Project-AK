@@ -38,8 +38,6 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
         gameObject.tag = "Boss";
         SetHp = 4000f;
         nowHp = SetHp;
-
-
     }
 
     private void OnEnable()
@@ -66,7 +64,7 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     {
         while (true)
         {
-            if(true/*마법진을 부수면*/)
+            if(canAttack)
             {
                 Defenseless();
             }
@@ -122,7 +120,8 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     // Comment : 마법진을 파괴하여 보스가 무력화
     IEnumerator Defenseless()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(5f);
+        canAttack = false;
     }
 
     public void MonsterTakeDamageCalculation(float damage)
