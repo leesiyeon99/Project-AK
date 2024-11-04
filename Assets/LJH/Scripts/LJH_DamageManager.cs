@@ -164,13 +164,9 @@ public class LJH_DamageManager : MonoBehaviour
             }
             bloodCoroutine = StartCoroutine(ShowBloodScreen());
         }
-        DamageTaked(monsterScript);
     }
 
-    public void DamageTaked(HYJ_Enemy monsterScript)
-    {
-        monsterScript.nowAttack = false;
-    }
+    
 
     public void CheatKey(InputAction.CallbackContext obj)
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LJH_MonsterSearcher : MonoBehaviour
-{
+{/*
     [Header("스크립트")]
     [Header("몬스터 정보 스크립트")]
     [SerializeField] HYJ_Enemy monsterStats;
@@ -38,5 +38,5 @@ public class LJH_MonsterSearcher : MonoBehaviour
                 monsterStats.nowAttack = false;
             }
         }
-    }
+    }*/
 }
