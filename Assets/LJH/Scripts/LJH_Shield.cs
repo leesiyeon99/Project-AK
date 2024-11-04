@@ -67,11 +67,6 @@ public class LJH_Shield : MonoBehaviour
             // Comment: 트리거 버튼에서 ShiledOff 추가
             shieldOnOff.action.performed += ShieldOff;
 
-        //shieldOnOff.
-        // Comment: 역장 활성화될 때 사격 기능 비활성화
-        //fire.action.performed -= GetComponent<PlayerInputWeapon>().OnFire;
-        //fire.action.performed -= GetComponent<PlayerInputWeapon>().OffFire;
-
     }
 
     // Comment: 역장이 비활성화 될 때
@@ -82,13 +77,6 @@ public class LJH_Shield : MonoBehaviour
 
             // Comment: 트리거 버튼에서 ShiledOff 제거
             shieldOnOff.action.performed -= ShieldOff;
-
-
-        // Comment: 역장 비활성화될 때 사격 기능 활성화
-        //fire.action.performed += GetComponent<PlayerInputWeapon>().OnFire;
-        //fire.action.performed += GetComponent<PlayerInputWeapon>().OffFire;
-
-
 
     }
 
@@ -105,11 +93,6 @@ public class LJH_Shield : MonoBehaviour
             BreakedShield();
         }
 
-        if (LJH_UIManager.Instance.ljh_curHp <= 0)
-        {
-            shieldOnOff.action.performed -= ShieldOn;
-            shieldOnOff.action.performed -= ShieldOff;
-        }
 
     }
 
@@ -125,16 +108,12 @@ public class LJH_Shield : MonoBehaviour
         if (!isBreaked)
         {
             // Comment: 방패 > 활성화 , 방패 수리 > 비활성화, 방패 여부 > 활성화
-            if (this.gameObject == null)
-            {
-                return;
-            }
-            else
-            {
+            if (this == null) return;
+
                 gameObject.SetActive(true);
                 shieldRecover.SetActive(false);
                 isShield = true;
-            }
+            
 
 
             // Comment: 총기 인풋 끄기
