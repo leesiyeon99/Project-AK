@@ -26,8 +26,11 @@ public class HYJ_Spider_Shoot : MonoBehaviour
     void ShootWep()
     {
         Debug.Log("∞≈πÃ¡Ÿ");
-        enemy.nowAttack = false;
+        //enemy.nowAttack = false;
+        Debug.Log(enemy.nowAttack);
         Instantiate(wepBullet,new Vector3(enemy.transform.position.x, enemy.transform.position.y+0.4f, enemy.transform.position.z),Quaternion.LookRotation(player.transform.position));
         //Destroy(wepBullet,3f);
     }
+
+
 }
