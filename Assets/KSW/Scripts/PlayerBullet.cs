@@ -74,11 +74,17 @@ public class PlayerBullet : MonoBehaviour
             boss.TakeDamage(playerGunStatus.BulletAttack);
             weak = boss.weak;
         }
+        if (hit.collider.TryGetComponent(out HYJ_BossHitPoint2 boos2))
+        {
+            boos2.TakeDamage(playerGunStatus.BulletAttack);
+
+        }
         if (hit.collider.TryGetComponent(out HYJ_Boss2_Object_HitPoint obj))
         {
             obj.TakeDamage(playerGunStatus.BulletAttack);
-        
+
         }
+     
         if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
         {
             Splash(hit.point);
@@ -125,6 +131,15 @@ public class PlayerBullet : MonoBehaviour
             if (hit[i].collider.TryGetComponent(out HYJ_BossHitPoint boss))
             {
                 hitFlag = boss.TakeDamage(playerGunStatus.BulletAttack);
+                if (hitFlag == false)
+                {
+                    hitCount++;
+                }
+            }
+            if (hit[i].collider.TryGetComponent(out HYJ_BossHitPoint2 boss2))
+            {
+                Debug.Log(playerGunStatus.BulletAttack);
+                hitFlag = boss2.TakeDamage(playerGunStatus.BulletAttack);
                 if (hitFlag == false)
                 {
                     hitCount++;
@@ -204,6 +219,10 @@ public class PlayerBullet : MonoBehaviour
             if (collider.TryGetComponent(out HYJ_BossHitPoint boss))
             {
                 boss.TakeDamage(playerGunStatus.SplashDamage);
+            }
+            if (collider.TryGetComponent(out HYJ_BossHitPoint2 boss2))
+            {
+                boss2.TakeDamage(playerGunStatus.SplashDamage);
             }
             if (collider.TryGetComponent(out Fracture fractureObj))
             {
