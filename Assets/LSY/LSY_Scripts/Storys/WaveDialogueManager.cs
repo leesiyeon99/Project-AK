@@ -25,7 +25,8 @@ public class WaveDialogueManager : MonoBehaviour
         waveDialogues = new string[][]
         {
             // Comment : 첫번째 웨이브 시작 전
-            new string[] { "요정: 내가 힘을 빌려줄테니까, 왼쪽 트리거 버튼을 눌러 방어 역장을 펼쳐.", 
+            new string[] { "요정: 내가 힘을 빌려줄테니까, 왼쪽 트리거 버튼을 눌러 방어 역장을 펼쳐.",
+                            "요정: 왼쪽 트리거를 클릭한 상태로 총에다 갖다대면 장전이 될거야",
                             "요정: 오른쪽 트리거 버튼을 눌러 총알을 발사해!" }, 
             // Comment : 첫번째 웨이브 종료 후
             new string[] { "요정: 조심성 없기는! 너 때문에 죽을 뻔 했잖아!", 
@@ -69,7 +70,7 @@ public class WaveDialogueManager : MonoBehaviour
             if (line.StartsWith("요정:"))
             {
                 fairyText.text = line;
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(2f);
                 fairyText.text = ""; 
             }
             else if (line.StartsWith("주인공:"))
