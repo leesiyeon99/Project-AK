@@ -89,7 +89,7 @@ public class HYJ_EnemyHitPoint : MonoBehaviour
             yield return new WaitForFixedUpdate(); // 다음 FixedUpdte까지 기다림
         }
 
-        yield return new WaitForSeconds(1.5f);
-
+        yield return new WaitForSeconds(0.2f);
+        damageText.text = "";
     }
 }
