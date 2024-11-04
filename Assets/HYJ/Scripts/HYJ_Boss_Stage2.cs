@@ -32,16 +32,15 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.05f);
     public float fireBallCoolTime = 10;
 
-    void Start()
+    
+
+    private void OnEnable()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         gameObject.tag = "Boss";
         SetHp = 4000f;
         nowHp = SetHp;
-    }
 
-    private void OnEnable()
-    {
         bossRoutine = StartCoroutine(BossPatternRoutine());
     }
 
