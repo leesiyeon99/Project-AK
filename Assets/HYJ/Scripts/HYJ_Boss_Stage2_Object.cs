@@ -16,7 +16,7 @@ public class HYJ_Boss_Stage2_Object : MonoBehaviour
     Coroutine hitFlagCoroutine;
     WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.1f);
 
-    private void Start()
+    private void Awake()
     {
         boss = GetComponent<HYJ_Boss_Stage2>();
     }
