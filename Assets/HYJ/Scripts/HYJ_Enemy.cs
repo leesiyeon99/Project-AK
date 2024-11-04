@@ -178,7 +178,7 @@ public class HYJ_Enemy : MonoBehaviour
             yield return new WaitForSeconds(1f);
         else
             yield return new WaitForSeconds(3f);
-        nowAttack = true;
+        isAttack = true;
         damageManager.GetComponent<LJH_DamageManager>().TakeDamage(this);
         yield return new WaitForSeconds(aniTime);
         isAttack = false;
