@@ -30,7 +30,7 @@ public class HYJ_Boss2_Object_HitPoint : MonoBehaviour
             else
             {
                 Debug.Log("¿œπ›");
-                magicCircle.MonsterTakeDamageCalculation(0);
+                magicCircle.MonsterTakeDamageCalculation(damage);
             }
 
             DamageText(weak, damage);

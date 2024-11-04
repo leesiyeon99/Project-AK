@@ -74,6 +74,11 @@ public class PlayerBullet : MonoBehaviour
             boss.TakeDamage(playerGunStatus.BulletAttack);
             weak = boss.weak;
         }
+        if (hit.collider.TryGetComponent(out HYJ_Boss2_Object_HitPoint obj))
+        {
+            obj.TakeDamage(playerGunStatus.BulletAttack);
+        
+        }
         if (playerGunStatus.GunType.HasFlag(GunType.SPLASH))
         {
             Splash(hit.point);
@@ -98,8 +103,17 @@ public class PlayerBullet : MonoBehaviour
         int hitCount = playerGunStatus.DefaultPierceCount;
         for (int i = 0; i < loop; i++)
         {
+            
             // 연동 테스트
             bool hitFlag = true;
+            if (hit[i].collider.TryGetComponent(out HYJ_Boss2_Object_HitPoint obj))
+            {
+                hitFlag = obj.TakeDamage(playerGunStatus.BulletAttack);
+                if (hitFlag == false)
+                {
+                    hitCount++;
+                }
+            }
             if (hit[i].collider.TryGetComponent(out HYJ_EnemyHitPoint enemy))
             {
                 hitFlag = enemy.TakeDamage(playerGunStatus.BulletAttack);
@@ -178,6 +192,10 @@ public class PlayerBullet : MonoBehaviour
             if (collider.TryGetComponent(out DeerScript deer))
             {
                 deer.DieDeer();
+            }
+            if (collider.TryGetComponent(out HYJ_Boss2_Object_HitPoint obj))
+            {
+                obj.TakeDamage(playerGunStatus.SplashDamage);
             }
             if (collider.TryGetComponent(out HYJ_EnemyHitPoint enemy))
             {
