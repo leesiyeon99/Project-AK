@@ -66,7 +66,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         Debug.Log("«ÏµÂΩ∫«…");
         monsterHpAtkPower = 4000f;
         monsterShieldAtkPower = 5f;
-        animator.SetTrigger("HeadSpin");
+        animator.SetBool("HeadSpin", true);
         nowAttack = true;
         yield return new WaitForSeconds(2);
     }
@@ -76,7 +76,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         Debug.Log("∫Í∑π¿Ã≈©¥ÌΩ∫");
         monsterHpAtkPower = 1000;
         monsterShieldAtkPower = 3;
-        animator.SetTrigger("BreakDance");
+        animator.SetBool("BreakDance", true);
         //isSiuu =true;
         nowAttack = true;
         yield return new WaitForSeconds(5.5f);
