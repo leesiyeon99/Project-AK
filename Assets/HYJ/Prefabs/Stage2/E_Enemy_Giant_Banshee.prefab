@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
-  weak: 0
+  weak: 1
   canvas: {fileID: 7533732552875738315}
   damageText: {fileID: 4393889025545172567}
 --- !u!1 &3143794172404043199
