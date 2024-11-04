@@ -174,13 +174,15 @@ public class HYJ_Enemy : MonoBehaviour
     {
         monsterAnimator.SetTrigger("Attack");
         Debug.Log("몬스터 공격");
+        
+        yield return new WaitForSeconds(aniTime);
+        isAttack = true;
+        nowAttack = true;
+        damageManager.GetComponent<LJH_DamageManager>().TakeDamage(this);
         if (monsterAttackType == MonsterAttackType.shortAttackRange)
             yield return new WaitForSeconds(1f);
         else
             yield return new WaitForSeconds(3f);
-        isAttack = true;
-        damageManager.GetComponent<LJH_DamageManager>().TakeDamage(this);
-        yield return new WaitForSeconds(aniTime);
         isAttack = false;
     }
 
