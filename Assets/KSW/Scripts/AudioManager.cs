@@ -61,9 +61,10 @@ public class AudioManager : MonoBehaviour
         shieldSource.Play();
     }
 
-    public void PlayTakeHp(AudioClip clip)
+    public void PlayTakeHp()
     {
-        bossHpSource.clip = clip;
+        bossHpSource.clip = bossHpClip;
+        Debug.Log("보스한테맞아서 체력다는 소리남");
         bossHpSource.Play();
     }
 

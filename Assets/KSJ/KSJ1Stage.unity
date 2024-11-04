@@ -9520,7 +9520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 20945187, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -6.47
+      value: -7.93
       objectReference: {fileID: 0}
     - target: {fileID: 20945189, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_fontAsset
@@ -9552,7 +9552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1186845722, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -11.94
+      value: -14.86
       objectReference: {fileID: 0}
     - target: {fileID: 1186845724, guid: 5c9171c4c1b08d24ba6a094303776b60, type: 3}
       propertyPath: m_fontAsset
@@ -34418,6 +34418,10 @@ PrefabInstance:
       propertyPath: m_text
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3006126265821036686, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3393933709258098357, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -34425,6 +34429,10 @@ PrefabInstance:
     - target: {fileID: 3617744409946055873, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763929150698704926, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7869556354385943376, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
       propertyPath: m_Enabled
@@ -34437,6 +34445,14 @@ PrefabInstance:
     - target: {fileID: 8101294208513647133, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101294208513647133, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334471198394237254, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8873855451214837927, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
       propertyPath: m_RootOrder
