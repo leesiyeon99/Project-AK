@@ -82,10 +82,10 @@ public class WaveDialogueManager : MonoBehaviour
             }
             else if (line.StartsWith("º¸½º:"))
             {
-                bossBackGround.gameObject.SetActive(true);
+                background.gameObject.SetActive(true);
                 playertText.text = line;
                 yield return new WaitForSeconds(2f);
-                bossBackGround.gameObject.SetActive(false);
+                background.gameObject.SetActive(false);
                 playertText.text = "";
             }
             else
