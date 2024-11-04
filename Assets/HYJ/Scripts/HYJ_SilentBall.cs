@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class HYJ_SilentBall : MonoBehaviour
 {
-    [SerializeField] LJH_UIManager player;
+    [SerializeField] public GameObject player;
+    [SerializeField] LJH_UIManager playerUI;
     [SerializeField] public float nowHp;
     [SerializeField] public float setHp;
     [SerializeField] public bool hitFlag;
@@ -13,19 +14,21 @@ public class HYJ_SilentBall : MonoBehaviour
     WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.1f);
     private void Awake()
     {
-        player = GetComponent<LJH_UIManager>();
+        playerUI = GetComponent<LJH_UIManager>();
     }
 
     void Start()
     {
         setHp = 600;
         nowHp = setHp;
+        Destroy(gameObject, 3f);
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
     {
-        transform.Translate(Vector3.forward * 2f * Time.deltaTime);
-        if(nowHp <= 0)
+        this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(player.transform.position.x, player.transform.position.y - 0.3f, player.transform.position.z), 0.1f);
+        if (nowHp <= 0)
         {
             Destroy(gameObject);
         }
@@ -52,10 +55,10 @@ public class HYJ_SilentBall : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("player"))
+        if (other.CompareTag("Player"))
         {
             // 만약 안되면 위에 Damage매니저로 변경
-            player.ljh_curHp = 0;
+            playerUI.ljh_curHp = 0;
         }
     }
 }

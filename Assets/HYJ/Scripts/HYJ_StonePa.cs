@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HYJ_StonePa : MonoBehaviour
 {
+    [SerializeField] public GameObject player;
     [SerializeField] public float nowHp;
     [SerializeField] public float setHp;
     [SerializeField] public bool hitFlag;
@@ -14,11 +15,13 @@ public class HYJ_StonePa : MonoBehaviour
     {
         setHp = 100;
         nowHp = setHp;
+        Destroy(gameObject, 3f);
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
     {
-        transform.Translate(Vector3.forward * 10f * Time.deltaTime);
+        this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(player.transform.position.x, player.transform.position.y - 0.3f, player.transform.position.z), 0.1f);
         if (nowHp <= 0)
         {
             Destroy(gameObject);
