@@ -138,7 +138,7 @@ public class HYJ_Enemy : MonoBehaviour
             {
                 monsterAnimator.SetBool("Run Forward", false);
                 isAttack = true;
-                StartCoroutine(MonsterAttackCo());
+                AttackCo = StartCoroutine(MonsterAttackCo());
             }
             else
             {
@@ -146,7 +146,7 @@ public class HYJ_Enemy : MonoBehaviour
             }
         }
     }
-
+    Coroutine AttackCo;
     // Comment : 온트리거 엔터를 이용하여 총알과의 충돌 여부를 확인, 충돌 시, 캐릭터의 공격력 or 무기의 공격력이 완료되면 몬스터 피격 함수를 진행시킨다.
     public void MonsterTakeDamageCalculation(float damage)
     {
@@ -191,7 +191,7 @@ public class HYJ_Enemy : MonoBehaviour
     {
         if (monsterNowHp <= 0 && !isDie) // Comment : 몬스터의 Hp가 0이 되면 몬스터 오브젝트를 삭제한다.
         {
-
+            StopCoroutine(AttackCo);
             // if (hyj_monsterCount != null)
             // {
             //     if (hyj_monsterCount.Enemies.ContainsKey(this))
