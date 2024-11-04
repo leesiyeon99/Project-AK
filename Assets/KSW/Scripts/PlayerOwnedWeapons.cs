@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class PlayerOwnedWeapons : MonoBehaviour
 {
+
+    private static PlayerOwnedWeapons instance;
+
+
+    public static PlayerOwnedWeapons Instance
+    {
+        get
+        {
+            return instance;
+
+        }
+    }
+
+
     [SerializeField] private int index;
 
     public int Index { get { return index; } set { index = value; } }
@@ -42,6 +56,17 @@ public class PlayerOwnedWeapons : MonoBehaviour
 
     private void Awake()
     {
+
+        if (instance == null)
+        {
+
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         SetWeapons();
         weaponUI.SetUIPos();
     }
