@@ -21,6 +21,8 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     [SerializeField] GameObject fireBallPrefab;
     [SerializeField] GameObject silentBallPrefab;
     [SerializeField] GameObject stonePaPrefab;
+    [SerializeField] BoxCollider boxCollider;
+
 
     [Header("임의 변수")]
     [SerializeField] public bool hitFlag;
@@ -132,8 +134,10 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     // Comment : 마법진을 파괴하여 보스가 무력화
     IEnumerator Defenseless()
     {
+        boxCollider.enabled = true;
         yield return new WaitForSeconds(5f);
         canAttack = false;
+        boxCollider.enabled = false;
     }
 
     public void MonsterTakeDamageCalculation(float damage)
