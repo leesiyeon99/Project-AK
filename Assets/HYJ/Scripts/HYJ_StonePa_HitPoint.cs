@@ -87,8 +87,8 @@ public class HYJ_StonePa_HitPoint : MonoBehaviour
             damageText.fontSize = i;
             yield return new WaitForFixedUpdate(); // 다음 FixedUpdte까지 기다림
         }
-
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.2f);
+        damageText.text = "";
 
     }
 }
