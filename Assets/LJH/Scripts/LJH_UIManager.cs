@@ -113,6 +113,10 @@ public class LJH_UIManager : MonoBehaviour
         {
             hpText.text = "0%";
         }
+        else if(hpPercentage >= 1)
+        {
+            hpText.text = "100%";
+        }
         else
         {
             hpText.text = (hpPercentage * 100).ToString("F0") + "%";

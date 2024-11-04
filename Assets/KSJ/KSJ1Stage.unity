@@ -3208,6 +3208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f829565026fe145969bdcc0cc316ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cheatKeyButton: {fileID: -1155364297379389764, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   invincibility: {fileID: 2063795769}
   shield: {fileID: 988957974}
   audioManager: {fileID: 1661173238}
