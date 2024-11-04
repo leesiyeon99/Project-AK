@@ -27,12 +27,12 @@ public class HYJ_BossHitPoint2 : MonoBehaviour
             if (weak)
             {
                 Debug.Log("약점");
-                boss.MonsterTakeDamageCalculation(damage * 2f);
+                boss.MonsterTakeDamageCalculation(damage);
             }
             else
             {
                 Debug.Log("일반");
-                boss.MonsterTakeDamageCalculation(damage);
+                boss.MonsterTakeDamageCalculation(0);
             }
             DamageText(weak, damage);
             boss.HitFlag = true;
