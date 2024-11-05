@@ -4,6 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class HYJ_Boss_Stage1 : MonoBehaviour
 {
+    [Header("데미지매니저")]
+    [SerializeField] LJH_DamageManager damagerManager;
+
     [Header("플레이어")]
     [SerializeField] GameObject player;
     [Header("보스 설정")]
@@ -68,6 +71,8 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         monsterShieldAtkPower = 5f;
         animator.SetBool("HeadSpin", true);
         nowAttack = true;
+        damagerManager.BossTakeDamage(this.gameObject);
+
         yield return new WaitForSeconds(2);
     }
     // Comment : 브레이크댄스 패턴
@@ -79,6 +84,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         animator.SetBool("BreakDance", true);
         //isSiuu =true;
         nowAttack = true;
+        damagerManager.BossTakeDamage(this.gameObject);
         yield return new WaitForSeconds(5.5f);
         //isSiuu=false;
     }
@@ -91,6 +97,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
         monsterShieldAtkPower = 1f;
         animator.SetBool("Siu", true);
         nowAttack = true;
+        damagerManager.BossTakeDamage(this.gameObject);
         Vector3 beforeBossPos = monster.transform.position; //원위치 용
         while (Vector3.Distance(player.transform.position, monster.transform.position) > 1f)
         {
