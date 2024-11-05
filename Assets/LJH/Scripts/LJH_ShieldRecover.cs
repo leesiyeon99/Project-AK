@@ -50,6 +50,11 @@ public class LJH_ShieldRecover : MonoBehaviour
         {
             recovery = StartCoroutine(RecoveryShield());
         }
+
+        if (durability < 0)
+        {
+            durability = 0;
+        }
     }
 
     
