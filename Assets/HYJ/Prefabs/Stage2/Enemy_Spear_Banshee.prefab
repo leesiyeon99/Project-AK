@@ -1001,7 +1001,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: c14d9906ed35cf84ca3cc6196ec50a8e, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -1038,6 +1038,7 @@ MonoBehaviour:
   nowAttack: 0
   isDie: 0
   damageManager: {fileID: 0}
+  clip: {fileID: 0}
   hitFlag: 0
   eachTimeLine: {fileID: 0}
   isReady: 0

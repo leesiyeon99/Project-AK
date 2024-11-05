@@ -103,6 +103,10 @@ public class HYJ_Enemy : MonoBehaviour
         if (monsterAttackType == MonsterAttackType.shortAttackRange) // Comment : 근거리 타입이라면 공격범위를 3으로 설정한다.
         {
             monsterAttackRange = 3;
+            if (monsterSpecies == MonsterSpecies.ArmoredKnight)
+            {
+                monsterAttackRange = 6.1f;
+            }
         }
         else if (monsterAttackType == MonsterAttackType.longAttackRange) // Commnet : 원거리 타입이라면 공격 범위를 7로 설정한다.
         {
@@ -127,13 +131,13 @@ public class HYJ_Enemy : MonoBehaviour
                 return;
             }
 
-            playerDistance = Vector3.Distance(new Vector3(monster.transform.position.x, 0, monster.transform.position.z), new Vector3(player.transform.position.x, 0, player.transform.position.z)); // Comment : 플레이어와 몬스터의 거리(x, z축만 계산)
+            playerDistance = Vector3.Distance(new Vector3(monster.transform.position.x, 0, monster.transform.position.z), new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z)); // Comment : 플레이어와 몬스터의 거리(x, z축만 계산)
 
             if (playerDistance > monsterAttackRange) // Comment : 플레이어와의 거리가 공격범위 밖일 때
             {
                 Debug.Log("이동 중");
                 monsterAnimator.SetBool("Run Forward", true);
-                monster.transform.position = Vector3.MoveTowards(monster.transform.position, new Vector3(player.transform.position.x, 0, player.transform.position.z), monsterMoveSpeed / 50);
+                monster.transform.position = Vector3.MoveTowards(monster.transform.position, new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z), monsterMoveSpeed / 50);
             }
             else if (playerDistance <= monsterAttackRange && isAttack == false && monsterNowHp > 0) //Comment : 플레이어가 몬스터의 공격범위로 들어왔을 때
             {

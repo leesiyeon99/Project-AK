@@ -61,8 +61,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   weak: 0
-  canvas: {fileID: 0}
-  damageText: {fileID: 0}
 --- !u!1 &3143794172404043199
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +799,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 9e7637776df15824ab41c00b5d497522, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -4961,8 +4959,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   weak: 0
-  canvas: {fileID: 0}
-  damageText: {fileID: 0}
 --- !u!1 &8425295195823858601
 GameObject:
   m_ObjectHideFlags: 0
