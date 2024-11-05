@@ -64,7 +64,6 @@ public class AudioManager : MonoBehaviour
     public void PlayTakeHp()
     {
         bossHpSource.clip = bossHpClip;
-        Debug.Log("보스한테맞아서 체력다는 소리남");
         bossHpSource.Play();
     }
 

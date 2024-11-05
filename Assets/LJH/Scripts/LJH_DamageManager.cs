@@ -102,7 +102,12 @@ public class LJH_DamageManager : MonoBehaviour
         }
     }
 
-    IEnumerator ShowBloodScreen()
+    public void BossHpSoundPlay()
+    {
+            audioManager.GetComponent<AudioManager>().PlayTakeHp();
+    }
+
+IEnumerator ShowBloodScreen()
     {
         if (ljh_bloodImage == null) yield break;
 
@@ -158,14 +163,6 @@ public class LJH_DamageManager : MonoBehaviour
             float damage = monsterScript.GetComponent<HYJ_Enemy>().monsterHpAtkPower;
             DamagedHP(damage);
             
-            if(monsterScript.transform.gameObject.CompareTag("Boss")) /// 수정 필요
-            {
-                audioManager.GetComponent<AudioManager>().PlayTakeHp();
-                
-            }
-
-
-
             if (bloodCoroutine != null)
             {
                 StopCoroutine(bloodCoroutine);
@@ -174,7 +171,54 @@ public class LJH_DamageManager : MonoBehaviour
         }
     }
 
+    public void BossTakeDamage(GameObject boss)
+    {
+        if (LSY_SceneManager.Instance.curState == LSY_SceneManager.GameState.GameOver || LSY_SceneManager.Instance.curState == LSY_SceneManager.GameState.GameClear) return;
+        float damage;
+        if (shield.GetComponent<LJH_Shield>().isShield)
+        {
+            if (WHS_StageIndex.curStage == 1)
+            {
+                damage = boss.GetComponent<HYJ_Boss_Stage1>().monsterShieldAtkPower;
+                DamagedShield(damage);
+            }
+            else
+            {
+                damage = boss.GetComponent<HYJ_Boss_Stage2>().monsterShieldAtkPower;
+                DamagedShield(damage);
+            }
+
+            if (shieldCoroutine != null)
+            {
+                StopCoroutine(shieldCoroutine);
+            }
+            shieldCoroutine = StartCoroutine(ShowShieldScreen());
+        }
+
+        else if (!shield.GetComponent<LJH_Shield>().isShield)
+        {
+            if (WHS_StageIndex.curStage == 1)
+            {
+                damage = boss.GetComponent<HYJ_Boss_Stage1>().monsterHpAtkPower;
+                DamagedHP(damage);
+            }
+            else
+            {
+                damage = boss.GetComponent<HYJ_Boss_Stage2>().monsterHpAtkPower;
+                DamagedHP(damage);
+            }
+            BossHpSoundPlay();
+
+            if (bloodCoroutine != null)
+            {
+                StopCoroutine(bloodCoroutine);
+            }
+            bloodCoroutine = StartCoroutine(ShowBloodScreen());
+        }
+    }
     
+
+
 
     public void CheatKey(InputAction.CallbackContext obj)
     {
