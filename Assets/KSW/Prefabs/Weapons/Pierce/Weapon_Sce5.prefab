@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireEffect: {fileID: 7231597711954763514}
-  fireSound: {fileID: 8300000, guid: 52eee3472cd0d7744a172523797ea3ea, type: 3}
+  fireSound: {fileID: 8300000, guid: 1baeca875f4934e49b68bc54af4c7cfc, type: 3}
   muzzle: {fileID: 24675656236394729}
   weaponUI: {fileID: 0}
   uiPos: {fileID: 2729510455564051147}
