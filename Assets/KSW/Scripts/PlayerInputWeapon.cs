@@ -94,7 +94,7 @@ public class PlayerInputWeapon : MonoBehaviour
         
         CloseChangeView(true);
         playerOwnedWeapons.ReloadGripOffMagazine();
-
+        playerOwnedWeapons.GetCurrentWeapon().OffFireCoroutine();
         downReload.action.performed -= OnDownReload;
 
         gripReload.action.performed -= OnGripReload;

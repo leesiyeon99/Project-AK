@@ -116,10 +116,12 @@ public class PlayerGun : MonoBehaviour
         {
             CoroutineCheck();
             playerGunStatus.FiringDelay = playerGunStatus.DefaultFiringDelay;
-            if (gameObject.activeSelf)
+            if (enableCheck)
             {
-                firingCoroutine = StartCoroutine(BackgroundFiringCooldown());
+                return;
             }
+            firingCoroutine = StartCoroutine(BackgroundFiringCooldown());
+            
         }
     }
 
