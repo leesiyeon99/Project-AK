@@ -38,8 +38,12 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     [SerializeField] float weakTime;
     Coroutine breakCoroutine;
 
+    bool isBossDie; //
+
     private void OnEnable()
     {
+        isBossDie = false; //
+
         player = GameObject.FindGameObjectWithTag("Player");
         gameObject.tag = "Boss";
         SetHp = 4000f;
@@ -61,7 +65,10 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
         {
             fireBallCoolTime = 4f;
         }
-        MonsterDie();
+        if (!isBossDie)
+        {
+            MonsterDie();
+        }
     }
 
     IEnumerator BossPatternRoutine()
@@ -208,6 +215,7 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     {
         if (nowHp <= 0)
         {
+            isBossDie = true; //
             //»ç¸Á ¾Ö´Ï¸ÞÀÌ¼Ç
             //monsterAnimator.SetTrigger("Die");
             Debug.Log("»ç¸Á");
