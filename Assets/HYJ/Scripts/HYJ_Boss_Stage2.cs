@@ -38,11 +38,11 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     [SerializeField] float weakTime;
     Coroutine breakCoroutine;
 
-    bool isBossDie; //
+    bool isBossDie;
 
     private void OnEnable()
     {
-        isBossDie = false; //
+        isBossDie = false;
 
         player = GameObject.FindGameObjectWithTag("Player");
         gameObject.tag = "Boss";

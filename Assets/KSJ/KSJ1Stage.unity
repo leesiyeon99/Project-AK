@@ -177,6 +177,7 @@ MonoBehaviour:
   hpPercentage: 0
   ljh_hpBar: {fileID: 1306096728}
   hpText: {fileID: 1798516090}
+  isDie: 0
 --- !u!1 &20672690
 GameObject:
   m_ObjectHideFlags: 0
@@ -34434,6 +34435,10 @@ PrefabInstance:
       propertyPath: spinEffect
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3617744409946055873, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
+      propertyPath: damagerManager
+      value: 
+      objectReference: {fileID: 252634948}
     - target: {fileID: 4763929150698704926, guid: 1f98f08cb5ebdcc4fa655473fed2d1da, type: 3}
       propertyPath: m_TagString
       value: Untagged

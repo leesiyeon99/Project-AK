@@ -36,6 +36,13 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     [SerializeField] float xMoveDirection = 0.1f;
     private bool isSiuu = false;
     bool isPattern = false;
+
+    bool isBossDie;
+
+    public void OnEnable()
+    {
+        isBossDie = false;
+    }
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -46,7 +53,10 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     }
     private void Update()
     {
-        MonsterDie();
+        if (!isBossDie)
+        {
+            MonsterDie();
+        }
         BossMove();
         if (!firstBattleEnd && !pFirst && !pSecond)
         {
@@ -113,6 +123,7 @@ public class HYJ_Boss_Stage1 : MonoBehaviour
     {
         if (nowHp <= 0)
         {
+            isBossDie = true;
             //»ç¸Á ¾Ö´Ï¸ÞÀÌ¼Ç
             //monsterAnimator.SetTrigger("Die");
             Debug.Log("»ç¸Á");
