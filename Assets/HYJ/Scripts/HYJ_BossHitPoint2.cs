@@ -27,7 +27,7 @@ public class HYJ_BossHitPoint2 : MonoBehaviour
             if (weak)
             {
                 Debug.Log("º¸½º¸÷ ¾àÁ¡");
-                boss.MonsterTakeDamageCalculation(damage);
+                boss.MonsterTakeDamageCalculation(damage*2);
             }
             else
             {
