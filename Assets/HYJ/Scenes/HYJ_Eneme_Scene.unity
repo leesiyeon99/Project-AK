@@ -1520,12 +1520,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4214559426251552337, guid: 2ad43d3d1ede24f439271fdcb71f1641, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4214559426258675533, guid: 2ad43d3d1ede24f439271fdcb71f1641, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: a0b1c6e3683426b4cb96cd3cae43aa5b, type: 2}
+    - target: {fileID: 5004982990193828545, guid: 2ad43d3d1ede24f439271fdcb71f1641, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5004982990193828545, guid: 2ad43d3d1ede24f439271fdcb71f1641, type: 3}
+      propertyPath: m_Center.y
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5952156536121486260, guid: 2ad43d3d1ede24f439271fdcb71f1641, type: 3}
       propertyPath: m_RenderMode
       value: 2
