@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 public class PlayerBullet : MonoBehaviour
 {
     [Header("- Ω∫∆ƒ≈© ¿Ã∆Â∆Æ «¡∏Æ∆’")]
@@ -68,6 +69,21 @@ public class PlayerBullet : MonoBehaviour
         {
             enemy.TakeDamage(playerGunStatus.BulletAttack);
             weak = enemy.weak;
+        }
+        if (hit.collider.TryGetComponent(out HYJ_SilentBall_HitPoint sb))
+        {
+            sb.TakeDamage(playerGunStatus.BulletAttack);
+         
+        }
+        if (hit.collider.TryGetComponent(out HYJ_FireBall_HitPoint fb))
+        {
+            fb.TakeDamage(playerGunStatus.BulletAttack);
+
+        }
+        if (hit.collider.TryGetComponent(out HYJ_StonePa_HitPoint sp))
+        {
+            sp.TakeDamage(playerGunStatus.BulletAttack);
+
         }
         if (hit.collider.TryGetComponent(out HYJ_BossHitPoint boss))
         {
@@ -138,13 +154,46 @@ public class PlayerBullet : MonoBehaviour
             }
             if (hit[i].collider.TryGetComponent(out HYJ_BossHitPoint2 boss2))
             {
-                Debug.Log(playerGunStatus.BulletAttack);
+              
                 hitFlag = boss2.TakeDamage(playerGunStatus.BulletAttack);
                 if (hitFlag == false)
                 {
                     hitCount++;
                 }
             }
+
+            if (hit[i].collider.TryGetComponent(out HYJ_SilentBall_HitPoint sb))
+            {
+                hitFlag = sb.TakeDamage(playerGunStatus.BulletAttack);
+                if (hitFlag == false)
+                {
+                    hitCount++;
+                }
+
+            }
+            if (hit[i].collider.TryGetComponent(out HYJ_FireBall_HitPoint fb))
+            {
+                hitFlag = fb.TakeDamage(playerGunStatus.BulletAttack);
+                if (hitFlag == false)
+                {
+                    hitCount++;
+                }
+
+            }
+            if (hit[i].collider.TryGetComponent(out HYJ_StonePa_HitPoint sp))
+            {
+                hitFlag = sp.TakeDamage(playerGunStatus.BulletAttack);
+                if (hitFlag == false)
+                {
+                    hitCount++;
+                }
+
+            }
+
+
+
+
+
             if (!playerGunStatus.GunType.HasFlag(GunType.SPLASH) && hitFlag)
             {
                 OnSparkEffect(hit[i].point, true);
@@ -224,6 +273,23 @@ public class PlayerBullet : MonoBehaviour
             {
                 boss2.TakeDamage(playerGunStatus.SplashDamage);
             }
+            if (collider.TryGetComponent(out HYJ_SilentBall_HitPoint sb))
+            {
+                sb.TakeDamage(playerGunStatus.SplashDamage);
+
+            }
+            if (collider.TryGetComponent(out HYJ_FireBall_HitPoint fb))
+            {
+                fb.TakeDamage(playerGunStatus.SplashDamage);
+
+            }
+            if (collider.TryGetComponent(out HYJ_StonePa_HitPoint sp))
+            {
+                sp.TakeDamage(playerGunStatus.SplashDamage);
+
+            }
+
+
             if (collider.TryGetComponent(out Fracture fractureObj))
             {
                 fractureObj.CauseFracture();
