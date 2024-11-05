@@ -61,7 +61,7 @@ public class HYJ_SilentBall : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // 만약 안되면 위에 Damage매니저로 변경
-            damageManager.GetComponent<LJH_DamageManager>().BossTakeBallDamage(100000, 5);
+            damageManager.GetComponent<LJH_DamageManager>().BossTakeBallDamage(10000, 5);
         }
     }
 }
