@@ -34,7 +34,9 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.05f);
     public float fireBallCoolTime = 10;
 
-    
+
+    [SerializeField] float weakTime;
+    Coroutine breakCoroutine;
 
     private void OnEnable()
     {
@@ -65,10 +67,13 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     {
         while (true)
         {
+            
+            
+            /*
             if(canAttack)
             {
-                Defenseless();
-            }
+                 StartCoroutine( Defenseless());
+            }*/
 
             switch (Random.Range(0, 3))
             {
@@ -134,14 +139,46 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     // Comment : 마법진을 파괴하여 보스가 무력화
     IEnumerator Defenseless()
     {
-        boxCollider.enabled = true;
+       
         yield return new WaitForSeconds(5f);
         canAttack = false;
         boxCollider.enabled = false;
     }
 
+    public void BreakObject()
+    {
+        weakTime = 5;
+        canAttack = true;
+        boxCollider.enabled = true;
+
+        if (bossRoutine != null)
+        {
+            StopCoroutine(bossRoutine);
+        }
+        if(breakCoroutine != null)
+        {
+            StopCoroutine(breakCoroutine);
+        }
+        breakCoroutine = StartCoroutine(RecoveryBoss());
+    }
+
+    IEnumerator RecoveryBoss()
+    {
+        while (weakTime > 0)
+        {
+            yield return null;
+            weakTime -= Time.deltaTime;
+            
+        }
+
+        canAttack = false;
+        boxCollider.enabled = false;
+        bossRoutine = StartCoroutine(BossPatternRoutine());
+    }
+
     public void MonsterTakeDamageCalculation(float damage)
     {
+        if(canAttack)
         nowHp -= damage;
     }
 

@@ -16,8 +16,11 @@ public class HYJ_Boss_Stage2_Object : MonoBehaviour
     Coroutine hitFlagCoroutine;
     WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.05f);
 
+    float offsetY;
+
     private void Awake()
     {
+        offsetY = transform.position.y;
         boss = GetComponentInParent<HYJ_Boss_Stage2>();
     }
 
@@ -30,7 +33,7 @@ public class HYJ_Boss_Stage2_Object : MonoBehaviour
 
     private void OnDisable()
     {
-        MagicCircleRecovery();
+       // MagicCircleRecovery();
 
     }
 
@@ -38,10 +41,10 @@ public class HYJ_Boss_Stage2_Object : MonoBehaviour
     {
         if(magicCircleNowHp <= 0)
         {
-            boss.canAttack = true;
-            //gameObject.SetActive(false);
+            boss.BreakObject();
+            transform.position = new Vector3(transform.position.x, -50f, transform.position.z);
 
-            if(MagicCircleRecoveryCo == null)
+            if (MagicCircleRecoveryCo == null)
             MagicCircleRecoveryCo = StartCoroutine(MagicCircleRecovery());
 
         }
@@ -52,10 +55,11 @@ public class HYJ_Boss_Stage2_Object : MonoBehaviour
 
     IEnumerator MagicCircleRecovery()
     {
-        //boss.canAttack = true;
-        yield return new WaitForSeconds(recoveryTime);
-        gameObject.SetActive(true);
         magicCircleNowHp = magicCircleSetHp;
+        yield return new WaitForSeconds(recoveryTime);
+     
+        transform.position = new Vector3(transform.position.x, offsetY, transform.position.z);
+       
         MagicCircleRecoveryCo = null;
     }
 
