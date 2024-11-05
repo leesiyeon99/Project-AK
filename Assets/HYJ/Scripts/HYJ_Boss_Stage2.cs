@@ -61,6 +61,7 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
         {
             fireBallCoolTime = 4f;
         }
+        MonsterDie();
     }
 
     IEnumerator BossPatternRoutine()
@@ -201,5 +202,17 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
     public void KnightCreate()
     {
 
+    }
+
+    private void MonsterDie()
+    {
+        if (nowHp <= 0)
+        {
+            //»ç¸Á ¾Ö´Ï¸ÞÀÌ¼Ç
+            //monsterAnimator.SetTrigger("Die");
+            Debug.Log("»ç¸Á");
+            Destroy(gameObject, 2f);
+            LSY_SceneManager.Instance.GameClear();
+        }
     }
 }
