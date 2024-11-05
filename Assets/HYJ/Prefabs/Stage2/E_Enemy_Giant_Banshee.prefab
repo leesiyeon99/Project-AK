@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2277648628601428459}
   - component: {fileID: 7156101894222068663}
-  - component: {fileID: 7785006361183812662}
+  - component: {fileID: 12410058409477571}
   m_Layer: 0
   m_Name: Weak
   m_TagString: Untagged
@@ -47,7 +47,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.46, y: 0.44, z: 0.54}
   m_Center: {x: 0, y: 1.2, z: 0}
---- !u!114 &7785006361183812662
+--- !u!114 &12410058409477571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,11 +56,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1891214918762617410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d41ddd4d0c3baf140843ff567acb04f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c4ba50eee074894886e10627f12f473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
-  weak: 1
+  weak: 0
   canvas: {fileID: 0}
   damageText: {fileID: 0}
 --- !u!1 &3143794172404043199
@@ -4911,7 +4911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8921672688707579371}
   - component: {fileID: 637852133615342509}
-  - component: {fileID: 257141199518361782}
+  - component: {fileID: 8273513985118793270}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -4947,7 +4947,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.39, z: 0.33}
   m_Center: {x: 0, y: 1.1, z: 0}
---- !u!114 &257141199518361782
+--- !u!114 &8273513985118793270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4956,7 +4956,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7030430431373797677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d41ddd4d0c3baf140843ff567acb04f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c4ba50eee074894886e10627f12f473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
