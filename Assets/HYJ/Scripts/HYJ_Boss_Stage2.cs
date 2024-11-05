@@ -75,7 +75,7 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
                  StartCoroutine( Defenseless());
             }*/
 
-            switch (Random.Range(0, 3))
+            switch (Random.Range(0,3))
             {
                 case 0:
                     yield return FireBall();
@@ -127,11 +127,12 @@ public class HYJ_Boss_Stage2 : MonoBehaviour
         animator.SetTrigger("StonePa");
         for(int i = 0; i < 10; i++)
         {
+            Debug.Log("½ºÅæÆÄ »ý¼º");
             float x = Random.Range(-3,3);
             float y = Random.Range(0.5f,3.5f);
             float z = Random.Range(1,3.5f);
             
-            Instantiate(stonePaPrefab, new Vector3(x, y, z),Quaternion.LookRotation(player.transform.position));
+            Instantiate(stonePaPrefab, new Vector3(this.gameObject.transform.position.x + x, this.gameObject.transform.position.y + y, this.gameObject.transform.position.z + z), Quaternion.LookRotation(player.transform.position));
         }
         yield return new WaitForSeconds(10f);
     }
