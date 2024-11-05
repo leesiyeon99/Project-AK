@@ -90,8 +90,10 @@ public class LJH_Shield : MonoBehaviour
         // Comment: 역장의 위치는 플레이어 위치로 따라다니게
         transform.position = playerPos.transform.position;
 
-        
-        
+        if (durability < 0)
+        {
+            durability = 0;
+        }
         // Comment: 내구도가 0이 될 때, 역장 파괴
         if (durability <= 0)
         {
