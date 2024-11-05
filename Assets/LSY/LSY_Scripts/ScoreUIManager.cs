@@ -83,7 +83,10 @@ public class ScoreUIManager : MonoBehaviour
         {
             return;
         }
-        remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
+        for (int i = 0; i < PlayerSpecialBullet.Instance.SpecialBullet.Length; i++)
+        {
+            remainBulletCount += PlayerSpecialBullet.Instance.SpecialBullet[i];
+        }
         remainHP = LJH_UIManager.Instance.ljh_curHp / 10000;
         if (WHS_StageIndex.curStage == 1)
         {
@@ -112,7 +115,10 @@ public class ScoreUIManager : MonoBehaviour
         {
             return;
         }
-        remainBulletCount = PlayerSpecialBullet.Instance.SpecialBullet.Length;
+        for (int i = 0; i < PlayerSpecialBullet.Instance.SpecialBullet.Length; i++)
+        {
+            remainBulletCount += PlayerSpecialBullet.Instance.SpecialBullet[i];
+        }
         if (WHS_StageIndex.curStage == 1)
         {
             levelScore = 1;
