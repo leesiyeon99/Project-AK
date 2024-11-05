@@ -226,8 +226,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4, z: 0.4}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 0.4, y: 2, z: 0.4}
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!114 &5794262294196142394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5085,11 +5085,13 @@ MonoBehaviour:
   fireBallPrefab: {fileID: 3817055622758676686, guid: 418ff4e6148e1914fbd41b0a0c9d6219, type: 3}
   silentBallPrefab: {fileID: 6330617091220259061, guid: ad3f6e7afff7aff40b4debe4fbda734a, type: 3}
   stonePaPrefab: {fileID: 8914550694270159556, guid: 606f845f28ce7d548acf73c13ff66ef9, type: 3}
+  boxCollider: {fileID: 0}
   hitFlag: 0
   isAttack: 0
   nowAttack: 0
   isDie: 0
   fireBallCoolTime: 10
+  weakTime: 0
 --- !u!54 &2988654009310748727
 Rigidbody:
   m_ObjectHideFlags: 0

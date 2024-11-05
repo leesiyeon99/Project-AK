@@ -61,4 +61,12 @@ public class HYJ_SilentBall : MonoBehaviour
             playerUI.ljh_curHp = 0;
         }
     }
+
+    void SilentBallAttack()
+    {
+        if (Vector3.Distance(this.transform.position, player.transform.position) < 0.5f)
+        {
+
+        }
+    }
 }

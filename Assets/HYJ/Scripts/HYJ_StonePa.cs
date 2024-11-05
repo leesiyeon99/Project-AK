@@ -46,4 +46,12 @@ public class HYJ_StonePa : MonoBehaviour
         yield return hitFlagWaitForSeconds;
         hitFlag = false;
     }
+
+    void StonePaAttack()
+    {
+        if (Vector3.Distance(this.transform.position, player.transform.position) < 0.5f)
+        {
+
+        }
+    }
 }

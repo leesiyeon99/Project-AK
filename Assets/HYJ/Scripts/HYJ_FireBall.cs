@@ -46,4 +46,12 @@ public class HYJ_FireBall : MonoBehaviour
         yield return hitFlagWaitForSeconds;
         hitFlag = false;
     }
+
+    void FireBallAttack()
+    {
+        if(Vector3.Distance(this.transform.position, player.transform.position) < 0.5f)
+        {
+
+        }
+    }
 }
