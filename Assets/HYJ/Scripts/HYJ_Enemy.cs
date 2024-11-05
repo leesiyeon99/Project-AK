@@ -130,14 +130,28 @@ public class HYJ_Enemy : MonoBehaviour
                 monsterAnimator.SetBool("Run Forward", true);
                 return;
             }
+            if (WHS_StageIndex.curStage == 1)
+            {
+                playerDistance = Vector3.Distance(new Vector3(monster.transform.position.x, 0, monster.transform.position.z), new Vector3(player.transform.position.x, 0, player.transform.position.z)); // Comment : 플레이어와 몬스터의 거리(x, z축만 계산)
+            }
+            else
+            {
+                playerDistance = Vector3.Distance(new Vector3(monster.transform.position.x, 0, monster.transform.position.z), new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z)); // Comment : 플레이어와 몬스터의 거리(x, z축만 계산)
+            }
 
-            playerDistance = Vector3.Distance(new Vector3(monster.transform.position.x, 0, monster.transform.position.z), new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z)); // Comment : 플레이어와 몬스터의 거리(x, z축만 계산)
 
             if (playerDistance > monsterAttackRange) // Comment : 플레이어와의 거리가 공격범위 밖일 때
             {
                 Debug.Log("이동 중");
                 monsterAnimator.SetBool("Run Forward", true);
-                monster.transform.position = Vector3.MoveTowards(monster.transform.position, new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z), monsterMoveSpeed / 50);
+                if (WHS_StageIndex.curStage == 1)
+                {
+                    monster.transform.position = Vector3.MoveTowards(monster.transform.position, new Vector3(player.transform.position.x, 0, player.transform.position.z), monsterMoveSpeed / 50);
+                }
+                else
+                {
+                    monster.transform.position = Vector3.MoveTowards(monster.transform.position, new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z), monsterMoveSpeed / 50);
+                }
             }
             else if (playerDistance <= monsterAttackRange && isAttack == false && monsterNowHp > 0) //Comment : 플레이어가 몬스터의 공격범위로 들어왔을 때
             {
