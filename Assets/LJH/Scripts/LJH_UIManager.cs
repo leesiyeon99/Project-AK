@@ -10,7 +10,6 @@ public class LJH_UIManager : MonoBehaviour
     [Header("데미지 매니저 스크립트")]
     [SerializeField] LJH_DamageManager damageManager;
 
-
     [Header("쉴드 내구도 UI")]
     [SerializeField] GameObject[] ljh_shieldImages;     // 내구도 UI용
 
@@ -33,6 +32,9 @@ public class LJH_UIManager : MonoBehaviour
 
     [Header("체력 퍼센트 텍스트")]
     [SerializeField] public TextMeshProUGUI hpText;
+
+    [Header("플레이어 사망 체크용")]
+    [SerializeField] bool isDie;
 
     private static LJH_UIManager instance = null;
 
@@ -64,6 +66,8 @@ public class LJH_UIManager : MonoBehaviour
     {
         ljh_curColor = ljh_initColor;
         ljh_hpBar.color = ljh_initColor;
+
+        isDie = false;
     }
 
 
@@ -71,15 +75,20 @@ public class LJH_UIManager : MonoBehaviour
     {
         ljh_curHp = damageManager.GetComponent<LJH_DamageManager>().ljh_curHp;
         DisplayHpBar();
-        if (ljh_curHp <= 0)
+        
+        if (!isDie)
         {
-            PlayerDied();
+            if (ljh_curHp <= 0)
+            {
+                PlayerDied();
+            }
         }
     }
 
     private void PlayerDied()
     {
         LSY_SceneManager.Instance.PlayerDied();
+        isDie = true;
     }
 
     public void UpdateShieldUI(float durability)

@@ -85,6 +85,7 @@ public class ScoreUIManager : MonoBehaviour
         }
         for (int i = 0; i < PlayerSpecialBullet.Instance.SpecialBullet.Length; i++)
         {
+            
             remainBulletCount += PlayerSpecialBullet.Instance.SpecialBullet[i];
         }
         remainHP = LJH_UIManager.Instance.ljh_curHp / 10000;
