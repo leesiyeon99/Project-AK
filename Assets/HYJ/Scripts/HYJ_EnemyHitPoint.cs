@@ -59,11 +59,12 @@ public class HYJ_EnemyHitPoint : MonoBehaviour
         Debug.Log(isWeak);
         Debug.Log(damage);
         StartCoroutine(OnDamageText(isWeak, damage));
-        damageText.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1, 0));
+       // damageText.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1, 0));
     }
 
     public IEnumerator OnDamageText(bool isWeak, float damage)
     {
+        Debug.Log("AAAAA");
         if (isWeak)
         {
             damage = damage * 2f;
