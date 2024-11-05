@@ -12,6 +12,8 @@ public class HYJ_SilentBall : MonoBehaviour
     public bool HitFlag { get { return hitFlag; } set { hitFlag = value; } }
     Coroutine hitFlagCoroutine;
     WaitForSeconds hitFlagWaitForSeconds = new WaitForSeconds(0.1f);
+
+    [SerializeField] GameObject damageManager;
     private void Awake()
     {
         playerUI = GetComponent<LJH_UIManager>();
@@ -23,6 +25,7 @@ public class HYJ_SilentBall : MonoBehaviour
         nowHp = setHp;
         Destroy(gameObject, 3f);
         player = GameObject.FindGameObjectWithTag("Player");
+        damageManager = GameObject.FindGameObjectWithTag("DamagerManager");
     }
 
     void Update()
@@ -58,15 +61,7 @@ public class HYJ_SilentBall : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // 만약 안되면 위에 Damage매니저로 변경
-            playerUI.ljh_curHp = 0;
-        }
-    }
-
-    void SilentBallAttack()
-    {
-        if (Vector3.Distance(this.transform.position, player.transform.position) < 0.5f)
-        {
-
+            damageManager.GetComponent<LJH_DamageManager>().BossTakeBallDamage(100000, 5);
         }
     }
 }

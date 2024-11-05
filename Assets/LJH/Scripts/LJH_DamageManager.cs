@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
 public class LJH_DamageManager : MonoBehaviour
@@ -23,9 +20,9 @@ public class LJH_DamageManager : MonoBehaviour
     [Header("스크립트")]
     [Header("UIManager 스크립트")]
     [SerializeField] LJH_UIManager uiManagerScript;
-    
 
-    
+
+
     [Header("현재 체력")]
     public float ljh_curHp;
     [Header("변수")]
@@ -92,7 +89,7 @@ public class LJH_DamageManager : MonoBehaviour
 
                 audioManager.GetComponent<AudioManager>().PlayTakeShield();
             }
-            
+
 
         }
 
@@ -104,10 +101,10 @@ public class LJH_DamageManager : MonoBehaviour
 
     public void BossHpSoundPlay()
     {
-            audioManager.GetComponent<AudioManager>().PlayTakeHp();
+        audioManager.GetComponent<AudioManager>().PlayTakeHp();
     }
 
-IEnumerator ShowBloodScreen()
+    IEnumerator ShowBloodScreen()
     {
         if (ljh_bloodImage == null) yield break;
 
@@ -162,7 +159,7 @@ IEnumerator ShowBloodScreen()
         {
             float damage = monsterScript.GetComponent<HYJ_Enemy>().monsterHpAtkPower;
             DamagedHP(damage);
-            
+
             if (bloodCoroutine != null)
             {
                 StopCoroutine(bloodCoroutine);
@@ -216,7 +213,50 @@ IEnumerator ShowBloodScreen()
             bloodCoroutine = StartCoroutine(ShowBloodScreen());
         }
     }
-    
+
+    public void BossTakeBallDamage(float attack, float shieldattack)
+    {
+        if (LSY_SceneManager.Instance.curState == LSY_SceneManager.GameState.GameOver || LSY_SceneManager.Instance.curState == LSY_SceneManager.GameState.GameClear) return;
+        float damage;
+        if (shield.GetComponent<LJH_Shield>().isShield)
+        {
+
+            if (shieldattack == 5)
+            {
+                DamagedHP(10000);
+                DamagedShield(5);
+            }
+            else
+            {
+                damage = shieldattack;
+                DamagedShield(damage);
+            }
+
+
+            if (shieldCoroutine != null)
+            {
+                StopCoroutine(shieldCoroutine);
+            }
+            shieldCoroutine = StartCoroutine(ShowShieldScreen());
+        }
+
+        else if (!shield.GetComponent<LJH_Shield>().isShield)
+        {
+
+            damage = attack;
+            DamagedHP(damage);
+
+            BossHpSoundPlay();
+
+            if (bloodCoroutine != null)
+            {
+                StopCoroutine(bloodCoroutine);
+            }
+            bloodCoroutine = StartCoroutine(ShowBloodScreen());
+        }
+    }
+
+
 
 
 
