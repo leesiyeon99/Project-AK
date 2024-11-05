@@ -58,7 +58,7 @@ public class HYJ_FireBall_HitPoint : MonoBehaviour
         // 데미지 color 설정 (약점이면 빨강/아니면 하얀색)
         Debug.Log(isWeak);
         Debug.Log(damage);
-        StartCoroutine(OnDamageText(isWeak, damage));
+        //StartCoroutine(OnDamageText(isWeak, damage));
         //damageText.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 2, 0));
     }
 
